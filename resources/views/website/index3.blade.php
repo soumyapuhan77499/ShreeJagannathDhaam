@@ -209,7 +209,7 @@
             <div id="navContainer" class="flex gap-5 overflow-x-auto no-scrollbar">
                 
                 <div class="tab-item text-center min-w-[100px] cursor-pointer active-tab" data-tab="lordSupreme">
-                    <div class="image-wrapper mx-auto w-20 h-20 p-1 rounded-full bg-transparent transition-all duration-300">
+                    <div class="image-wrapper mx-auto w-20 h-20 p-1 rounded-full bg-transparent duration-300">
                         <img src="{{ asset('website/temple_info/sup.png') }}" class="w-full h-full object-cover rounded-full" />
                     </div>
                     <p class="text-gray-500 mt-3">Lord Supreme</p>
