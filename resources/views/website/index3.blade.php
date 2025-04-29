@@ -194,7 +194,7 @@
         </div>
     </section> --}}
 
-    <div class="max-w-6xl mx-auto text-center">
+    {{-- <div class="max-w-6xl mx-auto text-center">
 
         <div class="flex justify-center items-center gap-5 mt-12">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
@@ -281,7 +281,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>--}}
 
     <section class="services-section py-10 ">
         <!-- Section Title -->
@@ -684,7 +684,7 @@
         </div>
     </section>
 
-    <section class="bg-100 p-2 relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
+    {{-- <section class="bg-100 p-2 relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
         <div class="max-w-6xl mx-auto text-center relative">
             <!-- Tabs -->
             <div class="absolute top-14 right-0 flex space-x-3 p-3 rounded-lg">
@@ -706,11 +706,82 @@
                     class="w-[600px] h-[800px] object-contain rounded-xl shadow-md" />
             </div>
 
-        </div>
+        </div> --}}
 
-        <div class="timeline-footer">
+        {{-- <div class="timeline-footer">
             © {{ date('Y') }} Temple Management System. All rights reserved. <a style="color: red"
                 href="http://temple.mandirparikrama.com/puri-website/privacy-policy">privacy policy</a>
+        </div> --}}
+    {{-- </section> --}}
+    <footer class="footer" style="margin-top: 50px">
+        <div class="footer-container">
+          <div class="footer-logo-section">
+            <img src="{{ asset('website/logo.png') }}" alt="logo" class="footer-logo" />
+            <div class="footer-title">
+              <h2>Shree</h2>
+              <h2>Jagannatha</h2>
+              <h2>Dham</h2>
+            </div>
+          </div>
+      
+          <div class="footer-links">
+            <div>
+              <h3>Temple Information</h3>
+              <ul>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Quick Services</h3>
+              <ul>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Conveniences</h3>
+              <ul>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Nearby Temples</h3>
+              <ul>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a href="#">Link Name</a></li>
+                <li><a style="color: red" href="http://temple.mandirparikrama.com/puri-website/privacy-policy">privacy policy</a></li>
+              </ul>
+            </div>
+          </div>
+      
+          <div class="footer-bottom">
+            <div class="footer-bottom-container">
+              <a href="https://play.google.com/store" target="_blank" class="app-button">
+                <span>Google Play</span>
+              </a>
+              <a href="https://www.apple.com/app-store/" target="_blank" class="app-button">
+                <span>App Store</span>
+              </a>
+            </div>
+          </div>
+          
         </div>
-    </section>
+      </footer>
+      <div style="height: 100px;width: 100%; background-color: #fcb436;"></div>
+
+
+      </div>
 @endsection
