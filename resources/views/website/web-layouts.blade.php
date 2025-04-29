@@ -521,7 +521,6 @@
     });
 </script>
 
-
     <script>
         function toggleMobileNav() {
             const mobileNav = document.getElementById("mobileNav");
