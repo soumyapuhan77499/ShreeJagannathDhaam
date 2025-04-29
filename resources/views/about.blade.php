@@ -4,6 +4,8 @@
     display: none;
 }
 
+
+
 </style>
 @section('pagename')
     {{ __('About') }}
