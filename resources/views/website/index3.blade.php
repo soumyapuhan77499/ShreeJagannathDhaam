@@ -54,7 +54,6 @@
                 <div class="niti-card {{ $loop->first ? 'active' : '' }}">
                     <div class="niti-content">
                         <h3 style="font-size: 22px; padding-bottom:5px;">{{ $niti->niti_name }}</h3>
-
                         <p
                             style="padding-top: 5px; font-weight: bold; 
                         color: {{ $niti->niti_status == 'Started' ? '#28a745' : '#333' }};">
@@ -208,47 +207,55 @@
         <div class="flex justify-center items-center gap-6 mt-5 mb-12">
             <div id="navContainer" class="flex gap-5 overflow-x-auto no-scrollbar">
                 <div class="tab-item text-center min-w-[100px] cursor-pointer active-tab" data-tab="lordSupreme">
-                    <img src="{{ asset('website/temple_info/sup.png') }}" class="mx-auto w-20 h-20"
-                        style="border-radius: 50%">
+                    <div class="image-wrapper mx-auto w-20 h-20 rounded-full p-1 bg-transparent transition-all duration-300">
+                        <img src="{{ asset('website/temple_info/sup.png') }}" class="w-full h-full rounded-full object-cover" />
+                    </div>
                     <p class="text-gray-500 mt-3">Lord Supreme</p>
                 </div>
-
+            
                 <div class="tab-item text-center min-w-[100px] cursor-pointer inactive-tab" data-tab="throughAges">
-                    <img src="{{ asset('website/temple_info/age.png') }}" class="mx-auto w-20 h-20"
-                        style="border-radius: 50%">
+                    <div class="image-wrapper mx-auto w-20 h-20 rounded-full p-1 bg-transparent transition-all duration-300">
+                        <img src="{{ asset('website/temple_info/age.png') }}" class="w-full h-full rounded-full object-cover" />
+                    </div>
                     <p class="text-gray-500 mt-3">Through The Ages</p>
                 </div>
-
+            
                 <div class="tab-item text-center min-w-[100px] cursor-pointer inactive-tab" data-tab="tradition">
-                    <img src="{{ asset('website/temple_info/tradition.png') }}" class="mx-auto w-20 h-20"
-                        style="border-radius: 50%">
+                    <div class="image-wrapper mx-auto w-20 h-20 rounded-full p-1 bg-transparent transition-all duration-300">
+                        <img src="{{ asset('website/temple_info/tradition.png') }}" class="w-full h-full rounded-full object-cover" />
+                    </div>
                     <p class="text-gray-500 mt-3">Living Tradition</p>
                 </div>
-
+            
                 <div class="tab-item text-center min-w-[100px] cursor-pointer inactive-tab" data-tab="festivals">
-                    <img src="{{ asset('website/temple_info/festival.jpeg') }}" class="mx-auto w-20 h-20"
-                        style="border-radius: 50%">
+                    <div class="image-wrapper mx-auto w-20 h-20 rounded-full p-1 bg-transparent transition-all duration-300">
+                        <img src="{{ asset('website/temple_info/festival.jpeg') }}" class="w-full h-full rounded-full object-cover" />
+                    </div>
                     <p class="text-gray-500 mt-3">Festivals</p>
                 </div>
-
+            
                 <div class="tab-item text-center min-w-[100px] cursor-pointer inactive-tab" data-tab="ratha">
-                    <img src="{{ asset('website/temple_info/ratha.png') }}" class="mx-auto w-20 h-20"
-                        style="border-radius: 50%">
+                    <div class="image-wrapper mx-auto w-20 h-20 rounded-full p-1 bg-transparent transition-all duration-300">
+                        <img src="{{ asset('website/temple_info/ratha.png') }}" class="w-full h-full rounded-full object-cover" />
+                    </div>
                     <p class="text-gray-500 mt-3">Ratha Yatra</p>
                 </div>
-
+            
                 <div class="tab-item text-center min-w-[100px] cursor-pointer inactive-tab" data-tab="services">
-                    <img src="{{ asset('website/temple_info/devt.png') }}" class="mx-auto w-20 h-20"
-                        style="border-radius: 50%">
+                    <div class="image-wrapper mx-auto w-20 h-20 rounded-full p-1 bg-transparent transition-all duration-300">
+                        <img src="{{ asset('website/temple_info/devt.png') }}" class="w-full h-full rounded-full object-cover" />
+                    </div>
                     <p class="text-gray-500 mt-3">Visitor Services</p>
                 </div>
-
+            
                 <div class="tab-item text-center min-w-[100px] cursor-pointer inactive-tab" data-tab="management">
-                    <img src="{{ asset('website/temple_info/management.jpg') }}" class="mx-auto w-20 h-20"
-                        style="border-radius: 50%">
+                    <div class="image-wrapper mx-auto w-20 h-20 rounded-full p-1 bg-transparent transition-all duration-300">
+                        <img src="{{ asset('website/temple_info/management.jpg') }}" class="w-full h-full rounded-full object-cover" />
+                    </div>
                     <p class="text-gray-500 mt-3">Management</p>
                 </div>
             </div>
+            
         </div>
     </div>
 

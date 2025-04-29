@@ -138,13 +138,6 @@ body {
     transition: all 0.4s ease-in-out;
 }
 
-/* Hover effect for image with gradient border */
-.tab-item:hover img {
-    border-image: linear-gradient(45deg, #FFA726, #F06292) 1;
-    border-width: 5px;
-    border-style: solid;
-}
-
 /* Active Tab Image */
 .active-tab img {
     filter: none;
@@ -180,6 +173,15 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Remove this: */
+.tab-item:hover img {
+    border-image: linear-gradient(45deg, #FFA726, #F06292) 1;
+    border-width: 5px;
+    border-style: solid;
+}
+
+
+
 /* Mobile Responsive */
 @media (max-width: 640px) {
     .tab-item p {
@@ -191,6 +193,18 @@ body {
         height: 60px;
     }
 }
+
+.image-wrapper {
+    border-radius: 50%;
+    padding: 4px; /* to show the border */
+    background: transparent;
+    transition: all 0.4s ease-in-out;
+}
+
+.tab-item:hover .image-wrapper {
+    background: linear-gradient(45deg, #FFA726, #F06292);
+}
+
 
 
 /* MAP */
