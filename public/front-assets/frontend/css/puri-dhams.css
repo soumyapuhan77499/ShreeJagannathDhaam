@@ -273,3 +273,12 @@ body {
         background-color: #ef4444; /* red-500 */
         height: 4px;
     }
+    
+    .tab-item img {
+        transition: all 0.3s ease;
+    }
+
+    .tab-item:hover img {
+        border: 5px solid #4B5563; /* Example: gray-600 color */
+        border-radius: 50%;
+    }
