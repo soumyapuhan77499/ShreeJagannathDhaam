@@ -125,61 +125,6 @@ body {
 }
 
 
-/* ABOUT PURI */
-  /* Hide scrollbar for mobile scroll */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-/* Base Tab Image */
-.tab-item img {
-    border-radius: 50%;
-    border: 5px solid transparent;
-    transition: all 0.4s ease-in-out;
-}
-
-/* Hover effect for image with gradient border */
-.tab-item:hover img {
-    border-image: linear-gradient(45deg, #FFA726, #F06292) 1;
-    border-width: 5px;
-    border-style: solid;
-}
-
-/* Active Tab Image */
-.active-tab img {
-    filter: none;
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
-}
-
-/* Text Base Style */
-.tab-item p {
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-/* Text Hover with Gradient Underline */
-.tab-item:hover p::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -4px;
-    height: 3px;
-    background: linear-gradient(90deg, #FFA726, #F06292);
-    border-radius: 10px;
-}
-
-/* Text Color Change on Hover */
-.tab-item:hover p {
-    color: #db4d30;
-}
-
-/* Smooth transition */
-.tab-item {
-    transition: all 0.3s ease;
-}
-
 /* Mobile Responsive */
 @media (max-width: 640px) {
     .tab-item p {
