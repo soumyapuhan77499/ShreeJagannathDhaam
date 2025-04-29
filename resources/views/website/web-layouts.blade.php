@@ -394,97 +394,133 @@
         };
     </script>
 
-    <script>
-        function loadTabContent(tabKey) {
-            const tabInfo = tabData[tabKey];
+<script>
+    function loadTabContent(tabKey) {
+        const tabInfo = tabData[tabKey];
 
-            // Update image
-            document.getElementById('contentImage').src = "{{ asset('') }}" + tabInfo.image;
+        // Update image
+        document.getElementById('contentImage').src = "{{ asset('') }}" + tabInfo.image;
 
-            // Update title and description
-            document.getElementById('contentTitle').textContent = tabInfo.title;
-            document.getElementById('contentDescription').textContent = tabInfo.description;
+        // Update title and description
+        document.getElementById('contentTitle').textContent = tabInfo.title;
+        document.getElementById('contentDescription').textContent = tabInfo.description;
 
-            // Clear old buttons
-            const buttonContainer = document.getElementById('buttonContainer');
-            buttonContainer.innerHTML = '';
+        // Clear old buttons
+        const buttonContainer = document.getElementById('buttonContainer');
+        buttonContainer.innerHTML = '';
 
-            // Add new buttons
-            tabInfo.buttons.forEach(button => {
-                const btn = document.createElement('a');
-                btn.href = button.url;
-                btn.textContent = button.name;
-                btn.className =
-                    'bg-gradient-to-r from-orange-400 to-pink-400 hover:from-orange-500 hover:to-pink-500 text-white font-bold py-2 px-2 rounded transition duration-300';
-                buttonContainer.appendChild(btn);
-            });
+        // Add new buttons
+        tabInfo.buttons.forEach(button => {
+            const btn = document.createElement('a');
+            btn.href = button.url;
+            btn.textContent = button.name;
+            btn.className =
+                'bg-gradient-to-r from-orange-400 to-pink-400 hover:from-orange-500 hover:to-pink-500 text-white font-bold py-2 px-2 rounded transition duration-300';
+            buttonContainer.appendChild(btn);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        loadTabContent('lordSupreme'); // Load default content
+
+        // Set default active tab
+        const defaultTab = document.querySelector('.tab-item[data-tab="lordSupreme"]');
+        if (defaultTab) {
+            defaultTab.classList.add('active-tab');
+            defaultTab.classList.remove('inactive-tab');
+
+            const titleText = defaultTab.querySelector('p');
+            if (titleText) {
+                titleText.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
+                titleText.style.webkitBackgroundClip = "text";
+                titleText.style.webkitTextFillColor = "transparent";
+            }
+
+            const underline = document.createElement('div');
+            underline.classList.add('h-1', 'w-full', 'mt-1');
+            underline.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
+            underline.style.borderRadius = "4px";
+            defaultTab.appendChild(underline);
         }
+    });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            loadTabContent('lordSupreme'); // Load default content
-
-            // Set default active tab underline
-            const defaultTab = document.querySelector('.tab-item[data-tab="lordSupreme"]');
-            if (defaultTab) {
-                defaultTab.classList.add('active-tab');
-                defaultTab.classList.remove('inactive-tab');
-
-                const titleText = defaultTab.querySelector('p');
+    // Tab click handler
+    document.querySelectorAll('.tab-item').forEach(item => {
+        item.addEventListener('click', function () {
+            // Reset all tabs
+            document.querySelectorAll('.tab-item').forEach(t => {
+                t.classList.remove('active-tab');
+                t.classList.add('inactive-tab');
+                
+                // Reset title text
+                const titleText = t.querySelector('p');
                 if (titleText) {
-                    titleText.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
-                    titleText.style.webkitBackgroundClip = "text";
-                    titleText.style.webkitTextFillColor = "transparent";
+                    titleText.style.background = "none";
+                    titleText.style.webkitTextFillColor = "#6B7280"; // text-gray-500 color
                 }
 
-                const underline = document.createElement('div');
-                underline.classList.add('h-1', 'w-full', 'mt-1');
-                underline.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
-                underline.style.borderRadius = "4px";
-                defaultTab.appendChild(underline);
+                // Remove underline
+                const underline = t.querySelector('div.h-1');
+                if (underline) {
+                    underline.remove();
+                }
+
+                // Reset image wrapper background
+                const imgWrapper = t.querySelector('.image-wrapper');
+                if (imgWrapper) {
+                    imgWrapper.style.background = "transparent";
+                    imgWrapper.style.borderRadius = "50%"; // Ensure round shape
+                }
+            });
+
+            // Activate clicked tab
+            this.classList.add('active-tab');
+            this.classList.remove('inactive-tab');
+
+            const clickedTitleText = this.querySelector('p');
+            if (clickedTitleText) {
+                clickedTitleText.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
+                clickedTitleText.style.webkitBackgroundClip = "text";
+                clickedTitleText.style.webkitTextFillColor = "transparent";
+            }
+
+            const underline = document.createElement('div');
+            underline.classList.add('h-1', 'w-full', 'mt-1');
+            underline.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
+            underline.style.borderRadius = "4px";
+            this.appendChild(underline);
+
+            // Ensure clicked tab image stays round
+            const imgWrapper = this.querySelector('.image-wrapper');
+            if (imgWrapper) {
+                imgWrapper.style.background = "linear-gradient(45deg, #FFA726, #F06292)";
+                imgWrapper.style.borderRadius = "50%"; // Again ensure fully round
+            }
+
+            // Load tab content
+            const tabKey = this.getAttribute('data-tab');
+            loadTabContent(tabKey);
+        });
+
+        // Image hover logic
+        item.addEventListener('mouseenter', function () {
+            const imgWrapper = this.querySelector('.image-wrapper');
+            if (imgWrapper) {
+                imgWrapper.style.background = "linear-gradient(45deg, #FFA726, #F06292)";
+                imgWrapper.style.borderRadius = "50%"; // Keep circular
             }
         });
 
-        // Tab click handler
-        document.querySelectorAll('.tab-item').forEach(item => {
-            item.addEventListener('click', function() {
-                // Reset all tabs
-                document.querySelectorAll('.tab-item').forEach(t => {
-                    t.classList.remove('active-tab');
-                    t.classList.add('inactive-tab');
-                    const titleText = t.querySelector('p');
-                    if (titleText) {
-                        titleText.style.background = "none";
-                        titleText.style.webkitTextFillColor = "#6B7280"; // text-gray-500 color
-                    }
-                    const underline = t.querySelector('div.h-1');
-                    if (underline) {
-                        underline.remove();
-                    }
-                });
-
-                // Activate clicked tab
-                this.classList.add('active-tab');
-                this.classList.remove('inactive-tab');
-
-                const clickedTitleText = this.querySelector('p');
-                if (clickedTitleText) {
-                    clickedTitleText.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
-                    clickedTitleText.style.webkitBackgroundClip = "text";
-                    clickedTitleText.style.webkitTextFillColor = "transparent";
-                }
-
-                const underline = document.createElement('div');
-                underline.classList.add('h-1', 'w-full', 'mt-1');
-                underline.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
-                underline.style.borderRadius = "4px";
-                this.appendChild(underline);
-
-                // Load tab content
-                const tabKey = this.getAttribute('data-tab');
-                loadTabContent(tabKey);
-            });
+        item.addEventListener('mouseleave', function () {
+            const imgWrapper = this.querySelector('.image-wrapper');
+            if (imgWrapper && !this.classList.contains('active-tab')) {
+                imgWrapper.style.background = "transparent";
+                imgWrapper.style.borderRadius = "50%"; // Keep circular
+            }
         });
-    </script>
+    });
+</script>
+
 
     <script>
         function toggleMobileNav() {
