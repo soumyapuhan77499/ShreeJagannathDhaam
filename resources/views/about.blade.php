@@ -1,10 +1,9 @@
 @extends('layout')
+
 <style>
     .page-title-area.bg-primary-light {
     display: none;
 }
-
-
 
 </style>
 @section('pagename')
