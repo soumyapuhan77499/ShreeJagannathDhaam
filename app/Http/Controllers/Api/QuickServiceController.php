@@ -42,7 +42,7 @@ class QuickServiceController extends Controller
                 ->map(function ($parking) {
                     // Prefix the parking_photo with the base URL
                     if ($parking->parking_photo) {
-                        $parking->parking_photo = 'http://temple.mandirparikrama.com/' . ltrim($parking->parking_photo, '/');
+                        $parking->parking_photo = url($parking->parking_photo, '/');
                     }
     
                     return $parking;
