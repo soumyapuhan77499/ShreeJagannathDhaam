@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
 
-
     <style>
         body {
             min-height: 100vh;
@@ -36,7 +35,7 @@
             background-color: #fff7f0;
         }
 
-      
+
 
         @media (max-width: 768px) {
             .container {
@@ -101,8 +100,15 @@
     @include('partials.header-puri-dham')
 
     <!-- Hero Section -->
+    @php
+        // Sanitize and map service_type to image file
+        $imageName = $service_type ? $service_type . '.png' : 'default.jpeg';
+        $imagePath = 'website/sub-page/' . $imageName;
+    @endphp
+
     <div class="hero">
-        <img class="hero-bg" src="{{ asset('website/parking.jpeg') }}" alt="Mandir Background" />
+        <img class="hero-bg" src="{{ asset($imagePath) }}"
+            alt="{{ ucfirst(str_replace('_', ' ', $service_type)) }} Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-left">
