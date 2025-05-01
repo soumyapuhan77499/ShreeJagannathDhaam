@@ -421,7 +421,7 @@ public function resumeNiti(Request $request)
         // ✅ Get day_id from master
         $nitiMaster = NitiMaster::where('niti_id', $request->niti_id)->first();
 
-        $dayId = $startedNiti->day_id;
+        $dayId = $nitiMaster->day_id;
 
         if (!$dayId) {
             return response()->json([
@@ -444,11 +444,12 @@ public function resumeNiti(Request $request)
             ], 400);
         }
 
-        // ✅ Check if the Niti is already resumed
+        // ✅ Check if the Niti is already resumed AFTER the paused entry
         $alreadyResumed = NitiManagement::where('niti_id', $request->niti_id)
-            ->where('niti_status', 'Started')
-            ->where('day_id', $dayId)
-            ->exists();
+        ->where('niti_status', 'Started')
+        ->where('day_id', $dayId)
+        ->where('created_at', '>', $pausedNiti->created_at)
+        ->exists();
 
         if ($alreadyResumed) {
             return response()->json([
