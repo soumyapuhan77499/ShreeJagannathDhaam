@@ -16,6 +16,7 @@ use App\Models\TemplePrasad;
 use App\Models\DarshanDetails;
 use App\Models\TempleHundi;
 use App\Models\TempleNews;
+use App\Models\Apk;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\DB;
@@ -1320,5 +1321,36 @@ public function deleteOtherNiti($id)
         'data' => $niti
     ], 200);
 }
+
+
+
+public function latestApk()
+{
+    try {
+        $apk = Apk::where('status', 'active')
+                  ->orderByDesc('id')
+                  ->first();
+
+        if (!$apk) {
+            return response()->json([
+                'message' => 'No active APK found.',
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Latest APK fetched successfully.',
+            'data' => $apk
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Server error.',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+}
+
+
+
 
 }
