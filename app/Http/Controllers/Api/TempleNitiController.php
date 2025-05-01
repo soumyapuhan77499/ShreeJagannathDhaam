@@ -1300,7 +1300,7 @@ public function deleteNotice($id)
 
 public function deleteOtherNiti($id)
 {
-    $niti = NitiMaster::where('id', $id)
+    $niti = NitiMaster::where('niti_id', $id)
         ->where('niti_type', 'other')
         ->first();
 
