@@ -1322,8 +1322,6 @@ public function deleteOtherNiti($id)
     ], 200);
 }
 
-
-
 public function latestApk()
 {
     try {
@@ -1333,6 +1331,7 @@ public function latestApk()
 
         if (!$apk) {
             return response()->json([
+                'status' => false,
                 'message' => 'No active APK found.',
             ], 200);
         }
@@ -1340,17 +1339,24 @@ public function latestApk()
         return response()->json([
             'status' => true,
             'message' => 'Latest APK fetched successfully.',
-            'data' => $apk
+            'data' => [
+                'id' => $apk->id,
+                'version' => $apk->version,
+                'apk_file' => url($apk->apk_file), // full URL
+                'status' => $apk->status,
+                'created_at' => $apk->created_at,
+                'updated_at' => $apk->updated_at,
+            ]
         ], 200);
+
     } catch (\Exception $e) {
         return response()->json([
+            'status' => false,
             'message' => 'Server error.',
             'error' => $e->getMessage()
         ], 500);
     }
 }
-
-
 
 
 }
