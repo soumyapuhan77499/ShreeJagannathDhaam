@@ -272,7 +272,7 @@ Route::controller(TempleNitiController::class)->group(function () {
   Route::post('/save-other-niti', 'storeOtherNiti');
   Route::post('/update-upcoming', 'updateActiveNitiToUpcoming');
   Route::get('/sub-niti/running','getRunningSubNitis');
-  Route::get('latest-apk', 'latestApk');
+  Route::get('/latest-apk', 'latestApk');
 
 
   // Protected routes (niti_admin must be authenticated)
