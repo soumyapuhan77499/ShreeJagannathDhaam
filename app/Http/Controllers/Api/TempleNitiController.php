@@ -752,7 +752,7 @@ public function storeOtherNiti(Request $request)
         // Prevent duplicate names for "other" type
         $existingNiti = NitiMaster::where('niti_name', $request->niti_name)
             ->where('niti_type', 'other')
-            ->where('status', 'active')
+            ->where('status', ['active', 'other'])
             ->first();
 
         if ($existingNiti) {
