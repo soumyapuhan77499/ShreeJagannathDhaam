@@ -1314,6 +1314,7 @@ public function deleteOtherNiti($id)
     $niti->save();
 
     return response()->json([
+        'status' => true,
         'message' => 'Niti status updated to Deleted.',
         'data' => $niti
     ], 200);
