@@ -97,6 +97,7 @@ public function manageNiti(Request $request)
                 'niti_id'     => $otherNiti->niti_id,
                 'niti_name'   => $otherNiti->niti_name,
                 'niti_type'   => $otherNiti->niti_type,
+                'status'   => $otherNiti->status,
                 'niti_status' => 'Started',
                 'start_time'  => optional($otherNiti->todayStartTime)->start_time,
             ];
