@@ -14,7 +14,7 @@
             <ol class="breadcrumb d-flex justify-content-between align-items-center">
                 <li class="breadcrumb-item tx-15">
                     <div class="text-end">
-                        <a href="{{ url('manage-apk') }}" class="btn btn-primary text-white">
+                        <a href="{{ url('templeuser/manage-apk') }}" class="btn btn-primary text-white">
                             Manage APK
                         </a>
                     </div>
@@ -24,12 +24,14 @@
         </div>
     </div>
     <div class="progress mb-4" style="height: 25px; display: none;" id="uploadProgressWrapper">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="uploadProgressBar"
-            role="progressbar" style="width: 0%;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+             id="uploadProgressBar"
+             role="progressbar"
+             style="width: 0%;">
             0%
         </div>
     </div>
-
+    
 
     <div class="row">
         <div class="col-lg-12">
@@ -38,7 +40,7 @@
                     <h5 class="mb-0"><i class="fa fa-list-alt me-2"></i>Add APK</h5>
                 </div>
                 <div class="card-body">
-                    <form id="apkUploadForm" enctype="multipart/form-data">
+                    <form action="{{ route('saveApk') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row gy-3">
                             <div class="col-md-6">
@@ -103,71 +105,4 @@
             });
         </script>
     @endif
-
-    <script>
-        document.getElementById('apkUploadForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // prevent normal form submission
-
-            let form = this;
-            let formData = new FormData(form);
-            let xhr = new XMLHttpRequest();
-
-            // Show progress bar
-            document.getElementById('uploadProgressWrapper').style.display = 'block';
-
-            // Update progress
-            xhr.upload.addEventListener('progress', function(e) {
-                if (e.lengthComputable) {
-                    let percent = Math.round((e.loaded / e.total) * 100);
-                    let progressBar = document.getElementById('uploadProgressBar');
-                    progressBar.style.width = percent + '%';
-                    progressBar.textContent = percent + '%';
-                }
-            });
-
-            // Handle response
-            public
-            function saveApk(Request $request) {
-                $request - > validate([
-                    'version' => 'required|string|max:20',
-                ]);
-
-                if ($request - > hasFile('apk_file')) {
-                    $file = $request - > file('apk_file');
-                    $filename = time().
-                    '.'.$file - > getClientOriginalExtension();
-
-                    $path = $file - > storeAs('uploads/apk', $filename, ['disk' => 'public']);
-
-                    Apk::create([
-                        'version' => $request - > version,
-                        'apk_file' => $path,
-                    ]);
-
-                    if ($request - > ajax()) {
-                        return response() - > json(['message' => 'APK uploaded successfully.']);
-                    }
-
-                    return redirect() - > back() - > with('success', 'APK uploaded successfully.');
-                }
-
-                if ($request - > ajax()) {
-                    return response() - > json(['message' => 'Failed to upload APK file.'], 422);
-                }
-
-                return redirect() - > back() - > with('error', 'Failed to upload APK file.');
-            }
-            xhr.onerror = function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Upload Error',
-                    text: 'Network error occurred while uploading.'
-                });
-            };
-
-            xhr.open('POST', "{{ route('saveApk') }}", true);
-            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
-            xhr.send(formData);
-        });
-    </script>
 @endsection

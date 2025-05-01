@@ -24,24 +24,37 @@ class ApkController extends Controller
             $file = $request->file('apk_file');
             $filename = time() . '.' . $file->getClientOriginalExtension();
     
-            $path = $file->storeAs('uploads/apk', $filename, ['disk' => 'public']);
+            // Move file to public/uploads/apk
+            $destinationPath = public_path('uploads/apk');
+            $file->move($destinationPath, $filename);
+    
+            // Save only the relative path (for download URL)
+            $relativePath = 'uploads/apk/' . $filename;
     
             Apk::create([
                 'version' => $request->version,
-                'apk_file' => $path,
+                'apk_file' => $relativePath,
             ]);
-    
-            if ($request->ajax()) {
-                return response()->json(['message' => 'APK uploaded successfully.']);
-            }
     
             return redirect()->back()->with('success', 'APK uploaded successfully.');
         }
     
-        if ($request->ajax()) {
-            return response()->json(['message' => 'Failed to upload APK file.'], 422);
-        }
-    
         return redirect()->back()->with('error', 'Failed to upload APK file.');
     }
+    
+    public function manageApk()
+    {
+        $apks = Apk::where('status', 'active')->get();
+        return view('templeuser.manage-apk', compact('apks'));
+    }
+
+    public function deleteApk($id)
+    {
+        $apk = Apk::findOrFail($id);
+        Storage::disk('public')->delete($apk->apk_file);
+        $apk->delete();
+
+        return redirect()->back()->with('success', 'APK deleted successfully.');
+    }
+
 }

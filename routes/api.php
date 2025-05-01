@@ -272,6 +272,8 @@ Route::controller(TempleNitiController::class)->group(function () {
   Route::post('/save-other-niti', 'storeOtherNiti');
   Route::post('/update-upcoming', 'updateActiveNitiToUpcoming');
   Route::get('/sub-niti/running','getRunningSubNitis');
+  Route::get('latest-apk', 'latestApk');
+
 
   // Protected routes (niti_admin must be authenticated)
   Route::middleware('auth:niti_admin')->group(function () {
@@ -308,5 +310,4 @@ Route::controller(TemplePrasadController::class)->group(function () {
   Route::get('/special-prasad','getSpecialPrasad');
   Route::middleware('auth:niti_admin')->post('/start-prasad','startPrasad');
   Route::get('/daily-special-started-prasad','getPrasadApi');
-
 });

@@ -103,7 +103,9 @@ Route::controller(MenuController::class)->group(function() {
 Route::controller(ApkController::class)->group(function() {
     Route::get('templeuser/add-apk', 'addApk')->name('addApk');
     Route::post('templeuser/save-apk', 'saveApk')->name('saveApk');
-    Route::post('templeuser/manage-apk', 'manageApk')->name('manageApk');
+    Route::get('templeuser/manage-apk', 'manageApk')->name('manageApk');
+    Route::delete('templeuser/delete-apk/{id}', 'deleteApk')->name('deleteApk');
+    Route::get('templeuser/edit-apk/{id}', 'editApk')->name('editApk');
 });
 
 Route::controller(TempleRegistrationController::class)->group(function() {

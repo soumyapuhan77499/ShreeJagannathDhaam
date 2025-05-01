@@ -48,93 +48,37 @@
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th> <!-- Index column -->
-                                    <th class="border-bottom-0">Banner Image</th>
-                                    <th class="border-bottom-0">View Image</th>
-                                    <th class="border-bottom-0">View Video</th>
-                                    <th class="border-bottom-0">Type</th>
-                                    <th class="border-bottom-0">Description</th>
+                                    <th class="border-bottom-0">Version</th>
+                                    <th class="border-bottom-0">Download</th>
                                     <th class="border-bottom-0">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($banners as $index => $banner)
+                                @foreach ($apks as $index => $apk)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td><img src="{{ asset('storage/' . $banner->banner_image) }}" alt="Banner Image"
-                                                width="100"></td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#viewImageModal{{ $banner->id }}">
-                                                View Image
-                                            </button>
-
-                                            <!-- Modal to view the image -->
-                                            <div class="modal fade" id="viewImageModal{{ $banner->id }}" tabindex="-1"
-                                                aria-labelledby="viewImageLabel{{ $banner->id }}" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="viewImageLabel{{ $banner->id }}">
-                                                                Banner Image</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body text-center">
-                                                            <img src="{{ asset('storage/' . $banner->banner_image) }}"
-                                                                alt="Banner Image"
-                                                                style="max-width: 100%; height: auto; border-radius: 5px;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            @if ($banner->banner_video)
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                    data-bs-target="#viewVideoModal{{ $banner->id }}">
-                                                    View Video
-                                                </button>
+                                        <td>{{ $apk->version }}</td>
                                         
-                                                <!-- Modal to view the video -->
-                                                <div class="modal fade" id="viewVideoModal{{ $banner->id }}" tabindex="-1"
-                                                    aria-labelledby="viewVideoLabel{{ $banner->id }}" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="viewVideoLabel{{ $banner->id }}">Banner Video</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                    aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body text-center">
-                                                                <video width="100%" height="auto" controls style="border-radius: 5px;">
-                                                                    <source src="{{ asset('storage/' . $banner->banner_video) }}" type="video/mp4">
-                                                                    Your browser does not support the video tag.
-                                                                </video>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @else
-                                                <span class="text-muted">No Video</span>
-                                            @endif
+                                        <td>
+                                            <a href="{{ asset($apk->apk_file) }}" class="btn btn-primary" download>
+                                                <i class="fa fa-download"></i> Download
+                                            </a>
                                         </td>
                                         
-                                        <td>{{ $banner->banner_type }}</td>
-                                        <td>{{ $banner->banner_descp }}</td>
                                         <td>
-                                            <a href="{{ route('templebanner.editBanner', $banner->id) }}"
-                                                class="btn btn-success">Edit</a>
-
-                                            <form id="delete-form-{{ $banner->id }}"
-                                                action="{{ route('templebanner.deleteBanner', $banner->id) }}"
-                                                method="POST" style="display:inline;">
+                                            <form action="{{ route('deleteApk', $apk->id) }}" method="POST"
+                                                class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="btn btn-danger"
-                                                    onclick="confirmDelete({{ $banner->id }})"><i
-                                                        class="fa fa-trash"></i></button>
+                                                <button type="submit" class="btn btn-danger delete-apk">
+                                                    <i class="fa fa-trash"></i> Delete
+                                                </button>
                                             </form>
+                                            <a href="{{ route('editApk', $apk->id) }}" class="btn btn-warning">
+                                                <i class="fa fa-edit "></i> Edit
+                                            </a>
                                         </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>
