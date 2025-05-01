@@ -1310,7 +1310,7 @@ public function deleteOtherNiti($id)
         ], 404);
     }
 
-    $niti->niti_status = 'Deleted';
+    $niti->status = 'deleted';
     $niti->save();
 
     return response()->json([
