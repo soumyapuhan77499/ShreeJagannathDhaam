@@ -58,6 +58,7 @@ class WebsiteBannerController extends Controller
     
             $otherNitis = NitiMaster::where('status', 'active')
                 ->where('niti_type', 'other')
+                ->where('status', 'active')
                 ->where('niti_status', 'Started')
                 ->with(['subNitis'])
                 ->whereHas('todayStartCompleteTime')

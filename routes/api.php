@@ -282,7 +282,8 @@ Route::controller(TempleNitiController::class)->group(function () {
       // Route::post('/sub-niti/start', 'startSubNiti');
       Route::post('/sub-niti/add', 'addAndStartSubNiti');
       Route::post('/update-sub-niti-name/{id}', 'updateSubNitiName');
-      Route::delete('/delete-sub-niti/{id}','softDeleteSubNiti');
+      Route::delete('/delete-sub-niti/{id}','softDeleteSubNiti'); 
+      Route::patch('/niti/delete-other/{id}', 'deleteOtherNiti');
   });
 
   Route::post('/save-temple-news', 'storeByNoticeName');

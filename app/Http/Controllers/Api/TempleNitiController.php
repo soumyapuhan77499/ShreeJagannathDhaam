@@ -82,6 +82,7 @@ public function manageNiti(Request $request)
         // ✅ Other Nitis (based on management table status)
         $otherNitis = NitiMaster::where('niti_type', 'other')
         ->where('niti_status', 'Started')
+        ->where('status', 'active')
         ->with(['subNitis'])
         ->whereHas('todayStartTime', function ($query) use ($latestDayId) {
             $query->where('day_id', $latestDayId);
@@ -619,7 +620,6 @@ public function stopNiti(Request $request)
     }
 }
 
-
 public function completedNiti()
 {
     try {
@@ -752,6 +752,7 @@ public function storeOtherNiti(Request $request)
         // Prevent duplicate names for "other" type
         $existingNiti = NitiMaster::where('niti_name', $request->niti_name)
             ->where('niti_type', 'other')
+            ->where('status', 'active')
             ->first();
 
         if ($existingNiti) {
@@ -1152,7 +1153,6 @@ public function index()
     }
 }
 
-
 public function storeByNoticeName(Request $request)
 {
    
@@ -1296,6 +1296,27 @@ public function deleteNotice($id)
             'message' => 'An error occurred while deleting the notice.'
         ], 500);
     }
+}
+
+public function deleteOtherNiti($id)
+{
+    $niti = NitiMaster::where('id', $id)
+        ->where('niti_type', 'other')
+        ->first();
+
+    if (!$niti) {
+        return response()->json([
+            'message' => 'Niti not found or not of type "other".',
+        ], 404);
+    }
+
+    $niti->niti_status = 'Deleted';
+    $niti->save();
+
+    return response()->json([
+        'message' => 'Niti status updated to Deleted.',
+        'data' => $niti
+    ], 200);
 }
 
 }

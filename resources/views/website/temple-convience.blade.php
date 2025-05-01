@@ -118,7 +118,6 @@
         </div>
     </div>
 
-
     <!-- Table Section -->
     <div class="container mx-auto">
         <div class="overflow-x-auto rounded-lg shadow-lg bg-white">
