@@ -74,6 +74,7 @@ public function bhaktanibasList(){
 
     $bhaktaNibas = Accomodation::where('temple_id', $templeId)
         ->where('accomodation_type', 'bhakta_niwas')
+        ->where('language', 'English')
         ->get();
 
     return view('website.bhaktanibas-list', compact('bhaktaNibas'));
@@ -91,6 +92,7 @@ public function lockerShoeList()
 
     return view('website.locker-shoe-list', compact('services'));
 }
+
 public function getDarshanList()
 {
     $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
@@ -152,6 +154,5 @@ public function viewPanji()
 
     return view('website.view-panji-details', compact('todayPanji'));  
 } 
-
 
 }

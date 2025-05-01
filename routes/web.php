@@ -34,7 +34,7 @@ use App\Http\Controllers\TempleUser\TempleDailyRitualController;
 use App\Http\Controllers\TempleUser\TempleYearlyRitualController;
 use App\Http\Controllers\TempleUser\TempleExpenditureController;
 
-## Superadmin COntroller
+## Superadmin Controller
 use App\Http\Controllers\Superadmin\SuperAdminController;
 use App\Http\Controllers\Superadmin\TempleRequestController;
 use App\Http\Controllers\Superadmin\TempleTitleController;
@@ -58,9 +58,6 @@ use App\Http\Controllers\TempleUser\TempleEmergencyController;
 use App\Http\Controllers\TempleUser\TemplePublicServiceController;
 use App\Http\Controllers\TempleUser\TempleGalleryController;
 use App\Http\Controllers\TempleUser\TempleLostAndFoundController;
-
-
-
 
 
 // website
@@ -98,7 +95,6 @@ Route::controller(MenuController::class)->group(function() {
     Route::post('/save-sub-menu', 'saveSubMenu')->name('saveSubMenu');
     Route::post('/save-main-menu', 'saveMainMenu')->name('saveMainMenu');
 });
-
 
 Route::controller(ApkController::class)->group(function() {
     Route::get('templeuser/add-apk', 'addApk')->name('addApk');
