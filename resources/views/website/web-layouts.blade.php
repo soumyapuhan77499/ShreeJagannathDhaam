@@ -78,7 +78,7 @@
 </head>
 
 <body>
-    <!-- Emergency Modal -->
+    {{-- <!-- Emergency Modal -->
     <div id="emergencyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-2xl relative">
             <button onclick="closeEmergencyModal()" class="absolute top-3 right-3 text-gray-600 hover:text-red-600">
@@ -152,7 +152,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Special Abled Person Modal -->
     <div id="specialModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -217,7 +217,6 @@
             @endif
         </div>
     </div>
-
 
     <!-- Content -->
     @yield('content')
@@ -300,7 +299,6 @@
             document.getElementById('specialModal').classList.add('hidden');
         }
     </script>
-
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -395,132 +393,132 @@
         };
     </script>
 
-<script>
-    function loadTabContent(tabKey) {
-        const tabInfo = tabData[tabKey];
+    <script>
+        function loadTabContent(tabKey) {
+            const tabInfo = tabData[tabKey];
 
-        // Update image
-        document.getElementById('contentImage').src = "{{ asset('') }}" + tabInfo.image;
+            // Update image
+            document.getElementById('contentImage').src = "{{ asset('') }}" + tabInfo.image;
 
-        // Update title and description
-        document.getElementById('contentTitle').textContent = tabInfo.title;
-        document.getElementById('contentDescription').textContent = tabInfo.description;
+            // Update title and description
+            document.getElementById('contentTitle').textContent = tabInfo.title;
+            document.getElementById('contentDescription').textContent = tabInfo.description;
 
-        // Clear old buttons
-        const buttonContainer = document.getElementById('buttonContainer');
-        buttonContainer.innerHTML = '';
+            // Clear old buttons
+            const buttonContainer = document.getElementById('buttonContainer');
+            buttonContainer.innerHTML = '';
 
-        // Add new buttons
-        tabInfo.buttons.forEach(button => {
-            const btn = document.createElement('a');
-            btn.href = button.url;
-            btn.textContent = button.name;
-            btn.className =
-                'bg-gradient-to-r from-orange-400 to-pink-400 hover:from-orange-500 hover:to-pink-500 text-white font-bold py-2 px-2 rounded transition duration-300';
-            buttonContainer.appendChild(btn);
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        loadTabContent('lordSupreme'); // Load default content
-
-        // Set default active tab
-        const defaultTab = document.querySelector('.tab-item[data-tab="lordSupreme"]');
-        if (defaultTab) {
-            defaultTab.classList.add('active-tab');
-            defaultTab.classList.remove('inactive-tab');
-
-            const titleText = defaultTab.querySelector('p');
-            if (titleText) {
-                titleText.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
-                titleText.style.webkitBackgroundClip = "text";
-                titleText.style.webkitTextFillColor = "transparent";
-            }
-
-            const underline = document.createElement('div');
-            underline.classList.add('h-1', 'w-full', 'mt-1');
-            underline.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
-            underline.style.borderRadius = "4px";
-            defaultTab.appendChild(underline);
+            // Add new buttons
+            tabInfo.buttons.forEach(button => {
+                const btn = document.createElement('a');
+                btn.href = button.url;
+                btn.textContent = button.name;
+                btn.className =
+                    'bg-gradient-to-r from-orange-400 to-pink-400 hover:from-orange-500 hover:to-pink-500 text-white font-bold py-2 px-2 rounded transition duration-300';
+                buttonContainer.appendChild(btn);
+            });
         }
-    });
 
-    // Tab click handler
-    document.querySelectorAll('.tab-item').forEach(item => {
-        item.addEventListener('click', function () {
-            // Reset all tabs
-            document.querySelectorAll('.tab-item').forEach(t => {
-                t.classList.remove('active-tab');
-                t.classList.add('inactive-tab');
-                
-                // Reset title text
-                const titleText = t.querySelector('p');
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTabContent('lordSupreme'); // Load default content
+
+            // Set default active tab
+            const defaultTab = document.querySelector('.tab-item[data-tab="lordSupreme"]');
+            if (defaultTab) {
+                defaultTab.classList.add('active-tab');
+                defaultTab.classList.remove('inactive-tab');
+
+                const titleText = defaultTab.querySelector('p');
                 if (titleText) {
-                    titleText.style.background = "none";
-                    titleText.style.webkitTextFillColor = "#6B7280"; // text-gray-500 color
+                    titleText.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
+                    titleText.style.webkitBackgroundClip = "text";
+                    titleText.style.webkitTextFillColor = "transparent";
                 }
 
-                // Remove underline
-                const underline = t.querySelector('div.h-1');
-                if (underline) {
-                    underline.remove();
+                const underline = document.createElement('div');
+                underline.classList.add('h-1', 'w-full', 'mt-1');
+                underline.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
+                underline.style.borderRadius = "4px";
+                defaultTab.appendChild(underline);
+            }
+        });
+
+        // Tab click handler
+        document.querySelectorAll('.tab-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Reset all tabs
+                document.querySelectorAll('.tab-item').forEach(t => {
+                    t.classList.remove('active-tab');
+                    t.classList.add('inactive-tab');
+
+                    // Reset title text
+                    const titleText = t.querySelector('p');
+                    if (titleText) {
+                        titleText.style.background = "none";
+                        titleText.style.webkitTextFillColor = "#6B7280"; // text-gray-500 color
+                    }
+
+                    // Remove underline
+                    const underline = t.querySelector('div.h-1');
+                    if (underline) {
+                        underline.remove();
+                    }
+
+                    // Reset image wrapper background
+                    const imgWrapper = t.querySelector('.image-wrapper');
+                    if (imgWrapper) {
+                        imgWrapper.style.background = "transparent";
+                        imgWrapper.style.borderRadius = "50%"; // Ensure round shape
+                    }
+                });
+
+                // Activate clicked tab
+                this.classList.add('active-tab');
+                this.classList.remove('inactive-tab');
+
+                const clickedTitleText = this.querySelector('p');
+                if (clickedTitleText) {
+                    clickedTitleText.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
+                    clickedTitleText.style.webkitBackgroundClip = "text";
+                    clickedTitleText.style.webkitTextFillColor = "transparent";
                 }
 
-                // Reset image wrapper background
-                const imgWrapper = t.querySelector('.image-wrapper');
+                const underline = document.createElement('div');
+                underline.classList.add('h-1', 'w-full', 'mt-1');
+                underline.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
+                underline.style.borderRadius = "4px";
+                this.appendChild(underline);
+
+                // Ensure clicked tab image stays round
+                const imgWrapper = this.querySelector('.image-wrapper');
                 if (imgWrapper) {
-                    imgWrapper.style.background = "transparent";
-                    imgWrapper.style.borderRadius = "50%"; // Ensure round shape
+                    imgWrapper.style.background = "linear-gradient(45deg, #FFA726, #F06292)";
+                    imgWrapper.style.borderRadius = "50%"; // Again ensure fully round
+                }
+
+                // Load tab content
+                const tabKey = this.getAttribute('data-tab');
+                loadTabContent(tabKey);
+            });
+
+            // Image hover logic
+            item.addEventListener('mouseenter', function() {
+                const imgWrapper = this.querySelector('.image-wrapper');
+                if (imgWrapper) {
+                    imgWrapper.style.background = "linear-gradient(45deg, #FFA726, #F06292)";
+                    imgWrapper.style.borderRadius = "50%"; // Keep circular
                 }
             });
 
-            // Activate clicked tab
-            this.classList.add('active-tab');
-            this.classList.remove('inactive-tab');
-
-            const clickedTitleText = this.querySelector('p');
-            if (clickedTitleText) {
-                clickedTitleText.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
-                clickedTitleText.style.webkitBackgroundClip = "text";
-                clickedTitleText.style.webkitTextFillColor = "transparent";
-            }
-
-            const underline = document.createElement('div');
-            underline.classList.add('h-1', 'w-full', 'mt-1');
-            underline.style.background = "linear-gradient(90deg, #FFA726, #F06292)";
-            underline.style.borderRadius = "4px";
-            this.appendChild(underline);
-
-            // Ensure clicked tab image stays round
-            const imgWrapper = this.querySelector('.image-wrapper');
-            if (imgWrapper) {
-                imgWrapper.style.background = "linear-gradient(45deg, #FFA726, #F06292)";
-                imgWrapper.style.borderRadius = "50%"; // Again ensure fully round
-            }
-
-            // Load tab content
-            const tabKey = this.getAttribute('data-tab');
-            loadTabContent(tabKey);
+            item.addEventListener('mouseleave', function() {
+                const imgWrapper = this.querySelector('.image-wrapper');
+                if (imgWrapper && !this.classList.contains('active-tab')) {
+                    imgWrapper.style.background = "transparent";
+                    imgWrapper.style.borderRadius = "50%"; // Keep circular
+                }
+            });
         });
-
-        // Image hover logic
-        item.addEventListener('mouseenter', function () {
-            const imgWrapper = this.querySelector('.image-wrapper');
-            if (imgWrapper) {
-                imgWrapper.style.background = "linear-gradient(45deg, #FFA726, #F06292)";
-                imgWrapper.style.borderRadius = "50%"; // Keep circular
-            }
-        });
-
-        item.addEventListener('mouseleave', function () {
-            const imgWrapper = this.querySelector('.image-wrapper');
-            if (imgWrapper && !this.classList.contains('active-tab')) {
-                imgWrapper.style.background = "transparent";
-                imgWrapper.style.borderRadius = "50%"; // Keep circular
-            }
-        });
-    });
-</script>
+    </script>
 
     <script>
         function toggleMobileNav() {
@@ -662,7 +660,7 @@
             document.getElementById('hundiModal').classList.add('hidden');
         }
     </script>
-    
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const calendarContainer = document.getElementById("calendar");
@@ -718,7 +716,7 @@
 
                         const selectedDay = this.getAttribute("data-day");
                         const selectedDate = formatDate(year, month + 1,
-                        selectedDay); // month+1 because JS month starts from 0
+                            selectedDay); // month+1 because JS month starts from 0
                         loadPanjiDetails(selectedDate); // 👈 load panji event on date click
                     });
                 });
@@ -784,11 +782,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                            <hr class="border-dashed border-gray-300 my-4">
-                            <div class="flex items-start gap-3">
-                                <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                <p class="text-gray-800">${data.description}</p>
-                            </div>` : ''}
+                                <hr class="border-dashed border-gray-300 my-4">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                    <p class="text-gray-800">${data.description}</p>
+                                </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
@@ -805,13 +803,8 @@
         });
     </script>
 
-<script>
-    
-    window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('emergencyModal').classList.add('hidden');
-});
+   
 
-</script>
 </body>
 
 
