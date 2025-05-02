@@ -78,8 +78,8 @@
 </head>
 
 <body>
-    {{-- <!-- Emergency Modal -->
-    <div id="emergencyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <!-- Emergency Modal -->
+    {{-- <div id="emergencyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-2xl relative">
             <button onclick="closeEmergencyModal()" class="absolute top-3 right-3 text-gray-600 hover:text-red-600">
                 <i class="fas fa-times text-2xl"></i>
@@ -152,7 +152,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Special Abled Person Modal -->
     <div id="specialModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -216,7 +216,7 @@
                 <p class="text-gray-500 italic">No Hundi collection data available for today.</p>
             @endif
         </div>
-    </div>
+    </div> --}}
 
     <!-- Content -->
     @yield('content')
