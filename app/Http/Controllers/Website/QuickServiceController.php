@@ -176,8 +176,7 @@ public function onlineDonation()
 
 public function hundiCollection()
 {
-    $hundi = TempleHundi::where('temple_id', $templeId)
-    ->where('date', $yesterday)
+    $hundi = TempleHundi::where('date', $yesterday)
     ->first();
 
     return view('website.hundi-collection' , compact('hundi'));
