@@ -559,5 +559,6 @@ Route::controller(QuickServiceController::class)->group(function() {
     Route::get('/services-emergency',  'serviceEmergerncy')->name('services.emergency');
     Route::get('/services-abled',  'serviceAbled')->name('services.abled_person');
     Route::get('/view-panji-details', 'viewPanji')->name('view.panji.details');
-
+    Route::get('/online-donation', 'onlineDonation')->name('online.donation');
+    Route::get('/hundi-collection', 'hundiCollection')->name('hundi.collection');
 });

@@ -88,9 +88,7 @@ public function puriWebsite()
     }
 
     $yesterday = Carbon::yesterday()->toDateString(); // 1 day ago
-    $hundi = TempleHundi::where('temple_id', $templeId)
-        ->where('date', $yesterday)
-        ->first();
+  
 
         $todayDate = Carbon::today()->toDateString();
         $todayPanji = PanjiDetails::where('date', $todayDate)->where('status', 'active')->first();

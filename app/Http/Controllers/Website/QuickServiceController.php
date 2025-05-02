@@ -166,4 +166,20 @@ public function serviceAbled()
     return view('website.service-abled');
 }
 
+public function onlineDonation()
+{
+    return view('website.online-donation');
+
+}
+
+public function hundiCollection()
+{
+    $hundi = TempleHundi::where('temple_id', $templeId)
+    ->where('date', $yesterday)
+    ->first();
+
+    return view('website.hundi-collection' , compact('hundi'));
+
+}
+
 }

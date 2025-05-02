@@ -417,7 +417,7 @@
         </a>
 
         <!-- Online Donations -->
-        <div class="service-cards" onclick="openDonationModal()">
+        <a href="{{ route('online.donation') }}" class="service-cards" style="text-decoration: none;">
             <div class="card-top">
                 <div class="card-text">
                     <div class="card-title">Online Donations</div>
@@ -433,10 +433,10 @@
                 </div>
                 <div class="footer-bar bar-cyan"></div>
             </div>
-        </div>
+        </a>
 
         <!-- Hundi Collection -->
-        <div class="service-cards" onclick="openHundiModal()">
+        <a href="{{ route('hundi.collection') }}" class="service-cards" style="text-decoration: none;">
             <div class="card-top">
                 <div class="card-text">
                     <div class="card-title">Hundi Collection</div>
@@ -458,8 +458,7 @@
                 </div>
                 <div class="footer-bar bar-green"></div>
             </div>
-        </div>
-
+        </a>
 
     </section>
 
