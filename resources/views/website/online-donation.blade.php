@@ -42,6 +42,7 @@
     </section>
 
     @include('partials.website-footer')
+    
 </body>
 
 </html>
