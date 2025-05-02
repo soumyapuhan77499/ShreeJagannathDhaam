@@ -161,4 +161,9 @@ public function serviceEmergerncy(){
     
 }
 
+public function serviceAbled()
+{
+    return view('website.service-abled');
+}
+
 }

@@ -8,6 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
+
 </head>
 
 <body>
@@ -94,9 +96,8 @@
     </section>
     
 
-    <div class="text-center text-sm text-gray-400 mt-10 mb-6">
-        © {{ date('Y') }} Temple Management System. All rights reserved.
-    </div>
+    @include('partials.website-footer')
+
 </body>
 
 </html>

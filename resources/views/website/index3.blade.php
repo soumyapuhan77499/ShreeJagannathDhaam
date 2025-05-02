@@ -530,7 +530,7 @@
 
 
             <div class="conv">
-                <a href="{{ route('services.byType', 'abled_person') }}">
+                <a href="{{ route('services.abled_person') }}">
                     <div class="convenience-item">
                         <i class="fas fa-wheelchair"></i>
                     </div>
