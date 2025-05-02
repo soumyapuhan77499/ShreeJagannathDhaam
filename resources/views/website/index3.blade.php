@@ -96,7 +96,7 @@
             </div>
         </div>
     </div>
-    
+
     {{-- 
     <section class="shree-mandir-section  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
 
@@ -281,7 +281,7 @@
                 </div>
             </div>
         </div>
-    </section>--}}
+    </section> --}}
 
     <section class="services-section py-10 ">
         <!-- Section Title -->
@@ -520,18 +520,22 @@
             </div>
 
             <div class="conv">
-                <div class="convenience-item cursor-pointer" onclick="openEmergencyModal()">
-                    <img src="{{ asset('website/ph.png') }}" alt="Emergency">
-                </div>
-                <p>Emergency</p>
+                <a href="{{ route('services.emergency') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/ph.png') }}" alt="Emergency">
+                    </div>
+                    <p>Emergency</p>
+                </a>
             </div>
 
 
             <div class="conv">
-                <div class="convenience-item cursor-pointer" onclick="openSpecialModal()">
-                    <i class="fas fa-wheelchair"></i>
-                </div>
-                <p>Special Abled Person</p>
+                <a href="{{ route('services.byType', 'abled_person') }}">
+                    <div class="convenience-item">
+                        <i class="fas fa-wheelchair"></i>
+                    </div>
+                    <p>Special Abled Person</p>
+                </a>
             </div>
 
             <div class="conv">
@@ -707,7 +711,7 @@
 
         </div> --}}
 
-        {{-- <div class="timeline-footer">
+    {{-- <div class="timeline-footer">
             © {{ date('Y') }} Temple Management System. All rights reserved. <a style="color: red"
                 href="http://temple.mandirparikrama.com/puri-website/privacy-policy">privacy policy</a>
         </div> --}}
