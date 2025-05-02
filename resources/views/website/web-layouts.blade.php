@@ -805,7 +805,13 @@
         });
     </script>
 
+<script>
+    
+    window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('emergencyModal').classList.add('hidden');
+});
 
+</script>
 </body>
 
 

@@ -712,7 +712,7 @@
                 href="http://temple.mandirparikrama.com/puri-website/privacy-policy">privacy policy</a>
         </div> --}}
     {{-- </section> --}}
-   
+
     @include('partials.website-footer')
 
 @endsection
