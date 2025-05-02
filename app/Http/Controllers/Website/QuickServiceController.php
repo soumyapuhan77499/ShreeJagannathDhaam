@@ -14,6 +14,8 @@ use App\Models\Accomodation;
 use App\Models\PublicServices;
 use App\Models\NearByTemple;
 use App\Models\PanjiDetails;
+use App\Models\TempleHundi;
+
 use Carbon\Carbon;
 
 class QuickServiceController extends Controller
