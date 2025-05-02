@@ -176,6 +176,8 @@ public function onlineDonation()
 
 public function hundiCollection()
 {
+    $yesterday = Carbon::yesterday()->toDateString(); // 1 day ago
+
     $hundi = TempleHundi::where('date', $yesterday)
     ->first();
 
