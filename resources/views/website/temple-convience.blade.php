@@ -151,6 +151,7 @@
                             </td>
 
                             <td class="py-4 px-6 font-semibold">{{ $service->service_name }}</td>
+
                             <td class="py-4 px-6">
                                 @if ($service->google_map_link)
                                     <a href="{{ $service->google_map_link }}" target="_blank"
@@ -248,7 +249,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                     @empty
                         <tr>
