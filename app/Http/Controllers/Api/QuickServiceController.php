@@ -430,4 +430,11 @@ class QuickServiceController extends Controller
         }
     }
 
+    
+public function serviceEmergerncy(){
+
+    return view('website.emergency-contact');
+    
+}
+
 }

@@ -17,7 +17,7 @@
         <img class="hero-bg" src="{{ asset('website/fest.jpg') }}" alt="Mandir Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Emergency COntact</h1>
+            <h1>Emergency Contact</h1>
             <p>List Of Emergency Contact</p>
         </div>
     </section>
