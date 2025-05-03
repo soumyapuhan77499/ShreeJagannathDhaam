@@ -528,7 +528,7 @@ Route::controller(TempleLostAndFoundController::class)->group(function() {
 });
 
 Route::controller(HomeSectionController::class)->group(function() {
-    Route::get('/', 'puriWebsite')->name('puriWebsite');
+    Route::get('/puri-dham', 'puriWebsite')->name('puriWebsite');
     Route::get('/view-all-niti','viewAllNiti')->name('all.niti');
     Route::get('/mandir-tv', 'mandirTv')->name('tv.layout');
     Route::get('/mandir-radio', 'mandirRadio')->name('radio.layout');
