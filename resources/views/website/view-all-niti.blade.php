@@ -291,6 +291,7 @@
                     'Completed' => 'fa-check-circle',
                     'Started' => 'fa-sun',
                     'Upcoming' => 'fa-bell',
+                    default => 'fa-question-circle', // fallback for unknown status
                 };
 
                 $statusClass = $status;
