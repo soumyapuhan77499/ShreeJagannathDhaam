@@ -106,6 +106,7 @@ public function puriWebsite()
     ]);
 }
 
+
 public function viewAllNiti()
 {
     // ✅ Get latest active day_id

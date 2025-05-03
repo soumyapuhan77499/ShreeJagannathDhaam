@@ -527,7 +527,6 @@
                 </a>
             </div>
 
-
             <div class="conv">
                 <a href="{{ route('services.abled_person') }}">
                     <div class="convenience-item">
@@ -545,7 +544,6 @@
                     <p>Route Map</p>
                 </a>
             </div>
-
 
             <div class="conv">
                 <a href="{{ route('services.byType', 'lost_and_found_booth') }}">
