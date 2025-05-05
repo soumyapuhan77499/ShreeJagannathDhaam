@@ -16,7 +16,6 @@ use App\Models\TemplePrasad;
 use App\Models\DarshanDetails;
 use App\Models\TempleHundi;
 use App\Models\TempleNews;
-use App\Models\Apk;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\DB;
@@ -83,7 +82,7 @@ public function manageNiti(Request $request)
         // ✅ Other Nitis (based on management table status)
         $otherNitis = NitiMaster::where('niti_type', 'other')
         ->where('niti_status', 'Started')
-        ->where('status', ['active', 'other'])
+        ->where('status','!=','deleted')
         ->with(['subNitis'])
         ->whereHas('todayStartTime', function ($query) use ($latestDayId) {
             $query->where('day_id', $latestDayId);
@@ -96,7 +95,7 @@ public function manageNiti(Request $request)
         ->orderBy('created_at', 'desc')
         ->get(['id', 'niti_notice', 'status'])
         ->first();
-
+    
         $finalNitiList = [];
 
         // ✅ Add "Other" Nitis
@@ -105,9 +104,9 @@ public function manageNiti(Request $request)
                 'niti_id'     => $otherNiti->niti_id,
                 'niti_name'   => $otherNiti->niti_name,
                 'niti_type'   => $otherNiti->niti_type,
-                'status'   => $otherNiti->status,
                 'niti_status' => 'Started',
                 'start_time'  => optional($otherNiti->todayStartTime)->start_time,
+                'status'      => $otherNiti->status
             ];
         }
 
@@ -778,7 +777,6 @@ public function storeOtherNiti(Request $request)
             'niti_name'      => $request->niti_name,
             'english_niti_name'      => $request->niti_name,
             'niti_type'      => 'other',
-            'language'       => 'Odia',
             'niti_privacy'   => 'public',
             'niti_status'    => 'Started',
             'date_time'      => $now->format('Y-m-d H:i:s'),
@@ -1169,6 +1167,7 @@ public function storeByNoticeName(Request $request)
    
     try {
         $news = TempleNews::create([
+            'type' => 'notice',
             'notice_name' => $request->notice_name,
             'notice_date' => $request->notice_date
         ]);
@@ -1191,7 +1190,8 @@ public function storeByNoticeName(Request $request)
 public function getLatestNotice()
 {
     try {
-        $latestNotice = TempleNews::orderBy('created_at', 'desc')->where('status','active')->get();
+
+        $latestNotice = TempleNews::orderBy('created_at', 'desc')->where('type','notice')->where('status','active')->get();
 
         if (!$latestNotice) {
             return response()->json([
@@ -1225,7 +1225,8 @@ public function updateNoticeName(Request $request)
     try {
         $news = TempleNews::findOrFail($request->id);
         $news->notice_name = $request->notice_name;
-        $news->notice_date = $request->notice_date;
+        $news->start_date = $request->start_date;
+        $news->end_date = $request->end_date;
 
         $news->save();
 
@@ -1367,5 +1368,74 @@ public function latestApk()
     }
 }
 
+public function storeTextOtherNiti(Request $request)
+{
+    $request->validate([
+        'niti_name' => 'required|string|max:255',
+    ]);
+       // ✅ Retrieve the NitiMaster
+       $nitiMaster = NitiMaster::where('niti_status', 'Upcoming')->first();
+
+       $dayId = $nitiMaster->day_id ?? null;
+
+       $now = Carbon::now();
+
+        $niti = NitiMaster::create([
+            'niti_id'             => 'NITI' . rand(10000, 99999),
+            'niti_name'           => $request->niti_name,
+            'english_niti_name'   => $request->niti_name,
+            'niti_type'           => 'other',
+            'niti_privacy'        => 'public',
+            'niti_status'         => 'Upcoming',
+            'date_time'           => $now->format('Y-m-d H:i:s'),
+            'day_id'              => $dayId,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Other Niti stored successfully.',
+            'data' => $niti
+        ]);
+
+}
+
+public function addNitiInformation(Request $request)
+{
+    $validated = $request->validate([
+        'niti_notice' => 'required|string|max:1000',
+    ]);
+
+    $news = TempleNews::create([
+        'type' => 'information',
+        'niti_notice' => $validated['niti_notice'],
+    ]);
+
+    return response()->json([
+        'message' => 'Niti Information added successfully.',
+        'data' => $news,
+        'status' => true
+    ], 201);
+}
+
+public function deleteNitiInformation($id)
+{
+    $news = TempleNews::find($id);
+
+    if (!$news || $news->type !== 'information') {
+        return response()->json([
+            'message' => 'Niti Information not found.',
+            'status' => false
+        ], 404);
+    }
+
+    $news->status = 'deleted'; // or use 0 or 'inactive' based on your logic
+    $news->save();
+
+    return response()->json([
+        'message' => 'Niti Information marked as deleted.',
+        'data' => $news,
+        'status' => true
+    ]);
+}
 
 }

@@ -12,6 +12,8 @@ use App\Models\NearByTemple;
 use App\Models\HundiCollection;
 use App\Models\TempleSubNitiManagement;
 use App\Models\TempleSubNiti;
+use App\Models\TempleNews;
+
 use Carbon\Carbon;
 use Exception;
 
@@ -56,9 +58,8 @@ class WebsiteBannerController extends Controller
                 ->get()
                 ->groupBy('after_special_niti');
     
-            $otherNitis = NitiMaster::where('status', 'active')
-                ->where('niti_type', 'other')
-                ->where('status', 'active')
+            $otherNitis = NitiMaster::where('niti_type', 'other')
+                ->where('status','!=','deleted')
                 ->where('niti_status', 'Started')
                 ->with(['subNitis'])
                 ->whereHas('todayStartCompleteTime')
@@ -156,7 +157,14 @@ class WebsiteBannerController extends Controller
                     ];
                 }
             }
-    
+
+            $nitiInfo = TempleNews::where('type', 'information')
+            ->where('type','information')
+            ->where('status','active')
+            ->orderBy('created_at', 'desc')
+            ->get(['id', 'niti_notice', 'status'])
+            ->first();
+
             $banners = TempleBanner::where('temple_id', $templeId)
                 ->where('status', 'active')
                 ->get(['banner_image', 'banner_type']);
@@ -178,6 +186,7 @@ class WebsiteBannerController extends Controller
                     'banners'             => $banners,
                     'nearby_temples'      => $nearbyTemples,
                     'totalPreviousAmount' => $totalPreviousAmount,
+                    'information'           => $nitiInfo,
                 ]
             ], 200);
     
