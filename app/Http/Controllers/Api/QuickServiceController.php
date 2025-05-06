@@ -38,13 +38,13 @@ class QuickServiceController extends Controller
     
             $parkings = Parking::where('temple_id', $templeId)
                 ->where('status', 'active')
+                ->where('language', $request->language)
                 ->get()
                 ->map(function ($parking) {
-                    // Prefix the parking_photo with the base URL
                     if ($parking->parking_photo) {
-                        $parking->parking_photo = url($parking->parking_photo, '/');
+                        $parking->parking_photo = 'http://temple.mandirparikrama.com/' . ltrim($parking->parking_photo, '/');
                     }
-
+    
                     return $parking;
                 });
     
@@ -78,6 +78,7 @@ class QuickServiceController extends Controller
     
             $accomodations = Accomodation::where('temple_id', $templeId)
                 ->where('status', 'active')
+                ->where('language', $request->language)
                 ->get()
                 ->map(function ($accomodation) {
                     // Decode the photo JSON string
@@ -85,7 +86,7 @@ class QuickServiceController extends Controller
     
                     if (is_array($photos)) {
                         $imageUrls = array_map(function ($path) {
-                            return url($path, '/');
+                            return "http://temple.mandirparikrama.com/" . ltrim($path, '/');
                         }, $photos);
                     } else {
                         $imageUrls = [];
@@ -131,6 +132,7 @@ class QuickServiceController extends Controller
     
             $commutes = CommuteMode::where('temple_id', $templeId)
                 ->where('status', 'active')
+                ->where('language', $request->language)
                 ->get()
                 ->map(function ($commute) {
                     // Decode photo array if it's stored as JSON string
@@ -138,7 +140,7 @@ class QuickServiceController extends Controller
     
                     // Assign first photo or null, and prepend base URL
                     $commute->photo = isset($photos[0])
-                        ? url($photos[0], '/')
+                        ? 'http://temple.mandirparikrama.com/' . ltrim($photos[0], '/')
                         : null;
     
                     return $commute;
@@ -208,6 +210,7 @@ class QuickServiceController extends Controller
 
             $services = PublicServices::where('temple_id', $templeId)
                 ->where('status', 'active')
+                ->where('language', $request->language)
                 ->get()
                 ->map(function ($service) {
                     $photoArray = json_decode($service->photo, true);
@@ -215,12 +218,12 @@ class QuickServiceController extends Controller
                     if ($service->service_type === 'beach') {
                         // Return full URL for each photo in array
                         $service->photo = array_map(function ($path) {
-                            return url($path, '/');
+                            return 'http://temple.mandirparikrama.com/' . ltrim($path, '/');
                         }, $photoArray ?? []);
                     } else {
                         // Return only the first image as a string
                         $service->photo = isset($photoArray[0])
-                            ? url($photoArray[0], '/')
+                            ? 'http://temple.mandirparikrama.com/' . ltrim($photoArray[0], '/')
                             : null;
                     }
 
@@ -247,16 +250,16 @@ class QuickServiceController extends Controller
     public function getTemplePrasadList()
     {
         try {
-    $nitiMaster = NitiMaster::where('status', 'active')->latest()->first();
+            $nitiMaster = NitiMaster::where('status', 'active')->latest()->first();
 
-    if (!$nitiMaster || !$nitiMaster->day_id) {
-        return response()->json([
-            'status' => false,
-            'message' => 'Niti not found or day_id missing.'
-        ], 404);
-    }
+            if (!$nitiMaster || !$nitiMaster->day_id) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Niti not found or day_id missing.'
+                ], 404);
+            }
 
-    $dayId = $nitiMaster->day_id;
+            $dayId = $nitiMaster->day_id;
             // Step 1: Get all Prasad master records
             $prasads = TemplePrasad::where('language','Odia')->get();
 
@@ -264,8 +267,9 @@ class QuickServiceController extends Controller
             $prasadList = $prasads->map(function ($prasad) use ($dayId) {
                 $todayLog = PrasadManagement::where('prasad_id', $prasad->id)
                 ->where('day_id', $dayId)
-                    ->latest()
-                    ->first();
+                ->where('language', $request->language)
+                ->latest()
+                ->first();
 
                 return [
                     'prasad_id'     => $prasad->id,
@@ -306,19 +310,19 @@ class QuickServiceController extends Controller
             $request->validate([
                 'date' => 'required|date'
             ]);
-    
+
             // Fetch English data
             $englishEvents = PanjiDetails::where('status', 'active')
-                ->where('language', 'English')
-                ->whereDate('date', $request->date)
-                ->get();
-    
+            ->where('language', $request->language)
+            ->whereDate('date', $request->date)
+            ->get();
+
             // Fetch Odia data
             $odiaEvents = PanjiDetails::where('status', 'active')
                 ->where('language', 'Odia')
                 ->whereDate('date', $request->date)
                 ->get();
-    
+
             return response()->json([
                 'status' => true,
                 'message' => 'Panji details fetched successfully.',
@@ -329,7 +333,7 @@ class QuickServiceController extends Controller
             ], 200);
         } catch (\Exception $e) {
             Log::error('Error fetching Panji details: ' . $e->getMessage());
-    
+
             return response()->json([
                 'status' => false,
                 'message' => 'Something went wrong while fetching Panji details.',
@@ -430,5 +434,4 @@ class QuickServiceController extends Controller
         }
     }
 
-  
 }
