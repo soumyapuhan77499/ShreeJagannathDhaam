@@ -267,7 +267,6 @@ class QuickServiceController extends Controller
             $prasadList = $prasads->map(function ($prasad) use ($dayId) {
                 $todayLog = PrasadManagement::where('prasad_id', $prasad->id)
                 ->where('day_id', $dayId)
-                ->where('language', $request->language)
                 ->latest()
                 ->first();
 
@@ -307,26 +306,16 @@ class QuickServiceController extends Controller
     public function getPanji($language, $date)
     {
         try {
-            // Validate the date manually (since not using Request validation here)
-            if (!strtotime($date)) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Invalid date format.',
-                ], 400);
-            }
     
-            // Fetch matching Panji records
-            $Events = PanjiDetails::where('status', 'active')
-                ->where('language', $language)
-                ->whereDate('date', $date)
-                ->get();
-    
+            $Event = PanjiDetails::where('status', 'active')
+            ->where('language', $language)
+            ->whereDate('date', $date)
+            ->first();
+        
             return response()->json([
                 'status' => true,
                 'message' => 'Panji details fetched successfully.',
-                'data' => [
-                    'Events' => $Events,
-                ],
+                    'Events' => $Event,
             ], 200);
         } catch (\Exception $e) {
             \Log::error('Error fetching Panji details: ' . $e->getMessage());
@@ -339,6 +328,7 @@ class QuickServiceController extends Controller
         }
     }
     
+
     public function getDarshan()
     {
         try {
