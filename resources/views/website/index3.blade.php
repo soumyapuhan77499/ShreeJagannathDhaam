@@ -508,11 +508,10 @@
         </div>
 
         <div class="convenience-container">
-
             <div class="conv">
                 <a href="{{ route('services.byType', 'drinking_water') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/wtr.png') }}" alt="Water">
+                    <div class="convenience-item" style="margin-left: 7px">
+                        <img src="{{ asset('website/drinkingWater32.png') }}" alt="Water" style="height: 42px">
                     </div>
                     <p>Drinking Water</p>
                 </a>
@@ -530,7 +529,7 @@
             <div class="conv">
                 <a href="{{ route('services.abled_person') }}">
                     <div class="convenience-item">
-                        <i class="fas fa-wheelchair"></i>
+                        <img src="{{ asset('website/physical21.png') }}" alt="Physical">
                     </div>
                     <p>Special Abled Person</p>
                 </a>
@@ -575,7 +574,7 @@
             <div class="conv">
                 <a href="{{ route('services.byType', 'life_guard_booth') }}">
                     <div class="convenience-item">
-                        <i class="fas fa-life-ring"></i>
+                        <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
                     </div>
                     <p>Life Guards</p>
                 </a>
