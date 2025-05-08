@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
 
     <style>
         body {
@@ -405,10 +406,7 @@
         </div>
     </section>
 
-
-    <div class="timeline-footer">
-        © {{ date('Y') }} Temple Management System. All rights reserved.
-    </div>
+    @include('partials.website-footer')
 
     <script>
         function showTab(evt, tabId) {

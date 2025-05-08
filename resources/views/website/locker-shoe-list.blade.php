@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/web-service.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
 
     <style>
         .service-card img,
@@ -87,6 +88,9 @@
             @endforeach
         </div>
     </div>
+
+    @include('partials.website-footer')
+
 </body>
 
 </html>

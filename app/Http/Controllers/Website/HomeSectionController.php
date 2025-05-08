@@ -88,12 +88,12 @@ public function puriWebsite()
     }
 
         $todayDate = Carbon::today()->toDateString();
-        $todayPanji = PanjiDetails::where('date', $todayDate)->where('status', 'active')->first();
+        $todayPanji = PanjiDetails::where('date', $todayDate)->where('status', 'active')->where('language','English')->first();
  
     return view('website.index3', [
         'nitis' => $finalNitiList->values(),
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
-        'nearbyTemples' => NearByTemple::whereNotNull('photo')->get(),
+        'nearbyTemples' => NearByTemple::where('language','English')->whereNotNull('photo')->get(),
         'aboutTemple' => TempleAboutDetail::where('temple_id', $templeId)->first(),
         'photos' => TemplePhotosVideos::where('temple_id', $templeId)->first(),
         'matha' => Matha::where('temple_id', $templeId)->first(),
