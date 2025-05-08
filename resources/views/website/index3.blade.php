@@ -1,13 +1,14 @@
 @extends('website.web-layouts')
 
 @section('content')
+
     <section class="banner-sections">
         <!-- Video Banner -->
         @if ($latestWebVideo && $latestWebVideo->banner_video)
             <div class="banner-video">
                 <video id="bannerVideo" autoplay loop playsinline muted preload="metadata"
                     poster="{{ asset('storage/' . $latestWebVideo->banner_image ?? 'website/d.png') }}">
-                    <source src="{{ asset('website/banner.mp4') }}" type="video/mp4">
+                    <source src="{{ asset('storage/' . $latestWebVideo->banner_video) }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -15,9 +16,9 @@
             <img src="{{ asset('website/d.png') }}" alt="Default Banner" style="width: 100%;">
         @endif
 
-        <div class="logo">
+        <a href="{{ url('/') }}" class="logo">
             <img src="{{ asset('website/logo.png') }}" alt="logo">
-        </div>
+        </a>
         <!-- Hamburger Icon -->
         <div class="hamburger-icon">
             <div class="hamburger-menu">
@@ -32,13 +33,14 @@
             <div class="nav-close"><i class="fa fa-times"></i></div>
             <ul>
                 <li><a href="#">Nitis</a></li>
-                <li>
-                    <a href="#">SM <span class="live-badges"><i class="fa fa-bolt"></i> Live</span></a>
-                </li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Nearby Temples</a></li>
-                <li><a href="#">Conveniences</a></li>
-                <li><a href="#">Temple Information</a></li>
+                {{-- <li>
+                <a href="#">SM <span class="live-badges"><i class="fa fa-bolt"></i> Live</span></a>
+            </li> --}}
+                <li><a href="#services">Services</a></li>
+                <li><a href="#temple-slider">Nearby Temples</a></li>
+                <li><a href="#convience">Conveniences</a></li>
+                <li><a href="#panji">Panji</a></li>
+                {{-- <li><a href="#">Temple Information</a></li> --}}
             </ul>
         </nav>
 
