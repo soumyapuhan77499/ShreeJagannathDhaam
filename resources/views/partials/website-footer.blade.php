@@ -1,7 +1,9 @@
 <footer class="footer">
   <div class="footer-container">
       <div class="footer-logo-section">
-          <img src="{{ asset('website/logo.png') }}" alt="logo" class="footer-logo" />
+        <a href="{{ url('/') }}" >
+         <img src="{{ asset('website/logo.png') }}" alt="logo" class="footer-logo" />
+        </a>
           <div class="footer-title">
               <h2>Shree</h2>
               <h2>Jagannatha</h2>
