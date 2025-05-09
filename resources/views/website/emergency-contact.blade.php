@@ -95,7 +95,6 @@
     
         </div>
     </section>
-    
 
     @include('partials.website-footer')
 

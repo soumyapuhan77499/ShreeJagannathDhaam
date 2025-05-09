@@ -264,8 +264,6 @@
 
     @include('partials.website-footer')
 
-
-
     <script>
         function openModal(id) {
             document.getElementById('modal-' + id).classList.remove('hidden');
