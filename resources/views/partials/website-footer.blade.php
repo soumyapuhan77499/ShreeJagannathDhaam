@@ -47,7 +47,7 @@
                     <li><a href="#">Link Name</a></li>
                     <li><a href="#">Link Name</a></li>
                     <li><a style="color: red"
-                            href="http://temple.mandirparikrama.com/puri-website/privacy-policy">privacy policy</a></li>
+                            href="https://shreejagannathadham.com/puri-website/privacy-policy">privacy policy</a></li>
                 </ul>
             </div>
         </div>
