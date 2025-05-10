@@ -306,23 +306,20 @@
                         class="mb-2 transition-transform duration-300"
                         style="width: 150px; height: 230px; border-radius: 25px;">
                     <h3 class="text-xl sm:text-2xl font-bold text-[#db4d30] mb-2">Darshan</h3>
-                    <div class="overflow-y-auto text-sm sm:text-base text-gray-700 mb-2 leading-relaxed px-1"
-                        style="max-height: 120px;">
+                    <div class="text-sm sm:text-base text-gray-700 mb-2 leading-relaxed px-1 line-clamp-5">
                         <p>
                             Darshan of Shree Jagannatha Mahaprabhu is available almost throughout the day i.e. from early in
-                            the
-                            morning till late night excepting some festive occasions. Generally, Temple opens and darshan
-                            starts at
-                            around 5.30 A.M. After offering of the perpetual lamp (Mangal Arati), devotees are allowed entry
-                            up to
-                            Jagamohan (Bhitara Kaatha) of the temple and darshan from this point is available till
-                            completion of
-                            “Besha”.
+                            the morning till late night excepting some festive occasions. Generally, Temple opens and
+                            darshan
+                            starts at around 5.30 A.M. After offering of the perpetual lamp (Mangal Arati), devotees are
+                            allowed
+                            entry up to Jagamohan (Bhitara Kaatha) of the temple and darshan from this point is available
+                            till
+                            completion of “Besha”.
                         </p>
                     </div>
                 </a>
             </div>
-
 
             <!-- Right Side - 3 Fixed Cards (150px each) -->
             <div class="flex flex-col gap-6 justify-between h-[450px]">
