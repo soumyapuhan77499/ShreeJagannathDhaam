@@ -58,9 +58,12 @@ class WebsiteBannerController extends Controller
                 ->get()
                 ->groupBy('after_special_niti');
     
-            $otherNitis = NitiMaster::where('niti_type', 'other')
-                ->where('status','!=','deleted')
-                ->where('niti_status', 'Started')
+           $otherNitis = NitiMaster::where('niti_type', 'other')
+                ->where('status', '!=', 'deleted')
+                ->where(function ($query) {
+                    $query->where('niti_status', 'Started')
+                        ->orWhere('niti_status', 'Completed');
+                })
                 ->with(['subNitis'])
                 ->whereHas('todayStartCompleteTime')
                 ->get();
