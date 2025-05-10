@@ -1260,14 +1260,7 @@ public function updateNoticeName(Request $request)
 
 public function updateHundiCollection(Request $request)
 {
-    $request->validate([
-        'id'     => 'required|exists:temple__hundi_notice,id',
-        'date'   => 'required|date',
-        'rupees' => 'nullable|numeric',
-        'gold'   => 'nullable|numeric',
-        'silver' => 'nullable|numeric',
-    ]);
-
+  
     try {
         $hundi = TempleHundi::findOrFail($request->id);
 
