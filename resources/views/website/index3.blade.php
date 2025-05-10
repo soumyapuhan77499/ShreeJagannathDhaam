@@ -287,12 +287,7 @@
 
     <section class="services-section py-10 ">
         <!-- Section Title -->
-        
-
-        <!-- Services Layout -->
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start"
-            style="max-width: 1290px !important;">
-            <div class="text-center mb-14">
+        <div class="text-center mb-14">
             <div class="flex justify-center items-center gap-5 mt-12">
                 <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
                 <h2 class="text-2xl text-[#db4d30] flex items-center font-sans">
@@ -301,6 +296,10 @@
                 <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
             </div>
         </div>
+
+        <!-- Services Layout -->
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start"
+            style="max-width: 1290px !important;">
             <!-- Left Featured Card (Fixed height: 450px) -->
             <div class="p-8 flex flex-col justify-between transition-all duration-500 hover:scale-105 h-[455px]"
                 style="border: 1px solid rgb(213, 213, 213);border-radius: 13px;">
