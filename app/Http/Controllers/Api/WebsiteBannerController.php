@@ -58,29 +58,30 @@ class WebsiteBannerController extends Controller
                 ->get()
                 ->groupBy('after_special_niti');
     
-          $otherNitis = NitiMaster::where('niti_type', 'other')
-            ->where('status', '!=', 'deleted')
-            ->where(function ($query) {
-                $query->where('niti_status', 'Started')
-                    ->orWhere('niti_status', 'Completed');
-            })
-            ->with(['subNitis', 'todayStartTime', 'todayEndTime']) // include end time!
-            ->whereHas('todayStartCompleteTime')
-            ->get();
+            $otherNitis = NitiMaster::where('niti_type', 'other')
+                ->where('status', '!=', 'deleted')
+                ->where(function ($query) {
+                    $query->where('niti_status', 'Started')
+                        ->orWhere('niti_status', 'Completed');
+                })
+                ->with(['subNitis', 'todayStartTime', 'todayEndTime']) // eager load both
+                ->whereHas('todayStartCompleteTime') // ensure related entry exists
+                ->get();
 
-            $mergedNitiList = [];
+                    $mergedNitiList = [];
 
             foreach ($otherNitis as $otherNiti) {
                 $mergedNitiList[] = [
-                    'niti_id'     => $otherNiti->niti_id,
-                    'niti_name'   => $otherNiti->niti_name,
+                    'niti_id'           => $otherNiti->niti_id,
+                    'niti_name'         => $otherNiti->niti_name,
                     'english_niti_name' => $otherNiti->english_niti_name,
-                    'niti_type'   => $otherNiti->niti_type,
-                    'niti_status' => $otherNiti->niti_status,
-                    'start_time'  => optional($otherNiti->todayStartTime)->start_time,
-                    'end_time'    => optional($otherNiti->todayEndTime)->end_time,
+                    'niti_type'         => $otherNiti->niti_type,
+                    'niti_status'       => $otherNiti->niti_status,
+                    'start_time'        => optional($otherNiti->todayStartTime)->start_time,
+                    'end_time'          => optional($otherNiti->todayEndTime)->end_time,
                 ];
             }
+
 
             foreach ($dailyNitis as $dailyNiti) {
                 $matchingRunningSubNitis = $runningSubNitis->where('niti_id', $dailyNiti->niti_id);
