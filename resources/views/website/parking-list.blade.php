@@ -22,7 +22,9 @@
 </head>
 
 <body>
+    
     @include('partials.header-puri-dham')
+
 
     <div class="hero">
         <img class="hero-bg" src="{{ asset('website/parkings.jpg') }}" alt="Visitor Parking Background" />
