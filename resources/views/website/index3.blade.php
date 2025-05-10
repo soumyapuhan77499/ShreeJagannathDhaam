@@ -500,12 +500,10 @@
 
     <section class="temple-convenience">
 
-        <div class="flex justify-center items-center gap-5">
-            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
-            <h2 class="text-2xl text-[#db4d30] flex items-center font-sans">
-                Conveniences
-            </h2>
-            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 mt-8 sm:mt-12 text-center">
+            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
+            <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">Conveniences</h2>
+            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
         </div>
 
         <div class="convenience-container">
