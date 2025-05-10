@@ -287,7 +287,7 @@
 
     <section class="services-section py-10 ">
         <!-- Section Title -->
-        
+
         <div class="section-heading">
             <div class="heading-wrapper">
                 <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="decor-image">
@@ -500,13 +500,13 @@
 
     <section class="temple-convenience">
 
-        <div class="flex justify-center items-center gap-5">
+        {{-- <div class="flex justify-center items-center gap-5">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
             <h2 class="text-2xl text-[#db4d30] flex items-center font-sans">
                 Conveniences
             </h2>
             <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
-        </div>
+        </div> --}}
 
         <div class="convenience-container">
             <div class="conv">
