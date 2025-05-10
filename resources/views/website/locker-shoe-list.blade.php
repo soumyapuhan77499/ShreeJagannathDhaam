@@ -23,6 +23,7 @@
 </head>
 
 <body>
+
     @include('partials.header-puri-dham')
 
     <div class="hero">
