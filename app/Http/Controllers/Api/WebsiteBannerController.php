@@ -64,11 +64,17 @@ class WebsiteBannerController extends Controller
                     $query->where('niti_status', 'Started')
                         ->orWhere('niti_status', 'Completed');
                 })
-                ->with(['subNitis', 'todayStartTime', 'todayEndTime']) // eager load both
-                ->whereHas('todayStartCompleteTime') // ensure related entry exists
+                ->with(['subNitis', 'todayStartTime', 'todayEndTime'])
+                ->whereHas('todayStartCompleteTime')
                 ->get();
 
-                    $mergedNitiList = [];
+            // Sort the Nitis based on NitiManagement's created_at time (descending = recent first)
+            $otherNitis = $otherNitis->sortBy(function ($niti) {
+                return optional($niti->todayStartTime)->created_at ?? optional($niti->todayEndTime)->created_at ?? now();
+            })->values();
+
+
+            $mergedNitiList = [];
 
             foreach ($otherNitis as $otherNiti) {
                 $mergedNitiList[] = [

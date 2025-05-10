@@ -49,15 +49,15 @@ class NitiMaster extends Model
     {
         return $this->hasOne(NitiManagement::class, 'niti_id', 'niti_id')
             ->where('niti_status', 'Started')
-            ->latest('start_time'); 
+            ->orderByDesc('created_at');
     }
 
-public function todayEndTime()
-{
-    return $this->hasOne(NitiManagement::class, 'niti_id', 'niti_id')
-        ->where('niti_status', 'Completed')
-        ->orderByDesc('end_time');
-}
+    public function todayEndTime()
+    {
+        return $this->hasOne(NitiManagement::class, 'niti_id', 'niti_id')
+            ->where('niti_status', 'Completed')
+            ->orderByDesc('created_at');
+    }
 
     public function todayStartCompleteTime()
     {
