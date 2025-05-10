@@ -78,6 +78,8 @@ class WebsiteBannerController extends Controller
                     'niti_type'   => $otherNiti->niti_type,
                     'niti_status' => $otherNiti->niti_status,
                     'start_time'  => optional($otherNiti->todayStartTime)->start_time,
+                    'end_time'  => optional($otherNiti->todayStartTime)->end_time,
+
                 ];
             }
             
