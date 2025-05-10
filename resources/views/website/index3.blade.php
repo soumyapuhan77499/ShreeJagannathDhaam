@@ -287,12 +287,11 @@
 
     <section class="services-section py-10 ">
         <!-- Section Title -->
-
-        <div class="section-heading">
-            <div class="heading-wrapper">
-                <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="decor-image">
-                <h2 class="heading-text">Quick Services</h2>
-                <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="decor-image">
+        <div class="text-center mb-14">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 mt-8 sm:mt-12">
+                <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
+                <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">Quick Services</h2>
+                <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
             </div>
         </div>
 
@@ -464,6 +463,7 @@
     </section>
 
     <section class="temple-slider bg-white  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
+
         <div class="flex justify-center items-center gap-5 mt-12">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
             <h2 class="text-xl text-[#db4d30] font-semi-bold">Nearby Temples</h2>
@@ -500,13 +500,13 @@
 
     <section class="temple-convenience">
 
-        {{-- <div class="flex justify-center items-center gap-5">
+        <div class="flex justify-center items-center gap-5">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
             <h2 class="text-2xl text-[#db4d30] flex items-center font-sans">
                 Conveniences
             </h2>
             <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
-        </div> --}}
+        </div>
 
         <div class="convenience-container">
             <div class="conv">
