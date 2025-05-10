@@ -491,9 +491,13 @@
                             <a href="{{ url('view-near-by-temple/' . $temple->id) }}" class="block">
                                 <img src="{{ asset($firstPhoto) }}" alt="{{ $temple->name }}"
                                     class="w-full h-48 object-cover hover:scale-105 transition duration-300">
-                                <div class="p-3 text-center bg-white">
-                                    <h3 class="text-base font-semibold text-[#db4d30]">{{ $temple->name }}</h3>
+
+                                <div class="p-2 sm:p-3 text-center bg-white">
+                                    <h3 class="text-sm sm:text-base font-semibold text-[#db4d30] truncate">
+                                        {{ $temple->name }}
+                                    </h3>
                                 </div>
+
                             </a>
                         </div>
                     @endif
