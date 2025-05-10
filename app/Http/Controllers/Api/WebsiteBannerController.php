@@ -69,20 +69,19 @@ class WebsiteBannerController extends Controller
                 ->get();
 
             $mergedNitiList = [];
-    
+
             foreach ($otherNitis as $otherNiti) {
                 $mergedNitiList[] = [
                     'niti_id'     => $otherNiti->niti_id,
                     'niti_name'   => $otherNiti->niti_name,
-                    'english_niti_name'   => $otherNiti->english_niti_name,
+                    'english_niti_name' => $otherNiti->english_niti_name,
                     'niti_type'   => $otherNiti->niti_type,
                     'niti_status' => $otherNiti->niti_status,
                     'start_time'  => optional($otherNiti->todayStartTime)->start_time,
-                    'end_time'  => optional($otherNiti->todayStartTime)->end_time,
-
+                    'end_time'    => optional($otherNiti->todayEndTime)->end_time,
                 ];
             }
-            
+
             foreach ($dailyNitis as $dailyNiti) {
                 $matchingRunningSubNitis = $runningSubNitis->where('niti_id', $dailyNiti->niti_id);
     
