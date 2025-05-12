@@ -66,7 +66,7 @@
 <body>
     @include('partials.header-puri-dham')
 
-    <section class="privacy-policy">
+    <section class="privacy-policy" style="margin-top: 50px">
         <h2>Our Commitment to Your Privacy</h2>
 
         <h3>1. Information We Collect</h3>
