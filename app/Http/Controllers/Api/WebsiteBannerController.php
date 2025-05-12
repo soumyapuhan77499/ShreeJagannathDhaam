@@ -68,13 +68,15 @@ class WebsiteBannerController extends Controller
                 ? $nitiManagements[$niti_id]->sortByDesc('created_at')->first()
                 : null;
 
-            // 🚫 Skip 'other' nitis that are not Started or Completed
             if (
-                $niti->niti_type === 'other' &&
-                (!$management || !in_array($management->niti_status, ['Started', 'Completed']))
+                $niti->niti_type === 'other' && (
+                    $niti->status === 'active' ||  // ✅ new condition added
+                    !$management || !in_array($management->niti_status, ['Started', 'Completed'])
+                )
             ) {
                 continue;
             }
+
 
             $runningSubs = $runningSubNitis->where('niti_id', $niti_id);
 
@@ -150,7 +152,6 @@ class WebsiteBannerController extends Controller
                 }
             }
         }
-
 
             // Finally, sort entire merged list by start_time or fallback to niti_order
             $mergedNitiList = collect($mergedNitiList)->sortBy(function ($item) {
