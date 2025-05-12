@@ -102,7 +102,9 @@ public function puriWebsite()
         'besha' => TempleBesha::whereNotNull('besha_name')->first(),
         'darshan' => TempleDarshan::where('temple_id', $templeId)->first(),
         'prasad' => TemplePrasad::where('temple_id', $templeId)->first(),
-        'todayPanji' => $todayPanji, // Pass today Panji
+        'todayPanji' => $todayPanji,
+        'temples' => NearByTemple::where('language', 'English')->get()
+
     ]);
 }
 
@@ -264,8 +266,8 @@ public function mandirDarshan()
 
 public function viewNearByTemple($name)
 {
-    $temples = NearByTemple::where('name', $name)->first(); // ✅ single object
-    return view('website.view-near-by-temple', compact('temples'));
+    $temple = NearByTemple::where('name', $name)->first(); // ✅ single object
+    return view('website.view-near-by-temple', compact('temple'));
 }
 
 public function privacyPolicy(){
