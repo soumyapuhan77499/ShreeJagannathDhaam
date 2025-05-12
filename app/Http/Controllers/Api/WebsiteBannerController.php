@@ -35,7 +35,6 @@ class WebsiteBannerController extends Controller
 
             // Get all active nitis: daily, special, other
             $allNitis = NitiMaster::whereIn('niti_type', ['daily', 'special', 'other'])
-                ->where('language', 'Odia')
                 ->where('niti_privacy', 'public')
                 ->orderBy('niti_order', 'asc')
                 ->get()
@@ -49,6 +48,7 @@ class WebsiteBannerController extends Controller
 
             // Get running sub nitis
             $activeNitiIds = NitiMaster::whereIn('niti_status', ['Started', 'Paused'])->pluck('niti_id');
+
             $runningSubNitis = TempleSubNitiManagement::where(function ($query) {
                     $query->where('status', 'Running')
                         ->orWhere('status', '!=', 'Deleted');
@@ -69,14 +69,11 @@ class WebsiteBannerController extends Controller
                 : null;
 
             if (
-                $niti->niti_type === 'other' && (
-                    $niti->status === 'active' ||  // ✅ new condition added
-                    !$management || !in_array($management->niti_status, ['Started', 'Completed'])
-                )
+                $niti->niti_type === 'other' &&
+                (!$management || !in_array($management->niti_status, ['Started', 'Completed']))
             ) {
                 continue;
             }
-
 
             $runningSubs = $runningSubNitis->where('niti_id', $niti_id);
 
