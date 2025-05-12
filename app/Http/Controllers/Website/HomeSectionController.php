@@ -264,8 +264,8 @@ public function mandirDarshan()
 
 public function viewNearByTemple($name)
 {
-    $temple = NearByTemple::where('name', $name)->first(); // ✅ single object
-    return view('website.view-near-by-temple', compact('temple'));
+    $temples = NearByTemple::where('name', $name)->first(); // ✅ single object
+    return view('website.view-near-by-temple', compact('temples'));
 }
 
 public function privacyPolicy(){
