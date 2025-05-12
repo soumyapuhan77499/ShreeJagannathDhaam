@@ -19,7 +19,6 @@ use Exception;
 
 class WebsiteBannerController extends Controller
 {
-
     public function manageWebsiteBanner()
     {
         try {
@@ -58,37 +57,32 @@ class WebsiteBannerController extends Controller
                 ->get()
                 ->groupBy('after_special_niti');
     
-            $otherNitis = NitiMaster::where('niti_type', 'other')
-                ->where('status', '!=', 'deleted')
-                ->where(function ($query) {
-                    $query->where('niti_status', 'Started')
-                        ->orWhere('niti_status', 'Completed');
+           $otherNitiManagements = NitiManagement::whereIn('niti_status', ['Started', 'Completed'])
+                ->whereHas('master', function ($query) {
+                    $query->where('niti_type', 'other')
+                        ->where('status', '!=', 'deleted');
                 })
-                ->with(['subNitis', 'todayStartTime', 'todayEndTime'])
-                ->whereHas('todayStartCompleteTime')
+                ->with('master')
+                ->orderBy('created_at', 'desc') // or 'start_time' if you prefer
                 ->get();
 
-            // Sort the Nitis based on NitiManagement's created_at time (descending = recent first)
-            $otherNitis = $otherNitis->sortBy(function ($niti) {
-                return optional($niti->todayStartTime)->created_at ?? optional($niti->todayEndTime)->created_at ?? now();
-            })->values();
 
+            foreach ($otherNitiManagements as $nitiMgmt) {
+                $nitiMaster = $nitiMgmt->master;
 
-            $mergedNitiList = [];
-
-            foreach ($otherNitis as $otherNiti) {
                 $mergedNitiList[] = [
-                    'niti_id'           => $otherNiti->niti_id,
-                    'niti_name'         => $otherNiti->niti_name,
-                    'english_niti_name' => $otherNiti->english_niti_name,
-                    'niti_type'         => $otherNiti->niti_type,
-                    'niti_status'       => $otherNiti->niti_status,
-                    'start_time'        => optional($otherNiti->todayStartTime)->start_time,
-                    'end_time'          => optional($otherNiti->todayEndTime)->end_time,
+                    'niti_id'           => $nitiMaster->niti_id,
+                    'niti_name'         => $nitiMaster->niti_name,
+                    'english_niti_name' => $nitiMaster->english_niti_name,
+                    'niti_type'         => $nitiMaster->niti_type,
+                    'niti_status'       => $nitiMgmt->niti_status,
+                    'start_time'        => $nitiMgmt->start_time,
+                    'end_time'          => $nitiMgmt->end_time,
+                    'duration'          => $nitiMgmt->duration,
+                    'management_status' => $nitiMgmt->niti_status,
                 ];
             }
-
-
+            
             foreach ($dailyNitis as $dailyNiti) {
                 $matchingRunningSubNitis = $runningSubNitis->where('niti_id', $dailyNiti->niti_id);
     
@@ -209,4 +203,5 @@ class WebsiteBannerController extends Controller
             ], 500);
         }
     }
+    
 }
