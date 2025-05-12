@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 ## Temple user Controller
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ApkController;
 use App\Http\Controllers\TempleUser\TempleUserController;
 use App\Http\Controllers\TempleUser\TempleRegistrationController;
 use App\Http\Controllers\TempleUser\SocialMediaController;
@@ -33,7 +34,7 @@ use App\Http\Controllers\TempleUser\TempleDailyRitualController;
 use App\Http\Controllers\TempleUser\TempleYearlyRitualController;
 use App\Http\Controllers\TempleUser\TempleExpenditureController;
 
-## Superadmin COntroller
+## Superadmin Controller
 use App\Http\Controllers\Superadmin\SuperAdminController;
 use App\Http\Controllers\Superadmin\TempleRequestController;
 use App\Http\Controllers\Superadmin\TempleTitleController;
@@ -44,6 +45,7 @@ use App\Http\Controllers\TempleUser\NitiController;
 use App\Http\Controllers\TempleUser\PanjiController;
 use App\Http\Controllers\TempleUser\SebakController;
 use App\Http\Controllers\TempleUser\DeityController;
+
 
 // temple feature
 use App\Http\Controllers\TempleUser\TempleParkingController;
@@ -57,13 +59,14 @@ use App\Http\Controllers\TempleUser\TemplePublicServiceController;
 use App\Http\Controllers\TempleUser\TempleGalleryController;
 use App\Http\Controllers\TempleUser\TempleLostAndFoundController;
 
+
 // website
 
 use App\Http\Controllers\Website\HomeSectionController;
 use App\Http\Controllers\Website\QuickServiceController;
 
 ## Home pages Routes
-Route::get('/', function () {
+Route::get('/tms', function () {
     return view('index');
 });
 
@@ -91,7 +94,14 @@ Route::controller(MenuController::class)->group(function() {
     Route::get('add-menu', 'addMainMenu')->name('addMainMenu');
     Route::post('/save-sub-menu', 'saveSubMenu')->name('saveSubMenu');
     Route::post('/save-main-menu', 'saveMainMenu')->name('saveMainMenu');
+});
 
+Route::controller(ApkController::class)->group(function() {
+    Route::get('templeuser/add-apk', 'addApk')->name('addApk');
+    Route::post('templeuser/save-apk', 'saveApk')->name('saveApk');
+    Route::get('templeuser/manage-apk', 'manageApk')->name('manageApk');
+    Route::delete('templeuser/delete-apk/{id}', 'deleteApk')->name('deleteApk');
+    Route::get('templeuser/edit-apk/{id}', 'editApk')->name('editApk');
 });
 
 Route::controller(TempleRegistrationController::class)->group(function() {
@@ -518,11 +528,11 @@ Route::controller(TempleLostAndFoundController::class)->group(function() {
 });
 
 Route::controller(HomeSectionController::class)->group(function() {
-    Route::get('/puri-website', 'puriWebsite')->name('puriWebsite');
+    Route::get('/puri-dham', 'puriWebsite')->name('puriWebsite');
     Route::get('/view-all-niti','viewAllNiti')->name('all.niti');
     Route::get('/mandir-tv', 'mandirTv')->name('tv.layout');
     Route::get('/mandir-radio', 'mandirRadio')->name('radio.layout');
-    Route::get('view-near-by-temple/{name}', 'viewNearByTemple')->name('nearby-temple-view');
+    Route::get('view-near-by-temple/{id}', 'viewNearByTemple')->name('nearby-temple.view');
     Route::get('puri-website/privacy-policy', 'privacyPolicy')->name('privacy.policy');
 });
 
