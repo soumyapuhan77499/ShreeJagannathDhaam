@@ -93,5 +93,50 @@
       icon.setAttribute('name', 'menu-outline');
     }
   </script>
-  
-  
+
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const submenuToggles = document.querySelectorAll('.submenu-toggle');
+
+        submenuToggles.forEach(function (toggle) {
+            toggle.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const parent = this.closest('.has-submenu');
+                const submenu = parent.querySelector('.submenu');
+
+                if (!submenu) return;
+
+                // Collapse all others (accordion behavior)
+                document.querySelectorAll('.has-submenu').forEach(item => {
+                    if (item !== parent) {
+                        item.classList.remove('active');
+                        const otherSub = item.querySelector('.submenu');
+                        if (otherSub) otherSub.style.maxHeight = null;
+                    }
+                });
+
+                // Toggle current submenu
+                parent.classList.toggle('active');
+
+                if (submenu.style.maxHeight) {
+                    submenu.style.maxHeight = null;
+                } else {
+                    submenu.style.maxHeight = submenu.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Mobile toggle functions
+        window.toggleMobileMenu = function (icon) {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        window.closeMobileMenu = function () {
+            document.getElementById('mobileNav').classList.remove('active');
+            document.querySelector('.hamburger-icon').classList.remove('active');
+        }
+    });
+</script>
