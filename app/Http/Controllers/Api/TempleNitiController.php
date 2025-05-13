@@ -464,9 +464,9 @@ public function resumeNiti(Request $request)
         $alreadyResumed = NitiManagement::where('niti_id', $request->niti_id)
         ->where('niti_status', 'Started')
         ->where('day_id', $dayId)
-        ->latest()
-        ->first();
-        
+        ->where('created_at', '>', $pausedNiti->created_at)
+        ->exists();
+
         if ($alreadyResumed) {
             return response()->json([
                 'status' => false,
@@ -552,19 +552,6 @@ public function stopNiti(Request $request)
             return response()->json([
                 'status' => false,
                 'message' => 'No active Niti found to stop.'
-            ], 400);
-        }
-
-          $alreadyStop = NitiManagement::where('niti_id', $request->niti_id)
-            ->where('niti_status', 'Completed')
-            ->where('day_id', $dayId)
-            ->latest()
-            ->first();
-
-        if ($alreadyStop) {
-            return response()->json([
-                'status' => false,
-                 'message' => 'This Niti is already marked as completed for today.'
             ], 400);
         }
 
