@@ -804,7 +804,7 @@
         });
     </script>
 
-      <script>
+    <script>
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
             toggle.addEventListener('click', function (e) {

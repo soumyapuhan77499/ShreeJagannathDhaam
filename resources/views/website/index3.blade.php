@@ -20,7 +20,7 @@
             <img src="{{ asset('website/logo.png') }}" alt="logo">
         </a>
         <!-- Hamburger Icon -->
-        <div class="hamburger-icon">
+          <div class="hamburger-icon">
             <div class="hamburger-menu">
                 <span></span>
                 <span></span>
@@ -627,7 +627,7 @@
         </div>
     </section>
 
-    <section class="bg-100 p-10  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
+    {{-- <section class="bg-100 p-10  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
         <div class="max-w-6xl mx-auto">
             <!-- Header -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0">
@@ -726,7 +726,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     {{-- <section class="bg-100 p-2 relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
         <div class="max-w-6xl mx-auto text-center relative">
