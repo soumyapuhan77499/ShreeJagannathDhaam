@@ -453,7 +453,7 @@ public function resumeNiti(Request $request)
             ->latest()
             ->first();
 
-        if (!$pausedNiti) {
+        if ($pausedNiti) {
             return response()->json([
                 'status' => false,
                 'message' => 'No paused Niti found for current day_id.'
