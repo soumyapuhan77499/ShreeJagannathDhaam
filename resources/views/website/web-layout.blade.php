@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
+
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/bootstrap.min.css') }}">
     <!-- Fontawesome Icon CSS -->
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/fonts/fontawesome/css/all.min.css') }}">
@@ -358,48 +358,50 @@
             });
         });
     </script>
+    
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const tooltip = document.getElementById("tooltip");
-      const modal = document.getElementById("locationModal");
-      const modalTitle = document.getElementById("modalTitle");
-    
-      document.querySelectorAll("svg .land").forEach(region => {
-        const name = region.getAttribute("data-name");
-    
-        // Hover: show tooltip
-        region.addEventListener("mouseenter", () => {
-          tooltip.innerText = name;
-          tooltip.style.display = "block";
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tooltip = document.getElementById("tooltip");
+            const modal = document.getElementById("locationModal");
+            const modalTitle = document.getElementById("modalTitle");
+
+            document.querySelectorAll("svg .land").forEach(region => {
+                const name = region.getAttribute("data-name");
+
+                // Hover: show tooltip
+                region.addEventListener("mouseenter", () => {
+                    tooltip.innerText = name;
+                    tooltip.style.display = "block";
+                });
+
+                // Move: position tooltip near mouse
+                region.addEventListener("mousemove", (e) => {
+                    tooltip.style.left = e.pageX + 15 + "px";
+                    tooltip.style.top = e.pageY + 15 + "px";
+                });
+
+                // Leave: hide tooltip
+                region.addEventListener("mouseleave", () => {
+                    tooltip.style.display = "none";
+                });
+
+                // Click: show modal
+                region.addEventListener("click", () => {
+                    modalTitle.innerText = name;
+                    modal.style.display = "block";
+                });
+            });
+
+            // Close modal
+            window.closeModal = () => {
+                modal.style.display = "none";
+            };
         });
-    
-        // Move: position tooltip near mouse
-        region.addEventListener("mousemove", (e) => {
-          tooltip.style.left = e.pageX + 15 + "px";
-          tooltip.style.top = e.pageY + 15 + "px";
-        });
-    
-        // Leave: hide tooltip
-        region.addEventListener("mouseleave", () => {
-          tooltip.style.display = "none";
-        });
-    
-        // Click: show modal
-        region.addEventListener("click", () => {
-          modalTitle.innerText = name;
-          modal.style.display = "block";
-        });
-      });
-    
-      // Close modal
-      window.closeModal = () => {
-        modal.style.display = "none";
-      };
-    });
     </script>
-    
-    
+
+
 </body>
 
 </html>

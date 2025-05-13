@@ -15,7 +15,7 @@
         <!-- Desktop Menu -->
         <nav class="nav-menu desktop-menu">
             <ul>
-                <li><a href="#">Nitis</a></li>
+                <li><a href="{{url('/view-all-niti')}}">Nitis</a></li>
 
                 <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">Quick Services <i
@@ -84,7 +84,7 @@
     <nav class="nav-menu mobile-nav" id="mobileNav">
         <div class="nav-close" onclick="closeMobileMenu()"><i class="fa fa-times"></i></div>
         <ul>
-            <li><a href="#">Nitis</a></li>
+            <li><a href="{{url('/view-all-niti')}}">Nitis</a></li>
 
             <li class="has-submenu">
                 <a href="javascript:void(0)" class="submenu-toggle">Quick Services <i
