@@ -12,6 +12,7 @@
     <meta name="description" content="@yield('meta-description')">
     <meta name="keywords" content="@yield('meta-keywords')">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="google-site-verification" content="BgNIPERZegT3azkv6tE-9XgKxVGq8AlrrR_pMbz0Gfo" />
     @yield('og-meta')
     <!--====== Title ======-->
     <title>@yield('pagename')</title>
