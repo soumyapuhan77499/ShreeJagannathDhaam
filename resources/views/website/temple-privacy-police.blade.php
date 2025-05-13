@@ -21,7 +21,7 @@
 
         section.privacy-policy {
             max-width: 900px;
-            margin: 60px auto;
+            margin: 100px auto;
             background: #ffffff;
             padding: 40px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
@@ -57,7 +57,7 @@
         }
 
         .privacy-policy a:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
     </style>
 
