@@ -561,7 +561,7 @@ public function stopNiti(Request $request)
             ->latest()
             ->first();
 
-        if (!$alreadyStop) {
+        if ($alreadyStop) {
             return response()->json([
                 'status' => false,
                  'message' => 'This Niti is already marked as completed for today.'
