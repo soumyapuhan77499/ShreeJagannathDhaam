@@ -74,6 +74,12 @@ Route::get('/puri-dham', function () {
     return view('website.index');
 });
 
+
+Route::get('/puri-municipality', function () {
+    return view('website.puri-municipalty');
+});
+
+
 Route::get('/puri-dhams', function () {
     return view('website.index2');
 });
@@ -563,3 +569,4 @@ Route::controller(QuickServiceController::class)->group(function() {
     Route::get('/online-donation', 'onlineDonation')->name('online.donation');
     Route::get('/hundi-collection', 'hundiCollection')->name('hundi.collection');
 });
+
