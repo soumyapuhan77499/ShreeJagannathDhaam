@@ -523,7 +523,7 @@
 
                     @if ($firstPhoto)
                         <div class="swiper-slide rounded-xl overflow-hidden shadow-lg bg-white">
-                            <a href="{{ url('view-near-by-temple/' . $temple->id) }}" class="block">
+                            <a href="{{ url('view-near-by-temple/' . $temple->name) }}" class="block">
                                 <img src="{{ asset($firstPhoto) }}" alt="{{ $temple->name }}"
                                     class="w-full h-48 object-cover hover:scale-105 transition duration-300">
                                 <div class="p-2 text-center bg-white">

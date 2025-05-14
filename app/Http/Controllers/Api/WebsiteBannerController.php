@@ -160,7 +160,6 @@ class WebsiteBannerController extends Controller
     })
     ->values();
 
-
     foreach ($otherNitiManagements as $nitiMgmt) {
         $niti = $nitiMgmt->master;
         if (!$niti) continue;
