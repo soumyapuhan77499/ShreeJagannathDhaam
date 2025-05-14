@@ -217,17 +217,37 @@ public function startNiti(Request $request)
             ], 422);
                 }
         // Check if the same Niti is already started by any user for this day
-        $alreadyStarted = NitiManagement::where('niti_id', $request->niti_id)
+        $latestEntry = NitiManagement::where('niti_id', $request->niti_id)
             ->where('day_id', $dayId)
-            ->where('niti_status', 'Started')
-            ->exists();
+            ->latest('created_at')
+            ->first();
 
-        if ($alreadyStarted) {
+        $nitiType = $nitiMaster->niti_type;
+
+        // For "other" Niti, allow multiple but only if latest is Completed
+        if (
+            $nitiType === 'other' &&
+            $latestEntry &&
+            $latestEntry->niti_status === 'Started'
+        ) {
+            return response()->json([
+                'status' => false,
+                'message' => 'This Niti (other type) is already started and not completed yet.'
+            ], 409);
+        }
+
+        // For other types, block if already started
+        if (
+            $nitiType !== 'other' &&
+            $latestEntry &&
+            $latestEntry->niti_status === 'Started'
+        ) {
             return response()->json([
                 'status' => false,
                 'message' => 'This Niti has already been started by another user.'
-            ], 409); // 409 Conflict
+            ], 409);
         }
+
 
         // ✅ Step 1: Start Niti
         $nitiManagement = NitiManagement::create([
@@ -345,17 +365,22 @@ public function pauseNiti(Request $request)
         // ✅ Get today's date in IST
         $today = Carbon::now('Asia/Kolkata')->toDateString();
 
-        // ✅ Find the "Started" entry for today
-        $startedNiti = NitiManagement::where('niti_id', $request->niti_id)
-        ->where('niti_status', 'Started')
-        ->where('day_id', $dayId)
-        ->latest()
-        ->first();
+        // ✅ Get the latest management entry for this Niti and Day
+        $latestEntry = NitiManagement::where('niti_id', $request->niti_id)
+            ->where('day_id', $dayId)
+            ->latest('created_at')
+            ->first();
 
-        if (!$startedNiti) {
+        $nitiType = $nitiMaster->niti_type;
+
+        // 🔒 Block pause if no latest entry found or it's not in 'Started' status
+        if (
+            !$latestEntry ||
+            $latestEntry->niti_status !== 'Started'
+        ) {
             return response()->json([
                 'status' => false,
-                'message' => 'This Niti is not in Started state by any Sebak.'
+                'message' => 'No active (Started) Niti found to pause.'
             ], 400);
         }
 
@@ -460,17 +485,16 @@ public function resumeNiti(Request $request)
             ], 400);
         }
 
-        // ✅ Check if the Niti is already resumed AFTER the paused entry
-        $alreadyResumed = NitiManagement::where('niti_id', $request->niti_id)
-        ->where('niti_status', 'Started')
-        ->where('day_id', $dayId)
-        ->where('created_at', '>', $pausedNiti->created_at)
-        ->exists();
+        // ✅ Get latest NitiManagement entry
+        $latestEntry = NitiManagement::where('niti_id', $request->niti_id)
+            ->where('day_id', $dayId)
+            ->latest('created_at')
+            ->first();
 
-        if ($alreadyResumed) {
+        if (!$latestEntry || $latestEntry->niti_status !== 'Paused') {
             return response()->json([
                 'status' => false,
-                'message' => 'This Niti is already resumed.'
+                'message' => 'No paused Niti available to resume or it has already been resumed.'
             ], 409); // 409 Conflict
         }
 
@@ -554,6 +578,37 @@ public function stopNiti(Request $request)
                 'message' => 'No active Niti found to stop.'
             ], 400);
         }
+
+     $latestEntry = NitiManagement::where('niti_id', $request->niti_id)
+    ->where('day_id', $dayId)
+    ->latest('created_at')
+    ->first();
+
+    $nitiType = $nitiMaster->niti_type;
+
+    // For "other" Niti: block if latest is already Completed
+    if (
+        $nitiType === 'other' &&
+        $latestEntry &&
+        $latestEntry->niti_status === 'Completed'
+    ) {
+        return response()->json([
+            'status' => false,
+            'message' => 'This Niti (other type) is already marked as completed recently.'
+        ], 400);
+    }
+
+    // For other types: only one completion allowed per day
+    if (
+        $nitiType !== 'other' &&
+        $latestEntry &&
+        $latestEntry->niti_status === 'Completed'
+    ) {
+        return response()->json([
+            'status' => false,
+            'message' => 'This Niti is already marked as completed for today.'
+        ], 400);
+    }
 
         // ✅ Calculate duration
         $startDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $activeNiti->date . ' ' . $activeNiti->start_time, $tz);
