@@ -147,18 +147,15 @@ class WebsiteBannerController extends Controller
     }
 
     // ✅ Only add each "other" entry from management (no duplication)
-   $otherNitiManagements = NitiManagement::where('day_id', $latestDayId)
+  $otherNitiManagements = NitiManagement::where('day_id', $latestDayId)
     ->whereIn('niti_status', ['Started', 'Completed'])
     ->with('master')
     ->whereHas('master', function ($query) {
         $query->where('niti_type', 'other');
     })
-    ->get()
-    ->groupBy('niti_id')
-    ->map(function ($group) {
-        return $group->sortByDesc('created_at')->first(); // 👈 latest entry per other niti_id
-    })
-    ->values();
+    ->orderBy('start_time') // optional: use orderByDesc if needed
+    ->get();
+
 
     foreach ($otherNitiManagements as $nitiMgmt) {
         $niti = $nitiMgmt->master;
