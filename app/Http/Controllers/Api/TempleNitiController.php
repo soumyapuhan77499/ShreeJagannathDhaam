@@ -201,6 +201,11 @@ public function startNiti(Request $request)
         ->where('niti_notice_status', 'Started')
         ->orderBy('created_at', 'desc')
         ->first();
+        
+        if ($latestNews) {
+            $latestNews->update(['niti_notice_status' => 'Completed']);
+        }
+
 
         // ✅ Fetch NitiMaster and its day_id
         $nitiMaster = NitiMaster::where('niti_id', $request->niti_id)->first();
@@ -266,10 +271,6 @@ public function startNiti(Request $request)
         // ✅ Update NitiMaster status
         $nitiMaster->update(['niti_status' => 'Started']);
 
-
-        if ($latestNews) {
-            $latestNews->update(['niti_notice_status' => 'Completed']);
-        }
 
         // ✅ Step 2: Start Darshan if linked
         $darshanLog = null;
