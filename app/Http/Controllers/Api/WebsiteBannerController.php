@@ -39,10 +39,12 @@ $allNitis = NitiMaster::whereIn('niti_type', ['daily', 'special', 'other'])
     ->orderBy('niti_order', 'asc')
     ->get()
     ->keyBy('niti_id');
-
-// Management entries (all types)
+    
 $nitiManagements = NitiManagement::where('day_id', $latestDayId)
     ->with('master')
+    ->whereHas('master', function ($query) {
+        $query->whereIn('niti_type', ['daily', 'special']); // ✅ Exclude 'other'
+    })
     ->get()
     ->groupBy('niti_id');
 
