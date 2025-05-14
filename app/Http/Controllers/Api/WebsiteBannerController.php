@@ -145,23 +145,23 @@ class WebsiteBannerController extends Controller
             }
         }
     }
-$otherNitiManagements = NitiManagement::where('day_id', $latestDayId)
-    ->with('master')
-    ->whereHas('master', function ($query) {
-        $query->where('niti_type', 'other');
-    })
-    ->get()
-    ->groupBy(function ($item) {
-        // Group by unique start_time to identify the same execution
-        return $item->niti_id . '|' . ($item->start_time ?? $item->id);
-    })
-    ->map(function ($group) {
-        // Prefer 'Completed' over 'Started'
-        return $group->where('niti_status', 'Completed')->first()
-            ?? $group->where('niti_status', 'Started')->first();
-    })
-    ->sortBy('start_time')
-    ->values();
+    $otherNitiManagements = NitiManagement::where('day_id', $latestDayId)
+        ->with('master')
+        ->whereHas('master', function ($query) {
+            $query->where('niti_type', 'other');
+        })
+        ->get()
+        ->groupBy(function ($item) {
+            // Group by unique start_time to identify the same execution
+            return $item->niti_id . '|' . ($item->start_time ?? $item->id);
+        })
+        ->map(function ($group) {
+            // Prefer 'Completed' over 'Started'
+            return $group->where('niti_status', 'Completed')->first()
+                ?? $group->where('niti_status', 'Started')->first();
+        })
+        ->sortBy('start_time')
+        ->values();
 
 
     foreach ($otherNitiManagements as $nitiMgmt) {
