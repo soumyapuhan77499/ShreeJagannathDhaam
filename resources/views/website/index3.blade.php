@@ -362,8 +362,9 @@
         </div>
 
         <!-- Services Layout -->
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start" style="max-width: 1290px !important;">
-            
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start"
+            style="max-width: 1290px !important;">
+
             <!-- Left Featured Card -->
             <div class="p-6 sm:p-8 flex flex-col justify-between transition-all duration-500 hover:scale-105 h-[455px] sm:h-[455px] max-h-[455px] overflow-hidden"
                 style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
@@ -378,8 +379,7 @@
                         <p>
                             {{ $language === 'Odia'
                                 ? 'ଶ୍ରୀ ଜଗନ୍ନାଥ ମହାପ୍ରଭୁଙ୍କ ଦର୍ଶନ ପ୍ରାୟ ପୂରା ଦିନ ଜଣ୍ୟ ଉପଲବ୍ଧ ଅଟେ । ସକାଳ ସମୟରୁ ରାତି ପର୍ଯ୍ୟନ୍ତ ଦର୍ଶନ ହୋଇଥାଏ, କିଛି ପର୍ବ ଅବସର ଛାଡି । ସାଧାରଣତଃ ମନ୍ଦିର ସକାଳ ୫:୩୦ ରେ ଖୋଲାଯାଏ ଏବଂ ଦର୍ଶନ ଆରମ୍ଭ ହୁଏ । ମଙ୍ଗଳ ଆରତି ପରେ ଭକ୍ତମାନେ ଜଗମୋହନ (ଭିତର କାଠା) ଯାଏଁ ପ୍ରବେଶ କରି ଦର୍ଶନ କରିପାରନ୍ତି ।'
-                                : 'Darshan of Shree Jagannatha Mahaprabhu is available almost throughout the day i.e. from early in the morning till late night excepting some festive occasions. Generally, Temple opens and darshan starts at around 5.30 A.M. After offering of the perpetual lamp (Mangal Arati), devotees are allowed entry up to Jagamohan (Bhitara Kaatha) of the temple and darshan from this point is available till completion of “Besha”.'
-                            }}
+                                : 'Darshan of Shree Jagannatha Mahaprabhu is available almost throughout the day i.e. from early in the morning till late night excepting some festive occasions. Generally, Temple opens and darshan starts at around 5.30 A.M. After offering of the perpetual lamp (Mangal Arati), devotees are allowed entry up to Jagamohan (Bhitara Kaatha) of the temple and darshan from this point is available till completion of “Besha”.' }}
                         </p>
                     </div>
                 </a>
@@ -397,49 +397,43 @@
                             {{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}
                         </h3>
                         <p class="text-sm text-gray-600">
-                            {{ $language === 'Odia' 
+                            {{ $language === 'Odia'
                                 ? 'ପବିତ୍ର ମହାପ୍ରସାଦ ଉପଭୋଗ କରନ୍ତୁ ଯାହା ଠାରେ ଈଶ୍ୱରୀୟ ଅନୁଗ୍ରହ ଥାଏ ।'
-                                : 'Savor the sacred offering blessed by the divine presence.'
-                            }}
+                                : 'Savor the sacred offering blessed by the divine presence.' }}
                         </p>
                     </div>
                 </a>
 
                 <!-- Temple Festival -->
-                <a href="{{ route('view.festival.details') }}">
-                    <div class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[140px] hover:shadow-lg transition-transform hover:translate-x-1 duration-300"
-                        style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
-                        <img src="{{ asset('website/festival21.png') }}" alt="Offering" class="w-16 h-16">
-                        <div>
-                            <h3 class="text-lg font-semibold text-[#db4d30]">
-                                {{ $language === 'Odia' ? 'ପର୍ବପର୍ବାଣୀ' : 'Temple Festival' }}
-                            </h3>
-                            <p class="text-sm text-gray-600">
-                                {{ $language === 'Odia' 
-                                    ? 'ପ୍ରଭୁଙ୍କୁ ଶ୍ରଦ୍ଧା ଓ ଭକ୍ତି ସହିତ ନିଜ ଅର୍ପଣ କରନ୍ତୁ ।'
-                                    : 'Make your humble offerings to the Lord with ease and devotion.'
-                                }}
-                            </p>
-                        </div>
+                <a href="{{ route('view.festival.details') }}"
+                    class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300"
+                    style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
+                    <img src="{{ asset('website/festival21.png') }}" alt="Offering" style="height: 70px; width:70px">
+                    <div>
+                        <h3 class="text-lg font-semibold text-[#db4d30]">
+                            {{ $language === 'Odia' ? 'ପର୍ବପର୍ବାଣୀ' : 'Temple Festival' }}
+                        </h3>
+                        <p class="text-sm text-gray-600">
+                            {{ $language === 'Odia'
+                                ? 'ପ୍ରଭୁଙ୍କୁ ଶ୍ରଦ୍ଧା ଓ ଭକ୍ତି ସହିତ ନିଜ ଅର୍ପଣ କରନ୍ତୁ ।'
+                                : 'Make your humble offerings to the Lord with ease and devotion.' }}
+                        </p>
                     </div>
                 </a>
 
                 <!-- Do and Don'ts -->
-                <a href="{{ route('do-and-donts') }}">
-                    <div class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:shadow-lg transition-transform hover:translate-x-1 duration-300"
-                        style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
-                        <img src="{{ asset('website/dodonts.png') }}" alt="Do and Don'ts" class="w-16 h-16">
-                        <div>
-                            <h3 class="text-lg font-semibold text-[#db4d30]">
-                                {{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's and Don'ts" }}
-                            </h3>
-                            <p class="text-sm text-gray-600">
-                                {{ $language === 'Odia' 
-                                    ? 'ଶ୍ରୀ ଜଗନ୍ନାଥ ଧାମର ପବିତ୍ରତା ଓ ପାରମ୍ପରିକତା ରକ୍ଷା କରିବା ପାଇଁ ।'
-                                    : 'To preserve the sanctity and traditions of Shree Jagannatha Dham.'
-                                }}
-                            </p>
-                        </div>
+                <a class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300"
+                    style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
+                    <img src="{{ asset('website/dodonts.png') }}" alt="Do and Don'ts" style="height: 70px; width:70px">
+                    <div>
+                        <h3 class="text-lg font-semibold text-[#db4d30]">
+                            {{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's and Don'ts" }}
+                        </h3>
+                        <p class="text-sm text-gray-600">
+                            {{ $language === 'Odia'
+                                ? 'ଶ୍ରୀ ଜଗନ୍ନାଥ ଧାମର ପବିତ୍ରତା ଓ ପାରମ୍ପରିକତା ରକ୍ଷା କରିବା ପାଇଁ ।'
+                                : 'To preserve the sanctity and traditions of Shree Jagannatha Dham.' }}
+                        </p>
                     </div>
                 </a>
             </div>
@@ -486,7 +480,8 @@
                 </div>
             </div>
             <div class="card-bottom">
-                <div style="margin-right:5%; height: 50px; width: 50px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
+                <div
+                    style="margin-right:5%; height: 50px; width: 50px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
                     <img src="{{ asset('website/park.png') }}" alt="Parking" style="height: 40px; width: 40px;">
                 </div>
                 <div class="footer-bar bar-red"></div>
