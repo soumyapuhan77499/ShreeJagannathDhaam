@@ -118,7 +118,7 @@
                     </div>
 
                     <div class="niti-icons">
-                        
+
                         <p style="color: rgb(139, 137, 137)">
                             <ion-icon name="time-outline" style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
                             @php
