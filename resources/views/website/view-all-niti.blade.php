@@ -427,7 +427,7 @@
                                     </p>
                                     <p>
                                         <strong>
-                                            {{ $language === 'Odia' ? 'ସମାପ୍ତ:' : 'Completes:' }}
+                                            {{ $language === 'Odia' ? 'ସମାପ୍ତ:' : 'Completed:' }}
                                         </strong>
                                         {{ $language === 'Odia' ? convertToOdiaTime($formattedEnd) : strtolower($formattedEnd) }}
                                     </p>
