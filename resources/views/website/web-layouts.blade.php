@@ -80,10 +80,6 @@
 
 <body>
 
-@php
-    $language = session('app_language', 'English');
-@endphp
-
     <!-- Emergency Modal -->
     {{-- <div id="emergencyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-2xl relative">

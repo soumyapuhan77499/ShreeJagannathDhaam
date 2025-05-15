@@ -93,6 +93,10 @@
                 class="fa fa-volume-mute"></i></button>
     </section>
 
+@php
+    $language = session('app_language', 'English');
+@endphp
+
    <div class="niti-cards-scroll">
     <div class="niti-cards">
         @foreach ($nitis as $niti)
