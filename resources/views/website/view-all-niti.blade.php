@@ -328,19 +328,29 @@
 
     @include('partials.header-puri-dham')
 
+    @php
+        $language = session('app_language', 'English');
+    @endphp
+
     <!-- Hero Section -->
     <div class="hero">
         <img class="hero-bg" src="{{ asset('website/besha1.png') }}" alt="Mandir Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Daily List Of Nitis</h1>
-            <p>Live Update On The Daily Ritual</p>
+            @if ($language === 'Odia')
+                <h1>ନିତିର ଦୈନିକ ତାଲିକା</h1>
+                <p>ଦୈନିକ ନୀତି ବିଷୟରେ ଲାଇଭ୍ ଅଦ୍ୟତନ</p>
+            @else
+                <h1>Daily List Of Nitis</h1>
+                <p>Live Update On The Daily Ritual</p>
+            @endif
         </div>
     </div>
 
     @php
         use Carbon\Carbon;
     @endphp
+
     <div class="timeline">
         @foreach ($mergedNitiList as $index => $niti)
             @php
@@ -353,37 +363,74 @@
                     'Completed' => 'fa-check-circle',
                     'Started' => 'fa-sun',
                     'Upcoming' => 'fa-bell',
-                    default => 'fa-question-circle', // fallback for unknown status
+                    default => 'fa-question-circle',
                 };
 
                 $statusClass = $status;
+
+                // Localized time values
+                $formattedStart = $start ? \Carbon\Carbon::parse($start)->format('h:i A') : null;
+                $formattedEnd = $end ? \Carbon\Carbon::parse($end)->format('h:i A') : null;
             @endphp
 
             <div class="timeline-item {{ $side }} {{ $statusClass }}">
                 <div class="timeline-content {{ $side }}">
                     <div class="card-header">
                         <div class="niti-title">
-                            <h3>{{ $niti['niti_name'] }}</h3>
+                            <h3>
+                                {{ $language === 'Odia' ? $niti['niti_name'] : $niti['english_niti_name'] }}
+                            </h3>
                             <div class="underline"></div>
                         </div>
 
                         <div class="status-block">
                             <span class="badge {{ $statusClass }}">
                                 <i class="fas {{ $icon }}"></i>
-                                {{ $status === 'Started' ? 'Going On' : $status }}
+                                @if ($language === 'Odia')
+                                    @switch($status)
+                                        @case('Started')
+                                            ଚାଲିଚି
+                                        @break
+
+                                        @case('Completed')
+                                            ସମାପ୍ତ
+                                        @break
+
+                                        @case('Upcoming')
+                                            ଆସନ୍ତାକାଲି
+                                        @break
+
+                                        @default
+                                            ଅଜଣା
+                                    @endswitch
+                                @else
+                                    {{ $status === 'Started' ? 'Going On' : $status }}
+                                @endif
                             </span>
 
                             <div class="niti-times">
                                 @if ($status === 'Started' && $start)
-                                    <p><strong>Started:</strong> {{ \Carbon\Carbon::parse($start)->format('h:i a') }}
+                                    <p>
+                                        <strong>
+                                            {{ $language === 'Odia' ? 'ଆରମ୍ଭ:' : 'Started:' }}
+                                        </strong>
+                                        {{ $language === 'Odia' ? convertToOdiaTime($formattedStart) : strtolower($formattedStart) }}
                                     </p>
                                 @endif
+
                                 @if ($status === 'Completed')
-                                        <p><strong>Started:</strong>
-                                            {{ \Carbon\Carbon::parse($start)->format('h:i a') }}</p>
-                                 
-                                        <p><strong>Completes:</strong>
-                                            {{ \Carbon\Carbon::parse($end)->format('h:i a') }}</p>
+                                    <p>
+                                        <strong>
+                                            {{ $language === 'Odia' ? 'ଆରମ୍ଭ:' : 'Started:' }}
+                                        </strong>
+                                        {{ $language === 'Odia' ? convertToOdiaTime($formattedStart) : strtolower($formattedStart) }}
+                                    </p>
+                                    <p>
+                                        <strong>
+                                            {{ $language === 'Odia' ? 'ସମାପ୍ତ:' : 'Completes:' }}
+                                        </strong>
+                                        {{ $language === 'Odia' ? convertToOdiaTime($formattedEnd) : strtolower($formattedEnd) }}
+                                    </p>
                                 @endif
                             </div>
                         </div>
@@ -392,6 +439,7 @@
             </div>
         @endforeach
     </div>
+
 
     @include('partials.website-footer')
 
