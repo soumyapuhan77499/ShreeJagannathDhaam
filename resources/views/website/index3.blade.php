@@ -139,12 +139,13 @@
                         <p style="color: rgb(139, 137, 137)">
                             <ion-icon name="calendar-outline"
                                 style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
-                            @if ($language === 'Odia')
-                                {{ \Carbon\Carbon::now()->format('j ତାରିଖ M') }}
-                            @else
-                                {{ \Carbon\Carbon::now()->format('jS M') }}
-                            @endif
+                            @php
+                                $today = \Carbon\Carbon::now();
+                            @endphp
+
+                            {{ $language === 'Odia' ? convertToOdiaDate($today) : $today->format('jS M') }}
                         </p>
+
                     </div>
                 </div>
             @endforeach
