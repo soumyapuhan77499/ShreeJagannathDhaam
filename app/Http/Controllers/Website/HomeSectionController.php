@@ -94,7 +94,7 @@ public function puriWebsite()
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
         'nearbyTemples' => NearByTemple::where('language', $language)->whereNotNull('photo')->get(),
         'aboutTemple' => TempleAboutDetail::where('status', 'active')->first(),
-        'photos' => TemplePhotosVideos::where('status', 'active')->first(),
+        'photos' => TemplePhotosVideos::first(),
         'matha' => Matha::where('status', 'active')->first(),
         'festival' => TempleFestival::with('subFestivals')->where('status', 'active')->first(),
         'nijoga' => NijogaMaster::where('status', 'active')->first(),
