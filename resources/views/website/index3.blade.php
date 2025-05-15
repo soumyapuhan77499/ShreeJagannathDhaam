@@ -567,7 +567,7 @@
         <div class="flex justify-center items-center gap-5 mt-12">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
             <h2 class="text-xl text-[#db4d30] font-semibold">
-                {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ମନ୍ଦିରଗୁଡ଼ିକ' : 'Nearby Temples' }}
+                {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ଧାର୍ମିକ ସ୍ଥଳ' : 'Nearby Temples' }}
             </h2>
             <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
         </div>
@@ -603,89 +603,101 @@
         </div>
     </section>
 
-    <section class="temple-convenience">
+   <section class="temple-convenience">
+    <!-- Section Header -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 mt-8 sm:mt-12 text-center">
+        <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
+        <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">
+            {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
+        </h2>
+        <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
+    </div>
 
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 mt-8 sm:mt-12 text-center">
-            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
-            <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">Conveniences</h2>
-            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
+    <!-- Convenience Items -->
+    <div class="convenience-container">
+
+        <!-- Drinking Water -->
+        <div class="conv">
+            <a href="{{ route('services.byType', 'drinking_water') }}">
+                <div class="convenience-item" style="margin-left: 7px">
+                    <img src="{{ asset('website/drinkingWater32.png') }}" alt="Water" style="height: 42px">
+                </div>
+                <p>{{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</p>
+            </a>
         </div>
 
-        <div class="convenience-container">
-            <div class="conv">
-                <a href="{{ route('services.byType', 'drinking_water') }}">
-                    <div class="convenience-item" style="margin-left: 7px">
-                        <img src="{{ asset('website/drinkingWater32.png') }}" alt="Water" style="height: 42px">
-                    </div>
-                    <p>Drinking Water</p>
-                </a>
-            </div>
-
-            <div class="conv">
-                <a href="{{ route('services.emergency') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/ph.png') }}" alt="Emergency">
-                    </div>
-                    <p>Emergency</p>
-                </a>
-            </div>
-
-            <div class="conv">
-                <a href="{{ route('services.abled_person') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/physical21.png') }}" alt="Physical">
-                    </div>
-                    <p>Special Abled Person</p>
-                </a>
-            </div>
-
-            <div class="conv">
-                <a href="{{ route('services.byType', 'ratha_yatra_mela') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/map.png') }}" alt="Route Map">
-                    </div>
-                    <p>Route Map</p>
-                </a>
-            </div>
-
-            <div class="conv">
-                <a href="{{ route('services.byType', 'lost_and_found_booth') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/lost.png') }}" alt="Lost and Found">
-                    </div>
-                    <p>Lost & Found</p>
-                </a>
-            </div>
-
-            <div class="conv">
-                <a href="{{ route('services.byType', 'toilet') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/latin.png') }}" alt="Toilet">
-                    </div>
-                    <p>Toilet</p>
-                </a>
-            </div>
-
-            <div class="conv">
-                <a href="{{ route('services.byType', 'beach') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/sea.png') }}" alt="Beach">
-                    </div>
-                    <p>Beaches</p>
-                </a>
-            </div>
-
-            <div class="conv">
-                <a href="{{ route('services.byType', 'life_guard_booth') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
-                    </div>
-                    <p>Life Guards</p>
-                </a>
-            </div>
+        <!-- Emergency -->
+        <div class="conv">
+            <a href="{{ route('services.emergency') }}">
+                <div class="convenience-item">
+                    <img src="{{ asset('website/ph.png') }}" alt="Emergency">
+                </div>
+                <p>{{ $language === 'Odia' ? 'ଜରୁରୀ ସେବା' : 'Emergency' }}</p>
+            </a>
         </div>
-    </section>
 
+        <!-- Special Abled -->
+        <div class="conv">
+            <a href="{{ route('services.abled_person') }}">
+                <div class="convenience-item">
+                    <img src="{{ asset('website/physical21.png') }}" alt="Special Abled">
+                </div>
+                <p>{{ $language === 'Odia' ? 'ବିଶେଷ କ୍ଷମତା ଥିବା ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</p>
+            </a>
+        </div>
+
+        <!-- Route Map -->
+        <div class="conv">
+            <a href="{{ route('services.byType', 'ratha_yatra_mela') }}">
+                <div class="convenience-item">
+                    <img src="{{ asset('website/map.png') }}" alt="Route Map">
+                </div>
+                <p>{{ $language === 'Odia' ? 'ମାର୍ଗ ମାନଚିତ୍ର' : 'Route Map' }}</p>
+            </a>
+        </div>
+
+        <!-- Lost & Found -->
+        <div class="conv">
+            <a href="{{ route('services.byType', 'lost_and_found_booth') }}">
+                <div class="convenience-item">
+                    <img src="{{ asset('website/lost.png') }}" alt="Lost and Found">
+                </div>
+                <p>{{ $language === 'Odia' ? 'ହାରାଇଛି ଓ ମିଳିଛି' : 'Lost & Found' }}</p>
+            </a>
+        </div>
+
+        <!-- Toilet -->
+        <div class="conv">
+            <a href="{{ route('services.byType', 'toilet') }}">
+                <div class="convenience-item">
+                    <img src="{{ asset('website/latin.png') }}" alt="Toilet">
+                </div>
+                <p>{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</p>
+            </a>
+        </div>
+
+        <!-- Beach -->
+        <div class="conv">
+            <a href="{{ route('services.byType', 'beach') }}">
+                <div class="convenience-item">
+                    <img src="{{ asset('website/sea.png') }}" alt="Beach">
+                </div>
+                <p>{{ $language === 'Odia' ? 'ସମୁଦ୍ର କୂଳ' : 'Beaches' }}</p>
+            </a>
+        </div>
+
+        <!-- Life Guards -->
+        <div class="conv">
+            <a href="{{ route('services.byType', 'life_guard_booth') }}">
+                <div class="convenience-item">
+                    <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
+                </div>
+                <p>{{ $language === 'Odia' ? 'ଲାଇଫ୍ ଗାର୍ଡ୍' : 'Life Guards' }}</p>
+            </a>
+        </div>
+
+    </div>
+</section>
     {{-- <section class="bg-100 p-10  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
         <div class="max-w-6xl mx-auto">
             <!-- Header -->
