@@ -1,6 +1,10 @@
 @extends('website.web-layouts')
 
 @section('content')
+    @php
+        $language = session('app_language', 'English');
+    @endphp
+
     <section class="banner-sections">
         <!-- Video Banner -->
         @if ($latestWebVideo && $latestWebVideo->banner_video)
@@ -31,21 +35,36 @@
         <nav class="nav-menu">
             <div class="nav-close"><i class="fa fa-times"></i></div>
             <ul>
-                <li><a href="#">Nitis</a></li>
+                <li>
+                    <a href="#">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a>
+                </li>
+
+                <!-- Quick Services -->
                 <li class="has-submenu">
-                    <a href="javascript:void(0)" class="submenu-toggle">Quick Services <i
-                            class="fa fa-chevron-down ms-2"></i></a>
+                    <a href="javascript:void(0)" class="submenu-toggle">
+                        {{ $language === 'Odia' ? 'ତ୍ଵରିତ ସେବା' : 'Quick Services' }}
+                        <i class="fa fa-chevron-down ms-2"></i>
+                    </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('/darshan-timeline') }}">Darshan</a></li>
-                        <li><a href="{{ url('/maha-prasad') }}">Mahaprasad</a></li>
-                        <li><a href="{{ url('/view-festival-details') }}">Festival</a></li>
-                        <li><a href="{{ url('/do-and-donts') }}">Do's & Don'ts</a></li>
+                        <li><a href="{{ url('/darshan-timeline') }}">{{ $language === 'Odia' ? 'ଦର୍ଶନ' : 'Darshan' }}</a>
+                        </li>
+                        <li><a href="{{ url('/maha-prasad') }}">{{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}</a>
+                        </li>
+                        <li><a
+                                href="{{ url('/view-festival-details') }}">{{ $language === 'Odia' ? 'ପର୍ବପର୍ବାଣୀ' : 'Festival' }}</a>
+                        </li>
+                        <li><a
+                                href="{{ url('/do-and-donts') }}">{{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's & Don'ts" }}</a>
+                        </li>
                     </ul>
                 </li>
 
+                <!-- Nearby Temples -->
                 <li class="has-submenu">
-                    <a href="javascript:void(0)" class="submenu-toggle">Nearby Temples <i
-                            class="fa fa-chevron-down ms-2"></i></a>
+                    <a href="javascript:void(0)" class="submenu-toggle">
+                        {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ଧାର୍ମିକ ସ୍ଥଳ' : 'Nearby Temples' }}
+                        <i class="fa fa-chevron-down ms-2"></i>
+                    </a>
                     <ul class="submenu">
                         @foreach ($temples as $temple)
                             <li>
@@ -57,27 +76,50 @@
                     </ul>
                 </li>
 
-
-                <li class="has-submenu">
-                    <a href="javascript:void(0)" class="submenu-toggle">Conveniences <i
-                            class="fa fa-chevron-down ms-2"></i></a>
-                    <ul class="submenu">
-                        <li><a href="{{ url('/bhaktanibas-list') }}">Bhakta Nibas</a></li>
-                        <li><a href="{{ url('/parking-list') }}">Parking</a></li>
-                        <li><a href="{{ url('/locker-shoe-list') }}">Locker & Shoe</a></li>
-                        <li><a href="{{ url('/services/drinking_water') }}">Drinking Water</a></li>
-                        <li><a href="{{ url('/services-emergency') }}">Emergency</a></li>
-                        <li><a href="{{ url('/services-abled') }}">Special Abled Person</a></li>
-                        <li><a href="#">Route Map</a></li>
-                        <li><a href="{{ url('/services/lost_and_found_booth') }}">Lost & Found</a></li>
-                        <li><a href="{{ url('/services/toilet') }}">Toilet</a></li>
-                        <li><a href="{{ url('/services/beach') }}">Beaches</a></li>
-                        <li><a href="{{ url('/services/life_guard_booth') }}">Life Guards</a></li>
-                    </ul>
-                </li>
+                <!-- Conveniences -->
                 <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
-                        Language <i class="fa fa-chevron-down ms-2"></i>
+                        {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
+                        <i class="fa fa-chevron-down ms-2"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li><a
+                                href="{{ url('/bhaktanibas-list') }}">{{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nibas' }}</a>
+                        </li>
+                        <li><a href="{{ url('/parking-list') }}">{{ $language === 'Odia' ? 'ପାର୍କିଂ' : 'Parking' }}</a>
+                        </li>
+                        <li><a
+                                href="{{ url('/locker-shoe-list') }}">{{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା' : 'Locker & Shoe' }}</a>
+                        </li>
+                        <li><a
+                                href="{{ url('/services/drinking_water') }}">{{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</a>
+                        </li>
+                        <li><a
+                                href="{{ url('/services-emergency') }}">{{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ' : 'Emergency' }}</a>
+                        </li>
+                        <li><a
+                                href="{{ url('/services-abled') }}">{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</a>
+                        </li>
+                        <li><a href="#">{{ $language === 'Odia' ? 'ଯାତାୟାତ ମାର୍ଗ' : 'Route Map' }}</a></li>
+                        <li><a
+                                href="{{ url('/services/lost_and_found_booth') }}">{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</a>
+                        </li>
+                        <li><a href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a>
+                        </li>
+                        <li><a
+                                href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
+                        </li>
+                        <li><a
+                                href="{{ url('/services/life_guard_booth') }}">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Language Switcher -->
+                <li class="has-submenu">
+                    <a href="javascript:void(0)" class="submenu-toggle">
+                        {{ $language === 'Odia' ? 'ଭାଷା' : 'Language' }}
+                        <i class="fa fa-chevron-down ms-2"></i>
                     </a>
                     <ul class="submenu">
                         <li><a href="{{ url('/lang/Odia') }}">ଓଡ଼ିଆ</a></li>
@@ -92,10 +134,6 @@
         <button id="muteToggle" class="mute-toggle"><i style="height:18px;width: 18px"
                 class="fa fa-volume-mute"></i></button>
     </section>
-
-    @php
-        $language = session('app_language', 'English');
-    @endphp
 
     <div class="niti-cards-scroll">
         <div class="niti-cards">
@@ -355,7 +393,7 @@
             <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 mt-8 sm:mt-12">
                 <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
                 <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">
-                    {{ $language === 'Odia' ? 'ଦ୍ରୁତ ସେବା' : 'Quick Services' }}
+                    {{ $language === 'Odia' ? 'ତ୍ଵରିତ ସେବା' : 'Quick Services' }}
                 </h2>
                 <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
             </div>
@@ -603,102 +641,102 @@
         </div>
     </section>
 
-   <section class="temple-convenience">
-    <!-- Section Header -->
-    <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 mt-8 sm:mt-12 text-center">
-        <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
-        <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">
-            {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
-        </h2>
-        <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
-    </div>
-
-    <!-- Convenience Items -->
-    <div class="convenience-container">
-
-        <!-- Drinking Water -->
-        <div class="conv">
-            <a href="{{ route('services.byType', 'drinking_water') }}">
-                <div class="convenience-item" style="margin-left: 7px">
-                    <img src="{{ asset('website/drinkingWater32.png') }}" alt="Water" style="height: 42px">
-                </div>
-                <p>{{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</p>
-            </a>
+    <section class="temple-convenience">
+        <!-- Section Header -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 mt-8 sm:mt-12 text-center">
+            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
+            <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">
+                {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
+            </h2>
+            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
         </div>
 
-        <!-- Emergency -->
-        <div class="conv">
-            <a href="{{ route('services.emergency') }}">
-                <div class="convenience-item">
-                    <img src="{{ asset('website/ph.png') }}" alt="Emergency">
-                </div>
-                <p>{{ $language === 'Odia' ? 'ଜରୁରୀ ସେବା' : 'Emergency' }}</p>
-            </a>
-        </div>
+        <!-- Convenience Items -->
+        <div class="convenience-container">
 
-        <!-- Special Abled -->
-        <div class="conv">
-            <a href="{{ route('services.abled_person') }}">
-                <div class="convenience-item">
-                    <img src="{{ asset('website/physical21.png') }}" alt="Special Abled">
-                </div>
-                <p>{{ $language === 'Odia' ? 'ବିଶେଷ କ୍ଷମତା ଥିବା ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</p>
-            </a>
-        </div>
+            <!-- Drinking Water -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'drinking_water') }}">
+                    <div class="convenience-item" style="margin-left: 7px">
+                        <img src="{{ asset('website/drinkingWater32.png') }}" alt="Water" style="height: 42px">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</p>
+                </a>
+            </div>
 
-        <!-- Route Map -->
-        <div class="conv">
-            <a href="{{ route('services.byType', 'ratha_yatra_mela') }}">
-                <div class="convenience-item">
-                    <img src="{{ asset('website/map.png') }}" alt="Route Map">
-                </div>
-                <p>{{ $language === 'Odia' ? 'ମାର୍ଗ ମାନଚିତ୍ର' : 'Route Map' }}</p>
-            </a>
-        </div>
+            <!-- Emergency -->
+            <div class="conv">
+                <a href="{{ route('services.emergency') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/ph.png') }}" alt="Emergency">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ' : 'Emergency' }}</p>
+                </a>
+            </div>
 
-        <!-- Lost & Found -->
-        <div class="conv">
-            <a href="{{ route('services.byType', 'lost_and_found_booth') }}">
-                <div class="convenience-item">
-                    <img src="{{ asset('website/lost.png') }}" alt="Lost and Found">
-                </div>
-                <p>{{ $language === 'Odia' ? 'ହାରାଇଛି ଓ ମିଳିଛି' : 'Lost & Found' }}</p>
-            </a>
-        </div>
+            <!-- Special Abled -->
+            <div class="conv">
+                <a href="{{ route('services.abled_person') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/physical21.png') }}" alt="Special Abled">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</p>
+                </a>
+            </div>
 
-        <!-- Toilet -->
-        <div class="conv">
-            <a href="{{ route('services.byType', 'toilet') }}">
-                <div class="convenience-item">
-                    <img src="{{ asset('website/latin.png') }}" alt="Toilet">
-                </div>
-                <p>{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</p>
-            </a>
-        </div>
+            <!-- Route Map -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'ratha_yatra_mela') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/map.png') }}" alt="Route Map">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ଯାତାୟାତ ମାର୍ଗ' : 'Route Map' }}</p>
+                </a>
+            </div>
 
-        <!-- Beach -->
-        <div class="conv">
-            <a href="{{ route('services.byType', 'beach') }}">
-                <div class="convenience-item">
-                    <img src="{{ asset('website/sea.png') }}" alt="Beach">
-                </div>
-                <p>{{ $language === 'Odia' ? 'ସମୁଦ୍ର କୂଳ' : 'Beaches' }}</p>
-            </a>
-        </div>
+            <!-- Lost & Found -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'lost_and_found_booth') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/lost.png') }}" alt="Lost and Found">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</p>
+                </a>
+            </div>
 
-        <!-- Life Guards -->
-        <div class="conv">
-            <a href="{{ route('services.byType', 'life_guard_booth') }}">
-                <div class="convenience-item">
-                    <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
-                </div>
-                <p>{{ $language === 'Odia' ? 'ଲାଇଫ୍ ଗାର୍ଡ୍' : 'Life Guards' }}</p>
-            </a>
-        </div>
+            <!-- Toilet -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'toilet') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/latin.png') }}" alt="Toilet">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</p>
+                </a>
+            </div>
 
-    </div>
-   </section>
-   
+            <!-- Beach -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'beach') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/sea.png') }}" alt="Beach">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</p>
+                </a>
+            </div>
+
+            <!-- Life Guards -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'life_guard_booth') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</p>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
     {{-- <section class="bg-100 p-10  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
         <div class="max-w-6xl mx-auto">
             <!-- Header -->
