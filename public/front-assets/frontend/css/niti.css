@@ -1,9 +1,8 @@
 
-
 .niti-cards {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Fix vertical alignment */
     gap: 20px;
     width: 90%;
     margin: 0 auto;
@@ -14,23 +13,23 @@
 
 .niti-card {
     background: white;
-    margin-top: -177px;
     color: black;
     border-radius: 8px;
-    padding: 15px;
+    padding: 15px 20px;
     width: 400px;
-    height: 140px;
+    min-height: 140px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start; /* Align to top for variable height */
+    flex-direction: row;
     transition: all 0.3s ease-in-out;
     border-left: 5px solid transparent;
     position: relative;
     gap: 15px;
     border: 1px solid rgb(220, 220, 220);
+    box-sizing: border-box;
+    overflow: hidden;
 }
-
 /* Active Card Styling */
 .niti-card.active {
     position: relative;
