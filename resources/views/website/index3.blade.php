@@ -1,7 +1,6 @@
 @extends('website.web-layouts')
 
 @section('content')
-
     <section class="banner-sections">
         <!-- Video Banner -->
         @if ($latestWebVideo && $latestWebVideo->banner_video)
@@ -20,7 +19,7 @@
             <img src="{{ asset('website/logo.png') }}" alt="logo">
         </a>
         <!-- Hamburger Icon -->
-          <div class="hamburger-icon">
+        <div class="hamburger-icon">
             <div class="hamburger-menu">
                 <span></span>
                 <span></span>
@@ -94,51 +93,64 @@
                 class="fa fa-volume-mute"></i></button>
     </section>
 
-    <div class="niti-cards-scroll">
-        <div class="niti-cards">
-            @foreach ($nitis as $niti)
-                <div class="niti-card {{ $loop->first ? 'active' : '' }}">
-                    <div class="niti-content">
-                     <h3 style="font-size: 22px; padding-bottom:5px;">{{ $niti->display_name }}</h3>
-                            <p style="padding-top: 5px; font-weight: bold; 
-                        color: {{ $niti->niti_status == 'Started' ? '#28a745' : '#333' }};">
-                            {{ $niti->niti_status }}
-                        </p>
-                    </div>
-
-                    <div class="niti-icons">
-                        <p style="color: rgb(139, 137, 137)">
-                            <ion-icon name="time-outline" style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
-                            @php
-                                $startTime = optional($niti->todayStartTime)->start_time;
-                            @endphp
-
-                            @if ($niti->niti_status === 'Upcoming' || !$startTime)
-                                Not Started
-                            @else
-                                {{ \Carbon\Carbon::parse($startTime)->format('h:i A') }}
-                            @endif
-                        </p>
-
-                        <p style="color: rgb(139, 137, 137)">
-                            <ion-icon name="calendar-outline"
-                                style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
-                            {{ \Carbon\Carbon::now()->format('jS M') }}
-                        </p>
-
-                    </div>
-                </div>
-            @endforeach
-
-            <!-- View All Niti Card -->
-            <div class="niti-card">
-                <div class="niti-content text-center">
-                    <h3 style="font-size: 22px; padding-bottom: 5px;"><a href="{{ route('all.niti') }}">View All Niti</a>
+   <div class="niti-cards-scroll">
+    <div class="niti-cards">
+        @foreach ($nitis as $niti)
+            <div class="niti-card {{ $loop->first ? 'active' : '' }}">
+                <div class="niti-content">
+                    <h3 style="font-size: 22px; padding-bottom:5px;">
+                        {{ $niti->display_name }}
                     </h3>
+
+                    <p style="padding-top: 5px; font-weight: bold;
+                        color: {{ $niti->niti_status == 'Started' ? '#28a745' : '#333' }};">
+                        @if ($language === 'Odia')
+                            {{ $niti->niti_status === 'Started' ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆସନ୍ତାକାଲି' }}
+                        @else
+                            {{ $niti->niti_status }}
+                        @endif
+                    </p>
+                </div>
+
+                <div class="niti-icons">
+                    <p style="color: rgb(139, 137, 137)">
+                        <ion-icon name="time-outline" style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
+                        @php
+                            $startTime = optional($niti->todayStartTime)->start_time;
+                        @endphp
+
+                        @if ($niti->niti_status === 'Upcoming' || !$startTime)
+                            {{ $language === 'Odia' ? 'ଆରମ୍ଭ ହୋଇନାହିଁ' : 'Not Started' }}
+                        @else
+                            {{ \Carbon\Carbon::parse($startTime)->format('h:i A') }}
+                        @endif
+                    </p>
+
+                    <p style="color: rgb(139, 137, 137)">
+                        <ion-icon name="calendar-outline"
+                            style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
+                        @if ($language === 'Odia')
+                            {{ \Carbon\Carbon::now()->format('j ତାରିଖ M') }}
+                        @else
+                            {{ \Carbon\Carbon::now()->format('jS M') }}
+                        @endif
+                    </p>
                 </div>
             </div>
+        @endforeach
+
+        <!-- View All Niti Card -->
+        <div class="niti-card">
+            <div class="niti-content text-center">
+                <h3 style="font-size: 22px; padding-bottom: 5px;">
+                    <a href="{{ route('all.niti') }}">
+                        {{ $language === 'Odia' ? 'ସମସ୍ତ ନୀତି ଦେଖନ୍ତୁ' : 'View All Niti' }}
+                    </a>
+                </h3>
+            </div>
         </div>
-    </div> 
+    </div>
+</div>
 
     {{-- 
     <section class="shree-mandir-section  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
@@ -375,7 +387,7 @@
                     </div>
                 </a>
 
-              
+
                 <!-- Offering -->
                 <a href="{{ route('view.festival.details') }}">
                     <div class="bg-white border-l-4 border-[#db4d30]  px-5 py-4 flex items-center gap-5 h-[140px] hover:shadow-lg transition-transform hover:translate-x-1 duration-300"
@@ -389,7 +401,7 @@
                     </div>
                 </a>
 
-                  <!-- do and dont -->
+                <!-- do and dont -->
                 <a href="{{ route('do-and-donts') }}">
                     <div class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:shadow-lg transition-transform hover:translate-x-1 duration-300"
                         style="border: 1px solid rgb(213, 213, 213);border-radius: 13px;">
@@ -764,5 +776,4 @@
     {{-- </section> --}}
 
     @include('partials.website-footer')
-
 @endsection
