@@ -566,7 +566,9 @@
 
         <div class="flex justify-center items-center gap-5 mt-12">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
-            <h2 class="text-xl text-[#db4d30] font-semi-bold">Nearby Temples</h2>
+            <h2 class="text-xl text-[#db4d30] font-semibold">
+                {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ମନ୍ଦିରଗୁଡ଼ିକ' : 'Nearby Temples' }}
+            </h2>
             <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
         </div>
 
