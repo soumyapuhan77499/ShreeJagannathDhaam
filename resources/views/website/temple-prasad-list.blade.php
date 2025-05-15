@@ -297,78 +297,100 @@
 <body>
     @include('partials.header-puri-dham')
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <img class="hero-bg" src="{{ asset('website/prsd.jpg') }}" alt="Mandir Background" />
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Maha Prasad Timeline</h1>
-            <p>Explore sacred offerings, their time and items served</p>
-        </div>
+   @php
+    $language = session('app_language', 'English');
+@endphp
+
+<!-- Hero Section -->
+<div class="hero">
+    <img class="hero-bg" src="{{ asset('website/prsd.jpg') }}" alt="Mandir Background" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>
+            {{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ ସମୟ' : 'Maha Prasad Timeline' }}
+        </h1>
+        <p>
+            {{ $language === 'Odia' ? 'ପବିତ୍ର ଭୋଜନ, ସମୟ ଓ ବିବରଣୀ ଜାଣନ୍ତୁ' : 'Explore sacred offerings, their time and items served' }}
+        </p>
     </div>
+</div>
 
-    <div class="timeline">
-        @foreach ($prasadList as $index => $prasad)
-            @php
-                $start = $prasad->start_time;
-                $status = $prasad->today_status;
-                $side = $index % 2 === 0 ? 'left' : 'right';
+<!-- Timeline -->
+<div class="timeline">
+    @foreach ($prasadList as $index => $prasad)
+        @php
+            $start = $prasad->start_time;
+            $status = $prasad->today_status;
+            $side = $index % 2 === 0 ? 'left' : 'right';
 
-                $icon = match ($status) {
-                    'Completed' => 'fa-check-circle',
-                    'Started' => 'fa-sun',
-                    'Upcoming' => 'fa-bell',
-                    default => 'fa-clock',
-                };
+            $icon = match ($status) {
+                'Completed' => 'fa-check-circle',
+                'Started' => 'fa-sun',
+                'Upcoming' => 'fa-bell',
+                default => 'fa-clock',
+            };
 
-                $statusClass = $status; // For CSS
-            @endphp
+            $statusClass = $status;
+            $formattedStart = $start ? \Carbon\Carbon::parse($start)->format('h:i A') : null;
+        @endphp
 
-            <div class="timeline-item {{ $side }} {{ $statusClass }}">
-                <div class="card timeline-content">
-
-                    <div class="card-header">
-
-                        @if ($prasad->prasad_name)
-                            <div class="darshan-img-wrapper" style="margin-bottom: 10px;">
-                                <img src="{{ asset('website/prasad.png') }}" alt="{{ $prasad->prasad_name }}"
-                                    style="width: 100%; max-width: 300px; border-radius: 10px;">
-                            </div>
-                        @endif
-
-                        <div>
-                            <span class="badge {{ $statusClass }}">
-                                <i class="fas {{ $icon }}"></i>
-                                {{ $status === 'Started' ? 'Going On' : $status }}
-                            </span>
-                            <h3 class="prasad-name">{{ $prasad->prasad_name }}</h3>
-
+        <div class="timeline-item {{ $side }} {{ $statusClass }}">
+            <div class="card timeline-content">
+                <div class="card-header">
+                    @if ($prasad->prasad_name)
+                        <div class="darshan-img-wrapper" style="margin-bottom: 10px;">
+                            <img src="{{ asset('website/prasad.png') }}" alt="{{ $prasad->prasad_name }}"
+                                 style="width: 100%; max-width: 300px; border-radius: 10px;">
                         </div>
+                    @endif
 
-                    </div>
-
-                    <div class="prasad-times">
-                        @if ($status === 'Started' && $start)
-                            <p class="right-align"><strong>Started:</strong>
-                                {{ \Carbon\Carbon::parse($start)->format('h:i a') }}</p>
-                        @endif
-
-                        @if ($status === 'Completed')
-                            @if ($start)
-                                <p class="right-align"><strong>Started:</strong>
-                                    {{ \Carbon\Carbon::parse($start)->format('h:i a') }}</p>
+                    <div>
+                        <span class="badge {{ $statusClass }}">
+                            <i class="fas {{ $icon }}"></i>
+                            @if ($language === 'Odia')
+                                @switch($status)
+                                    @case('Started') ଚାଲିଛି @break
+                                    @case('Completed') ସମାପ୍ତ @break
+                                    @case('Upcoming') ଆଗାମୀ @break
+                                    @default ଅଜଣା
+                                @endswitch
+                            @else
+                                {{ $status === 'Started' ? 'Going On' : $status }}
                             @endif
-                            
-                        @endif
+                        </span>
 
-                        @if ($status === 'Upcoming')
-                            <p class="right-align"><strong>Starts:</strong> Not yet started</p>
-                        @endif
+                        <h3 class="prasad-name">
+                            {{ $language === 'Odia' ? $prasad->prasad_name : ($prasad->english_prasad_name ?? $prasad->prasad_name) }}
+                        </h3>
                     </div>
                 </div>
+
+                <div class="prasad-times">
+                    @if ($status === 'Started' && $start)
+                        <p class="right-align">
+                            <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
+                            {{ $language === 'Odia' ? convertToOdiaTime($formattedStart) : strtolower($formattedStart) }}
+                        </p>
+                    @endif
+
+                    @if ($status === 'Completed' && $start)
+                        <p class="right-align">
+                            <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
+                            {{ $language === 'Odia' ? convertToOdiaTime($formattedStart) : strtolower($formattedStart) }}
+                        </p>
+                    @endif
+
+                    @if ($status === 'Upcoming')
+                        <p class="right-align">
+                            <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Starts' }}:</strong>
+                            {{ $language === 'Odia' ? 'ଏପର୍ଯ୍ୟନ୍ତ ଆରମ୍ଭ ହୋଇନାହିଁ' : 'Not yet started' }}
+                        </p>
+                    @endif
+                </div>
             </div>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
+</div>
 
     @include('partials.website-footer')
    
