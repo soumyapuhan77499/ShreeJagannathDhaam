@@ -102,8 +102,8 @@
             @foreach ($nitis as $niti)
                 <div class="niti-card {{ $loop->first ? 'active' : '' }}">
                     <div class="niti-content">
-                        <h3 style="font-size: 21px; padding-bottom:5px; word-wrap: break-word;">
-                                  {{ $niti->display_name }}
+<h3 style="font-size: 21px; padding-bottom:5px; word-wrap: break-word;">
+                            {{ $niti->display_name }}
                         </h3>
 
                         <p
