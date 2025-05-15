@@ -353,6 +353,7 @@
         <!-- Section Title -->
         <div class="text-center mb-14">
             <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 mt-8 sm:mt-12">
+                <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
                 <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">
                     {{ $language === 'Odia' ? 'ଦ୍ରୁତ ସେବା' : 'Quick Services' }}
                 </h2>
