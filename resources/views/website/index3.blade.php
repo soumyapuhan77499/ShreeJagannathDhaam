@@ -412,7 +412,7 @@
                         <img src="{{ asset('website/festival21.png') }}" alt="Offering" class="w-16 h-16">
                         <div>
                             <h3 class="text-lg font-semibold text-[#db4d30]">
-                                {{ $language === 'Odia' ? 'ମନ୍ଦିର ପର୍ବ' : 'Temple Festival' }}
+                                {{ $language === 'Odia' ? 'ପର୍ବପର୍ବାଣୀ' : 'Temple Festival' }}
                             </h3>
                             <p class="text-sm text-gray-600">
                                 {{ $language === 'Odia' 
@@ -431,7 +431,7 @@
                         <img src="{{ asset('website/dodonts.png') }}" alt="Do and Don'ts" class="w-16 h-16">
                         <div>
                             <h3 class="text-lg font-semibold text-[#db4d30]">
-                                {{ $language === 'Odia' ? 'କରଣୀୟ ଓ ଅକରଣୀୟ' : "Do's and Don'ts" }}
+                                {{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's and Don'ts" }}
                             </h3>
                             <p class="text-sm text-gray-600">
                                 {{ $language === 'Odia' 
@@ -447,20 +447,25 @@
     </section>
 
     <section class="services-sections">
-
         <!-- Bhakta Nibas -->
         <a href="{{ route('bhaktanibas.list') }}" class="service-cards" style="text-decoration: none;">
             <div class="card-top">
                 <div class="card-text">
-                    <div class="card-title">Bhakta Nibas</div>
-                    <div class="card-desc">Temple owned <br>properties for<br>pilgrim stay</div>
+                    <div class="card-title">
+                        {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nibas' }}
+                    </div>
+                    <div class="card-desc">
+                        {{ $language === 'Odia' ? 'ତୀର୍ଥଯାତ୍ରୀ ନିବାସ ପାଇଁ ମନ୍ଦିରର ଅସ୍ତି' : 'Temple owned properties for pilgrim stay' }}
+                    </div>
                 </div>
-                <div class="arrow-icon" style="font-size: 25px;"><i class="fa-solid fa-arrow-right"
-                        style="color: #e9372b;"></i></div>
+                <div class="arrow-icon" style="font-size: 25px;">
+                    <i class="fa-solid fa-arrow-right" style="color: #e9372b;"></i>
+                </div>
             </div>
             <div class="card-bottom">
-                <div class="card-icons"><img src="{{ asset('website/niwas.png') }}" alt="Maha Prasad"
-                        style="height: 40px; width: 40px;"></div>
+                <div class="card-icons">
+                    <img src="{{ asset('website/niwas.png') }}" alt="Bhakta Nibas" style="height: 40px; width: 40px;">
+                </div>
                 <div class="footer-bar bar-orange"></div>
             </div>
         </a>
@@ -469,36 +474,44 @@
         <a href="{{ route('parking.list') }}" class="service-cards" style="text-decoration: none;">
             <div class="card-top">
                 <div class="card-text">
-                    <div class="card-title">Parking Areas</div>
-                    <div class="card-desc">2, 3, 4 Wheelers</div>
+                    <div class="card-title">
+                        {{ $language === 'Odia' ? 'ପାର୍କିଂ ସ୍ଥଳ' : 'Parking Areas' }}
+                    </div>
+                    <div class="card-desc">
+                        {{ $language === 'Odia' ? '୨, ୩, ୪ ଚାକା ବାହନ' : '2, 3, 4 Wheelers' }}
+                    </div>
                 </div>
-                <div class="arrow-icon" style="font-size: 25px;"><i class="fa-solid fa-arrow-right"
-                        style="color: #e9372b;"></i></div>
+                <div class="arrow-icon" style="font-size: 25px;">
+                    <i class="fa-solid fa-arrow-right" style="color: #e9372b;"></i>
+                </div>
             </div>
             <div class="card-bottom">
-                <div
-                    style="margin-right:5%; height: 50px; width: 50px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                    <span style="color: white; font-size: 40px;"><img src="{{ asset('website/park.png') }}"
-                            alt="Maha Prasad" style="height: 40px; width: 40px;"></span>
+                <div style="margin-right:5%; height: 50px; width: 50px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
+                    <img src="{{ asset('website/park.png') }}" alt="Parking" style="height: 40px; width: 40px;">
                 </div>
                 <div class="footer-bar bar-red"></div>
             </div>
-
         </a>
 
         <!-- Locker & Shoes -->
         <a href="{{ route('lockershoe.list') }}" class="service-cards" style="text-decoration: none;">
             <div class="card-top">
                 <div class="card-text">
-                    <div class="card-title">Locker & Shoes Stands</div>
-                    <div class="card-desc">Shoes, Mobile <br>Phones etc</div>
+                    <div class="card-title">
+                        {{ $language === 'Odia' ? 'ଲକର ଓ ଜୁତା ସ୍ଥାନ' : 'Locker & Shoes Stands' }}
+                    </div>
+                    <div class="card-desc">
+                        {{ $language === 'Odia' ? 'ଜୁତା, ମୋବାଇଲ ଫୋନ ଇତ୍ୟାଦି' : 'Shoes, Mobile Phones etc' }}
+                    </div>
                 </div>
-                <div class="arrow-icon" style="font-size: 25px;"><i class="fa-solid fa-arrow-right"
-                        style="color: #e9372b;"></i></div>
+                <div class="arrow-icon" style="font-size: 25px;">
+                    <i class="fa-solid fa-arrow-right" style="color: #e9372b;"></i>
+                </div>
             </div>
             <div class="card-bottom">
-                <div class="card-icons" style="font-size: 40px; color: #6577e6;"><img
-                        src="{{ asset('website/lck.png') }}" alt="Maha Prasad" style="height: 40px; width: 40px;"></div>
+                <div class="card-icons">
+                    <img src="{{ asset('website/lck.png') }}" alt="Locker" style="height: 40px; width: 40px;">
+                </div>
                 <div class="footer-bar bar-blue"></div>
             </div>
         </a>
@@ -507,16 +520,20 @@
         <a href="{{ route('online.donation') }}" class="service-cards" style="text-decoration: none;">
             <div class="card-top">
                 <div class="card-text">
-                    <div class="card-title">Online Donations</div>
-                    <div class="card-desc" style="font-weight: 500;">Donate Now</div>
+                    <div class="card-title">
+                        {{ $language === 'Odia' ? 'ଅନଲାଇନ୍ ଦାନ' : 'Online Donations' }}
+                    </div>
+                    <div class="card-desc" style="font-weight: 500;">
+                        {{ $language === 'Odia' ? 'ଏବେ ଦାନ କରନ୍ତୁ' : 'Donate Now' }}
+                    </div>
                 </div>
                 <div class="arrow-icon" style="font-size: 25px;">
                     <i class="fa-solid fa-arrow-right" style="color: #e9372b;"></i>
                 </div>
             </div>
             <div class="card-bottom">
-                <div class="card-icons" style="font-size: 40px; color: #22c5ee;">
-                    <img src="{{ asset('website/donation.png') }}" alt="Maha Prasad" style="height: 40px; width: 40px;">
+                <div class="card-icons">
+                    <img src="{{ asset('website/donation.png') }}" alt="Donation" style="height: 40px; width: 40px;">
                 </div>
                 <div class="footer-bar bar-cyan"></div>
             </div>
@@ -526,27 +543,28 @@
         <a href="{{ route('hundi.collection') }}" class="service-cards" style="text-decoration: none;">
             <div class="card-top">
                 <div class="card-text">
-                    <div class="card-title">Hundi Collection</div>
+                    <div class="card-title">
+                        {{ $language === 'Odia' ? 'ହୁଣ୍ଡି ସଂଗ୍ରହ' : 'Hundi Collection' }}
+                    </div>
                     <div class="card-desc">
-                        {{ \Carbon\Carbon::today()->format('jS M, Y') }}<br />
+                        {{ $language === 'Odia' ? convertToOdiaDate(\Carbon\Carbon::today()) : \Carbon\Carbon::today()->format('jS M, Y') }}
+                        <br>
                         <span style="color:#e75230; font-weight:600;">
                             ₹{{ number_format($hundi->rupees ?? 0, 2) }}/-
                         </span>
                     </div>
                 </div>
-                <div class="arrow-icon" style="font-size: 25px;margin-left: 20px">
+                <div class="arrow-icon" style="font-size: 25px; margin-left: 20px;">
                     <i class="fa-solid fa-arrow-right" style="color: #e9372b;"></i>
                 </div>
             </div>
             <div class="card-bottom">
-                <div class="card-icons" style="font-size: 40px; color: #6bbf84;">
-                    <img src="{{ asset('website/hundic.png') }}" alt="Hundi Collection"
-                        style="height: 40px; width: 40px;">
+                <div class="card-icons">
+                    <img src="{{ asset('website/hundic.png') }}" alt="Hundi" style="height: 40px; width: 40px;">
                 </div>
                 <div class="footer-bar bar-green"></div>
             </div>
         </a>
-
     </section>
 
     <section class="temple-slider bg-white  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
