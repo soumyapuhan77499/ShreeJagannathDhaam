@@ -9,7 +9,7 @@
         <!-- Video Banner -->
         @if ($latestWebVideo && $latestWebVideo->banner_video)
             <div class="banner-video">
-                <video id="bannerVideo" autoplay loop playsinline muted preload="metadata"
+                <video id="bannerVideo" autoplay loop playsinline preload="metadata"
                     poster="{{ asset('storage/' . $latestWebVideo->banner_image ?? 'website/d.png') }}">
                     <source src="{{ asset('website/banner.mp4') }}" type="video/mp4">
                     Your browser does not support the video tag.
