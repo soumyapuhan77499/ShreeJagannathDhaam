@@ -113,7 +113,7 @@
         }
 
         .niti-title h3 {
-            font-size: 26px;
+            font-size: 23px;
             font-weight: 600;
             color: #db4d30;
             margin: 0;
