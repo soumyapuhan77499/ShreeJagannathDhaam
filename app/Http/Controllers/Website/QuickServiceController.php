@@ -63,20 +63,19 @@ public function prasadTimeline()
 
 public function parkingList()
 {
-    $templeId = 'TEMPLE25402';
+    $language = session('app_language', 'English');
 
-    $parking = Parking::where('temple_id', $templeId)->where('status','active')->where('language','English')->get();
+    $parking = Parking::where('status','active')->where('language', $language)->get();
 
     return view('website.parking-list', compact('parking'));
 }
 
 public function bhaktanibasList(){
 
-    $templeId = 'TEMPLE25402'; // adjust as needed
+    $language = session('app_language', 'English');
 
-    $bhaktaNibas = Accomodation::where('temple_id', $templeId)
-        ->where('accomodation_type', 'bhakta_niwas')
-        ->where('language', 'English')
+    $bhaktaNibas = Accomodation::where('accomodation_type', 'bhakta_niwas')
+        ->where('language', $language)
         ->get();
 
     return view('website.bhaktanibas-list', compact('bhaktaNibas'));
@@ -85,12 +84,11 @@ public function bhaktanibasList(){
 
 public function lockerShoeList()
 {
-    $templeId = 'TEMPLE25402'; // change if needed
+    $language = session('app_language', 'English');
 
-    $services = PublicServices::where('temple_id', $templeId)
-        ->whereIn('service_type', ['locker', 'shoe_stand'])
+    $services = PublicServices::whereIn('service_type', ['locker', 'shoe_stand'])
         ->where('status', 'active')
-        ->where('language','English')
+        ->where('language', $language)
         ->get();
 
     return view('website.locker-shoe-list', compact('services'));
@@ -132,19 +130,14 @@ public function getDarshanList()
     return view('website.temple-darshan-list', compact('darshanList'));
 }
 
-public function viewNearByTemple($id)
-{
-    $temple = NearByTemple::findOrFail($id);
-
-    return view('website.view-near-by-temple', compact('temple'));
-}
-
 public function showByServiceType($service_type)
 {
+    $language = session('app_language', 'English');
+
     // Fetch services matching the clicked type
     $services = PublicServices::where('service_type', $service_type)
                 ->where('status', 'active') // Only active services
-                ->where('language','English')
+                ->where('language', $language) // Filter by language
                 ->get();
 
     return view('website.temple-convience', compact('services', 'service_type'));
@@ -154,7 +147,9 @@ public function viewPanji()
 {
     $todayDate = Carbon::today()->toDateString();
 
-    $todayPanji = PanjiDetails::where('date', $todayDate)->where('status', 'active')->where('language','English')->first();
+    $language = session('app_language', 'English');
+
+    $todayPanji = PanjiDetails::where('date', $todayDate)->where('status', 'active')->where('language',$language)->first();
 
     return view('website.view-panji-details', compact('todayPanji'));  
 } 

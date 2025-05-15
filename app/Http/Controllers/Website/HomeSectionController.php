@@ -28,7 +28,7 @@ class HomeSectionController extends Controller
 
 public function puriWebsite()
 {
-    $templeId = 'TEMPLE25402';
+    $language = session('app_language', 'English');
 
     $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
 
@@ -41,7 +41,6 @@ public function puriWebsite()
     
     // Step 1: Get all active Nitis ordered by date_time (or serial)
     $allNitis = NitiMaster::where('status', 'active')
-        ->where('language', 'Odia')
         ->where('niti_type', 'daily') // adjust this if needed
         ->with([
             'todayStartTime' => function ($query) use ($latestDayId) {
@@ -93,18 +92,17 @@ public function puriWebsite()
     return view('website.index3', [
         'nitis' => $finalNitiList->values(),
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
-        'nearbyTemples' => NearByTemple::where('language','English')->whereNotNull('photo')->get(),
-        'aboutTemple' => TempleAboutDetail::where('temple_id', $templeId)->first(),
-        'photos' => TemplePhotosVideos::where('temple_id', $templeId)->first(),
-        'matha' => Matha::where('temple_id', $templeId)->first(),
-        'festival' => TempleFestival::with('subFestivals')->where('temple_id', $templeId)->first(),
-        'nijoga' => NijogaMaster::where('temple_id', $templeId)->first(),
+        'nearbyTemples' => NearByTemple::where('language', $language)->whereNotNull('photo')->get(),
+        'aboutTemple' => TempleAboutDetail::where('status', 'active')->first(),
+        'photos' => TemplePhotosVideos::where('status', 'active')->first(),
+        'matha' => Matha::where('status', 'active')->first(),
+        'festival' => TempleFestival::with('subFestivals')->where('status', 'active')->first(),
+        'nijoga' => NijogaMaster::where('status', 'active')->first(),
         'besha' => TempleBesha::whereNotNull('besha_name')->first(),
-        'darshan' => TempleDarshan::where('temple_id', $templeId)->first(),
-        'prasad' => TemplePrasad::where('temple_id', $templeId)->first(),
+        'darshan' => TempleDarshan::where('status', 'active')->first(),
+        'prasad' => TemplePrasad::where('status', 'active')->first(),
         'todayPanji' => $todayPanji,
-        'temples' => NearByTemple::where('language', 'English')->get()
-
+        'temples' => NearByTemple::where('language', $language)->get()
     ]);
 }
 
@@ -305,10 +303,8 @@ public function mandirRadio(){
 
 public function mandirDarshan()
 {
-    $templeId = 'TEMPLE25402';
 
-    $darshans = TempleDarshan::where('temple_id', 'TEMPLE25402')
-    ->orderBy('darshan_start_time', 'asc')
+    $darshans = TempleDarshan::orderBy('darshan_start_time', 'asc')
     ->get();
 
     return view('website.temple-darshan-list', compact('darshans'));
@@ -316,7 +312,12 @@ public function mandirDarshan()
 
 public function viewNearByTemple($name)
 {
-    $temple = NearByTemple::where('name', $name)->first(); // ✅ single object
+    $todayDate = Carbon::today()->toDateString();
+    
+    $language = session('app_language', 'English');
+
+    $temple = NearByTemple::where('name', $name)->where('language',$language)->first(); // ✅ single object
+
     return view('website.view-near-by-temple', compact('temple'));
 }
 

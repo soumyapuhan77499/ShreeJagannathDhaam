@@ -76,8 +76,15 @@
                         <li><a href="{{ url('/services/life_guard_booth') }}">Life Guards</a></li>
                     </ul>
                 </li>
-                <li><a href="#panji">Panji</a></li>
-                {{-- <li><a href="#">Temple Information</a></li> --}}
+                <li class="has-submenu">
+                    <a href="javascript:void(0)" class="submenu-toggle">
+                        Language <i class="fa fa-chevron-down ms-2"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ url('/lang/Odia') }}">ଓଡ଼ିଆ</a></li>
+                        <li><a href="{{ url('/lang/English') }}">English</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
 
@@ -93,9 +100,7 @@
                 <div class="niti-card {{ $loop->first ? 'active' : '' }}">
                     <div class="niti-content">
                         <h3 style="font-size: 22px; padding-bottom:5px;">{{ $niti->niti_name }}</h3>
-
-                        <p
-                            style="padding-top: 5px; font-weight: bold; 
+                            <p style="padding-top: 5px; font-weight: bold; 
                         color: {{ $niti->niti_status == 'Started' ? '#28a745' : '#333' }};">
                             {{ $niti->niti_status }}
                         </p>
