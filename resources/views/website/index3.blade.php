@@ -455,7 +455,7 @@
                         {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nibas' }}
                     </div>
                     <div class="card-desc">
-                        {{ $language === 'Odia' ? 'ତୀର୍ଥଯାତ୍ରୀ ନିବାସ ପାଇଁ ମନ୍ଦିରର ଅସ୍ତି' : 'Temple owned properties for pilgrim stay' }}
+                        {{ $language === 'Odia' ? 'ତୀର୍ଥଯାତ୍ରୀମାନଙ୍କ ପାଇଁ ମନ୍ଦିର ପାଖରେ ରହିବା ସ୍ଥାନ' : 'Temple owned properties for pilgrim stay' }}
                     </div>
                 </div>
                 <div class="arrow-icon" style="font-size: 25px;">
@@ -478,7 +478,7 @@
                         {{ $language === 'Odia' ? 'ପାର୍କିଂ ସ୍ଥଳ' : 'Parking Areas' }}
                     </div>
                     <div class="card-desc">
-                        {{ $language === 'Odia' ? '୨, ୩, ୪ ଚାକା ବାହନ' : '2, 3, 4 Wheelers' }}
+                        {{ $language === 'Odia' ? '୨, ୩, ୪ ଚକା ବାହନ' : '2, 3, 4 Wheelers' }}
                     </div>
                 </div>
                 <div class="arrow-icon" style="font-size: 25px;">
@@ -498,10 +498,10 @@
             <div class="card-top">
                 <div class="card-text">
                     <div class="card-title">
-                        {{ $language === 'Odia' ? 'ଲକର ଓ ଜୁତା ସ୍ଥାନ' : 'Locker & Shoes Stands' }}
+                        {{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା ସ୍ଥାନ' : 'Locker & Shoes Stands' }}
                     </div>
                     <div class="card-desc">
-                        {{ $language === 'Odia' ? 'ଜୁତା, ମୋବାଇଲ ଫୋନ ଇତ୍ୟାଦି' : 'Shoes, Mobile Phones etc' }}
+                        {{ $language === 'Odia' ? 'ଜୋତା, ମୋବାଇଲ ଫୋନ ଇତ୍ୟାଦି' : 'Shoes, Mobile Phones etc' }}
                     </div>
                 </div>
                 <div class="arrow-icon" style="font-size: 25px;">
@@ -524,7 +524,7 @@
                         {{ $language === 'Odia' ? 'ଅନଲାଇନ୍ ଦାନ' : 'Online Donations' }}
                     </div>
                     <div class="card-desc" style="font-weight: 500;">
-                        {{ $language === 'Odia' ? 'ଏବେ ଦାନ କରନ୍ତୁ' : 'Donate Now' }}
+                        {{ $language === 'Odia' ? 'ଦାନ କରନ୍ତୁ' : 'Donate Now' }}
                     </div>
                 </div>
                 <div class="arrow-icon" style="font-size: 25px;">
