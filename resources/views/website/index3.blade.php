@@ -109,7 +109,7 @@
                     <p style="padding-top: 5px; font-weight: bold;
                         color: {{ $niti->niti_status == 'Started' ? '#28a745' : '#333' }};">
                         @if ($language === 'Odia')
-                            {{ $niti->niti_status === 'Started' ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆସନ୍ତାକାଲି' }}
+                            {{ $niti->niti_status === 'Started' ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
                         @else
                             {{ $niti->niti_status }}
                         @endif
