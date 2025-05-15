@@ -93,68 +93,74 @@
                 class="fa fa-volume-mute"></i></button>
     </section>
 
-@php
-    $language = session('app_language', 'English');
-@endphp
+    @php
+        $language = session('app_language', 'English');
+    @endphp
 
-   <div class="niti-cards-scroll">
-    <div class="niti-cards">
-        @foreach ($nitis as $niti)
-            <div class="niti-card {{ $loop->first ? 'active' : '' }}">
-                <div class="niti-content">
-                    <h3 style="font-size: 22px; padding-bottom:5px;">
-                        {{ $niti->display_name }}
-                    </h3>
+    <div class="niti-cards-scroll">
+        <div class="niti-cards">
+            @foreach ($nitis as $niti)
+                <div class="niti-card {{ $loop->first ? 'active' : '' }}">
+                    <div class="niti-content">
+                        <h3 style="font-size: 22px; padding-bottom:5px;">
+                            {{ $niti->display_name }}
+                        </h3>
 
-                    <p style="padding-top: 5px; font-weight: bold;
+                        <p
+                            style="padding-top: 5px; font-weight: bold;
                         color: {{ $niti->niti_status == 'Started' ? '#28a745' : '#333' }};">
-                        @if ($language === 'Odia')
-                            {{ $niti->niti_status === 'Started' ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
-                        @else
-                            {{ $niti->niti_status }}
-                        @endif
-                    </p>
+                            @if ($language === 'Odia')
+                                {{ $niti->niti_status === 'Started' ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
+                            @else
+                                {{ $niti->niti_status }}
+                            @endif
+                        </p>
+                    </div>
+
+                    <div class="niti-icons">
+                        
+                        <p style="color: rgb(139, 137, 137)">
+                            <ion-icon name="time-outline" style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
+                            @php
+                                $startTime = optional($niti->todayStartTime)->start_time;
+                            @endphp
+
+                            @if ($niti->niti_status === 'Upcoming' || !$startTime)
+                                {{ $language === 'Odia' ? 'ଆରମ୍ଭ ହୋଇନାହିଁ' : 'Not Started' }}
+                            @else
+                                @php
+                                    $formattedTime = \Carbon\Carbon::parse($startTime)->format('h:i A');
+                                @endphp
+
+                                {{ $language === 'Odia' ? convertToOdiaTime($formattedTime) : $formattedTime }}
+                            @endif
+                        </p>
+
+                        <p style="color: rgb(139, 137, 137)">
+                            <ion-icon name="calendar-outline"
+                                style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
+                            @if ($language === 'Odia')
+                                {{ \Carbon\Carbon::now()->format('j ତାରିଖ M') }}
+                            @else
+                                {{ \Carbon\Carbon::now()->format('jS M') }}
+                            @endif
+                        </p>
+                    </div>
                 </div>
+            @endforeach
 
-                <div class="niti-icons">
-                    <p style="color: rgb(139, 137, 137)">
-                        <ion-icon name="time-outline" style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
-                        @php
-                            $startTime = optional($niti->todayStartTime)->start_time;
-                        @endphp
-
-                        @if ($niti->niti_status === 'Upcoming' || !$startTime)
-                            {{ $language === 'Odia' ? 'ଆରମ୍ଭ ହୋଇନାହିଁ' : 'Not Started' }}
-                        @else
-                            {{ \Carbon\Carbon::parse($startTime)->format('h:i A') }}
-                        @endif
-                    </p>
-
-                    <p style="color: rgb(139, 137, 137)">
-                        <ion-icon name="calendar-outline"
-                            style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
-                        @if ($language === 'Odia')
-                            {{ \Carbon\Carbon::now()->format('j ତାରିଖ M') }}
-                        @else
-                            {{ \Carbon\Carbon::now()->format('jS M') }}
-                        @endif
-                    </p>
+            <!-- View All Niti Card -->
+            <div class="niti-card">
+                <div class="niti-content text-center">
+                    <h3 style="font-size: 22px; padding-bottom: 5px;">
+                        <a href="{{ route('all.niti') }}">
+                            {{ $language === 'Odia' ? 'ସମସ୍ତ ନୀତି ଦେଖନ୍ତୁ' : 'View All Niti' }}
+                        </a>
+                    </h3>
                 </div>
-            </div>
-        @endforeach
-
-        <!-- View All Niti Card -->
-        <div class="niti-card">
-            <div class="niti-content text-center">
-                <h3 style="font-size: 22px; padding-bottom: 5px;">
-                    <a href="{{ route('all.niti') }}">
-                        {{ $language === 'Odia' ? 'ସମସ୍ତ ନୀତି ଦେଖନ୍ତୁ' : 'View All Niti' }}
-                    </a>
-                </h3>
             </div>
         </div>
     </div>
-</div>
 
     {{-- 
     <section class="shree-mandir-section  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
