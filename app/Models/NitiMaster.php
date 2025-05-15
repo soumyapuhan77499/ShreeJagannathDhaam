@@ -17,7 +17,6 @@ class NitiMaster extends Model
         'niti_id',
         'niti_order',
         'day_id',
-        'language',
         'niti_name',
         'english_niti_name',
         'date_time',
@@ -86,6 +85,10 @@ class NitiMaster extends Model
         return $this->belongsTo(TemplePrasad::class, 'connected_mahaprasad_id');
     }
 
-
+    public function getDisplayNameAttribute()
+    {
+        $language = session('app_language', 'English');
+        return $language === 'Odia' ? $this->niti_name : $this->english_niti_name;
+    }
 
 }
