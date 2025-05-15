@@ -697,7 +697,8 @@
         </div>
 
     </div>
-</section>
+   </section>
+   
     {{-- <section class="bg-100 p-10  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
         <div class="max-w-6xl mx-auto">
             <!-- Header -->
