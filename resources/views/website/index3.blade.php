@@ -102,7 +102,7 @@
             @foreach ($nitis as $niti)
                 <div class="niti-card {{ $loop->first ? 'active' : '' }}">
                     <div class="niti-content">
-                        <h3 style="font-size: 22px; padding-bottom:5px;">
+                        <h3 style="font-size: 20px; padding-bottom:5px;">
                             {{ $niti->display_name }}
                         </h3>
 
