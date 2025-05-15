@@ -7,8 +7,16 @@ if (!function_exists('convertToOdiaTime')) {
         $converted = strtr($time, $odiaDigits);
         $converted = str_replace('AM', 'ଏ.ଏମ.', $converted);
         $converted = str_replace('PM', 'ପି.ଏମ.', $converted);
+        return $converted;
+    }
+}
 
-          $months = [
+if (!function_exists('convertToOdiaDate')) {
+    function convertToOdiaDate($date)
+    {
+        $odiaDigits = ['0'=>'୦','1'=>'୧','2'=>'୨','3'=>'୩','4'=>'୪','5'=>'୫','6'=>'୬','7'=>'୭','8'=>'୮','9'=>'୯'];
+
+        $months = [
             'January' => 'ଜାନୁଆରୀ',
             'February' => 'ଫେବୃଆରୀ',
             'March' => 'ମାର୍ଚ୍ଚ',
@@ -23,7 +31,7 @@ if (!function_exists('convertToOdiaTime')) {
             'December' => 'ଡିସେମ୍ବର',
         ];
 
-         $day = $date->format('j');
+        $day = $date->format('j');
         $month = $date->format('F');
 
         $convertedDay = strtr($day, $odiaDigits);
