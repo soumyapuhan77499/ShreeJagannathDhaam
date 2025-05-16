@@ -662,7 +662,7 @@
         </div>
 
         <!-- First Row: 6 Items -->
-        <div class="convenience-container">
+        <div class="convenience-container" style="margin-top: 50px;">
             <!-- Drinking Water -->
             <div class="conv">
                 <a href="{{ route('services.byType', 'drinking_water') }}">
