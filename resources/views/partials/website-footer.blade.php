@@ -98,7 +98,7 @@
                     <img src="{{ asset('website/footer/google.webp') }}" alt="Google Play">
                 </a>
                 <a href="https://www.apple.com/app-store/" target="_blank" class="app-button" style="border: 1px solid black;border-radius: 8px">
-                    <img src="{{ asset('website/footer/images.png') }}" alt="App Store">
+                    <img src="{{ asset('website/footer/images.png') }}" alt="App Store" style="border-radius: 8px">
                 </a>
             </div>
         </div>
