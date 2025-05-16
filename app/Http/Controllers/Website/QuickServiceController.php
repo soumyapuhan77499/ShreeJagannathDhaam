@@ -145,6 +145,7 @@ public function showByServiceType($service_type)
 
 public function serviceStation()
 {
+    dd("s");
     $language = session('app_language', 'English');
 
     $services = CommuteMode::where('status', 'active') // Only active services
