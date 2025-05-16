@@ -662,8 +662,8 @@
         </div>
 
         <!-- Convenience Items -->
+        <!-- First Row: 6 Items -->
         <div class="convenience-container">
-
             <!-- Drinking Water -->
             <div class="conv">
                 <a href="{{ route('services.byType', 'drinking_water') }}">
@@ -723,7 +723,10 @@
                     <p>{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</p>
                 </a>
             </div>
+        </div>
 
+        <!-- Second Row: Next 6 Items -->
+        <div class="convenience-container mt-6">
             <!-- Beach -->
             <div class="conv">
                 <a href="{{ route('services.byType', 'beach') }}">
@@ -783,8 +786,8 @@
                     <p>{{ $language === 'Odia' ? 'ରେଲୱେ ଷ୍ଟେସନ୍' : 'Railway Station' }}</p>
                 </a>
             </div>
-
         </div>
+
     </section>
 
     {{-- <section class="bg-100 p-10  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
