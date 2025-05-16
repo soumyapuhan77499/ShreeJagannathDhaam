@@ -1,22 +1,51 @@
-.convenience-row {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
-  flex-direction: row;
+/* === Grid Layout for Convenience Items (6 columns for desktop) === */
+.convenience-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 40px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
+/* ✅ Tablet Responsive (4 columns) */
 @media (max-width: 1024px) {
-  .convenience-row {
+  .convenience-container {
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px 20px;
   }
 }
 
+/* ✅ Mobile Responsive (3 columns) */
 @media (max-width: 768px) {
-  .convenience-row {
-    gap: 20px 15px;
-    flex-wrap: wrap;
-    justify-content: center;
+  .convenience-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px 15px;
+  }
+
+  .convenience-item {
+    width: 60px;
+    height: 60px;
+  }
+
+  .convenience-item img {
+    max-width: 36px;
+    max-height: 36px;
+  }
+
+  .conv p {
+    font-size: 13px;
+  }
+}
+
+/* ✅ Very Small Mobile (2 columns) */
+@media (max-width: 480px) {
+  .convenience-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 10px;
+  }
+
+  .conv p {
+    font-size: 12px;
   }
 }
