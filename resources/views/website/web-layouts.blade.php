@@ -567,95 +567,100 @@
 
     {{-- banner video --}}
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const video = document.getElementById("bannerVideo");
-            const audio = document.getElementById("backgroundAudio");
-            const videoPlayPauseButton = document.getElementById("playPauseButton");
-            const audioMuteToggle = document.getElementById("audioMuteToggle");
-            const hamburger = document.querySelector(".hamburger-icon");
-            const navMenu = document.querySelector(".nav-menu");
-            const navClose = document.querySelector(".nav-close");
+document.addEventListener("DOMContentLoaded", function () {
+    const video = document.getElementById("bannerVideo");
+    const audio = document.getElementById("backgroundAudio");
+    const videoPlayPauseButton = document.getElementById("playPauseButton");
+    const audioMuteToggle = document.getElementById("audioMuteToggle");
+    const hamburger = document.querySelector(".hamburger-icon");
+    const navMenu = document.querySelector(".nav-menu");
+    const navClose = document.querySelector(".nav-close");
 
-            // === Video Autoplay (immediate)
-            if (video) video.play().catch(() => {});
+    // === Autoplay video immediately
+    if (video) {
+        video.play().catch(() => {});
+    }
 
-            // === Audio Delayed Autoplay (1 second after load)
-            setTimeout(() => {
-                if (audio) {
-                    audio.muted = false; // try to unmute
-                    audio.play().catch(err => {
-                        console.warn("Autoplay blocked:", err);
-                        audio.muted = true; // fallback if blocked
-                        audio.play().catch(() => {});
-                    });
-                }
-            }, 1000); // 1 second delay
-
-            // === Play/Pause Button ===
-            videoPlayPauseButton?.addEventListener("click", function() {
-                if (video?.paused) {
-                    video.play().catch(() => {});
-                    audio.play().catch(() => {});
-                    audio.muted = false;
-                    this.innerHTML = '<i class="fa fa-pause"></i>';
-                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
-                } else {
-                    video.pause();
-                    audio.pause();
-                    audio.muted = true;
-                    this.innerHTML = '<i class="fa fa-play"></i>';
-                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
-                }
+    // === Autoplay audio after 1 second
+    setTimeout(() => {
+        if (audio) {
+            audio.play().then(() => {
+                audio.muted = false; // Autoplay succeeded
+                console.log("Audio autoplayed successfully");
+            }).catch(err => {
+                audio.muted = true; // Fallback for autoplay restriction
+                console.warn("Autoplay blocked. Audio muted.");
+                audio.play().catch(() => {});
             });
+        }
+    }, 1000); // Delay of 1 second
 
-            // === Mute Toggle ===
-            audioMuteToggle?.addEventListener("click", function() {
-                if (!audio) return;
-                audio.muted = !audio.muted;
-                this.innerHTML = audio.muted ?
-                    '<i class="fa fa-volume-mute"></i>' :
-                    '<i class="fa fa-volume-up"></i>';
-            });
+    // === Play/Pause Toggle
+    videoPlayPauseButton?.addEventListener("click", function () {
+        if (video?.paused) {
+            video.play().catch(() => {});
+            audio.play().catch(() => {});
+            audio.muted = false;
+            this.innerHTML = '<i class="fa fa-pause"></i>';
+            audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
+        } else {
+            video.pause();
+            audio.pause();
+            audio.muted = true;
+            this.innerHTML = '<i class="fa fa-play"></i>';
+            audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+        }
+    });
 
-            // === Scroll-Based Audio/Video Control ===
-            function checkScroll() {
-                if (!video || !audio) return;
-                const rect = video.getBoundingClientRect();
-                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    // === Mute Toggle
+    audioMuteToggle?.addEventListener("click", function () {
+        if (!audio) return;
+        audio.muted = !audio.muted;
+        this.innerHTML = audio.muted
+            ? '<i class="fa fa-volume-mute"></i>'
+            : '<i class="fa fa-volume-up"></i>';
+    });
 
-                if (inView) {
-                    video.play().catch(() => {});
-                    audio.play().catch(() => {});
-                    audio.muted = false;
-                    videoPlayPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
-                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
-                } else {
-                    video.pause();
-                    audio.pause();
-                    audio.muted = true;
-                    videoPlayPauseButton.innerHTML = '<i class="fa fa-play"></i>';
-                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
-                }
-            }
+    // === Scroll-Based Pause
+    function checkScroll() {
+        if (!video || !audio) return;
+        const rect = video.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-            let scrollTimeout;
-            window.addEventListener("scroll", () => {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(checkScroll, 100);
-            });
+        if (inView) {
+            video.play().catch(() => {});
+            audio.play().catch(() => {});
+            audio.muted = false;
+            videoPlayPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
+            audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
+        } else {
+            video.pause();
+            audio.pause();
+            audio.muted = true;
+            videoPlayPauseButton.innerHTML = '<i class="fa fa-play"></i>';
+            audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+        }
+    }
 
-            // === Mobile Navigation Toggle ===
-            hamburger?.addEventListener("click", function() {
-                hamburger.classList.toggle("active");
-                navMenu?.classList.toggle("active");
-            });
+    let scrollTimeout;
+    window.addEventListener("scroll", () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(checkScroll, 100);
+    });
 
-            navClose?.addEventListener("click", function() {
-                navMenu?.classList.remove("active");
-                hamburger?.classList.remove("active");
-            });
-        });
-    </script>
+    // === Mobile Nav Toggle
+    hamburger?.addEventListener("click", function () {
+        hamburger.classList.toggle("active");
+        navMenu?.classList.toggle("active");
+    });
+
+    navClose?.addEventListener("click", function () {
+        navMenu?.classList.remove("active");
+        hamburger?.classList.remove("active");
+    });
+});
+</script>
+
 
     {{-- temple information --}}
     <script>
