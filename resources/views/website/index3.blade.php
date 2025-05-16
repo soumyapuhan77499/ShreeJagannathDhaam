@@ -653,7 +653,7 @@
 
     <section class="temple-convenience">
         <!-- Section Header -->
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 mt-8 sm:mt-12 text-center">
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 text-center" style="margin-top: -10px;">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
             <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">
                 {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
