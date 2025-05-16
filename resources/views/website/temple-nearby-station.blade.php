@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{{ ucfirst(str_replace('_', ' ', $service_type)) }} Services</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- TailwindCSS and FontAwesome -->
@@ -104,7 +103,6 @@
 
     @php
         $language = session('app_language', 'English');
-
     @endphp
  
     <div class="hero">

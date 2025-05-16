@@ -13,6 +13,7 @@ class CommuteMode extends Model
     
     protected $fillable = [
         'temple_id', 
+        'language',
         'commute_type', 
         'name',
         'photo',
@@ -24,7 +25,8 @@ class CommuteMode extends Model
         'district',
         'state',
         'country',
-        'description'
+        'description',
+        'status'
     ];
     
 }
