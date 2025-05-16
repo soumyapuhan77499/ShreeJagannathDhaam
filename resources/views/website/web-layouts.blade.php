@@ -566,7 +566,7 @@
     </script>
 
     {{-- banner video --}}
-    <script>
+  <script>
     document.addEventListener("DOMContentLoaded", function () {
         const video = document.getElementById("bannerVideo");
         const audio = document.getElementById("backgroundAudio");
@@ -577,23 +577,47 @@
         const navClose = document.querySelector(".nav-close");
 
         let audioStarted = false;
+        const enableAudioPrompt = document.createElement('div');
+
+        // === Create Prompt to Enable Audio If Blocked ===
+        enableAudioPrompt.innerText = "Click anywhere to enable background sound";
+        enableAudioPrompt.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            z-index: 9999;
+            display: none;
+        `;
+        document.body.appendChild(enableAudioPrompt);
 
         // === Try to Autoplay Audio ===
         function tryPlayAudio() {
             if (!audioStarted) {
                 audio.play().then(() => {
                     audioStarted = true;
+                    enableAudioPrompt.style.display = "none";
                     console.log("Audio autoplay started.");
-                }).catch((err) => {
+                }).catch(() => {
+                    // Autoplay blocked
+                    enableAudioPrompt.style.display = "block";
                     console.warn("Autoplay blocked, waiting for user interaction...");
                 });
             }
         }
 
-        // Attempt to autoplay on load
+        // Attempt on load
         window.addEventListener("load", tryPlayAudio);
         // Retry on first user interaction
-        document.body.addEventListener("click", tryPlayAudio, { once: true });
+        document.body.addEventListener("click", () => {
+            tryPlayAudio();
+            enableAudioPrompt.style.display = "none";
+        }, { once: true });
 
         // === VIDEO CONTROL BUTTON ===
         videoPlayPauseButton?.addEventListener("click", function () {
@@ -642,7 +666,6 @@
             }
         }
 
-        // Throttle scroll for performance
         let scrollTimeout;
         window.addEventListener("scroll", () => {
             clearTimeout(scrollTimeout);
@@ -661,7 +684,6 @@
         });
     });
 </script>
-
 
     {{-- temple information --}}
     <script>
