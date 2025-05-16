@@ -101,6 +101,24 @@
     @include('partials.header-puri-dham')
 
     <!-- Hero Section -->
+
+    @php
+        $language = session('app_language', 'English');
+        $title = ucfirst(str_replace('_', ' ', $service_type));
+
+        $odiaTitles = [
+            'drinking water' => 'ପାନୀୟ ଜଳ',
+            'emergency' => 'ଜରୁରୀ ସେବା',
+            'special abled person' => 'ବିଶେଷ କ୍ଷମତା ବ୍ୟକ୍ତି',
+            'route map' => 'ମାର୍ଗ ମାନଚିତ୍ର',
+            'lost and found booth' => 'ହାରାଇଛି ଓ ମିଳିଛି',
+            'toilet' => 'ଶୌଚାଳୟ',
+            'beach' => 'ସମୁଦ୍ର କୂଳ',
+            'life guard booth' => 'ଲାଇଫ୍ ଗାର୍ଡ',
+        ];
+
+        $localizedTitle = $language === 'Odia' ? $odiaTitles[strtolower($title)] ?? $title : $title;
+    @endphp
     @php
         // Sanitize and map service_type to image file
         $imageName = $service_type ? $service_type . '.png' : 'default.jpeg';
