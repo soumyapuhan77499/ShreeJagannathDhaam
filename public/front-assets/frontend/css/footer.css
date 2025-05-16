@@ -84,7 +84,7 @@
     flex-direction: column; /* Stack images vertically */
     align-items: center;
     gap: 10px; /* Space between buttons */
-    width: 180px;;
+    width: 180px;
 }
 
 .app-button img {
