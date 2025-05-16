@@ -1,6 +1,6 @@
 .temple-convenience {
   text-align: center;
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
 .section-container {
@@ -16,21 +16,20 @@
   font-weight: bold;
 }
 
+/* === Grid Layout for Convenience Items === */
 .convenience-container {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  flex-wrap: wrap;
-  padding: 40px 20px;
-  max-width: 1250px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 40px 30px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 40px 20px;
 }
 
 .conv {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90px;
   text-align: center;
 }
 
@@ -45,18 +44,13 @@
   transition: transform 0.3s ease;
 }
 
-
-.convenience-item i:hover {
-  color: white;
-}
-
-.convenience-item i {
-  color: #c64058;
-  font-size: 26px;
-}
-
 .convenience-item:hover {
   transform: scale(1.1);
+}
+
+.convenience-item img {
+  max-width: 42px;
+  max-height: 42px;
 }
 
 .conv p {
@@ -68,15 +62,19 @@
   text-align: center;
 }
 
-/* ✅ Mobile Responsive Styles */
+/* ✅ Tablet Responsive (3 rows × 4 items) */
+@media (max-width: 1024px) {
+  .convenience-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 20px;
+  }
+}
+
+/* ✅ Mobile Responsive (4 rows × 3 items) */
 @media (max-width: 768px) {
   .convenience-container {
-    gap: 20px;
-    padding: 30px 10px;
-  }
-
-  .conv {
-    width: 80px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px 15px;
   }
 
   .convenience-item {
@@ -84,8 +82,9 @@
     height: 60px;
   }
 
-  .convenience-item i {
-    font-size: 22px;
+  .convenience-item img {
+    max-width: 36px;
+    max-height: 36px;
   }
 
   .conv p {
@@ -93,13 +92,14 @@
   }
 }
 
+/* ✅ Very Small Mobile (2 columns) */
 @media (max-width: 480px) {
-  .conv {
-    width: 100%;
-    max-width: 80px;
+  .convenience-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 10px;
   }
 
-  .convenience-container {
-    justify-content: center;
+  .conv p {
+    font-size: 12px;
   }
 }
