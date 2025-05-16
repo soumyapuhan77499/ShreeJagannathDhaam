@@ -567,84 +567,86 @@
 
     {{-- banner video --}}
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const video = document.getElementById("bannerVideo");
-        const audio = document.getElementById("backgroundAudio");
-        const playPauseButton = document.getElementById("playPauseButton");
-        const muteToggle = document.getElementById("audioMuteToggle");
-        const hamburger = document.querySelector(".hamburger-icon");
-        const navMenu = document.querySelector(".nav-menu");
-        const navClose = document.querySelector(".nav-close");
+        document.addEventListener("DOMContentLoaded", function() {
+            const video = document.getElementById("bannerVideo");
+            const audio = document.getElementById("backgroundAudio");
+            const videoPlayPauseButton = document.getElementById("playPauseButton");
+            const audioMuteToggle = document.getElementById("audioMuteToggle");
+            const hamburger = document.querySelector(".hamburger-icon");
+            const navMenu = document.querySelector(".nav-menu");
+            const navClose = document.querySelector(".nav-close");
 
-        // Play/Pause Audio Button
-        playPauseButton?.addEventListener("click", function () {
-            if (audio.paused) {
-                audio.play();
-                this.innerHTML = '<i class="fa fa-pause"></i>';
-            } else {
-                audio.pause();
-                this.innerHTML = '<i class="fa fa-play"></i>';
+            // === VIDEO CONTROL BUTTON ===
+            videoPlayPauseButton?.addEventListener("click", function() {
+                if (video.paused) {
+                    video.play().catch(() => {});
+                    this.innerHTML = '<i class="fa fa-pause"></i>';
+                } else {
+                    video.pause();
+                    this.innerHTML = '<i class="fa fa-play"></i>';
+                }
+            });
+
+            // === AUDIO MUTE/UNMUTE BUTTON ===
+            audioMuteToggle?.addEventListener("click", function() {
+                audio.muted = !audio.muted;
+                this.innerHTML = audio.muted ?
+                    '<i class="fa fa-volume-mute"></i>' :
+                    '<i class="fa fa-volume-up"></i>';
+            });
+
+            // === AUTOPLAY AUDIO ON LOAD ===
+            window.addEventListener("load", () => {
+                audio.play().catch(e => {
+                    console.warn('Autoplay might be blocked by browser:', e);
+                });
+            });
+
+            // === SCROLL-BASED VIDEO & AUDIO CONTROL ===
+            function checkScroll() {
+                if (!video || !audio) return;
+
+                const rect = video.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (inView) {
+                    video.play().catch(() => {});
+                    audio.play().catch(() => {});
+                    audio.muted = false;
+
+                    // Update icons to reflect current state
+                    videoPlayPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
+                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
+                } else {
+                    video.pause();
+                    audio.pause();
+                    audio.muted = true;
+
+                    // Update icons to reflect current state
+                    videoPlayPauseButton.innerHTML = '<i class="fa fa-play"></i>';
+                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+                }
             }
-        });
 
-        // Mute/Unmute Audio Button
-        muteToggle?.addEventListener("click", function () {
-            audio.muted = !audio.muted;
-            this.innerHTML = audio.muted
-                ? '<i class="fa fa-volume-mute"></i>'
-                : '<i class="fa fa-volume-up"></i>';
-        });
+            // Scroll throttling for better performance
+            let scrollTimeout;
+            window.addEventListener("scroll", () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(checkScroll, 100);
+            });
 
-        // Autoplay Audio on Load (fallback in case autoplay blocked)
-        window.addEventListener("load", () => {
-            audio.play().catch(e => {
-                console.warn('Autoplay might be blocked by the browser:', e);
+            // === HAMBURGER MENU TOGGLE ===
+            hamburger?.addEventListener("click", function() {
+                hamburger.classList.toggle("active");
+                navMenu?.classList.toggle("active");
+            });
+
+            navClose?.addEventListener("click", function() {
+                navMenu?.classList.remove("active");
+                hamburger?.classList.remove("active");
             });
         });
-
-        // Scroll-triggered video/audio control
-        function checkScroll() {
-            if (!video || !audio) return;
-
-            const rect = video.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-            if (inView) {
-                video.play().catch(() => {});
-                audio.play().catch(() => {});
-                audio.muted = false;
-                playPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
-                muteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
-            } else {
-                video.pause();
-                audio.pause();
-                audio.muted = true;
-                playPauseButton.innerHTML = '<i class="fa fa-play"></i>';
-                muteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
-            }
-        }
-
-        // Optional: Throttle scroll check (improves performance)
-        let scrollTimeout;
-        window.addEventListener("scroll", () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(checkScroll, 100);
-        });
-
-        // Navigation Hamburger Toggle
-        hamburger?.addEventListener("click", function () {
-            hamburger.classList.toggle("active");
-            navMenu?.classList.toggle("active");
-        });
-
-        navClose?.addEventListener("click", function () {
-            navMenu?.classList.remove("active");
-            hamburger?.classList.remove("active");
-        });
-    });
-</script>
-
-
+    </script>
 
     {{-- temple information --}}
     <script>
@@ -812,11 +814,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                <hr class="border-dashed border-gray-300 my-4">
-                                                <div class="flex items-start gap-3">
-                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                    <p class="text-gray-800">${data.description}</p>
-                                                </div>` : ''}
+                                                    <hr class="border-dashed border-gray-300 my-4">
+                                                    <div class="flex items-start gap-3">
+                                                        <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                        <p class="text-gray-800">${data.description}</p>
+                                                    </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
