@@ -569,6 +569,7 @@ Route::controller(QuickServiceController::class)->group(function() {
     Route::get('/locker-shoe-list', 'lockerShoeList')->name('lockershoe.list');
     Route::get('/view-near-by-temple/{id}','viewNearByTemple')->name('viewNearByTemple');
     Route::get('/services/{service_type}',  'showByServiceType')->name('services.byType');
+    Route::get('/services/station',  'serviceStation')->name('services.station');
     Route::get('/services-emergency',  'serviceEmergerncy')->name('services.emergency');
     Route::get('/services-abled',  'serviceAbled')->name('services.abled_person');
     Route::get('/view-panji-details', 'viewPanji')->name('view.panji.details');
