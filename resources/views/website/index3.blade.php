@@ -1,7 +1,6 @@
 @extends('website.web-layouts')
 
 @section('content')
-
     @php
         $language = session('app_language', 'English');
     @endphp
@@ -19,6 +18,12 @@
         @else
             <img src="{{ asset('website/d.png') }}" alt="Default Banner" style="width: 100%;">
         @endif
+
+        <!-- Background Audio -->
+        <audio id="backgroundAudio" autoplay loop>
+            <source src="{{ asset('website/background.mp3') }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
 
         <a href="{{ url('/') }}" class="logo">
             <img src="{{ asset('website/logo.png') }}" alt="logo">
@@ -49,7 +54,8 @@
                     <ul class="submenu">
                         <li><a href="{{ url('/darshan-timeline') }}">{{ $language === 'Odia' ? 'ଦର୍ଶନ' : 'Darshan' }}</a>
                         </li>
-                        <li><a href="{{ url('/maha-prasad') }}">{{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}</a>
+                        <li><a
+                                href="{{ url('/maha-prasad') }}">{{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}</a>
                         </li>
                         <li><a
                                 href="{{ url('/view-festival-details') }}">{{ $language === 'Odia' ? 'ପର୍ବପର୍ବାଣୀ' : 'Festival' }}</a>
@@ -107,8 +113,7 @@
                         </li>
                         <li><a href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a>
                         </li>
-                        <li><a
-                                href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
+                        <li><a href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
                         </li>
                         <li><a
                                 href="{{ url('/services/life_guard_booth') }}">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a>
@@ -132,8 +137,9 @@
 
         <button id="playPauseButton" class="play-pause-button"><i class="fa fa-pause"></i></button>
 
-        <button id="muteToggle" class="mute-toggle"><i style="height:18px;width: 18px"
-                class="fa fa-volume-mute"></i></button>
+        <button id="audioMuteToggle" class="mute-toggle">
+            <i style="height:18px;width: 18px" class="fa fa-volume-up"></i>
+        </button>
     </section>
 
     <div class="niti-cards-scroll">
@@ -461,7 +467,8 @@
                 </a>
 
                 <!-- Do and Don'ts -->
-                <a href="{{ url('do-and-donts') }}" class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300"
+                <a href="{{ url('do-and-donts') }}"
+                    class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300"
                     style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
                     <img src="{{ asset('website/dodonts.png') }}" alt="Do and Don'ts" style="height: 70px; width:70px">
                     <div>

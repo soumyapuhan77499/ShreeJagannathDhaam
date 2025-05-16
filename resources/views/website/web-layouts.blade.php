@@ -247,7 +247,7 @@
     <script src="front-assets/frontend/js/toastr.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    
+
     <script>
         "use strict";
         var rtl = false; // Hardcoded for static version
@@ -569,55 +569,76 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const video = document.getElementById("bannerVideo");
+            const audio = document.getElementById("backgroundAudio");
             const playPauseButton = document.getElementById("playPauseButton");
-            const muteToggle = document.getElementById("muteToggle");
+            const muteToggle = document.getElementById("muteToggle"); // FIX: remove duplicate ID
             const hamburger = document.querySelector(".hamburger-icon");
             const navMenu = document.querySelector(".nav-menu");
             const navClose = document.querySelector(".nav-close");
 
-            // Play/Pause Toggle
+            // Play/Pause Audio Toggle Button
             playPauseButton.addEventListener("click", function() {
-                if (video.paused) {
-                    video.play();
+                if (audio.paused) {
+                    audio.play();
                     this.innerHTML = '<i class="fa fa-pause"></i>';
                 } else {
-                    video.pause();
+                    audio.pause();
                     this.innerHTML = '<i class="fa fa-play"></i>';
                 }
             });
 
-            // Mute/Unmute Toggle
+            // Mute/Unmute Audio Toggle Button
             muteToggle.addEventListener("click", function() {
-                video.muted = !video.muted;
-                this.innerHTML = video.muted ?
+                audio.muted = !audio.muted;
+                this.innerHTML = audio.muted ?
                     '<i class="fa fa-volume-mute"></i>' :
                     '<i class="fa fa-volume-up"></i>';
             });
 
-            // Scroll-triggered pause
+            // Autoplay audio (might be blocked by browser policies)
+            window.addEventListener("load", () => {
+                audio.play().catch(e => {
+                    console.warn('Autoplay might be blocked:', e);
+                });
+            });
+
+            // Scroll-triggered video/audio control
             function checkScroll() {
+                if (!video) return;
+
                 const rect = video.getBoundingClientRect();
                 const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
                 if (!inView) {
                     video.pause();
+                    audio.pause();
+                    audio.muted = true;
                     playPauseButton.innerHTML = '<i class="fa fa-play"></i>';
+                    muteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+                } else {
+                    video.play().catch(() => {}); // Avoid throwing if already playing
+                    audio.play().catch(() => {});
+                    audio.muted = false;
+                    playPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
+                    muteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
                 }
             }
+
             window.addEventListener("scroll", checkScroll);
 
             // Navigation Toggle
-            hamburger.addEventListener("click", function() {
+            hamburger?.addEventListener("click", function() {
                 hamburger.classList.toggle("active");
                 navMenu.classList.toggle("active");
-                console.log("Hamburger clicked, nav toggled");
             });
 
-            navClose.addEventListener("click", function() {
+            navClose?.addEventListener("click", function() {
                 navMenu.classList.remove("active");
                 hamburger.classList.remove("active");
             });
         });
     </script>
+
 
     {{-- temple information --}}
     <script>
@@ -785,11 +806,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                    <hr class="border-dashed border-gray-300 my-4">
-                                    <div class="flex items-start gap-3">
-                                        <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                        <p class="text-gray-800">${data.description}</p>
-                                    </div>` : ''}
+                                                <hr class="border-dashed border-gray-300 my-4">
+                                                <div class="flex items-start gap-3">
+                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                    <p class="text-gray-800">${data.description}</p>
+                                                </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
