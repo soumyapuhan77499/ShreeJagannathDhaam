@@ -662,129 +662,51 @@
         </div>
 
         <!-- Convenience Items -->
-        <div class="convenience-container">
+       <div class="convenience-container">
 
-            <!-- Drinking Water -->
+    <!-- ✅ First Row (6 items) -->
+    <div class="convenience-row">
+        @foreach([
+            ['drinking_water', 'drinkingWater32.png', 'ପାନୀୟ ଜଳ', 'Drinking Water'],
+            ['emergency', 'ph.png', 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ', 'Emergency'],
+            ['abled_person', 'physical21.png', 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି', 'Special Abled Person'],
+            ['ratha_yatra_mela', 'map.png', 'ଯାତାୟାତ ମାର୍ଗ', 'Route Map'],
+            ['lost_and_found_booth', 'lost.png', 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର', 'Lost & Found'],
+            ['toilet', 'latin.png', 'ଶୌଚାଳୟ', 'Toilet'],
+        ] as [$type, $icon, $odia, $english])
             <div class="conv">
-                <a href="{{ route('services.byType', 'drinking_water') }}">
-                    <div class="convenience-item" style="margin-left: 7px">
-                        <img src="{{ asset('website/drinkingWater32.png') }}" alt="Water" style="height: 42px">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</p>
-                </a>
-            </div>
-
-            <!-- Emergency -->
-            <div class="conv">
-                <a href="{{ route('services.emergency') }}">
+                <a href="{{ route(Str::contains($type, 'emergency') ? 'services.emergency' : 'services.byType', $type) }}">
                     <div class="convenience-item">
-                        <img src="{{ asset('website/ph.png') }}" alt="Emergency">
+                        <img src="{{ asset('website/' . $icon) }}" alt="{{ $english }}" style="height: 42px">
                     </div>
-                    <p>{{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ' : 'Emergency' }}</p>
+                    <p>{{ $language === 'Odia' ? $odia : $english }}</p>
                 </a>
             </div>
+        @endforeach
+    </div>
 
-            <!-- Special Abled -->
+    <!-- ✅ Second Row (6 items) -->
+    <div class="convenience-row">
+        @foreach([
+            ['beach', 'sea.png', 'ବେଳାଭୂମି', 'Beaches'],
+            ['life_guard_booth', 'guard.png', 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ', 'Life Guards'],
+            ['charging_station', 'charghingstation89.png', 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍', 'Charging Station'],
+            ['petrol_pump', 'petrolPump21.png', 'ପେଟ୍ରୋଲ ପମ୍ପ', 'Petrol Pump'],
+            ['atm', 'atm.png', 'ଏଟିଏମ୍', 'ATM'],
+            ['railway_station', 'busRaily.png', 'ରେଲୱେ ଷ୍ଟେସନ୍', 'Railway Station'],
+        ] as [$type, $icon, $odia, $english])
             <div class="conv">
-                <a href="{{ route('services.abled_person') }}">
+                <a href="{{ route('services.byType', $type) }}">
                     <div class="convenience-item">
-                        <img src="{{ asset('website/physical21.png') }}" alt="Special Abled">
+                        <img src="{{ asset('website/' . $icon) }}" alt="{{ $english }}" style="height: 42px">
                     </div>
-                    <p>{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</p>
+                    <p>{{ $language === 'Odia' ? $odia : $english }}</p>
                 </a>
             </div>
+        @endforeach
+    </div>
+</div>
 
-            <!-- Route Map -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'ratha_yatra_mela') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/map.png') }}" alt="Route Map">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ଯାତାୟାତ ମାର୍ଗ' : 'Route Map' }}</p>
-                </a>
-            </div>
-
-            <!-- Lost & Found -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'lost_and_found_booth') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/lost.png') }}" alt="Lost and Found">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</p>
-                </a>
-            </div>
-
-            <!-- Toilet -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'toilet') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/latin.png') }}" alt="Toilet">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</p>
-                </a>
-            </div>
-
-            <!-- Beach -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'beach') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/sea.png') }}" alt="Beach">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</p>
-                </a>
-            </div>
-
-            <!-- Life Guards -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'life_guard_booth') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</p>
-                </a>
-            </div>
-
-            <!-- Charging Station -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'charging_station') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/charghingstation89.png') }}" alt="Charging Station" style="height: 42px">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</p>
-                </a>
-            </div>
-
-            <!-- Petrol Pump -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'petrol_pump') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/petrolPump21.png') }}" alt="Petrol Pump" style="height: 42px">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' }}</p>
-                </a>
-            </div>
-
-            <!-- ATM -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'atm') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/atm.png') }}" alt="ATM" style="height: 42px">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ଏଟିଏମ୍' : 'ATM' }}</p>
-                </a>
-            </div>
-
-            <!-- Railway Station -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'railway_station') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/busRaily.png') }}" alt="Railway Station" style="height: 42px">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ରେଲୱେ ଷ୍ଟେସନ୍' : 'Railway Station' }}</p>
-                </a>
-            </div>
-
-        </div>
     </section>
 
     {{-- <section class="bg-100 p-10  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
