@@ -143,7 +143,6 @@ public function showByServiceType($service_type)
     return view('website.temple-convience', compact('services', 'service_type'));
 }
 
-
 public function serviceStation()
 {
     $language = session('app_language', 'English');
