@@ -63,7 +63,7 @@
         <!-- App Download -->
         <div class="footer-bottom">
             <div class="footer-bottom-container">
-                <a href="https://play.google.com/store" target="_blank" class="app-button">
+                <a href="https://play.google.com/store" target="_blank" class="app-button" style="background-color: #f8f8f8;">
                     <img src="{{ asset('website/footer/google.webp') }}" alt="Google Play">
                 </a>
                 <a href="https://www.apple.com/app-store/" target="_blank" class="app-button">
