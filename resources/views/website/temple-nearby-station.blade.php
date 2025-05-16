@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- TailwindCSS and FontAwesome -->
+    <!-- TailwindCSS & FontAwesome -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
@@ -35,8 +35,6 @@
             background-color: #fff7f0;
         }
 
-
-
         @media (max-width: 768px) {
             .container {
                 width: 100%;
@@ -45,14 +43,12 @@
 
             table.min-w-full {
                 display: block;
-                width: 100%;
                 overflow-x: auto;
                 white-space: nowrap;
             }
 
             table.min-w-full thead {
                 display: none;
-                /* Hide header for smaller devices */
             }
 
             table.min-w-full tbody,
@@ -72,7 +68,7 @@
 
             table.min-w-full td {
                 text-align: left;
-                padding: 10px 10px;
+                padding: 10px;
                 position: relative;
             }
 
@@ -99,19 +95,21 @@
 
     @include('partials.header-puri-dham')
 
-    <!-- Hero Section -->
-
     @php
         $language = session('app_language', 'English');
     @endphp
- 
-    <div class="hero">
-        <img class="hero-bg" src="{{ asset('website/parking.jpeg') }}" alt=" Background" />
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-left">
-                <h1 class="text-4xl font-bold">Bus Stand /Railway Station </h1>
-                <p class="text-lg mt-2">
+
+    <!-- Hero Section -->
+    <div class="relative w-full h-64 sm:h-80 md:h-96 overflow-hidden rounded-b-lg shadow">
+        <img src="{{ asset('website/parking.jpeg') }}" alt="Hero Background"
+            class="absolute inset-0 w-full h-full object-cover z-0">
+        <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+        <div class="relative z-20 flex items-center justify-center h-full text-center px-4">
+            <div class="text-white">
+                <h1 class="text-3xl sm:text-4xl font-bold">
+                    {{ $language === 'Odia' ? 'ବସ୍ ଷ୍ଟାଣ୍ଡ / ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand / Railway Station' }}
+                </h1>
+                <p class="text-base sm:text-lg mt-2">
                     {{ $language === 'Odia' ? 'ଏଠାରେ ଉପଲବ୍ଧ ସମସ୍ତ ସେବା ଦେଖନ୍ତୁ' : 'Explore all available services here' }}
                 </p>
             </div>
@@ -119,14 +117,10 @@
     </div>
 
     <!-- Table Section -->
-    @php
-        $language = session('app_language', 'English');
-    @endphp
-
     <div class="container mx-auto px-4">
         <div class="overflow-x-auto rounded-lg shadow-lg bg-white">
             <table class="min-w-full">
-                <thead class="bg-pink-100 text-pink-800">
+                <thead class="table-header">
                     <tr>
                         <th class="py-3 px-6 text-left">
                             {{ $language === 'Odia' ? 'ଫୋଟୋ' : 'Photo' }} <i class="fas fa-image"></i>
@@ -150,8 +144,8 @@
                             $photos = json_decode($service->photo, true) ?? [];
                             $firstPhoto = $photos[0] ?? null;
                         @endphp
-                        <tr class="hover:bg-pink-50 transition duration-300 border-b">
-                            <td class="py-4 px-6">
+                        <tr class="table-row hover:bg-pink-50 transition duration-300 border-b">
+                            <td class="py-4 px-6" data-label="Photo">
                                 @if ($firstPhoto)
                                     <button onclick="openPhotoModal({{ $service->id }})">
                                         <img src="{{ asset($firstPhoto) }}" alt="{{ $service->name }}"
@@ -164,9 +158,9 @@
                                 @endif
                             </td>
 
-                            <td class="py-4 px-6 font-semibold">{{ $service->name }}</td>
+                            <td class="py-4 px-6 font-semibold" data-label="Service">{{ $service->name }}</td>
 
-                            <td class="py-4 px-6">
+                            <td class="py-4 px-6" data-label="Location">
                                 @if ($service->google_map_link)
                                     <a href="{{ $service->google_map_link }}" target="_blank"
                                         class="px-3 py-1 rounded-md text-sm hover:scale-105 transition"
@@ -181,7 +175,7 @@
                                 @endif
                             </td>
 
-                            <td class="py-4 px-6">
+                            <td class="py-4 px-6" data-label="Info">
                                 <button onclick="openModal({{ $service->id }})"
                                     class="text-white px-3 py-1 rounded-md hover:scale-105 transition"
                                     style="background: linear-gradient(90deg, #f9ce62, #f1769f);">
@@ -190,7 +184,7 @@
                             </td>
                         </tr>
 
-                        {{-- Full Info Modal --}}
+                        <!-- Full Info Modal -->
                         <div id="modal-{{ $service->id }}"
                             class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                             <div class="bg-white rounded-lg shadow-lg p-8 w-96 relative">
@@ -230,7 +224,7 @@
                             </div>
                         </div>
 
-                        {{-- Photo Modal --}}
+                        <!-- Photo Modal -->
                         <div id="photo-modal-{{ $service->id }}"
                             class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                             <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-3xl relative">
@@ -261,26 +255,25 @@
         </div>
     </div>
 
-
     @include('partials.website-footer')
 
-   <script>
-    function openModal(id) {
-        document.getElementById('modal-' + id).classList.remove('hidden');
-    }
+    <script>
+        function openModal(id) {
+            document.getElementById('modal-' + id).classList.remove('hidden');
+        }
 
-    function closeModal(id) {
-        document.getElementById('modal-' + id).classList.add('hidden');
-    }
+        function closeModal(id) {
+            document.getElementById('modal-' + id).classList.add('hidden');
+        }
 
-    function openPhotoModal(id) {
-        document.getElementById('photo-modal-' + id).classList.remove('hidden');
-    }
+        function openPhotoModal(id) {
+            document.getElementById('photo-modal-' + id).classList.remove('hidden');
+        }
 
-    function closePhotoModal(id) {
-        document.getElementById('photo-modal-' + id).classList.add('hidden');
-    }
-</script>
+        function closePhotoModal(id) {
+            document.getElementById('photo-modal-' + id).classList.add('hidden');
+        }
+    </script>
 
 </body>
 
