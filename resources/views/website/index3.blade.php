@@ -21,7 +21,7 @@
 
         <!-- Background Audio -->
 
-        <audio id="backgroundAudio" autoplay muted loop>
+        <audio id="backgroundAudio" autoplay loop>
             <source src="{{ asset('website/background.mp3') }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
