@@ -78,6 +78,7 @@
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
             position: relative;
+                border: 1px solid rgb(213, 213, 213);
             transition: all 0.3s ease;
         }
 
@@ -162,12 +163,14 @@
         .Completed .card {
             background: #fffaf3;
             border-left: 6px solid #db4d30;
+            border: 1px solid rgb(213, 213, 213);
         }
 
         .Started .card {
             background: #db4d30;
             color: #ffae35;
             border-left: 6px solid #fff;
+            border: 1px solid rgb(213, 213, 213);
         }
 
         .Started .card h3 {
@@ -392,7 +395,7 @@
                                 <p class="right-align">
                                     <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
                                     {{ $language === 'Odia' ? convertToOdiaTime($startTimeFormatted) : strtolower($startTimeFormatted) }}
-                                </p>
+                                 </p>
                             @endif
                             @if ($end)
                                 <p class="right-align">

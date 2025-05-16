@@ -92,7 +92,6 @@
 .app-button img {
     width: 170px;
     height: auto;
-    transition: transform 0.3s ease;
 }
 
 @media (max-width: 768px) {
