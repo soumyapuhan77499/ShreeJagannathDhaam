@@ -21,11 +21,10 @@
 
         <!-- Background Audio -->
 
-        <audio id="backgroundAudio" loop>
+        <audio id="backgroundAudio" autoplay muted loop>
             <source src="{{ asset('website/background.mp3') }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
-
 
         <a href="{{ url('/') }}" class="logo">
             <img src="{{ asset('website/logo.png') }}" alt="logo">
@@ -653,7 +652,8 @@
 
     <section class="temple-convenience">
         <!-- Section Header -->
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 text-center" style="margin-top: -10px;">
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 text-center"
+            style="margin-top: -10px;">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
             <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">
                 {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}

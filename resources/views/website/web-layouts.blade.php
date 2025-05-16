@@ -576,27 +576,19 @@
             const navMenu = document.querySelector(".nav-menu");
             const navClose = document.querySelector(".nav-close");
 
-            let triedAutoplay = false;
-
-            function tryPlay() {
-                if (triedAutoplay) return;
-                triedAutoplay = true;
-
-                audio.muted = false;
-
-                // Try to play audio and video
+            // === Attempt Autoplay on Load ===
+            if (video) video.play().catch(() => {});
+            if (audio) {
+                audio.muted = true;
                 audio.play().catch(() => {});
-                video?.play().catch(() => {});
             }
 
-            // Attempt on load
-            window.addEventListener("load", () => {
-                tryPlay();
-            });
-
-            // Fallback: attempt again on scroll
-            window.addEventListener("scroll", () => {
-                tryPlay();
+            // === Unmute on First Interaction ===
+            document.body.addEventListener("click", () => {
+                if (audio) {
+                    audio.muted = false;
+                    audio.play().catch(() => {});
+                }
             }, {
                 once: true
             });
@@ -604,27 +596,57 @@
             // === Play/Pause Button ===
             videoPlayPauseButton?.addEventListener("click", function() {
                 if (video.paused) {
-                    video.play();
-                    audio.play();
+                    video.play().catch(() => {});
+                    audio.play().catch(() => {});
+                    audio.muted = false;
                     this.innerHTML = '<i class="fa fa-pause"></i>';
                     audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
                 } else {
                     video.pause();
                     audio.pause();
+                    audio.muted = true;
                     this.innerHTML = '<i class="fa fa-play"></i>';
                     audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
                 }
             });
 
-            // === Audio Mute Toggle ===
+            // === Mute Toggle ===
             audioMuteToggle?.addEventListener("click", function() {
+                if (!audio) return;
                 audio.muted = !audio.muted;
                 this.innerHTML = audio.muted ?
                     '<i class="fa fa-volume-mute"></i>' :
                     '<i class="fa fa-volume-up"></i>';
             });
 
-            // === Hamburger Menu Toggle ===
+            // === Scroll-Based Audio/Video Control ===
+            function checkScroll() {
+                if (!video || !audio) return;
+                const rect = video.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (inView) {
+                    video.play().catch(() => {});
+                    audio.play().catch(() => {});
+                    audio.muted = false;
+                    videoPlayPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
+                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
+                } else {
+                    video.pause();
+                    audio.pause();
+                    audio.muted = true;
+                    videoPlayPauseButton.innerHTML = '<i class="fa fa-play"></i>';
+                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+                }
+            }
+
+            let scrollTimeout;
+            window.addEventListener("scroll", () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(checkScroll, 100);
+            });
+
+            // === Mobile Navigation Toggle ===
             hamburger?.addEventListener("click", function() {
                 hamburger.classList.toggle("active");
                 navMenu?.classList.toggle("active");
@@ -804,11 +826,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                            <hr class="border-dashed border-gray-300 my-4">
-                                                            <div class="flex items-start gap-3">
-                                                                <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                <p class="text-gray-800">${data.description}</p>
-                                                            </div>` : ''}
+                                                                <hr class="border-dashed border-gray-300 my-4">
+                                                                <div class="flex items-start gap-3">
+                                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                    <p class="text-gray-800">${data.description}</p>
+                                                                </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
