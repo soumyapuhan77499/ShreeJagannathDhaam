@@ -576,26 +576,24 @@
             const navMenu = document.querySelector(".nav-menu");
             const navClose = document.querySelector(".nav-close");
 
-            // === Attempt Autoplay on Load ===
+            // === Video Autoplay (immediate)
             if (video) video.play().catch(() => {});
-            if (audio) {
-                audio.muted = true;
-                audio.play().catch(() => {});
-            }
 
-            // === Unmute on First Interaction ===
-            document.body.addEventListener("click", () => {
+            // === Audio Delayed Autoplay (1 second after load)
+            setTimeout(() => {
                 if (audio) {
-                    audio.muted = false;
-                    audio.play().catch(() => {});
+                    audio.muted = false; // try to unmute
+                    audio.play().catch(err => {
+                        console.warn("Autoplay blocked:", err);
+                        audio.muted = true; // fallback if blocked
+                        audio.play().catch(() => {});
+                    });
                 }
-            }, {
-                once: true
-            });
+            }, 1000); // 1 second delay
 
             // === Play/Pause Button ===
             videoPlayPauseButton?.addEventListener("click", function() {
-                if (video.paused) {
+                if (video?.paused) {
                     video.play().catch(() => {});
                     audio.play().catch(() => {});
                     audio.muted = false;
@@ -658,7 +656,6 @@
             });
         });
     </script>
-
 
     {{-- temple information --}}
     <script>
@@ -826,11 +823,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                <hr class="border-dashed border-gray-300 my-4">
-                                                                <div class="flex items-start gap-3">
-                                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                    <p class="text-gray-800">${data.description}</p>
-                                                                </div>` : ''}
+                                                                    <hr class="border-dashed border-gray-300 my-4">
+                                                                    <div class="flex items-start gap-3">
+                                                                        <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                        <p class="text-gray-800">${data.description}</p>
+                                                                    </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
