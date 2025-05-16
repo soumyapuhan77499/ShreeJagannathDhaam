@@ -568,94 +568,94 @@
     {{-- banner video --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const audio = document.getElementById("backgroundAudio");
             const video = document.getElementById("bannerVideo");
-            const playPauseBtn = document.getElementById("playPauseButton");
-            const muteBtn = document.getElementById("audioMuteToggle");
+            const audio = document.getElementById("backgroundAudio");
+            const videoPlayPauseButton = document.getElementById("playPauseButton");
+            const audioMuteToggle = document.getElementById("audioMuteToggle");
+            const hamburger = document.querySelector(".hamburger-icon");
+            const navMenu = document.querySelector(".nav-menu");
+            const navClose = document.querySelector(".nav-close");
 
-            // Try to autoplay video and audio muted
+            // === Attempt Autoplay on Load ===
             if (video) video.play().catch(() => {});
             if (audio) {
                 audio.muted = true;
-                audio.play().then(() => {
-                    console.log("Muted audio autoplay started.");
-                }).catch(err => {
-                    console.warn("Autoplay issue:", err);
-                });
+                audio.play().catch(() => {});
             }
 
-            // Try to unmute after short delay (bypass autoplay block in some browsers)
-            setTimeout(() => {
+            // === Unmute on First Interaction ===
+            document.body.addEventListener("click", () => {
                 if (audio) {
                     audio.muted = false;
                     audio.play().catch(() => {});
                 }
-            }, 2000); // Wait 2 seconds to improve autoplay success
+            }, {
+                once: true
+            });
 
-            // Play/Pause button control
-            playPauseBtn?.addEventListener("click", function() {
-                if (video?.paused) {
-                    video.play();
-                    audio.play();
+            // === Play/Pause Button ===
+            videoPlayPauseButton?.addEventListener("click", function() {
+                if (video.paused) {
+                    video.play().catch(() => {});
+                    audio.play().catch(() => {});
                     audio.muted = false;
                     this.innerHTML = '<i class="fa fa-pause"></i>';
-                    muteBtn.innerHTML = '<i class="fa fa-volume-up"></i>';
+                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
                 } else {
                     video.pause();
                     audio.pause();
                     audio.muted = true;
                     this.innerHTML = '<i class="fa fa-play"></i>';
-                    muteBtn.innerHTML = '<i class="fa fa-volume-mute"></i>';
+                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
                 }
             });
 
-            // Mute toggle
-            muteBtn?.addEventListener("click", function() {
+            // === Mute Toggle ===
+            audioMuteToggle?.addEventListener("click", function() {
                 if (!audio) return;
                 audio.muted = !audio.muted;
                 this.innerHTML = audio.muted ?
                     '<i class="fa fa-volume-mute"></i>' :
                     '<i class="fa fa-volume-up"></i>';
             });
-        });
 
-        // === Scroll-Based Audio/Video Control ===
-        function checkScroll() {
-            if (!video || !audio) return;
-            const rect = video.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+            // === Scroll-Based Audio/Video Control ===
+            function checkScroll() {
+                if (!video || !audio) return;
+                const rect = video.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-            if (inView) {
-                video.play().catch(() => {});
-                audio.play().catch(() => {});
-                audio.muted = false;
-                videoPlayPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
-                audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
-            } else {
-                video.pause();
-                audio.pause();
-                audio.muted = true;
-                videoPlayPauseButton.innerHTML = '<i class="fa fa-play"></i>';
-                audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+                if (inView) {
+                    video.play().catch(() => {});
+                    audio.play().catch(() => {});
+                    audio.muted = false;
+                    videoPlayPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
+                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
+                } else {
+                    video.pause();
+                    audio.pause();
+                    audio.muted = true;
+                    videoPlayPauseButton.innerHTML = '<i class="fa fa-play"></i>';
+                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+                }
             }
-        }
 
-        let scrollTimeout;
-        window.addEventListener("scroll", () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(checkScroll, 100);
-        });
+            let scrollTimeout;
+            window.addEventListener("scroll", () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(checkScroll, 100);
+            });
 
-        // === Mobile Navigation Toggle ===
-        hamburger?.addEventListener("click", function() {
-            hamburger.classList.toggle("active");
-            navMenu?.classList.toggle("active");
-        });
+            // === Mobile Navigation Toggle ===
+            hamburger?.addEventListener("click", function() {
+                hamburger.classList.toggle("active");
+                navMenu?.classList.toggle("active");
+            });
 
-        navClose?.addEventListener("click", function() {
-        navMenu?.classList.remove("active");
-        hamburger?.classList.remove("active");
-        });
+            navClose?.addEventListener("click", function() {
+                navMenu?.classList.remove("active");
+                hamburger?.classList.remove("active");
+            });
         });
     </script>
 
@@ -826,11 +826,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                    <hr class="border-dashed border-gray-300 my-4">
-                                                                    <div class="flex items-start gap-3">
-                                                                        <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                        <p class="text-gray-800">${data.description}</p>
-                                                                    </div>` : ''}
+                                                                <hr class="border-dashed border-gray-300 my-4">
+                                                                <div class="flex items-start gap-3">
+                                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                    <p class="text-gray-800">${data.description}</p>
+                                                                </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
