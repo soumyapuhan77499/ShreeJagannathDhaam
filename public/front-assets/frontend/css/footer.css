@@ -95,10 +95,6 @@
     transition: transform 0.3s ease;
 }
 
-.app-button img:hover {
-    transform: scale(1.05);
-}
-
 @media (max-width: 768px) {
     .footer {
       padding: 30px 20px;
