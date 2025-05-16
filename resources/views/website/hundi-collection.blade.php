@@ -16,29 +16,47 @@
     @include('partials.header-puri-dham')
 
     <!-- Hero Banner -->
-    <section class="hero">
-        <img class="hero-bg" src="{{ asset('website/fest.jpg') }}" alt="Mandir Background" />
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Hundi Collection</h1>
-        </div>
-    </section>
+  @php
+    $language = session('app_language', 'English');
+@endphp
 
-    <!-- Hundi Collection Section -->
-    <section class="py-12 px-4 md:px-8 bg-gray-50">
-        <div class="max-w-xl mx-auto bg-white rounded-lg shadow-lg p-8 text-center">
-            <h2 class="text-3xl font-bold mb-6 text-[#db4d30]">Hundi Collection Details</h2>
-            @if ($hundi)
-                <div class="space-y-4 text-gray-700 text-md">
-                    <p><strong>Rupees Collected:</strong> ₹{{ number_format($hundi->rupees, 2) }}</p>
-                    <p><strong>Gold Collected:</strong> {{ $hundi->gold ?? 0 }} gm</p>
-                    <p><strong>Silver Collected:</strong> {{ $hundi->silver ?? 0 }} gm</p>
-                </div>
-            @else
-                <p class="text-gray-500 italic">No Hundi collection data available for today.</p>
-            @endif
-        </div>
-    </section>
+<section class="hero">
+    <img class="hero-bg" src="{{ asset('website/fest.jpg') }}" alt="Mandir Background" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>{{ $language === 'Odia' ? 'ହୁଣ୍ଡି ସଂଗ୍ରହ' : 'Hundi Collection' }}</h1>
+    </div>
+</section>
+
+<!-- Hundi Collection Section -->
+<section class="py-12 px-4 md:px-8 bg-gray-50">
+    <div class="max-w-xl mx-auto bg-white rounded-lg shadow-lg p-8 text-center">
+        <h2 class="text-3xl font-bold mb-6 text-[#db4d30]">
+            {{ $language === 'Odia' ? 'ହୁଣ୍ଡି ସଂଗ୍ରହ ବିବରଣୀ' : 'Hundi Collection Details' }}
+        </h2>
+
+        @if ($hundi)
+            <div class="space-y-4 text-gray-700 text-md">
+                <p>
+                    <strong>{{ $language === 'Odia' ? 'ସଂଗ୍ରହିତ ପଇସା' : 'Rupees Collected' }}:</strong>
+                    ₹{{ number_format($hundi->rupees, 2) }}
+                </p>
+                <p>
+                    <strong>{{ $language === 'Odia' ? 'ସଂଗ୍ରହିତ ସୁନା' : 'Gold Collected' }}:</strong>
+                    {{ $hundi->gold ?? 0 }} {{ $language === 'Odia' ? 'ଗ୍ରାମ' : 'gm' }}
+                </p>
+                <p>
+                    <strong>{{ $language === 'Odia' ? 'ସଂଗ୍ରହିତ ଚାନ୍ଦି' : 'Silver Collected' }}:</strong>
+                    {{ $hundi->silver ?? 0 }} {{ $language === 'Odia' ? 'ଗ୍ରାମ' : 'gm' }}
+                </p>
+            </div>
+        @else
+            <p class="text-gray-500 italic">
+                {{ $language === 'Odia' ? 'ଆଜି ପାଇଁ କୌଣସି ହୁଣ୍ଡି ସଂଗ୍ରହ ତଥ୍ୟ ଉପଲବ୍ଧ ନାହିଁ।' : 'No Hundi collection data available for today.' }}
+            </p>
+        @endif
+    </div>
+</section>
 
     @include('partials.website-footer')
 

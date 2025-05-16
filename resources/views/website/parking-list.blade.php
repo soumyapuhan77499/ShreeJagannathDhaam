@@ -24,27 +24,43 @@
 </head>
 
 <body>
-    
+
     @include('partials.header-puri-dham')
 
+
+    @php
+        $language = session('app_language', 'English');
+    @endphp
 
     <div class="hero">
         <img class="hero-bg" src="{{ asset('website/parkings.jpg') }}" alt="Visitor Parking Background" />
         <div class="hero-overlay"></div>
+
         <div class="hero-content">
             <div class="hero-left">
-                <h1>Visitor Parking</h1>
-                <p>Park your two, three & four Wheelers with <br> ease at the following spaces</p>
+                <h1>
+                    {{ $language === 'Odia' ? 'ଭ୍ରମଣକାରୀ ପାର୍କିଂ' : 'Visitor Parking' }}
+                </h1>
+                <p>
+                    {{ $language === 'Odia'
+                        ? 'ନିମ୍ନଲିଖିତ ସ୍ଥାନଗୁଡିକରେ ଆପଣଙ୍କର ୨, ୩ ଓ ୪ ଚକିଆ ଯାନ ସହଜରେ ପାର୍କ କରନ୍ତୁ।'
+                        : 'Park your two, three & four Wheelers with <br> ease at the following spaces' }}
+                </p>
             </div>
         </div>
     </div>
 
     <div class="hero-right">
         <div class="view-buttons">
-            <button class="list-view-btn">List View</button>
-            <button class="map-view-btn">Map View</button>
+            <button class="list-view-btn">
+                {{ $language === 'Odia' ? 'ତାଲିକା ଦୃଶ୍ୟ' : 'List View' }}
+            </button>
+            <button class="map-view-btn">
+                {{ $language === 'Odia' ? 'ମାନଚିତ୍ର ଦୃଶ୍ୟ' : 'Map View' }}
+            </button>
         </div>
     </div>
+
 
     <div class="container">
         <div class="service-grid">

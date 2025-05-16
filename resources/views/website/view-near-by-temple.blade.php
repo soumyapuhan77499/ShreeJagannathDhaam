@@ -359,14 +359,23 @@
 
     @include('partials.header-puri-dham')
 
+    @php
+        $language = session('app_language', 'English');
+    @endphp
+
     <section class="hero">
         <img class="hero-bg" src="{{ asset('website/parking.jpeg') }}" alt="Mandir Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>{{ $temple->name }}</h1>
-            <p>Discover sacred places close to your journey.</p>
+            <p>
+                {{ $language === 'Odia'
+                    ? 'ଆପଣଙ୍କ ଯାତ୍ରା ପଥରେ ଥିବା ପବିତ୍ର ସ୍ଥାନଗୁଡିକୁ ଅନୁସନ୍ଧାନ କରନ୍ତୁ।'
+                    : 'Discover sacred places close to your journey.' }}
+            </p>
         </div>
     </section>
+
     @php
         $photos = json_decode($temple->photo, true);
         $firstPhoto = $photos[0] ?? 'website/default-temple.jpg';

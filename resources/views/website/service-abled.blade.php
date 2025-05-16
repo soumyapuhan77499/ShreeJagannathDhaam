@@ -16,12 +16,20 @@
 
     @include('partials.header-puri-dham')
 
+    @php
+        $language = session('app_language', 'English');
+    @endphp
+
     <section class="hero">
         <img class="hero-bg" src="{{ asset('website/fest.jpg') }}" alt="Mandir Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Special Abled Person</h1>
-            <p>Instructions for Specially Abled Devotees</p>
+            <h1>
+                {{ $language === 'Odia' ? 'ବିଶେଷ କ୍ଷମତା ବିଶିଷ୍ଟ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}
+            </h1>
+            <p>
+                {{ $language === 'Odia' ? 'ବିଶେଷ କ୍ଷମତା ବିଶିଷ୍ଟ ଭକ୍ତଙ୍କ ପାଇଁ ନିର୍ଦ୍ଦେଶନାମା' : 'Instructions for Specially Abled Devotees' }}
+            </p>
         </div>
     </section>
 
@@ -30,25 +38,37 @@
         <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
             <div class="text-center mb-6">
                 <i class="fas fa-wheelchair text-pink-500 text-5xl mb-4"></i>
-                <h2 class="text-3xl font-bold text-pink-500">Special Abled Person Services</h2>
+                <h2 class="text-3xl font-bold text-pink-500">
+                    {{ $language === 'Odia' ? 'ବିଶେଷ କ୍ଷମତା ବିଶିଷ୍ଟ ବ୍ୟକ୍ତି ସେବା' : 'Special Abled Person Services' }}
+                </h2>
             </div>
+
             <p class="text-gray-700 text-md leading-relaxed">
-                Free service of <strong>Battery operated vehicles</strong> is available from 
-                <strong>Jagannatha Ballav Parking place (Market square)</strong> to the 
-                <strong>Temple main gate / North gate</strong> for transporting senior citizens and physically challenged devotees.
+                {!! $language === 'Odia'
+                    ? ' <strong>ଜଗନ୍ନାଥ ବଲ୍ଲଭ ପାର୍କିଂ (ମାର୍କେଟ୍ ସ୍କୱାର)</strong> ରୁ <strong>ମନ୍ଦିରର ମୁଖ୍ୟ ଦ୍ୱାର / ଉତ୍ତର ଦ୍ୱାର</strong> ପର୍ଯ୍ୟନ୍ତ ବୃଦ୍ଧ ଏବଂ ଶାରୀରିକ ଭାବରେ ଅସମର୍ଥ ଭକ୍ତଙ୍କ ପାଇଁ <strong>ବେଟେରି ଚାଳିତ ଯାନ</strong> ସେବା ମାଗଣା ଉପଲବ୍ଧ।'
+                    : 'Free service of <strong>Battery operated vehicles</strong> is available from <strong>Jagannatha Ballav Parking place (Market square)</strong> to the <strong>Temple main gate / North gate</strong> for transporting senior citizens and physically challenged devotees.' !!}
             </p>
+
             <p class="text-gray-700 text-md mt-4 leading-relaxed">
-                <strong>Wheelchair</strong> and <strong>Ramp facilities</strong> are available at the <strong>North gate</strong>.
+                {!! $language === 'Odia'
+                    ? '<strong>ଉତ୍ତର ଦ୍ୱାର</strong> ଠାରେ <strong>ହ୍ୱିଲଚେୟର୍</strong> ଓ <strong>ରାମ୍ପ୍ ସୁବିଧା</strong> ମିଳିଥାଏ।'
+                    : '<strong>Wheelchair</strong> and <strong>Ramp facilities</strong> are available at the <strong>North gate</strong>.' !!}
             </p>
+
             <p class="text-gray-700 text-md mt-4 leading-relaxed">
-                For availing a wheelchair, devotees can contact the <strong>Temple Supervisor / Assistant Supervisor</strong> at 
-                <strong>06752 – 252527</strong>.
+                {!! $language === 'Odia'
+                    ? '<strong>ହ୍ୱିଲଚେୟର୍</strong> ବ୍ୟବହାର କରିବା ପାଇଁ <strong>ମନ୍ଦିର ସୁପରିଭାଇଜର୍ / ଅସିଷ୍ଟେଣ୍ଟ ସୁପରିଭାଇଜର୍</strong>ଙ୍କୁ <strong>06752 – 252527</strong> ରେ ସମ୍ପର୍କ କରନ୍ତୁ।'
+                    : 'For availing a wheelchair, devotees can contact the <strong>Temple Supervisor / Assistant Supervisor</strong> at <strong>06752 – 252527</strong>.' !!}
             </p>
+
             <p class="text-red-500 font-semibold mt-6">
-                Note: Wheelchairs are available only for differently abled devotees.
+                {{ $language === 'Odia'
+                    ? 'ନୋଟ୍: ହ୍ୱିଲଚେୟର୍ କେବଳ ଶାରୀରିକ ଭାବରେ ଅସମର୍ଥ ଭକ୍ତଙ୍କ ପାଇଁ ଉପଲବ୍ଧ।'
+                    : 'Note: Wheelchairs are available only for differently abled devotees.' }}
             </p>
         </div>
     </section>
+
 
     @include('partials.website-footer')
 

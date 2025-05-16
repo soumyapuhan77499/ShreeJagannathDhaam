@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
-        <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
 
 
     <style>
@@ -28,23 +28,38 @@
 
     @include('partials.header-puri-dham')
 
+    @php
+        $language = session('app_language', 'English');
+    @endphp
+
     <div class="hero">
         <img class="hero-bg" src="{{ asset('website/parking.jpeg') }}" alt="Visitor Parking Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-left">
-                <h1>Locker & Shoes</h1>
-                <p></p>
+                <h1>
+                    {{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା ଷ୍ଟାଣ୍ଡ' : 'Locker & Shoes' }}
+                </h1>
+                <p>
+                    {{ $language === 'Odia'
+                        ? 'ଆପଣଙ୍କ ମୋବାଇଲ୍, ଚାବି, ଜୋତା ବା ଅନ୍ୟ ବ୍ୟକ୍ତିଗତ ସାମଗ୍ରୀ ପାଇଁ ସୁରକ୍ଷିତ ଜଗା।'
+                        : 'Secure storage space for your shoes, phones, keys, and personal items.' }}
+                </p>
             </div>
         </div>
     </div>
-    
+
     <div class="hero-right">
         <div class="view-buttons">
-            <button class="list-view-btn">List View</button>
-            <button class="map-view-btn">Map View</button>
+            <button class="list-view-btn">
+                {{ $language === 'Odia' ? 'ତାଲିକା ଦୃଶ୍ୟ' : 'List View' }}
+            </button>
+            <button class="map-view-btn">
+                {{ $language === 'Odia' ? 'ମାନଚିତ୍ର ଦୃଶ୍ୟ' : 'Map View' }}
+            </button>
         </div>
     </div>
+
     <div class="container">
         <div class="service-grid">
             @foreach ($services as $item)
@@ -56,7 +71,8 @@
                         $firstPhoto = $photoArray[0] ?? null;
                     @endphp
 
-                    <img src="{{ $firstPhoto ? asset($firstPhoto) : asset('website/locker.png') }}" alt="{{ $item->service_name }}">
+                    <img src="{{ $firstPhoto ? asset($firstPhoto) : asset('website/locker.png') }}"
+                        alt="{{ $item->service_name }}">
 
                     <div class="service-info" style="display: flex; justify-content: space-between;">
                         <div>
@@ -67,17 +83,19 @@
                             </div>
 
                             <div class="info-line">
-                                <span class="icon">⏰</span> {{ $item->opening_time ?? 'N/A' }} - {{ $item->closing_time ?? 'N/A' }}
+                                <span class="icon">⏰</span> {{ $item->opening_time ?? 'N/A' }} -
+                                {{ $item->closing_time ?? 'N/A' }}
                             </div>
 
                             <div class="info-line">
                                 <span class="icon">📞</span> {{ $item->contact_no ?? 'Not Available' }}
                             </div>
 
-                            @if($item->google_map_link)
+                            @if ($item->google_map_link)
                                 <div class="info-line">
                                     <span class="icon">🗺️</span>
-                                    <a class="btn btn-sm btn-info" style="color: white" href="{{ $item->google_map_link }}" target="_blank">View Map</a>
+                                    <a class="btn btn-sm btn-info" style="color: white"
+                                        href="{{ $item->google_map_link }}" target="_blank">View Map</a>
                                 </div>
                             @endif
                         </div>

@@ -51,7 +51,7 @@
 
                 <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
-                        {{ $language === 'Odia' ? 'ସୁବିଧା' : 'Conveniences' }}
+                        {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
                         <i class="fa fa-chevron-down ms-2"></i>
                     </a>
                     <ul class="submenu">
@@ -114,7 +114,7 @@
 
             <li class="has-submenu">
                 <a href="javascript:void(0)" class="submenu-toggle">
-                    {{ $language === 'Odia' ? 'ସୁବିଧା' : 'Conveniences' }}
+                    {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
                     <i class="fa fa-chevron-down ms-2"></i>
                 </a>
                 <ul class="submenu">
