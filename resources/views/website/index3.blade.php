@@ -744,6 +744,46 @@
                 </a>
             </div>
 
+            <!-- Charging Station -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'charging_station') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/charghingstation89.png') }}" alt="Charging Station" style="height: 42px">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</p>
+                </a>
+            </div>
+
+            <!-- Petrol Pump -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'petrol_pump') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/petrolPump21.png') }}" alt="Petrol Pump" style="height: 42px">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' }}</p>
+                </a>
+            </div>
+
+            <!-- ATM -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'atm') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/atm.png') }}" alt="ATM" style="height: 42px">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ଏଟିଏମ୍' : 'ATM' }}</p>
+                </a>
+            </div>
+
+            <!-- Railway Station -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'railway_station') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/busRaily.png') }}" alt="Railway Station" style="height: 42px">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ରେଲୱେ ଷ୍ଟେସନ୍' : 'Railway Station' }}</p>
+                </a>
+            </div>
+
         </div>
     </section>
 
