@@ -104,33 +104,15 @@
 
     @php
         $language = session('app_language', 'English');
-        $title = ucfirst(str_replace('_', ' ', $commute_type));
 
-        $odiaTitles = [
-            'drinking water' => 'ପାନୀୟ ଜଳ',
-            'emergency' => 'ଜରୁରୀ ସେବା',
-            'special abled person' => 'ବିଶେଷ କ୍ଷମତା ବ୍ୟକ୍ତି',
-            'route map' => 'ମାର୍ଗ ମାନଚିତ୍ର',
-            'lost and found booth' => 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର',
-            'toilet' => 'ଶୌଚାଳୟ',
-            'beach' => 'ସମୁଦ୍ର କୂଳ',
-            'life guard booth' => 'ଲାଇଫ୍ ଗାର୍ଡ',
-        ];
-
-        $localizedTitle = $language === 'Odia' ? $odiaTitles[strtolower($title)] ?? $title : $title;
     @endphp
-    @php
-        // Sanitize and map service_type to image file
-        $imageName = $commute_type ? $commute_type . '.png' : 'default.jpeg';
-        $imagePath = 'website/sub-page/' . $imageName;
-    @endphp
-
+ 
     <div class="hero">
-        <img class="hero-bg" src="{{ asset($imagePath) }}" alt="{{ $title }} Background" />
+        <img class="hero-bg" src="{{ asset('website/parking.jpeg') }}" alt="Station Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-left">
-                <h1 class="text-4xl font-bold">{{ $localizedTitle }}</h1>
+                <h1 class="text-4xl font-bold">Bus Stand /Railway Station </h1>
                 <p class="text-lg mt-2">
                     {{ $language === 'Odia' ? 'ଏଠାରେ ଉପଲବ୍ଧ ସମସ୍ତ ସେବା ଦେଖନ୍ତୁ' : 'Explore all available services here' }}
                 </p>
@@ -143,10 +125,10 @@
         $language = session('app_language', 'English');
     @endphp
 
-    <div class="container mx-auto">
+    <div class="container mx-auto px-4">
         <div class="overflow-x-auto rounded-lg shadow-lg bg-white">
             <table class="min-w-full">
-                <thead class="table-header">
+                <thead class="bg-pink-100 text-pink-800">
                     <tr>
                         <th class="py-3 px-6 text-left">
                             {{ $language === 'Odia' ? 'ଫୋଟୋ' : 'Photo' }} <i class="fas fa-image"></i>
@@ -166,13 +148,12 @@
                 </thead>
                 <tbody>
                     @forelse($services as $service)
-                        <tr class="table-row hover:bg-pink-100 transition duration-300">
+                        @php
+                            $photos = json_decode($service->photo, true) ?? [];
+                            $firstPhoto = $photos[0] ?? null;
+                        @endphp
+                        <tr class="hover:bg-pink-50 transition duration-300 border-b">
                             <td class="py-4 px-6">
-                                @php
-                                    $photos = json_decode($service->photo, true);
-                                    $firstPhoto = $photos[0] ?? null;
-                                @endphp
-
                                 @if ($firstPhoto)
                                     <button onclick="openPhotoModal({{ $service->id }})">
                                         <img src="{{ asset($firstPhoto) }}" alt="{{ $service->name }}"
@@ -191,7 +172,7 @@
                                 @if ($service->google_map_link)
                                     <a href="{{ $service->google_map_link }}" target="_blank"
                                         class="px-3 py-1 rounded-md text-sm hover:scale-105 transition"
-                                        style="background: linear-gradient(90deg, #f9ce62, #f1769f); color: white;padding: 10px;">
+                                        style="background: linear-gradient(90deg, #f9ce62, #f1769f); color: white;">
                                         <i class="fas fa-map-marker-alt"></i>
                                         {{ $language === 'Odia' ? 'ଦିଗ ନିର୍ଦ୍ଦେଶ' : 'Directions' }}
                                     </a>
@@ -205,13 +186,13 @@
                             <td class="py-4 px-6">
                                 <button onclick="openModal({{ $service->id }})"
                                     class="text-white px-3 py-1 rounded-md hover:scale-105 transition"
-                                    style="background: linear-gradient(90deg, #f9ce62, #f1769f);padding: 10px;">
+                                    style="background: linear-gradient(90deg, #f9ce62, #f1769f);">
                                     {{ $language === 'Odia' ? 'ପୂର୍ଣ୍ଣ ବିବରଣୀ' : 'View Full Info' }}
                                 </button>
                             </td>
                         </tr>
 
-                        <!-- Full Info Modal -->
+                        {{-- Full Info Modal --}}
                         <div id="modal-{{ $service->id }}"
                             class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                             <div class="bg-white rounded-lg shadow-lg p-8 w-96 relative">
@@ -251,7 +232,7 @@
                             </div>
                         </div>
 
-                        <!-- Photo Modal -->
+                        {{-- Photo Modal --}}
                         <div id="photo-modal-{{ $service->id }}"
                             class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                             <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-3xl relative">
@@ -270,10 +251,9 @@
                                 </div>
                             </div>
                         </div>
-
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center py-6 text-lg text-red-500">
+                            <td colspan="4" class="text-center py-6 text-lg text-red-500">
                                 {{ $language === 'Odia' ? 'କୌଣସି ସେବା ମିଳିଲା ନାହିଁ।' : 'No Services Found.' }}
                             </td>
                         </tr>
@@ -286,35 +266,23 @@
 
     @include('partials.website-footer')
 
-    <script>
-        function openModal(id) {
-            document.getElementById('modal-' + id).classList.remove('hidden');
-        }
+   <script>
+    function openModal(id) {
+        document.getElementById('modal-' + id).classList.remove('hidden');
+    }
 
-        function closeModal(id) {
-            document.getElementById('modal-' + id).classList.add('hidden');
-        }
+    function closeModal(id) {
+        document.getElementById('modal-' + id).classList.add('hidden');
+    }
 
-        function openDescModal(id) {
-            document.getElementById('desc-modal-' + id).classList.remove('hidden');
-        }
+    function openPhotoModal(id) {
+        document.getElementById('photo-modal-' + id).classList.remove('hidden');
+    }
 
-        function closeDescModal(id) {
-            document.getElementById('desc-modal-' + id).classList.add('hidden');
-        }
-    </script>
-    <script>
-        function openPhotoModal(id) {
-            document.getElementById('photo-modal-' + id).classList.remove('hidden');
-        }
-
-        function closePhotoModal(id) {
-            document.getElementById('photo-modal-' + id).classList.add('hidden');
-        }
-    </script>
-
-
-
+    function closePhotoModal(id) {
+        document.getElementById('photo-modal-' + id).classList.add('hidden');
+    }
+</script>
 
 </body>
 
