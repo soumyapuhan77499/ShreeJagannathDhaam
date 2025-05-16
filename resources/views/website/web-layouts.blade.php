@@ -576,6 +576,28 @@
             const navMenu = document.querySelector(".nav-menu");
             const navClose = document.querySelector(".nav-close");
 
+            let audioStarted = false;
+
+            // Try to play audio on load (may be blocked)
+            function tryPlayAudio() {
+                if (!audioStarted) {
+                    audio.play().then(() => {
+                        audioStarted = true;
+                        console.log("Audio autoplay started.");
+                    }).catch((err) => {
+                        console.warn("Autoplay blocked, waiting for user gesture...");
+                    });
+                }
+            }
+
+            // Try on page load
+            window.addEventListener("load", tryPlayAudio);
+
+            // Retry when user interacts (first time)
+            document.body.addEventListener("click", tryPlayAudio, {
+                once: true
+            });
+
             // === VIDEO CONTROL BUTTON ===
             videoPlayPauseButton?.addEventListener("click", function() {
                 if (video.paused) {
@@ -595,13 +617,6 @@
                     '<i class="fa fa-volume-up"></i>';
             });
 
-            // === AUTOPLAY AUDIO ON LOAD ===
-            window.addEventListener("load", () => {
-                audio.play().catch(e => {
-                    console.warn('Autoplay might be blocked by browser:', e);
-                });
-            });
-
             // === SCROLL-BASED VIDEO & AUDIO CONTROL ===
             function checkScroll() {
                 if (!video || !audio) return;
@@ -614,7 +629,6 @@
                     audio.play().catch(() => {});
                     audio.muted = false;
 
-                    // Update icons to reflect current state
                     videoPlayPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
                     audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
                 } else {
@@ -622,13 +636,11 @@
                     audio.pause();
                     audio.muted = true;
 
-                    // Update icons to reflect current state
                     videoPlayPauseButton.innerHTML = '<i class="fa fa-play"></i>';
                     audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
                 }
             }
 
-            // Scroll throttling for better performance
             let scrollTimeout;
             window.addEventListener("scroll", () => {
                 clearTimeout(scrollTimeout);
@@ -814,11 +826,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                    <hr class="border-dashed border-gray-300 my-4">
-                                                    <div class="flex items-start gap-3">
-                                                        <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                        <p class="text-gray-800">${data.description}</p>
-                                                    </div>` : ''}
+                                                        <hr class="border-dashed border-gray-300 my-4">
+                                                        <div class="flex items-start gap-3">
+                                                            <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                            <p class="text-gray-800">${data.description}</p>
+                                                        </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
