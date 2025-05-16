@@ -567,98 +567,101 @@
 
     {{-- banner video --}}
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const video = document.getElementById("bannerVideo");
-            const audio = document.getElementById("backgroundAudio");
-            const videoPlayPauseButton = document.getElementById("playPauseButton");
-            const audioMuteToggle = document.getElementById("audioMuteToggle");
-            const hamburger = document.querySelector(".hamburger-icon");
-            const navMenu = document.querySelector(".nav-menu");
-            const navClose = document.querySelector(".nav-close");
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("bannerVideo");
+        const audio = document.getElementById("backgroundAudio");
+        const videoPlayPauseButton = document.getElementById("playPauseButton");
+        const audioMuteToggle = document.getElementById("audioMuteToggle");
+        const hamburger = document.querySelector(".hamburger-icon");
+        const navMenu = document.querySelector(".nav-menu");
+        const navClose = document.querySelector(".nav-close");
 
-            let audioStarted = false;
+        let audioStarted = false;
 
-            // Try to play audio on load (may be blocked)
-            function tryPlayAudio() {
-                if (!audioStarted) {
-                    audio.play().then(() => {
-                        audioStarted = true;
-                        console.log("Audio autoplay started.");
-                    }).catch((err) => {
-                        console.warn("Autoplay blocked, waiting for user gesture...");
-                    });
-                }
+        // === Try to Autoplay Audio ===
+        function tryPlayAudio() {
+            if (!audioStarted) {
+                audio.play().then(() => {
+                    audioStarted = true;
+                    console.log("Audio autoplay started.");
+                }).catch((err) => {
+                    console.warn("Autoplay blocked, waiting for user interaction...");
+                });
             }
+        }
 
-            // Try on page load
-            window.addEventListener("load", tryPlayAudio);
+        // Attempt to autoplay on load
+        window.addEventListener("load", tryPlayAudio);
+        // Retry on first user interaction
+        document.body.addEventListener("click", tryPlayAudio, { once: true });
 
-            // Retry when user interacts (first time)
-            document.body.addEventListener("click", tryPlayAudio, {
-                once: true
-            });
-
-            // === VIDEO CONTROL BUTTON ===
-            videoPlayPauseButton?.addEventListener("click", function() {
-                if (video.paused) {
-                    video.play().catch(() => {});
-                    this.innerHTML = '<i class="fa fa-pause"></i>';
-                } else {
-                    video.pause();
-                    this.innerHTML = '<i class="fa fa-play"></i>';
-                }
-            });
-
-            // === AUDIO MUTE/UNMUTE BUTTON ===
-            audioMuteToggle?.addEventListener("click", function() {
-                audio.muted = !audio.muted;
-                this.innerHTML = audio.muted ?
-                    '<i class="fa fa-volume-mute"></i>' :
-                    '<i class="fa fa-volume-up"></i>';
-            });
-
-            // === SCROLL-BASED VIDEO & AUDIO CONTROL ===
-            function checkScroll() {
-                if (!video || !audio) return;
-
-                const rect = video.getBoundingClientRect();
-                const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-                if (inView) {
-                    video.play().catch(() => {});
-                    audio.play().catch(() => {});
-                    audio.muted = false;
-
-                    videoPlayPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
-                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
-                } else {
-                    video.pause();
-                    audio.pause();
-                    audio.muted = true;
-
-                    videoPlayPauseButton.innerHTML = '<i class="fa fa-play"></i>';
-                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
-                }
+        // === VIDEO CONTROL BUTTON ===
+        videoPlayPauseButton?.addEventListener("click", function () {
+            if (video.paused) {
+                video.play().catch(() => {});
+                audio.play().catch(() => {});
+                audio.muted = false;
+                this.innerHTML = '<i class="fa fa-pause"></i>';
+                audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
+            } else {
+                video.pause();
+                audio.pause();
+                audio.muted = true;
+                this.innerHTML = '<i class="fa fa-play"></i>';
+                audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
             }
-
-            let scrollTimeout;
-            window.addEventListener("scroll", () => {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(checkScroll, 100);
-            });
-
-            // === HAMBURGER MENU TOGGLE ===
-            hamburger?.addEventListener("click", function() {
-                hamburger.classList.toggle("active");
-                navMenu?.classList.toggle("active");
-            });
-
-            navClose?.addEventListener("click", function() {
-                navMenu?.classList.remove("active");
-                hamburger?.classList.remove("active");
-            });
         });
-    </script>
+
+        // === AUDIO MUTE TOGGLE ===
+        audioMuteToggle?.addEventListener("click", function () {
+            audio.muted = !audio.muted;
+            this.innerHTML = audio.muted
+                ? '<i class="fa fa-volume-mute"></i>'
+                : '<i class="fa fa-volume-up"></i>';
+        });
+
+        // === SCROLL-BASED VIDEO/AUDIO CONTROL ===
+        function checkScroll() {
+            if (!video || !audio) return;
+
+            const rect = video.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (inView) {
+                video.play().catch(() => {});
+                audio.play().catch(() => {});
+                audio.muted = false;
+                videoPlayPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
+                audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
+            } else {
+                video.pause();
+                audio.pause();
+                audio.muted = true;
+                videoPlayPauseButton.innerHTML = '<i class="fa fa-play"></i>';
+                audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+            }
+        }
+
+        // Throttle scroll for performance
+        let scrollTimeout;
+        window.addEventListener("scroll", () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(checkScroll, 100);
+        });
+
+        // === HAMBURGER MENU TOGGLE ===
+        hamburger?.addEventListener("click", function () {
+            hamburger.classList.toggle("active");
+            navMenu?.classList.toggle("active");
+        });
+
+        navClose?.addEventListener("click", function () {
+            navMenu?.classList.remove("active");
+            hamburger?.classList.remove("active");
+        });
+    });
+</script>
+
 
     {{-- temple information --}}
     <script>
