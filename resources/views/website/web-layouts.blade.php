@@ -567,77 +567,83 @@
 
     {{-- banner video --}}
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const video = document.getElementById("bannerVideo");
-            const audio = document.getElementById("backgroundAudio");
-            const playPauseButton = document.getElementById("playPauseButton");
-            const muteToggle = document.getElementById("muteToggle"); // FIX: remove duplicate ID
-            const hamburger = document.querySelector(".hamburger-icon");
-            const navMenu = document.querySelector(".nav-menu");
-            const navClose = document.querySelector(".nav-close");
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("bannerVideo");
+        const audio = document.getElementById("backgroundAudio");
+        const playPauseButton = document.getElementById("playPauseButton");
+        const muteToggle = document.getElementById("audioMuteToggle");
+        const hamburger = document.querySelector(".hamburger-icon");
+        const navMenu = document.querySelector(".nav-menu");
+        const navClose = document.querySelector(".nav-close");
 
-            // Play/Pause Audio Toggle Button
-            playPauseButton.addEventListener("click", function() {
-                if (audio.paused) {
-                    audio.play();
-                    this.innerHTML = '<i class="fa fa-pause"></i>';
-                } else {
-                    audio.pause();
-                    this.innerHTML = '<i class="fa fa-play"></i>';
-                }
-            });
-
-            // Mute/Unmute Audio Toggle Button
-            muteToggle.addEventListener("click", function() {
-                audio.muted = !audio.muted;
-                this.innerHTML = audio.muted ?
-                    '<i class="fa fa-volume-mute"></i>' :
-                    '<i class="fa fa-volume-up"></i>';
-            });
-
-            // Autoplay audio (might be blocked by browser policies)
-            window.addEventListener("load", () => {
-                audio.play().catch(e => {
-                    console.warn('Autoplay might be blocked:', e);
-                });
-            });
-
-            // Scroll-triggered video/audio control
-            function checkScroll() {
-                if (!video) return;
-
-                const rect = video.getBoundingClientRect();
-                const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-                if (!inView) {
-                    video.pause();
-                    audio.pause();
-                    audio.muted = true;
-                    playPauseButton.innerHTML = '<i class="fa fa-play"></i>';
-                    muteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
-                } else {
-                    video.play().catch(() => {}); // Avoid throwing if already playing
-                    audio.play().catch(() => {});
-                    audio.muted = false;
-                    playPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
-                    muteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
-                }
+        // Play/Pause Audio Button
+        playPauseButton?.addEventListener("click", function () {
+            if (audio.paused) {
+                audio.play();
+                this.innerHTML = '<i class="fa fa-pause"></i>';
+            } else {
+                audio.pause();
+                this.innerHTML = '<i class="fa fa-play"></i>';
             }
+        });
 
-            window.addEventListener("scroll", checkScroll);
+        // Mute/Unmute Audio Button
+        muteToggle?.addEventListener("click", function () {
+            audio.muted = !audio.muted;
+            this.innerHTML = audio.muted
+                ? '<i class="fa fa-volume-mute"></i>'
+                : '<i class="fa fa-volume-up"></i>';
+        });
 
-            // Navigation Toggle
-            hamburger?.addEventListener("click", function() {
-                hamburger.classList.toggle("active");
-                navMenu.classList.toggle("active");
-            });
-
-            navClose?.addEventListener("click", function() {
-                navMenu.classList.remove("active");
-                hamburger.classList.remove("active");
+        // Autoplay Audio on Load (fallback in case autoplay blocked)
+        window.addEventListener("load", () => {
+            audio.play().catch(e => {
+                console.warn('Autoplay might be blocked by the browser:', e);
             });
         });
-    </script>
+
+        // Scroll-triggered video/audio control
+        function checkScroll() {
+            if (!video || !audio) return;
+
+            const rect = video.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (inView) {
+                video.play().catch(() => {});
+                audio.play().catch(() => {});
+                audio.muted = false;
+                playPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
+                muteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
+            } else {
+                video.pause();
+                audio.pause();
+                audio.muted = true;
+                playPauseButton.innerHTML = '<i class="fa fa-play"></i>';
+                muteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+            }
+        }
+
+        // Optional: Throttle scroll check (improves performance)
+        let scrollTimeout;
+        window.addEventListener("scroll", () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(checkScroll, 100);
+        });
+
+        // Navigation Hamburger Toggle
+        hamburger?.addEventListener("click", function () {
+            hamburger.classList.toggle("active");
+            navMenu?.classList.toggle("active");
+        });
+
+        navClose?.addEventListener("click", function () {
+            navMenu?.classList.remove("active");
+            hamburger?.classList.remove("active");
+        });
+    });
+</script>
+
 
 
     {{-- temple information --}}
