@@ -64,7 +64,7 @@
         <div class="footer-bottom">
             <div class="footer-bottom-container">
                 <a href="https://play.google.com/store" target="_blank" class="app-button">
-                    <img src="{{ asset('website/footer/play.png') }}" alt="Google Play">
+                    <img src="{{ asset('website/footer/google.webp') }}" alt="Google Play">
                 </a>
                 <a href="https://www.apple.com/app-store/" target="_blank" class="app-button">
                     <img src="{{ asset('website/footer/app.png') }}" alt="App Store">
