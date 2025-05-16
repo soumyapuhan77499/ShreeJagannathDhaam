@@ -1,6 +1,7 @@
 @extends('website.web-layouts')
 
 @section('content')
+
     @php
         $language = session('app_language', 'English');
     @endphp

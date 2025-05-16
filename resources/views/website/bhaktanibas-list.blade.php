@@ -13,20 +13,25 @@
 </head>
 
 <body>
+
     @include('partials.header-puri-dham')
-
-
-    <div class="hero">
-        <img class="hero-bg" src="{{ asset('website/bhkt.jpg') }}" alt="Bhakta Niwas Background" />
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-left">
-                <h1>Bhakta Niwas</h1>
-                <p>Experience a peaceful and affordable stay in temple-owned Bhakta Niwas accommodations.</p>
-            </div>
-
+ 
+   <div class="hero">
+    <img class="hero-bg" src="{{ asset('website/bhkt.jpg') }}" alt="Bhakta Niwas Background" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-left">
+            <h1>
+                {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Niwas' }}
+            </h1>
+            <p>
+                {{ $language === 'Odia'
+                    ? 'ମନ୍ଦିର ଅଧୀନରେ ଥିବା ଭକ୍ତ ନିବାସରେ ଶାନ୍ତିପୂର୍ଣ୍ଣ ଓ ସସ୍ତା ବାସ ଅନୁଭବ କରନ୍ତୁ।'
+                    : 'Experience a peaceful and affordable stay in temple-owned Bhakta Niwas accommodations.' }}
+            </p>
         </div>
     </div>
+</div>
 
     <div class="hero-right">
         <div class="view-buttons">
