@@ -661,7 +661,6 @@
             <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
         </div>
 
-        <!-- Convenience Items -->
         <!-- First Row: 6 Items -->
         <div class="convenience-container">
             <!-- Drinking Water -->
