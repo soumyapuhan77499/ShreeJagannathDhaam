@@ -106,7 +106,7 @@
     @endphp
  
     <div class="hero">
-        <img class="hero-bg" src="{{ asset('website/parking.jpeg') }}" alt="Station Background" />
+        <img class="hero-bg" src="{{ asset('website/parking.jpeg') }}" alt=" Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-left">
