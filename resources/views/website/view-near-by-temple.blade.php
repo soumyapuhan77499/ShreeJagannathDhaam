@@ -463,7 +463,7 @@
                 </ul>
             </div> --}}
 
-            <div id="gallery" class="tab-content">
+            <div id="gallery" class="tab-content active">
                 @php
                     $photos = json_decode($temple->photo, true);
                 @endphp
