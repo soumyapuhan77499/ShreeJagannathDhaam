@@ -668,11 +668,11 @@
         
          <div class="text-center mb-14">
              <div class="flex justify-center items-center gap-5 mt-12">
-            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-22 h-3">
+            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-18 h-3">
             <h2 class="text-xl text-[#db4d30] font-semibold">
               {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
             </h2>
-            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-22 h-3">
+            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-18 h-3">
         </div>
 
         <!-- First Row: 6 Items -->
