@@ -775,7 +775,7 @@
 
             <!-- Railway Station -->
             <div class="conv">
-                <a href="{{ route('services.station') }}">
+                <a href="{{ route('busAndRailaway') }}">
                     <div class="convenience-item">
                         <img src="{{ asset('website/busRaily.png') }}" alt="Railway Station">
                     </div>

@@ -15,6 +15,7 @@ use App\Models\PublicServices;
 use App\Models\NearByTemple;
 use App\Models\PanjiDetails;
 use App\Models\TempleHundi;
+use App\Models\CommuteMode;
 
 use Carbon\Carbon;
 
@@ -143,7 +144,7 @@ public function showByServiceType($service_type)
     return view('website.temple-convience', compact('services', 'service_type'));
 }
 
-public function serviceStation()
+public function busAndRailaway()
 {
     $language = session('app_language', 'English');
 
