@@ -775,11 +775,14 @@
 
             <!-- Railway Station -->
             <div class="conv">
-                <a href="{{ route('busAndRailaway') }}">
+                <a href="{{ route('busAndRailaway') }}" class="flex flex-col items-center text-center">
                     <div class="convenience-item">
-                        <img src="{{ asset('website/busRaily.png') }}" alt="Railway Station">
+                        <img src="{{ asset('website/busRaily.png') }}"
+                            alt="{{ $language === 'Odia' ? 'ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand/Railway Station' }}">
                     </div>
-                    <p>{{ $language === 'Odia' ? 'ରେଲୱେ ଷ୍ଟେସନ୍' : 'Railway Station' }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">
+                        {{ $language === 'Odia' ? 'ବସ ଷ୍ଟାଣ୍ଡ / ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand / Railway Station' }}
+                    </p>
                 </a>
             </div>
 
