@@ -154,6 +154,10 @@ public function serviceStation()
     return view('website.temple-nearby-station', compact('services'));
 }
 
+public function lostAndFound(){
+  return view('website.lost-and-found');
+}
+
 
 public function viewPanji()
 {

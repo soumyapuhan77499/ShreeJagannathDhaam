@@ -697,7 +697,7 @@
 
             <!-- Lost & Found -->
             <div class="conv">
-                <a href="{{ route('services.byType', 'lost_and_found_booth') }}">
+                <a href="{{ route('lostAndFound') }}">
                     <div class="convenience-item">
                         <img src="{{ asset('website/lost.png') }}" alt="Lost and Found">
                     </div>
@@ -750,7 +750,7 @@
                     <p>{{ $language === 'Odia' ? 'ଏଟିଏମ୍' : 'ATM' }}</p>
                 </a>
             </div>
-            
+
             <!-- Route Map -->
             <div class="conv">
                 <a href="https://www.google.co.in/maps/place/Shree+Jagannath+ji+Temple+,puri/@19.8051108,85.8158809,780m/data=!3m1!1e3!4m10!1m2!2m1!1spuri+jagannath+temple!3m6!1s0x3a19c50013561771:0xad4b4235186a4124!8m2!3d19.804741!4d85.81789!15sChVwdXJpIGphZ2FubmF0aCB0ZW1wbGVaFyIVcHVyaSBqYWdhbm5hdGggdGVtcGxlkgEMaGluZHVfdGVtcGxlmgEjQ2haRFNVaE5NRzluUzBWS04xcGZkWFpTTkRkeVNWZEJFQUWqAT4QATIfEAEiG3wu8pyG9H18GTedswS-EibRIw6yUk1mse1cVzIZEAIiFXB1cmkgamFnYW5uYXRoIHRlbXBsZeABAPoBBAgAED8!16s%2Fg%2F11y89cqz51?entry=ttu&g_ep=EgoyMDI1MDUxMy4xIKXMDSoASAFQAw%3D%3D"
