@@ -108,30 +108,31 @@
   .conv p {
     font-size: 12px;
   }
-}
-@media (max-width: 640px) {
-  .section-header-row {
+}@media (max-width: 640px) {
+  .quick-service-header {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    margin-top: 20px !important;
-    margin-right: 0 !important;
+    gap: 6px;
+    margin-top: 16px;
     width: 100%;
     text-align: center;
+    flex-wrap: nowrap;
+    padding: 0 10px;
   }
 
-  .section-header-row img {
-    width: 70px;
+  .quick-service-header img {
+    width: 50px;
     height: auto;
+    flex-shrink: 0;
   }
 
-  .section-header-row h2 {
+  .quick-service-header h2 {
     font-size: 1rem;
     font-weight: 600;
-    white-space: nowrap;
     color: #db4d30;
+    white-space: nowrap;
+    line-height: 1.2;
   }
 }
-
