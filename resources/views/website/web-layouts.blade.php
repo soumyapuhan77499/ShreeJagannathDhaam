@@ -265,8 +265,8 @@
             grabCursor: true,
             centeredSlides: true,
             loop: true,
-            slidesPerView: 4, // show 7 slides total
-            initialSlide: 3, // make sure the center one is visible initially
+            slidesPerView: 5, // show 5 slides in view
+            initialSlide: 2, // center the 3rd slide (index starts at 0)
             coverflowEffect: {
                 rotate: 0,
                 stretch: 0,
@@ -278,8 +278,30 @@
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
+            breakpoints: {
+                // Mobile responsiveness
+                0: {
+                    slidesPerView: 1.1, // for small screens
+                    centeredSlides: false,
+                },
+                480: {
+                    slidesPerView: 1.5,
+                    centeredSlides: false,
+                },
+                640: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 5,
+                    centeredSlides: true,
+                }
+            }
         });
     </script>
+
 
     {{-- Emergency contact --}}
     <script>
@@ -831,11 +853,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                            <hr class="border-dashed border-gray-300 my-4">
-                                                                            <div class="flex items-start gap-3">
-                                                                                <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                                <p class="text-gray-800">${data.description}</p>
-                                                                            </div>` : ''}
+                                                                                <hr class="border-dashed border-gray-300 my-4">
+                                                                                <div class="flex items-start gap-3">
+                                                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                                    <p class="text-gray-800">${data.description}</p>
+                                                                                </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
