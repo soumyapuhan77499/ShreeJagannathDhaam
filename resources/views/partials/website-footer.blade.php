@@ -87,6 +87,16 @@
                     <li><a
                             href="{{ url('/services/life_guard_booth') }}">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a>
                     </li>
+                    <li><a href="{{ url('/services/atm') }}">{{ $language === 'Odia' ? 'ଏ.ଟି.ଏମ୍' : 'ATM' }}</a></li>
+                    <li><a
+                            href="{{ url('/services/charging_station') }}">{{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</a>
+                    </li>
+                    <li><a
+                            href="{{ url('/bus-railway-station') }}">{{ $language === 'Odia' ? 'ବସ୍/ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand/Railway Station' }}</a>
+                    </li>
+                    <li><a
+                            href="{{ url('/services/petrol_pump') }}">{{ $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' }}</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -94,10 +104,12 @@
         <!-- App Download -->
         <div class="footer-bottom">
             <div class="footer-bottom-container">
-                <a href="https://play.google.com/store" target="_blank" class="app-button" style="background-color: #f4f3f2;border-radius: 8px">
+                <a href="https://play.google.com/store" target="_blank" class="app-button"
+                    style="background-color: #f4f3f2;border-radius: 8px">
                     <img src="{{ asset('website/footer/google.webp') }}" alt="Google Play">
                 </a>
-                <a href="https://www.apple.com/app-store/" target="_blank" class="app-button" style="border: 1px solid black;border-radius: 7px">
+                <a href="https://www.apple.com/app-store/" target="_blank" class="app-button"
+                    style="border: 1px solid black;border-radius: 7px">
                     <img src="{{ asset('website/footer/images.png') }}" alt="App Store" style="border-radius: 7px">
                 </a>
             </div>

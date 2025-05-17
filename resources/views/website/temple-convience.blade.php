@@ -122,11 +122,17 @@
     @php
         // Sanitize and map service_type to image file
         $imageName = $service_type ? $service_type . '.png' : 'default.jpeg';
-        $imagePath = 'website/sub-page/' . $imageName;
     @endphp
 
     <div class="hero">
-        <img class="hero-bg" src="{{ asset($imagePath) }}" alt="{{ $title }} Background" />
+        @forelse($services as $service)
+            @php
+                $photos = json_decode($service->photo, true);
+                $firstPhoto = $photos[1] ?? null;
+            @endphp
+        @endforelse
+
+        <img class="hero-bg" src="{{ asset($firstPhoto) }}" alt="{{ $title }} Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-left">
