@@ -259,48 +259,53 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-    <script>
-        const swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            loop: true,
-            slidesPerView: 5, // show 5 slides in view
-            initialSlide: 2, // center the 3rd slide (index starts at 0)
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 150,
-                modifier: 2.5,
-                slideShadows: false,
+ <script>
+    const swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        loop: false, // disable loop to show limited slides and scroll
+        slidesPerView: 5,
+        spaceBetween: 30,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 150,
+            modifier: 2.5,
+            slideShadows: false,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+            0: {
+                slidesPerView: 1.1,
+                centeredSlides: false,
+                spaceBetween: 10,
             },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
+            480: {
+                slidesPerView: 1.5,
+                centeredSlides: false,
+                spaceBetween: 15,
             },
-            breakpoints: {
-                // Mobile responsiveness
-                0: {
-                    slidesPerView: 1.1, // for small screens
-                    centeredSlides: false,
-                },
-                480: {
-                    slidesPerView: 1.5,
-                    centeredSlides: false,
-                },
-                640: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1024: {
-                    slidesPerView: 5,
-                    centeredSlides: true,
-                }
+            640: {
+                slidesPerView: 2.2,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 5,
+                centeredSlides: false,
+                spaceBetween: 30,
             }
-        });
-    </script>
+        }
+    });
+</script>
+
 
 
     {{-- Emergency contact --}}
