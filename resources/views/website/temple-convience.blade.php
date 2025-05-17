@@ -125,14 +125,18 @@
     @endphp
 
     <div class="hero">
-        @forelse($services as $service)
-            @php
-                $photos = json_decode($service->photo, true);
+        @php
+            $firstPhoto = null;
+            if ($services->isNotEmpty()) {
+                $photos = json_decode($services->first()->photo, true);
                 $firstPhoto = $photos[1] ?? null;
-            @endphp
-        @endforelse
+            }
+        @endphp
 
-        <img class="hero-bg" src="{{ asset($firstPhoto) }}" alt="{{ $title }} Background" />
+        @if ($firstPhoto)
+            <img class="hero-bg" src="{{ asset($firstPhoto) }}" alt="{{ $title }} Background" />
+        @endif
+
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-left">
@@ -143,6 +147,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Table Section -->
     @php
