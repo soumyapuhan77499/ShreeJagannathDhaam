@@ -258,64 +258,28 @@
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script>
-    const swiper = new Swiper(".mySwiper", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        loop: false, // disable loop to show limited slides and scroll
-        slidesPerView: 5,
-        spaceBetween: 30,
-        coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 150,
-            modifier: 2.5,
-            slideShadows: false,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        breakpoints: {
-            0: {
-                slidesPerView: 1.1,
-                centeredSlides: false,
-                spaceBetween: 10,
-            },
-            480: {
-                slidesPerView: 1.5,
-                centeredSlides: false,
-                spaceBetween: 15,
-            },
-            640: {
-                slidesPerView: 2.2,
-                spaceBetween: 20,
-            },
-            768: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-            },
-            1024: {
-                slidesPerView: 5,
-                centeredSlides: false,
-                spaceBetween: 30,
-            },
-            1300: {
-                slidesPerView: 5,
-                centeredSlides: false,
-                spaceBetween: 30,
-            },
-            1500: {
-                slidesPerView: 5,
-                centeredSlides: false,
-                spaceBetween: 30,
-            }
-        }
-    });
-</script>
 
-
+    <script>
+        const swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            loop: true,
+            slidesPerView: 4, // show 7 slides total
+            initialSlide: 3, // make sure the center one is visible initially
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 150,
+                modifier: 2.5,
+                slideShadows: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
 
     {{-- Emergency contact --}}
     <script>
@@ -867,11 +831,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                                <hr class="border-dashed border-gray-300 my-4">
-                                                                                <div class="flex items-start gap-3">
-                                                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                                    <p class="text-gray-800">${data.description}</p>
-                                                                                </div>` : ''}
+                                                                            <hr class="border-dashed border-gray-300 my-4">
+                                                                            <div class="flex items-start gap-3">
+                                                                                <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                                <p class="text-gray-800">${data.description}</p>
+                                                                            </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
