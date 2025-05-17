@@ -21,10 +21,11 @@
 
         <!-- Background Audio -->
 
-        <audio id="backgroundAudio" autoplay loop>
+        <audio id="backgroundAudio" preload="auto" loop muted>
             <source src="{{ asset('website/background.mp3') }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
+
 
         <a href="{{ url('/') }}" class="logo">
             <img src="{{ asset('website/logo.png') }}" alt="logo">
