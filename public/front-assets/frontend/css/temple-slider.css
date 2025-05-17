@@ -140,6 +140,8 @@
     transform: scale(1);
     opacity: 1;
     filter: grayscale(0%);
+     width: 220px;
+    height: 150px;
   }
 
   .swiper-slide .p-3 {
