@@ -532,7 +532,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .quick-service-header {
     display: flex;
     flex-direction: row;
