@@ -117,6 +117,7 @@
       width: 50px;
     }
   }
+
 @media (max-width: 640px) {
   .quick-service-header {
     display: flex;
@@ -139,7 +140,7 @@
   }
 
   .quick-service-header h2 {
-    font-size: 1rem;
+    font-size: 15px;
     font-weight: 600;
     white-space: nowrap;
     color: #db4d30;
