@@ -666,14 +666,14 @@
 
     <section class="temple-convenience">
         <!-- Section Header -->
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 text-center"
-            style="margin-top: -10px;margin-right: 50px">
-            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
-            <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans">
+        <div class="section-header-row flex flex-row justify-center items-center gap-2 sm:gap-5 text-center mt-4 sm:mt-8">
+            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 sm:w-36 h-5">
+            <h2 class="text-base sm:text-2xl text-[#db4d30] font-sans font-semibold whitespace-nowrap">
                 {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
             </h2>
-            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-28 sm:w-36 h-5">
+            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-24 sm:w-36 h-5">
         </div>
+
 
         <!-- First Row: 6 Items -->
         <div class="convenience-container" style="margin-top: 50px;">
