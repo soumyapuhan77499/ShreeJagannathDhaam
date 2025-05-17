@@ -781,7 +781,7 @@
                             alt="{{ $language === 'Odia' ? 'ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand/Railway Station' }}">
                     </div>
                     <p class="mt-2 text-sm font-medium text-gray-800">
-                        {{ $language === 'Odia' ? 'ବସ ଷ୍ଟାଣ୍ଡ / ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand / Railway Station' }}
+                        {{ $language === 'Odia' ? 'ବସ ଷ୍ଟାଣ୍ଡ/ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand/Railway Station' }}
                     </p>
                 </a>
             </div>
