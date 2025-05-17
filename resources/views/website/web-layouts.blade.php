@@ -258,8 +258,7 @@
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
- <script>
+<script>
     const swiper = new Swiper(".mySwiper", {
         effect: "coverflow",
         grabCursor: true,
@@ -301,13 +300,13 @@
                 slidesPerView: 5,
                 centeredSlides: false,
                 spaceBetween: 30,
-            }
-             1300: {
+            },
+            1300: {
                 slidesPerView: 5,
                 centeredSlides: false,
                 spaceBetween: 30,
-            }
-             1500: {
+            },
+            1500: {
                 slidesPerView: 5,
                 centeredSlides: false,
                 spaceBetween: 30,
