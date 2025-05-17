@@ -129,7 +129,7 @@
             $firstPhoto = null;
             if ($services->isNotEmpty()) {
                 $photos = json_decode($services->first()->photo, true);
-                $firstPhoto = $photos[1] ?? null;
+                $firstPhoto = $photos[0] ?? null;
             }
         @endphp
 
