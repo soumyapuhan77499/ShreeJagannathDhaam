@@ -387,21 +387,23 @@
     font-weight: bold;
     color: white;
 }
-
 @media (max-width: 768px) {
-    .banner-sections {
+  .banner-sections {
     flex-direction: column;
     justify-content: flex-start;
-    height: auto; /* Let height be based on content */
+    height: auto;
+    position: relative;
+    width: 100%;
   }
 
-    .banner-video {
+  .banner-video {
     width: 100%;
-    height: 60vh; /* Set height to 60% of viewport */
+    height: 60vh; /* 60% of viewport height */
     position: relative;
     overflow: hidden;
   }
-   .banner-video video {
+
+  .banner-video video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -409,115 +411,123 @@
     top: 0;
     left: 0;
   }
-  
-    .logo {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 80px;
-      z-index: 10;
-    }
-  
-    .logo img {
-      width: 85%;
-      height: auto;
-    margin: 15px;
-    }
 
-    .hamburger-icon {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 40px;
-      height: 24px;
-      z-index: 11;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-  
-    .hamburger-menu .icon {
-      display: block;
-      width: 45px;
-      height: 33px;
-      margin: 4px 0;
-      transition: 0.4s;
-    }
-
-    .nav-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      height: 100vh;
-      width: 80%;
-      background-color: rgba(0, 0, 0, 0.9);
-      z-index: 20;
-      transition: right 0.3s ease-in-out;
-      display: flex;
-      flex-direction: column;
-      padding-top: 60px;
-    }
-  
-    .nav-menu.active {
-      right: 0;
-    }
-  
-    .nav-menu ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-  
-    .nav-menu ul li {
-      margin: 20px 0;
-      text-align: center;
-    }
-  
-    .nav-menu ul li a {
-      color: #fff;
-      font-size: 20px;
-      text-decoration: none;
-    }
-  
-    .nav-close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 28px;
-      color: white;
-      cursor: pointer;
-    }
-  
-    .play-pause-button,
-    .mute-toggle {
-      width: 30px;
-      height: 30px;
-      font-size: 18px;
-    }
-  
-    .play-pause-button {
-      left: 10%;
-    }
-  
-    .mute-toggle {
-      right: 10%;
-    }
-  
-    .banner-content {
-    top: calc(60vh + 20px); /* Push content below video */
-    left: 5%;
-    right: 5%;
+  .banner-content {
+    margin-top: 20px; /* spacing below video */
+    padding: 0 5%;
     text-align: center;
-    position: absolute;
+    position: relative;
     z-index: 10;
   }
 
   .banner-content h2 {
     font-size: 1.2rem;
+    color: #FFD700;
+    margin-bottom: 10px;
   }
 
   .banner-content h1 {
     font-size: 2rem;
+    font-weight: bold;
+    color: white;
   }
-    
+
+  .logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 11;
+  }
+
+  .logo img {
+    width: 80px;
+    height: auto;
+  }
+
+  .hamburger-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 24px;
+    z-index: 11;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hamburger-menu .icon {
+    display: block;
+    width: 45px;
+    height: 33px;
+    margin: 4px 0;
+    transition: 0.4s;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 20;
+    transition: right 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-menu ul li {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .nav-menu ul li a {
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+  }
+
+  .nav-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .play-pause-button,
+  .mute-toggle {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .play-pause-button {
+    bottom: 5%;
+    left: 10%;
+    position: absolute;
+  }
+
+  .mute-toggle {
+    bottom: 5%;
+    right: 10%;
+    position: absolute;
+  }
+
+  .desktop-menu {
+    display: none;
+  }
 }
