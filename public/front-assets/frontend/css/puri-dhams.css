@@ -332,3 +332,29 @@ body {
     height: 4px;
 }
 
+
+@media (max-width: 768px) {
+  .quick-service-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    margin-top: 20px;
+  }
+
+  .quick-service-header img {
+    width: 70px;
+    height: auto;
+  }
+
+  .quick-service-header h2 {
+    font-size: 1rem;
+    text-align: center;
+    color: #db4d30;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+}
+
