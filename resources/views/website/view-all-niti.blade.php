@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         body {
@@ -320,6 +321,13 @@
                 margin-right: 5px;
             }
         }
+
+        .tooltip-inner {
+            max-width: 300px;
+            text-align: left;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
     </style>
 
 </head>
@@ -374,7 +382,9 @@
             @endphp
 
             <div class="timeline-item {{ $side }} {{ $statusClass }}">
-                <div class="timeline-content {{ $side }}">
+                <div class="timeline-content {{ $side }}" data-bs-toggle="tooltip" data-bs-html="true"
+                    title="{{ $language === 'Odia' ? $niti['description'] : $niti['english_description'] }}"
+                    style="cursor: pointer;">
                     <div class="card-header">
                         <div class="niti-title">
                             <h3>
@@ -439,6 +449,16 @@
             </div>
         @endforeach
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
 
 
     @include('partials.website-footer')
