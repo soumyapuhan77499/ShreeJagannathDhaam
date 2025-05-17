@@ -302,6 +302,16 @@
                 centeredSlides: false,
                 spaceBetween: 30,
             }
+             1300: {
+                slidesPerView: 5,
+                centeredSlides: false,
+                spaceBetween: 30,
+            }
+             1500: {
+                slidesPerView: 5,
+                centeredSlides: false,
+                spaceBetween: 30,
+            }
         }
     });
 </script>
