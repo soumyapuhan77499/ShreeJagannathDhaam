@@ -211,7 +211,7 @@
             @endforeach
 
             <!-- View All Niti Card -->
-            <div class="niti-card">
+            <div class="niti-card" id="niti-mobile">
                 <div class="niti-content text-center">
                     <h3 style="font-size: 21px; padding-bottom: 5px;">
                         <a href="{{ route('all.niti') }}">
