@@ -117,21 +117,25 @@
       width: 50px;
     }
   }
-
-  @media (max-width: 640px) {
+@media (max-width: 640px) {
   .quick-service-header {
+    display: flex;
     flex-direction: row !important;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
     width: 100%;
     text-align: center;
+    flex-wrap: nowrap;
   }
 
   .quick-service-header img {
-    width: 70px;
+    width: 60px;
     height: auto;
+    flex-shrink: 0;
   }
 
   .quick-service-header h2 {
@@ -139,7 +143,6 @@
     font-weight: 600;
     white-space: nowrap;
     color: #db4d30;
+    flex-shrink: 0;
   }
 }
-
-  
