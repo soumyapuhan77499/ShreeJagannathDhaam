@@ -89,12 +89,14 @@ public function manageNiti(Request $request)
         })
         ->get();
 
-        $nitiInfo = TempleNews::where('type', 'information')
-        ->where('type','information')
-        ->where('status','active')
-        ->orderBy('created_at', 'desc')
-        ->get(['id', 'niti_notice', 'status'])
-        ->first();
+      
+
+         $nitiInfo = TempleNews::where('type', 'information')
+            ->where('niti_notice_status','Started')
+            ->where('status','active')
+            ->orderBy('created_at', 'desc')
+            ->get(['id', 'niti_notice','created_at'])
+            ->first();
     
         $finalNitiList = [];
 
