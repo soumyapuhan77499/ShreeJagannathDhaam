@@ -664,13 +664,14 @@
 
         <!-- First Row: 6 Items -->
         <div class="convenience-container" style="margin-top: 50px;">
-            <!-- Drinking Water -->
+
+            <!-- Special Abled -->
             <div class="conv">
-                <a href="{{ route('services.byType', 'drinking_water') }}">
-                    <div class="convenience-item" style="margin-left: 7px">
-                        <img src="{{ asset('website/drinkingWater32.png') }}" alt="Water" style="height: 42px">
+                <a href="{{ route('services.abled_person') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/physical21.png') }}" alt="Special Abled">
                     </div>
-                    <p>{{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</p>
+                    <p>{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</p>
                 </a>
             </div>
 
@@ -684,23 +685,13 @@
                 </a>
             </div>
 
-            <!-- Special Abled -->
+            <!-- Life Guards -->
             <div class="conv">
-                <a href="{{ route('services.abled_person') }}">
+                <a href="{{ route('services.byType', 'life_guard_booth') }}">
                     <div class="convenience-item">
-                        <img src="{{ asset('website/physical21.png') }}" alt="Special Abled">
+                        <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
                     </div>
-                    <p>{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</p>
-                </a>
-            </div>
-
-            <!-- Route Map -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'ratha_yatra_mela') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/map.png') }}" alt="Route Map">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ଯାତାୟାତ ମାର୍ଗ' : 'Route Map' }}</p>
+                    <p>{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</p>
                 </a>
             </div>
 
@@ -713,6 +704,18 @@
                     <p>{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</p>
                 </a>
             </div>
+
+
+            <!-- Drinking Water -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'drinking_water') }}">
+                    <div class="convenience-item" style="margin-left: 7px">
+                        <img src="{{ asset('website/drinkingWater32.png') }}" alt="Water" style="height: 42px">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</p>
+                </a>
+            </div>
+
 
             <!-- Toilet -->
             <div class="conv">
@@ -727,6 +730,7 @@
 
         <!-- Second Row: Next 6 Items -->
         <div class="convenience-container mt-6">
+
             <!-- Beach -->
             <div class="conv">
                 <a href="{{ route('services.byType', 'beach') }}">
@@ -737,13 +741,45 @@
                 </a>
             </div>
 
-            <!-- Life Guards -->
+            <!-- ATM -->
             <div class="conv">
-                <a href="{{ route('services.byType', 'life_guard_booth') }}">
+                <a href="{{ route('services.byType', 'atm') }}">
                     <div class="convenience-item">
-                        <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
+                        <img src="{{ asset('website/atm.png') }}" alt="ATM">
                     </div>
-                    <p>{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</p>
+                    <p>{{ $language === 'Odia' ? 'ଏଟିଏମ୍' : 'ATM' }}</p>
+                </a>
+            </div>
+            
+            <!-- Route Map -->
+            <div class="conv">
+                <a href="https://www.google.co.in/maps/place/Shree+Jagannath+ji+Temple+,puri/@19.8051108,85.8158809,780m/data=!3m1!1e3!4m10!1m2!2m1!1spuri+jagannath+temple!3m6!1s0x3a19c50013561771:0xad4b4235186a4124!8m2!3d19.804741!4d85.81789!15sChVwdXJpIGphZ2FubmF0aCB0ZW1wbGVaFyIVcHVyaSBqYWdhbm5hdGggdGVtcGxlkgEMaGluZHVfdGVtcGxlmgEjQ2haRFNVaE5NRzluUzBWS04xcGZkWFpTTkRkeVNWZEJFQUWqAT4QATIfEAEiG3wu8pyG9H18GTedswS-EibRIw6yUk1mse1cVzIZEAIiFXB1cmkgamFnYW5uYXRoIHRlbXBsZeABAPoBBAgAED8!16s%2Fg%2F11y89cqz51?entry=ttu&g_ep=EgoyMDI1MDUxMy4xIKXMDSoASAFQAw%3D%3D"
+                    target="_blank">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/map.png') }}" alt="Route Map">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ଯାତାୟାତ ମାର୍ଗ' : 'Route Map' }}</p>
+                </a>
+            </div>
+
+
+            <!-- Petrol Pump -->
+            <div class="conv">
+                <a href="{{ route('services.byType', 'petrol_pump') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/petrolPump21.png') }}" alt="Petrol Pump">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' }}</p>
+                </a>
+            </div>
+
+            <!-- Railway Station -->
+            <div class="conv">
+                <a href="{{ route('services.station') }}">
+                    <div class="convenience-item">
+                        <img src="{{ asset('website/busRaily.png') }}" alt="Railway Station">
+                    </div>
+                    <p>{{ $language === 'Odia' ? 'ରେଲୱେ ଷ୍ଟେସନ୍' : 'Railway Station' }}</p>
                 </a>
             </div>
 
@@ -757,35 +793,6 @@
                 </a>
             </div>
 
-            <!-- Petrol Pump -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'petrol_pump') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/petrolPump21.png') }}" alt="Petrol Pump">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' }}</p>
-                </a>
-            </div>
-
-            <!-- ATM -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'atm') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/atm.png') }}" alt="ATM">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ଏଟିଏମ୍' : 'ATM' }}</p>
-                </a>
-            </div>
-
-            <!-- Railway Station -->
-            <div class="conv">
-                <a href="{{ route('services.station') }}">
-                    <div class="convenience-item">
-                        <img src="{{ asset('website/busRaily.png') }}" alt="Railway Station">
-                    </div>
-                    <p>{{ $language === 'Odia' ? 'ରେଲୱେ ଷ୍ଟେସନ୍' : 'Railway Station' }}</p>
-                </a>
-            </div>
         </div>
 
     </section>
