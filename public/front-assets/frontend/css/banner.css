@@ -390,16 +390,25 @@
 
 @media (max-width: 768px) {
     .banner-sections {
-      flex-direction: column;
-      justify-content: flex-start;
-      height: 60vh;
-    }
-  
-    .banner-video video {
-      object-fit: cover;
-      width: 100%;
-      height: 60%;
-    }
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto; /* Let height be based on content */
+  }
+
+    .banner-video {
+    width: 100%;
+    height: 60vh; /* Set height to 60% of viewport */
+    position: relative;
+    overflow: hidden;
+  }
+   .banner-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   
     .logo {
       position: absolute;
@@ -495,24 +504,20 @@
     }
   
     .banner-content {
-      top: 25%;
-      left: 5%;
-      right: 5%;
-      text-align: center;
-      position: absolute;
-      z-index: 10;
-    }
-  
-    .banner-content h2 {
-      font-size: 1.2rem;
-    }
-  
-    .banner-content h1 {
-      font-size: 2rem;
-    }
+    top: calc(60vh + 20px); /* Push content below video */
+    left: 5%;
+    right: 5%;
+    text-align: center;
+    position: absolute;
+    z-index: 10;
+  }
 
-    .desktop-menu {
-        display: none;
-      }
+  .banner-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .banner-content h1 {
+    font-size: 2rem;
+  }
     
 }
