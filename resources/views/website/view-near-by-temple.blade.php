@@ -389,18 +389,22 @@
             <h2 class="text-2xl font-bold text-[#b31e25] mb-4">{{ $temple->name }}</h2>
 
             <div class="tab-buttons">
-                <button class="tab-link active" onclick="showTab(event, 'details')">
+
+                  <button class="tab-link active" onclick="showTab(event, 'gallery')">
+                    <i class="fa fa-images"></i> Photo Gallery
+                </button>
+
+                <button class="tab-link" onclick="showTab(event, 'address')">
+                    <i class="fa fa-map-marker-alt"></i> Address
+                </button>
+              
+                {{-- <button class="tab-link " onclick="showTab(event, 'details')">
                     <i class="fa fa-info-circle"></i> Temple Details
                 </button>
                 <button class="tab-link" onclick="showTab(event, 'history')">
                     <i class="fa fa-book"></i> History
-                </button>
-                <button class="tab-link" onclick="showTab(event, 'address')">
-                    <i class="fa fa-map-marker-alt"></i> Address
-                </button>
-                <button class="tab-link" onclick="showTab(event, 'gallery')">
-                    <i class="fa fa-images"></i> Photo Gallery
-                </button>
+                </button> --}}
+                
             </div>
 
             <div id="address" class="tab-content">
@@ -424,7 +428,7 @@
             </div>
 
 
-            <div id="history" class="tab-content">
+            {{-- <div id="history" class="tab-content">
                 <p>{{ $temple->history ?? 'No historical data available.' }}</p>
                 <p>{{ $temple->description ?? 'No description available.' }}</p>
 
@@ -457,7 +461,7 @@
                         <li><strong>Priest Contact:</strong> {{ $temple->priest_contact_no }}</li>
                     @endif
                 </ul>
-            </div>
+            </div> --}}
 
             <div id="gallery" class="tab-content">
                 @php
