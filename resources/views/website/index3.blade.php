@@ -179,7 +179,7 @@
                                     $formattedTime = \Carbon\Carbon::parse($startTime)->format('h:i A');
                                 @endphp
 
-                                {{ $language === 'Odia' ? convertToOdiaTime($formattedTime) : $formattedTime }}
+                                {{ $language === 'Odia' ? convertToOdiaTime($formattedTime) }}
                             @endif
                         </p>
 
