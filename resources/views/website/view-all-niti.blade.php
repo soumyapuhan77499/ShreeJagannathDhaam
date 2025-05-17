@@ -383,8 +383,9 @@
 
             <div class="timeline-item {{ $side }} {{ $statusClass }}">
                 <div class="timeline-content {{ $side }}" data-bs-toggle="tooltip" data-bs-html="true"
-                    title="{{ $language === 'Odia' ? $niti['description'] : $niti['english_description'] }}"
+                    title="{{ $language === 'Odia' ? $niti['description'] ?? 'ବର୍ଣ୍ଣନା ଉପଲବ୍ଧ ନାହିଁ' : $niti['english_description'] ?? 'No description available' }}"
                     style="cursor: pointer;">
+
                     <div class="card-header">
                         <div class="niti-title">
                             <h3>
