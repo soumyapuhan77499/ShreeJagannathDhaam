@@ -399,7 +399,7 @@
 
   .banner-video {
     width: 100%;
-    height: 82vh; /* 75% of viewport height */
+    height: 75vh; /* 75% of viewport height */
     position: relative;
     overflow: hidden;
   }

@@ -327,7 +327,6 @@ class QuickServiceController extends Controller
             ], 500);
         }
     }
-    
 
     public function getDarshan()
     {
