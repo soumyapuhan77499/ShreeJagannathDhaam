@@ -689,7 +689,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/physical21.png') }}" alt="Special Abled">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ବିଶେଷ <br>ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special<br> Abled Person' !!}</p>
                 </a>
             </div>
 
