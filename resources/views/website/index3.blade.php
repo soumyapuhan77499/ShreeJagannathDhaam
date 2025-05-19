@@ -689,7 +689,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/physical21.png') }}" alt="Special Abled">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{{!! $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' !! }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{{!! $language === 'Odia' ? 'ବିଶେଷ  <br>ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special <br> Abled Person' !! }}</p>
                 </a>
             </div>
 
@@ -699,7 +699,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/ph.png') }}" alt="Emergency">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{{!!  $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ' : 'Emergency' !! }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{{!!  $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ <br> ଯୋଗାଯୋଗ' : 'Emergency' !! }}</p>
                 </a>
             </div>
 
@@ -709,7 +709,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{{!!  $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' !! }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{{!!  $language === 'Odia' ? 'ଲାଇଫ  <br>ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life <br> Guards' !! }}</p>
                 </a>
             </div>
 
@@ -719,7 +719,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/lost.png') }}" alt="Lost and Found">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{{ !!  $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' !!  }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{{ !!  $language === 'Odia' ? 'ହଜିବା ଓ  <br> ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost  <br>& Found' !!  }}</p>
                 </a>
             </div>
 
@@ -777,7 +777,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/map.png') }}" alt="Route Map">
                     </div>
-                    <p>{{!!  $language === 'Odia' ? 'ଯାତାୟାତ ମାର୍ଗ' : 'Route Map' !! }}</p>
+                    <p>{{!!  $language === 'Odia' ? 'ଯାତାୟାତ <br> ମାର୍ଗ' : 'Route <br> Map' !! }}</p>
                 </a>
             </div>
 
@@ -788,7 +788,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/petrolPump21.png') }}" alt="Petrol Pump">
                     </div>
-                    <p>{{!!  $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' !! }}</p>
+                    <p>{{ !!  $language === 'Odia' ? 'ପେଟ୍ରୋଲ <br> ପମ୍ପ' : 'Petrol <br> Pump' !! }}</p>
                 </a>
             </div>
 
@@ -800,7 +800,7 @@
                             alt="{{ $language === 'Odia' ? 'ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand/Railway Station' }}">
                     </div>
                     <p class="mt-2 text-sm font-medium text-gray-800">
-                        {{!!  $language === 'Odia' ? 'ବସ ଷ୍ଟାଣ୍ଡ/ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand/Railway Station' !! }}
+                        {{  $language === 'Odia' ? 'ବସ ଷ୍ଟାଣ୍ଡ/ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand/Railway Station' }}
                     </p>
                 </a>
             </div>
@@ -811,7 +811,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/charghingstation89.png') }}" alt="Charging Station">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{{!!  $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' !! }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{{ !! $language === 'Odia' ? 'ଚାର୍ଜିଂ <br> ସ୍ଟେସନ୍' : 'Charging <br> Station' !! }}</p>
                 </a>
             </div>
 
