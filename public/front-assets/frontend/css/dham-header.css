@@ -224,113 +224,120 @@ body {
     right: 20px;
     z-index: 1;
   }
-.mobile-nav {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 280px;
-  height: 100%;
-  background: linear-gradient(135deg, #FFA726, #F06292);
-  transition: right 0.4s ease;
-  z-index: 1050;
-  overflow-y: auto;
-  padding: 30px 20px;
-}
 
-.mobile-nav.active {
-  right: 0;
-}
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100%;
+    background: linear-gradient(135deg, #FFA726, #F06292);
+    transition: right 0.4s ease;
+    z-index: 1050;
+    overflow-y: auto;
+    padding: 30px 20px;
+  }
 
-.mobile-nav ul {
-  list-style: none;
-  margin-top: 60px;
-  padding: 0;
-}
+  .mobile-nav.active {
+    right: 0;
+  }
 
-.mobile-nav ul li {
-  margin-bottom: 10px;
-}
+  .mobile-nav ul {
+    list-style: none;
+    margin-top: 60px;
+    padding: 0;
+  }
 
-.mobile-nav ul li a {
-  color: #fff;
-  font-size: 18px;
-  text-decoration: none;
-  font-weight: 600;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: color 0.3s ease;
-}
+  .mobile-nav ul li {
+    margin-bottom: 10px;
+  }
 
-.mobile-nav ul li a:hover {
-  color: #ffe;
-}
+  .mobile-nav ul li a {
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease;
+  }
 
-/* Chevron icon */
-.submenu-toggle .fa-chevron-down {
-  font-size: 12px;
-  transition: transform 0.3s;
-}
+  .mobile-nav ul li a:hover {
+    color: #ffe;
+  }
 
-.has-submenu.active .submenu-toggle .fa-chevron-down {
-  transform: rotate(180deg);
-}
-.has-submenu {
-  position: relative;
-}
+  .submenu-toggle .fa-chevron-down {
+    font-size: 12px;
+    transition: transform 0.3s;
+  }
 
-/* Submenu slides in from the left side of screen */
-.has-submenu .submenu {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  width: 260px;
-  height: 100%;
-  background: linear-gradient(135deg, #F06292, #FFA726);
-  z-index: 1060;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  padding: 30px 20px;
-  transition: left 0.4s ease;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
-}
+  .has-submenu.active .submenu-toggle .fa-chevron-down {
+    transform: rotate(180deg);
+  }
 
-/* Show submenu when parent is active */
-.has-submenu.active .submenu {
-  left: 0;
-}
+  .has-submenu {
+    position: relative;
+  }
 
-/* Submenu item styles */
-.has-submenu .submenu li {
-  margin-bottom: 10px;
-}
+  .has-submenu .submenu {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    width: 220px;
+    background: linear-gradient(135deg, #FFA726, #F06292);
+    border-radius: 8px 0 0 8px;
+    padding: 10px 0;
+    box-shadow: -2px 0 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    margin-top: 150px;
+  }
 
-.has-submenu .submenu li a {
-  color: #fff;
-  font-size: 16px;
-  padding: 10px;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: background 0.3s;
-}
+  .has-submenu.active .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
 
-.has-submenu .submenu li a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #ffe;
-}
+  .has-submenu .submenu li {
+    margin: 0;
+    padding: 0;
+  }
 
-.nav-close {
-  font-size: 26px;
-  color: #fff;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-}
+  .has-submenu .submenu li a {
+    color: #fff;
+    padding: 10px 15px;
+    display: block;
+    font-size: 16px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+  }
 
+  .has-submenu .submenu li:last-child a {
+    border-bottom: none;
+  }
+
+  .has-submenu .submenu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffe;
+  }
+
+  .nav-close {
+    font-size: 26px;
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
 }
 
 .has-submenu.active .submenu-toggle .fa-chevron-down {
