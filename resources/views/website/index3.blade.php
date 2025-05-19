@@ -730,7 +730,8 @@
                     <div class="convenience-item" style="margin-left: 7px">
                         <img src="{{ asset('website/drinkingWater32.png') }}" alt="Water" style="height: 42px">
                     </div>
-                    <p>{{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</p>
+                   <p>{!! $language === 'Odia' ? 'ପାନୀୟ <br> ଜଳ' : 'Drinking<br>Water' !!}</p>
+
                 </a>
             </div>
 
