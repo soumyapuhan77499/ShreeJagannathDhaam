@@ -63,8 +63,54 @@
   color: #4a4a4a;
   line-height: 1.3;
 }
+/* ✅ General Layout Improvements */
+.convenience-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 40px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
 
-/* ✅ Tablet Responsive (4 columns) */
+.conv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 90px;
+}
+
+.convenience-item {
+  background: #fcecee;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.convenience-item img {
+  max-width: 36px;
+  max-height: 36px;
+  object-fit: contain;
+}
+
+.convenience-item:hover {
+  transform: scale(1.1);
+}
+
+.conv p {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a4a4a;
+  line-height: 1.3;
+}
+
+/* ✅ Tablet (4 Columns) */
 @media (max-width: 1024px) {
   .convenience-container {
     grid-template-columns: repeat(4, 1fr);
@@ -72,7 +118,7 @@
   }
 }
 
-/* ✅ Mobile Responsive (3 columns) */
+/* ✅ Mobile (3 Columns) */
 @media (max-width: 768px) {
   .convenience-container {
     grid-template-columns: repeat(3, 1fr);
@@ -85,26 +131,41 @@
   }
 
   .convenience-item img {
-    max-width: 36px;
-    max-height: 36px;
+    max-width: 30px;
+    max-height: 30px;
   }
 
   .conv p {
-    font-size: 13px;
+    font-size: 12.5px;
+    line-height: 1.2;
   }
 }
 
-/* ✅ Very Small Mobile (2 columns) */
+/* ✅ Small Mobile (2 Columns) */
 @media (max-width: 480px) {
   .convenience-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px 10px;
+    gap: 20px 12px;
+  }
+
+  .convenience-item {
+    width: 55px;
+    height: 55px;
+  }
+
+  .convenience-item img {
+    max-width: 28px;
+    max-height: 28px;
   }
 
   .conv p {
     font-size: 12px;
+    line-height: 1.1;
   }
-}@media (max-width: 640px) {
+}
+
+/* ✅ Very Small Mobile - Header Fix */
+@media (max-width: 640px) {
   .quick-service-header {
     display: flex;
     flex-direction: row;
@@ -119,7 +180,7 @@
   }
 
   .quick-service-header img {
-    width: 50px;
+    width: 45px;
     height: auto;
     flex-shrink: 0;
   }
@@ -132,3 +193,4 @@
     line-height: 1.2;
   }
 }
+
