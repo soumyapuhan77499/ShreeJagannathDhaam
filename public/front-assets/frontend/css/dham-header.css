@@ -210,7 +210,8 @@ body {
   right: 20px;
   cursor: pointer;
 }
-/* ========= Mobile Navigation Menu ========== */
+
+/* ========== Mobile Nav Enhancements ========== */
 @media (max-width: 768px) {
   .desktop-menu {
     display: none;
@@ -221,122 +222,116 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    z-index: 1100;
-    cursor: pointer;
+    z-index: 1;
   }
-
-  .mobile-nav {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100%;
-    background: linear-gradient(135deg, #FFA726, #F06292);
-    transition: right 0.4s ease;
-    z-index: 1050;
-    overflow-y: auto;
-    padding: 30px 20px;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
-  }
-
-  .mobile-nav.active {
-    right: 0;
-  }
-
-  .mobile-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 60px 0 0;
-  }
-
-  .mobile-nav ul li {
-    margin-bottom: 12px;
-  }
-
-  .mobile-nav ul li a {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-radius: 8px;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-
-  .mobile-nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.15);
-    color: #fffde7;
-  }
-
-  .submenu-toggle .fa-chevron-down {
-    font-size: 14px;
-    transition: transform 0.3s;
-  }
-
-  .has-submenu.active .submenu-toggle .fa-chevron-down {
-    transform: rotate(180deg);
-  }
-
-  .has-submenu {
-    position: relative;
-  }
-
-  .has-submenu .submenu {
-    position: absolute;
-    top: 0;
-    right: 100%;
-    width: 220px;
-    background: linear-gradient(135deg, #FFA726, #F06292);
-    border-radius: 8px 0 0 8px;
-    padding: 10px 0;
-    box-shadow: -2px 0 6px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-10px);
-    transition: all 0.3s ease;
-    margin-top: 140px;
-    white-space: nowrap;
-  }
-
-  .has-submenu.active .submenu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0);
-  }
-
-  .has-submenu .submenu li a {
-    color: #fff;
-    padding: 10px 15px;
-    display: block;
-    font-size: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: transparent;
-  }
-
-  .has-submenu .submenu li:last-child a {
-    border-bottom: none;
-  }
-
-  .has-submenu .submenu li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #fffde7;
-  }
-
-  .nav-close {
-    font-size: 26px;
-    color: #fff;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-  }
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100%;
+  background: linear-gradient(135deg, #FFA726, #F06292);
+  transition: right 0.4s ease;
+  z-index: 1050;
+  overflow-y: auto;
+  padding: 30px 20px;
 }
 
+.mobile-nav.active {
+  right: 0;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  margin-top: 60px;
+  padding: 0;
+}
+
+.mobile-nav ul li {
+  margin-bottom: 10px;
+}
+
+.mobile-nav ul li a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav ul li a:hover {
+  color: #ffe;
+}
+
+/* Chevron icon */
+.submenu-toggle .fa-chevron-down {
+  font-size: 12px;
+  transition: transform 0.3s;
+}
+
+.has-submenu.active .submenu-toggle .fa-chevron-down {
+  transform: rotate(180deg);
+}
+
+.has-submenu {
+  position: relative;
+}
+
+/* === UPDATED Submenu (drop-down below parent) === */
+.has-submenu .submenu {
+  display: none;
+  flex-direction: column;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding-left: 10px;
+}
+
+.has-submenu.active .submenu {
+  display: flex;
+}
+
+.has-submenu .submenu li {
+  margin: 0;
+}
+
+.has-submenu .submenu li a {
+  display: block;
+  padding: 10px 15px;
+  text-align: left;
+  font-size: 16px;
+  color: #f5f5f5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: transparent;
+}
+
+.has-submenu .submenu li:last-child a {
+  border-bottom: none;
+}
+
+.has-submenu .submenu li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffe;
+}
+
+.nav-close {
+  font-size: 26px;
+  color: #fff;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+}
 
 .has-submenu.active .submenu-toggle .fa-chevron-down {
   transform: rotate(180deg);

@@ -56,7 +56,7 @@
                 </li>
 
                 <li>
-                    <a href="#">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a>
+                    <a href="{{url('/view-all-niti')}}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a>
                 </li>
 
                 <!-- Quick Services -->

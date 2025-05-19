@@ -1,6 +1,13 @@
 <!-- Ionicons for Hamburger -->
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            toggle.parentElement.classList.toggle('active');
+        });
+    });
+</script>
 <!-- HEADER -->
 @php
     use App\Models\NearByTemple;
@@ -20,7 +27,7 @@
         <!-- Desktop Menu -->
         <nav class="nav-menu desktop-menu">
             <ul>
-                <li><a href="#">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
+                <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
 
                 <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
@@ -130,7 +137,7 @@
     <nav class="nav-menu mobile-nav" id="mobileNav">
         <div class="nav-close" onclick="closeMobileMenu()"><i class="fa fa-times"></i></div>
         <ul>
-            <li><a href="#">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
+            <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
 
             <li class="has-submenu">
                 <a href="javascript:void(0)" class="submenu-toggle">
