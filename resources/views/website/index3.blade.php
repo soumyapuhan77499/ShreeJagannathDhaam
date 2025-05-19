@@ -699,7 +699,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/ph.png') }}" alt="Emergency">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ' : 'Emergency' }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ <br>ଯୋଗାଯୋଗ' : 'Emergency' !!}</p>
                 </a>
             </div>
 
@@ -709,7 +709,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ଲାଇଫ <br> ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life<br> Guards' !!}</p>
                 </a>
             </div>
 
@@ -719,7 +719,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/lost.png') }}" alt="Lost and Found">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ହଜିବା ଓ<br> ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost &<br> Found' !!}</p>
                 </a>
             </div>
 
