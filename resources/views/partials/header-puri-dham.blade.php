@@ -20,7 +20,7 @@
         <!-- Desktop Menu -->
         <nav class="nav-menu desktop-menu">
             <ul>
-                <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
+                <li><a href="{{url('/view-all-niti')}}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
 
                 <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
@@ -130,17 +130,8 @@
     <nav class="nav-menu mobile-nav" id="mobileNav">
         <div class="nav-close" onclick="closeMobileMenu()"><i class="fa fa-times"></i></div>
         <ul>
-            <li class="has-submenu">
-                <a href="javascript:void(0)" class="submenu-toggle">
-                    {{ $language === 'Odia' ? 'ଭାଷା' : 'Language' }}
-                    <i class="fa fa-chevron-down ms-2"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="{{ url('/lang/Odia') }}">ଓଡ଼ିଆ</a></li>
-                    <li><a href="{{ url('/lang/English') }}">English</a></li>
-                </ul>
-            </li>
-            <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
+                
+            <li><a  href="{{url('/view-all-niti')}}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
 
             <li class="has-submenu">
                 <a href="javascript:void(0)" class="submenu-toggle">
