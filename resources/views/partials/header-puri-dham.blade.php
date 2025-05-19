@@ -8,21 +8,11 @@
     toggles.forEach(toggle => {
       toggle.addEventListener("click", () => {
         const parent = toggle.closest(".has-submenu");
-
-        // Close all other submenus
-        document.querySelectorAll(".has-submenu").forEach(item => {
-          if (item !== parent) {
-            item.classList.remove("active");
-          }
-        });
-
-        // Toggle current submenu
         parent.classList.toggle("active");
       });
     });
   });
 </script>
-
 
 <!-- HEADER -->
 @php
