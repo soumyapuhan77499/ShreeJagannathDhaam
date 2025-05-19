@@ -149,6 +149,7 @@
     line-height: 1.2;
   }
 }
+
 @media (max-width: 480px) {
   .convenience-container {
     grid-template-columns: repeat(2, 1fr);
