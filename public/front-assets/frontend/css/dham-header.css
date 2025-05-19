@@ -265,17 +265,16 @@ body {
 
 .mobile-nav ul li a:hover {
   color: #ffe;
-}
-.has-submenu {
-  position: relative;
+}.has-submenu {
+  position: static; /* Important so submenu can take full screen */
 }
 
-/* Submenu slides in from the left side of screen */
+/* Submenu as left overlay */
 .has-submenu .submenu {
   position: fixed;
   top: 0;
   left: -100%;
-  width: 260px;
+  width: 100%; /* Optional: make full screen or 260px */
   height: 100%;
   background: linear-gradient(135deg, #F06292, #FFA726);
   z-index: 1060;
@@ -287,10 +286,10 @@ body {
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Show submenu when parent is active */
 .has-submenu.active .submenu {
   left: 0;
 }
+
 
 /* Submenu item styles */
 .has-submenu .submenu li {

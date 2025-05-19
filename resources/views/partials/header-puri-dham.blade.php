@@ -3,14 +3,38 @@
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".submenu-toggle").forEach(toggle => {
+    const toggles = document.querySelectorAll(".submenu-toggle");
+
+    toggles.forEach(toggle => {
       toggle.addEventListener("click", () => {
+        // Close all open submenus first
+        document.querySelectorAll('.has-submenu').forEach(item => {
+          item.classList.remove('active');
+        });
+
+        // Open the clicked submenu
         const parent = toggle.closest(".has-submenu");
-        parent.classList.toggle("active");
+        parent.classList.add("active");
       });
+    });
+
+    // Optional: Add a way to go back or close submenu
+    document.querySelectorAll('.submenu').forEach(submenu => {
+      const backButton = document.createElement('div');
+      backButton.innerHTML = '← Back';
+      backButton.style.padding = '10px 15px';
+      backButton.style.cursor = 'pointer';
+      backButton.style.color = '#fff';
+      backButton.style.fontWeight = 'bold';
+      backButton.style.borderBottom = '1px solid rgba(255,255,255,0.2)';
+      backButton.addEventListener('click', () => {
+        submenu.parentElement.classList.remove('active');
+      });
+      submenu.prepend(backButton);
     });
   });
 </script>
+
 
 
 <!-- HEADER -->
