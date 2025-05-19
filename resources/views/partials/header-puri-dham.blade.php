@@ -12,7 +12,6 @@
   });
 </script>
 
-
 <!-- HEADER -->
 @php
     use App\Models\NearByTemple;
