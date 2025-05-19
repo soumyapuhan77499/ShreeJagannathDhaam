@@ -2,12 +2,14 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
-    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
-        toggle.addEventListener('click', () => {
-            toggle.parentElement.classList.toggle('active');
-        });
+  document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const parent = toggle.closest('.has-submenu');
+      parent.classList.toggle('active');
     });
+  });
 </script>
+
 <!-- HEADER -->
 @php
     use App\Models\NearByTemple;
@@ -138,7 +140,7 @@
         <div class="nav-close" onclick="closeMobileMenu()"><i class="fa fa-times"></i></div>
         <ul>
             <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
-
+           
             <li class="has-submenu">
                 <a href="javascript:void(0)" class="submenu-toggle">
                     {{ $language === 'Odia' ? 'ତ୍ଵରିତ ସେବା' : 'Quick Services' }}
