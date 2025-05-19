@@ -804,13 +804,13 @@
                 </a>
             </div>
 
-            <!-- Charging Station -->
-            <div class="conv">
-                <a href="{{ route('services.byType', 'charging_station') }}">
+          
+             <div class="conv">
+                <a href="{{ route('services.byType', 'petrol_pump') }}">
                     <div class="convenience-item">
-                        <img src="{{ asset('website/charghingstation89.png') }}" alt="Charging Station">
+                        <img src="{{ asset('website/charghingstation89.png') }}" alt="Petrol Pump">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</p>
+                    <p>{{ $language === 'Odia' ?'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' :  'Charging Station' }}</p>
                 </a>
             </div>
 
