@@ -273,9 +273,9 @@ body {
 /* Submenu slides in from the left side of screen */
 .has-submenu .submenu {
   position: fixed;
-  top: 10%;
+  top: 0;
   left: -100%;
-  width: 200px;
+  width: 260px;
   height: 100%;
   background: linear-gradient(135deg, #F06292, #FFA726);
   z-index: 1060;
