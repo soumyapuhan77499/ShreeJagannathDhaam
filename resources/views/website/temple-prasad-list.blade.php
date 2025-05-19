@@ -223,7 +223,7 @@
 
             .timeline-item::after,
             .timeline-item.right::after {
-                left: 10px;
+                left: -9px;
                 top: 30px;
                 transform: none;
             }
