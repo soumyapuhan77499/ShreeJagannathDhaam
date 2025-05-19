@@ -808,9 +808,9 @@
             <div class="conv">
                 <a href="{{ route('services.byType', 'charging_station') }}">
                     <div class="convenience-item">
-                        <img src="{{ asset('website/busRaily.png') }}" alt="Charging Station">
+                        <img src="{{ asset('website/charghingstation89.png') }}" alt="Charging Station">
                     </div>
-                    <p>{{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</p>
                 </a>
             </div>
 
