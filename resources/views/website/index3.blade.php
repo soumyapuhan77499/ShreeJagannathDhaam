@@ -414,7 +414,6 @@
     <section class="services-section py-10">
         <!-- Section Title -->
       
-
         <div class="section-header-row flex flex-row justify-center items-center gap-2 sm:gap-5 text-center mt-4 sm:mt-8 mb-14"
             style="margin-left: -40px;">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 sm:w-36 h-5">
@@ -629,12 +628,14 @@
     <section class="temple-slider bg-white  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
 
         <div class="flex justify-center items-center gap-5 mt-12">
-            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
+            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 h-4">
             <h2 class="text-xl text-[#db4d30] font-semibold">
                 {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ଧାର୍ମିକ ସ୍ଥଳ' : 'Nearby Temples' }}
             </h2>
-            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-36 h-5">
+            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-24 h-4">
         </div>
+
+       
 
         <div class="swiper mySwiper mt-12">
             <div class="swiper-wrapper">
