@@ -129,9 +129,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 30px 20px;
   }
-}
-
-/* ✅ Mobile (3 Columns) */
+}/* ✅ Mobile (3 Columns) */
 @media (max-width: 768px) {
   .convenience-container {
     grid-template-columns: repeat(3, 1fr);
@@ -150,10 +148,17 @@
 
   .conv p {
     font-size: 12.5px;
-    line-height: 1.2;
+    line-height: 1.3;
+    text-align: center;
+    max-width: 80px;
+    min-height: 2.6em; /* Ensures consistent text height for alignment */
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
   }
 }
 
+/* ✅ Very Small Mobile (2 Columns) */
 @media (max-width: 480px) {
   .convenience-container {
     grid-template-columns: repeat(2, 1fr);
@@ -162,6 +167,7 @@
 
   .conv {
     min-height: 120px;
+    align-items: center;
   }
 
   .convenience-item {
@@ -176,12 +182,17 @@
 
   .conv p {
     font-size: 12px;
-    min-height: 2.5em;
+    line-height: 1.2;
+    text-align: center;
+    max-width: 80px;
+    min-height: 2.6em;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
   }
 }
 
-
-/* ✅ Very Small Mobile - Header Fix */
+/* ✅ Header Fix for Small Screens */
 @media (max-width: 640px) {
   .quick-service-header {
     display: flex;
@@ -210,4 +221,3 @@
     line-height: 1.2;
   }
 }
-
