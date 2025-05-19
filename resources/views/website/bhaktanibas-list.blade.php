@@ -5,75 +5,74 @@
     <meta charset="UTF-8">
     <title>Bhakta Niwas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/web-service.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
     <style>
-       @media (max-width: 768px) {
-  .service-grid {
-    grid-template-columns: 1fr;
-  }
+        @media (max-width: 768px) {
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
 
-  .service-card-bhakta {
-    padding: 12px;
-  }
+            .service-card-bhakta {
+                padding: 12px;
+            }
 
-  .service-card-bhakta h5 {
-    font-size: 16px;
-  }
+            .service-card-bhakta h5 {
+                font-size: 16px;
+            }
 
-  .image-section {
-    height: 200px;
-  }
+            .image-section {
+                height: 200px;
+            }
 
-  .thumbnail {
-    width: 45px;
-    height: 45px;
-  }
+            .thumbnail {
+                width: 45px;
+                height: 45px;
+            }
 
-  .info-line {
-    font-size: 13px;
-    line-height: 1.4;
-  }
+            .info-line {
+                font-size: 13px;
+                line-height: 1.4;
+            }
 
-  .service-info {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+            .service-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-  .booking-btn {
-    width: 100%;
-    text-align: center;
-    margin-top: 12px;
-  }
-}
+            .booking-btn {
+                width: 100%;
+                text-align: center;
+                margin-top: 12px;
+            }
+        }
 
-/* ✅ Extra Small Devices */
-@media (max-width: 480px) {
-  .image-section {
-    height: 180px;
-  }
+        /* ✅ Extra Small Devices */
+        @media (max-width: 480px) {
+            .image-section {
+                height: 180px;
+            }
 
-  .service-card-bhakta {
-    padding: 10px;
-  }
+            .service-card-bhakta {
+                padding: 10px;
+            }
 
-  .thumbnail {
-    width: 40px;
-    height: 40px;
-  }
+            .thumbnail {
+                width: 40px;
+                height: 40px;
+            }
 
-  .info-line {
-    font-size: 12.5px;
-  }
+            .info-line {
+                font-size: 12.5px;
+            }
 
-  .booking-btn {
-    font-size: 13px;
-    padding: 10px;
-  }
-}
+            .booking-btn {
+                font-size: 13px;
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -161,7 +160,7 @@
                             @endif
                         </div>
 
-                        <div >
+                        <div>
                             <a href="tel:{{ $item->contact_no }}">
                                 <button class="booking-btn">Call to Book</button>
                             </a>
