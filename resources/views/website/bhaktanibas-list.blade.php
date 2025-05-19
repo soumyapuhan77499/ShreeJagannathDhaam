@@ -11,30 +11,69 @@
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
     <style>
-        @media (max-width: 768px) {
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
+       @media (max-width: 768px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
 
-            .service-card-bhakta {
-                padding: 12px;
-            }
+  .service-card-bhakta {
+    padding: 12px;
+  }
 
-            .service-info {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+  .service-card-bhakta h5 {
+    font-size: 16px;
+  }
 
-            .booking-btn {
-                width: 100%;
-                text-align: center;
-                margin-top: 12px;
-            }
+  .image-section {
+    height: 200px;
+  }
 
-            .thumbnail-section {
-                justify-content: start;
-            }
-        }
+  .thumbnail {
+    width: 45px;
+    height: 45px;
+  }
+
+  .info-line {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .service-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .booking-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 12px;
+  }
+}
+
+/* ✅ Extra Small Devices */
+@media (max-width: 480px) {
+  .image-section {
+    height: 180px;
+  }
+
+  .service-card-bhakta {
+    padding: 10px;
+  }
+
+  .thumbnail {
+    width: 40px;
+    height: 40px;
+  }
+
+  .info-line {
+    font-size: 12.5px;
+  }
+
+  .booking-btn {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
     </style>
 </head>
 
