@@ -2,13 +2,27 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
-  document.querySelectorAll('.submenu-toggle').forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const parent = toggle.closest('.has-submenu');
-      parent.classList.toggle('active');
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggles = document.querySelectorAll(".submenu-toggle");
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener("click", () => {
+        const parent = toggle.closest(".has-submenu");
+
+        // Close all other submenus
+        document.querySelectorAll(".has-submenu").forEach(item => {
+          if (item !== parent) {
+            item.classList.remove("active");
+          }
+        });
+
+        // Toggle current submenu
+        parent.classList.toggle("active");
+      });
     });
   });
 </script>
+
 
 <!-- HEADER -->
 @php
