@@ -130,7 +130,7 @@
     <nav class="nav-menu mobile-nav" id="mobileNav">
         <div class="nav-close" onclick="closeMobileMenu()"><i class="fa fa-times"></i></div>
         <ul>
-                
+                  <li><a href="{{url('/puri-dham')}}">{{ $language === 'Odia' ? 'Home' : 'Home' }}</a></li>
             <li><a  href="{{url('/view-all-niti')}}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
 
             <li class="has-submenu">
@@ -215,7 +215,7 @@
                 </ul>
             </li>
 
-            <li><a href="#panji">{{ $language === 'Odia' ? 'ପଞ୍ଜି' : 'Panji' }}</a></li>
+          
         </ul>
     </nav>
 </header>
