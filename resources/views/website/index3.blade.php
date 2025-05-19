@@ -413,7 +413,7 @@
 
     <section class="services-section py-10">
         <!-- Section Title -->
-      
+
         <div class="section-header-row flex flex-row justify-center items-center gap-2 sm:gap-5 text-center mt-4 sm:mt-8 mb-14"
             style="margin-left: -40px;">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 sm:w-36 h-5">
@@ -635,7 +635,7 @@
             <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-24 h-4">
         </div>
 
-       
+
 
         <div class="swiper mySwiper mt-12">
             <div class="swiper-wrapper">
@@ -780,16 +780,16 @@
                 </a>
             </div>
 
-
-            <!-- Petrol Pump -->
+            <!-- Charging Station -->
             <div class="conv">
-                <a href="{{ route('services.byType', 'petrol_pump') }}">
+                <a href="{{ route('services.byType', 'charging_station') }}">
                     <div class="convenience-item">
-                        <img src="{{ asset('website/petrolPump21.png') }}" alt="Petrol Pump">
+                        <img src="{{ asset('website/charghingstation89.png') }}" alt="Charging Station">
                     </div>
-                    <p>{{ $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' }}</p>
+                    <p>{{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</p>
                 </a>
             </div>
+
 
             <!-- Railway Station -->
             <div class="conv">
@@ -804,13 +804,13 @@
                 </a>
             </div>
 
-            <!-- Charging Station -->
+            <!-- Petrol Pump -->
             <div class="conv">
-                <a href="{{ route('services.byType', 'charging_station') }}">
+                <a href="{{ route('services.byType', 'petrol_pump') }}">
                     <div class="convenience-item">
-                        <img src="{{ asset('website/charghingstation89.png') }}" alt="Charging Station">
+                        <img src="{{ asset('website/petrolPump21.png') }}" alt="Petrol Pump">
                     </div>
-                    <p>{{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</p>
+                    <p>{{ $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' }}</p>
                 </a>
             </div>
 
