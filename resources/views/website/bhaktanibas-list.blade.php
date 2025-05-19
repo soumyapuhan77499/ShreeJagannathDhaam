@@ -161,7 +161,7 @@
                             @endif
                         </div>
 
-                        <div style="margin-top: 87px;">
+                        <div >
                             <a href="tel:{{ $item->contact_no }}">
                                 <button class="booking-btn">Call to Book</button>
                             </a>
