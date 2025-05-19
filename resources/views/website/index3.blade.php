@@ -43,6 +43,18 @@
         <nav class="nav-menu">
             <div class="nav-close"><i class="fa fa-times"></i></div>
             <ul>
+                <!-- Language Switcher -->
+                <li class="has-submenu">
+                    <a href="javascript:void(0)" class="submenu-toggle">
+                        {{ $language === 'Odia' ? 'ଭାଷା' : 'Language' }}
+                        <i class="fa fa-chevron-down ms-2"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ url('/lang/Odia') }}">ଓଡ଼ିଆ</a></li>
+                        <li><a href="{{ url('/lang/English') }}">English</a></li>
+                    </ul>
+                </li>
+
                 <li>
                     <a href="#">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a>
                 </li>
@@ -136,17 +148,7 @@
                     </ul>
                 </li>
 
-                <!-- Language Switcher -->
-                <li class="has-submenu">
-                    <a href="javascript:void(0)" class="submenu-toggle">
-                        {{ $language === 'Odia' ? 'ଭାଷା' : 'Language' }}
-                        <i class="fa fa-chevron-down ms-2"></i>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="{{ url('/lang/Odia') }}">ଓଡ଼ିଆ</a></li>
-                        <li><a href="{{ url('/lang/English') }}">English</a></li>
-                    </ul>
-                </li>
+
             </ul>
         </nav>
 
@@ -666,7 +668,8 @@
 
     <section class="temple-convenience">
         <!-- Section Header -->
-        <div class="section-header-row flex flex-row justify-center items-center gap-2 sm:gap-5 text-center mt-4 sm:mt-8" style="margin-left: -40px;">
+        <div class="section-header-row flex flex-row justify-center items-center gap-2 sm:gap-5 text-center mt-4 sm:mt-8"
+            style="margin-left: -40px;">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 sm:w-36 h-5">
             <h2 class="text-base sm:text-2xl text-[#db4d30] font-sans font-semibold whitespace-nowrap">
                 {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}

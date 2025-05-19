@@ -90,7 +90,6 @@ public function manageNiti(Request $request)
         ->get();
 
       
-
          $nitiInfo = TempleNews::where('type', 'information')
             ->where('niti_notice_status','Started')
             ->where('status','active')
