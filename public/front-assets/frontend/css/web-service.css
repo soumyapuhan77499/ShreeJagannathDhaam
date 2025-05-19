@@ -18,17 +18,10 @@ body {
     padding: 5px 10px;
 }
 
-.header-content {
-    margin-top: -25px;
-    display: flex;
-    margin-left: 50px;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .logo {
     display: flex;
     align-items: center;
+    margin-left: -70px;
 }
 
 .logo img {
