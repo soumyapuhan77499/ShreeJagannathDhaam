@@ -149,18 +149,25 @@
 
 @media (max-width: 768px) {
 
-  .niti-cards-scroll {
-    padding: 10px 0;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
+.niti-cards-scroll {
+  padding: 10px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 
-    /* Hide scrollbar - cross-browser */
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE 10+ */
-  }
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+
+  /* Hide scrollbar for IE, Edge */
+  -ms-overflow-style: none;
+
+  /* Hide scrollbar for WebKit browsers */
+}
+
+.niti-cards-scroll::-webkit-scrollbar {
+  display: none;
+}
 
   .niti-cards-scroll::-webkit-scrollbar {
     display: none;

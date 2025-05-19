@@ -781,7 +781,6 @@
                 </a>
             </div>
 
-
             <!-- Petrol Pump -->
             <div class="conv">
                 <a href="{{ route('services.byType', 'petrol_pump') }}">
