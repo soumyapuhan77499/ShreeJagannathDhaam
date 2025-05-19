@@ -10,6 +10,32 @@
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
+    <style>
+        @media (max-width: 768px) {
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card-bhakta {
+                padding: 12px;
+            }
+
+            .service-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .booking-btn {
+                width: 100%;
+                text-align: center;
+                margin-top: 12px;
+            }
+
+            .thumbnail-section {
+                justify-content: start;
+            }
+        }
+    </style>
 </head>
 
 <body>
