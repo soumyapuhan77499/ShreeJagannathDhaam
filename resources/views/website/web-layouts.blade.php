@@ -264,72 +264,80 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     {{-- temple slider --}}
-    <script>
-        // Initialize Temple Swiper
-        const swiper1 = new Swiper("#templeSlider", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            loop: true,
-            initialSlide: 1,
-            spaceBetween: 16,
-            slidesPerView: 1.2,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 150,
-                modifier: 2.5,
-                slideShadows: false,
+   <script>
+    const swiper1 = new Swiper("#templeSlider", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        loop: true,
+        spaceBetween: 16,
+        slidesPerView: 1.2,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 150,
+            modifier: 2.5,
+            slideShadows: false,
+        },
+        navigation: {
+            nextEl: "#templeSlider .swiper-button-next",
+            prevEl: "#templeSlider .swiper-button-prev",
+        },
+        breakpoints: {
+            0: {
+                slidesPerView: 1.2,
             },
-            navigation: {
-                nextEl: "#templeSlider .swiper-button-next",
-                prevEl: "#templeSlider .swiper-button-prev",
+            480: {
+                slidesPerView: 1.5,
             },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2.2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1024: {
-                    slidesPerView: 4,
-                },
+            640: {
+                slidesPerView: 2.2,
             },
-        });
+            768: {
+                slidesPerView: 3,
+            },
+            1024: {
+                slidesPerView: 4,
+            },
+        },
+    });
 
-        // Initialize Ritual Swiper
-        const swiper2 = new Swiper("#ritualSlider", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            loop: true,
-            initialSlide: 1,
-            spaceBetween: 16,
-            slidesPerView: 1.2,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 150,
-                modifier: 2.5,
-                slideShadows: false,
+    const swiper2 = new Swiper("#ritualSlider", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        loop: true,
+        spaceBetween: 16,
+        slidesPerView: 1.2,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 150,
+            modifier: 2.5,
+            slideShadows: false,
+        },
+        navigation: {
+            nextEl: "#ritualSlider .swiper-button-next",
+            prevEl: "#ritualSlider .swiper-button-prev",
+        },
+        breakpoints: {
+            0: {
+                slidesPerView: 1.2,
             },
-            navigation: {
-                nextEl: "#ritualSlider .swiper-button-next",
-                prevEl: "#ritualSlider .swiper-button-prev",
+            480: {
+                slidesPerView: 1.5,
             },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2.2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1024: {
-                    slidesPerView: 4,
-                },
+            640: {
+                slidesPerView: 2.2,
             },
-        });
+            768: {
+                slidesPerView: 3,
+            },
+            1024: {
+                slidesPerView: 4,
+            },
+        },
+    });
 
         // Tab switching logic
         const templeTab = document.getElementById('templeTab');
@@ -361,7 +369,6 @@
             swiper2.update();
         });
     </script>
-
 
     {{-- Emergency contact --}}
     <script>
