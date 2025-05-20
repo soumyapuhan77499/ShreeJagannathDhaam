@@ -84,6 +84,7 @@ class WebsiteBannerController extends Controller
             'niti_about'    => $niti->niti_about,
             'niti_sebayat'  => $niti->niti_sebayat,
             'description'   => $niti->description,
+            'english_description'   => $niti->english_description,
             'start_time'    => $management->start_time ?? null,
             'pause_time'    => $management->pause_time ?? null,
             'resume_time'   => $management->resume_time ?? null,
@@ -125,6 +126,7 @@ class WebsiteBannerController extends Controller
                     'niti_about'    => $specialNiti->niti_about,
                     'niti_sebayat'  => $specialNiti->niti_sebayat,
                     'description'   => $specialNiti->description,
+                    'english_description'   => $specialNiti->english_description,
                     'start_time'    => $specialMgmt->start_time ?? null,
                     'pause_time'    => $specialMgmt->pause_time ?? null,
                     'resume_time'   => $specialMgmt->resume_time ?? null,
@@ -182,6 +184,7 @@ class WebsiteBannerController extends Controller
             'niti_about'    => $niti->niti_about,
             'niti_sebayat'  => $niti->niti_sebayat,
             'description'   => $niti->description,
+            'english_description'   => $niti->english_description,
             'start_time'    => $nitiMgmt->start_time,
             'pause_time'    => $nitiMgmt->pause_time,
             'resume_time'   => $nitiMgmt->resume_time,
@@ -205,7 +208,6 @@ class WebsiteBannerController extends Controller
     $mergedNitiList = collect($mergedNitiList)->sortBy(function ($item) {
         return $item['start_time'] ?? '9999:99:99';
     })->values();
-
 
             $nitiInfo = TempleNews::where('type', 'information')
             ->where('niti_notice_status','Started')
