@@ -56,7 +56,7 @@
                 </li>
 
                 <li>
-                    <a href="{{url('/view-all-niti')}}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a>
+                    <a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a>
                 </li>
 
                 <!-- Quick Services -->
@@ -413,7 +413,7 @@
 
     <section class="services-section py-10">
         <!-- Section Title -->
-      
+
         <div class="section-header-row flex flex-row justify-center items-center gap-2 sm:gap-5 text-center mt-4 sm:mt-8 mb-14"
             style="margin-left: -40px;">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 sm:w-36 h-5">
@@ -625,74 +625,79 @@
         </a>
     </section>
 
-   <section class="temple-slider bg-white bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
+    <section class="temple-slider bg-white bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
 
-    <!-- Section Heading -->
-    <div class="flex justify-center items-center gap-5 mt-12">
-        <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 h-4">
-        <h2 class="text-xl text-[#db4d30] font-semibold">
-            {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ଧାର୍ମିକ ସ୍ଥଳ' : 'Nearby Temples' }}
-        </h2>
-        <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-24 h-4">
-    </div>
-
-    <!-- Tab Buttons -->
-    <div class="flex justify-center mt-8 space-x-4">
-        <button id="templeTab" class="tab-button px-4 py-2 text-white bg-orange-500 rounded">Temple</button>
-        <button id="ritualTab" class="tab-button px-4 py-2 text-orange-500 bg-white border border-orange-500 rounded">Ritual Site</button>
-    </div>
-
-    <!-- Temple Slider -->
-    <div id="templeSlider" class="swiper-container mySwiper mt-12">
-        <div class="swiper-wrapper">
-            @foreach ($templePlaces as $temple)
-                @php
-                    $photos = json_decode($temple->photo, true);
-                    $firstPhoto = $photos[0] ?? null;
-                @endphp
-                @if ($firstPhoto)
-                    <div class="swiper-slide rounded-xl overflow-hidden shadow-lg bg-white">
-                        <a href="{{ url('view-near-by-temple/' . $temple->name) }}" class="block">
-                            <img src="{{ asset($firstPhoto) }}" alt="{{ $temple->name }}"
-                                class="w-full h-48 object-cover hover:scale-105 transition duration-300">
-                            <div class="p-2 text-center bg-white">
-                                <h3 class="text-sm sm:text-base font-semibold text-[#db4d30]">{{ $temple->name }}</h3>
-                            </div>
-                        </a>
-                    </div>
-                @endif
-            @endforeach
+        <!-- Section Heading -->
+        <div class="flex justify-center items-center gap-5 mt-12">
+            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 h-4">
+            <h2 class="text-xl text-[#db4d30] font-semibold">
+                {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ଧାର୍ମିକ ସ୍ଥଳ' : 'Nearby Temples' }}
+            </h2>
+            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-24 h-4">
         </div>
-        <div class="swiper-button-next text-orange-500"></div>
-        <div class="swiper-button-prev text-orange-500"></div>
-    </div>
 
-    <!-- Ritual Site Slider (Initially hidden) -->
-    <div id="ritualSlider" class="swiper-container mySwiper mt-12 hidden">
-        <div class="swiper-wrapper">
-            @foreach ($ritualSites as $ritual)
-                @php
-                    $photos = json_decode($ritual->photo, true);
-                    $firstPhoto = $photos[0] ?? null;
-                @endphp
-                @if ($firstPhoto)
-                    <div class="swiper-slide rounded-xl overflow-hidden shadow-lg bg-white">
-                        <a href="{{ url('view-near-by-temple/' . $ritual->name) }}" class="block">
-                            <img src="{{ asset($firstPhoto) }}" alt="{{ $ritual->name }}"
-                                class="w-full h-48 object-cover hover:scale-105 transition duration-300">
-                            <div class="p-2 text-center bg-white">
-                                <h3 class="text-sm sm:text-base font-semibold text-[#db4d30]">{{ $ritual->name }}</h3>
-                            </div>
-                        </a>
-                    </div>
-                @endif
-            @endforeach
+        <!-- Tab Buttons -->
+        <div class="flex justify-center mt-8 space-x-4">
+            <button id="templeTab" class="tab-button px-4 py-2 text-white bg-orange-500 rounded">Temple</button>
+            <button id="ritualTab"
+                class="tab-button px-4 py-2 text-orange-500 bg-white border border-orange-500 rounded">Ritual Site</button>
         </div>
-        <div class="swiper-button-next text-orange-500"></div>
-        <div class="swiper-button-prev text-orange-500"></div>
-    </div>
 
-</section>
+        <!-- Temple Slider -->
+        <div id="templeSlider" class="swiper-container mySwiper mt-12">
+            <div class="swiper-wrapper">
+                @foreach ($templePlaces as $temple)
+                    @php
+                        $photos = json_decode($temple->photo, true);
+                        $firstPhoto = $photos[0] ?? null;
+                    @endphp
+                    @if ($firstPhoto)
+                        <div
+                            class="swiper-slide rounded-xl overflow-hidden shadow-md bg-white transition-transform duration-300 hover:scale-[1.02]">
+                            <a href="{{ url('view-near-by-temple/' . $temple->name) }}" class="block">
+                                <img src="{{ asset($firstPhoto) }}" alt="{{ $temple->name }}"
+                                    class="w-full h-40 sm:h-48 object-cover">
+                                <div class="p-3 text-center bg-white">
+                                    <h3 class="text-sm sm:text-base font-semibold text-[#db4d30] truncate">
+                                        {{ $temple->name }}
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+            <div class="swiper-button-next text-orange-500"></div>
+            <div class="swiper-button-prev text-orange-500"></div>
+        </div>
+
+        <!-- Ritual Site Slider (Initially hidden) -->
+        <div id="ritualSlider" class="swiper-container mySwiper mt-12 hidden">
+            <div class="swiper-wrapper">
+                @foreach ($ritualSites as $ritual)
+                    @php
+                        $photos = json_decode($ritual->photo, true);
+                        $firstPhoto = $photos[0] ?? null;
+                    @endphp
+                    @if ($firstPhoto)
+                        <div class="swiper-slide rounded-xl overflow-hidden shadow-lg bg-white">
+                            <a href="{{ url('view-near-by-temple/' . $ritual->name) }}" class="block">
+                                <img src="{{ asset($firstPhoto) }}" alt="{{ $ritual->name }}"
+                                    class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+                                <div class="p-2 text-center bg-white">
+                                    <h3 class="text-sm sm:text-base font-semibold text-[#db4d30]">{{ $ritual->name }}
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+            <div class="swiper-button-next text-orange-500"></div>
+            <div class="swiper-button-prev text-orange-500"></div>
+        </div>
+
+    </section>
 
     <section class="temple-convenience">
         <!-- Section Header -->
@@ -756,7 +761,7 @@
                     <div class="convenience-item" style="margin-left: 7px">
                         <img src="{{ asset('website/drinkingWater32.png') }}" alt="Water" style="height: 42px">
                     </div>
-                   <p>{!! $language === 'Odia' ? 'ପାନୀୟ <br> ଜଳ' : 'Drinking<br>Water' !!}</p>
+                    <p>{!! $language === 'Odia' ? 'ପାନୀୟ <br> ଜଳ' : 'Drinking<br>Water' !!}</p>
 
                 </a>
             </div>
