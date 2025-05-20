@@ -264,17 +264,11 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     {{-- temple slider --}}
-  <script>
-    // Tab Elements
-    const templeTab = document.getElementById('templeTab');
-    const ritualTab = document.getElementById('ritualTab');
-    const templeSlider = document.getElementById('templeSlider');
-    const ritualSlider = document.getElementById('ritualSlider');
-
+ <script>
     // Initialize Temple Swiper
-    let swiper1 = new Swiper("#templeSlider", {
+    const swiper1 = new Swiper("#templeSlider", {
         grabCursor: true,
-        loop: false,
+        loop: false, // Disable looping to paginate batches of 5
         slidesPerView: 5,
         spaceBetween: 20,
         navigation: {
@@ -282,16 +276,26 @@
             prevEl: "#templeSlider .swiper-button-prev",
         },
         breakpoints: {
-            0: { slidesPerView: 1.2 },
-            480: { slidesPerView: 2 },
-            768: { slidesPerView: 3 },
-            1024: { slidesPerView: 4 },
-            1280: { slidesPerView: 5 },
+            0: {
+                slidesPerView: 1.2,
+            },
+            480: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            1024: {
+                slidesPerView: 4,
+            },
+            1280: {
+                slidesPerView: 5,
+            },
         },
     });
 
     // Initialize Ritual Swiper
-    let swiper2 = new Swiper("#ritualSlider", {
+    const swiper2 = new Swiper("#ritualSlider", {
         grabCursor: true,
         loop: false,
         slidesPerView: 5,
@@ -301,15 +305,30 @@
             prevEl: "#ritualSlider .swiper-button-prev",
         },
         breakpoints: {
-            0: { slidesPerView: 1.2 },
-            480: { slidesPerView: 2 },
-            768: { slidesPerView: 3 },
-            1024: { slidesPerView: 4 },
-            1280: { slidesPerView: 5 },
+            0: {
+                slidesPerView: 1.2,
+            },
+            480: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            1024: {
+                slidesPerView: 4,
+            },
+            1280: {
+                slidesPerView: 5,
+            },
         },
     });
 
-    // Tab Switching Logic
+    // Tab switching logic
+    const templeTab = document.getElementById('templeTab');
+    const ritualTab = document.getElementById('ritualTab');
+    const templeSlider = document.getElementById('templeSlider');
+    const ritualSlider = document.getElementById('ritualSlider');
+
     templeTab.addEventListener('click', () => {
         templeTab.classList.add('bg-orange-500', 'text-white');
         templeTab.classList.remove('bg-white', 'text-orange-500');
@@ -319,10 +338,7 @@
         ritualSlider.classList.add('hidden');
         templeSlider.classList.remove('hidden');
 
-        setTimeout(() => {
-            swiper1.update();
-            swiper1.slideTo(0);
-        }, 100);
+        swiper1.update();
     });
 
     ritualTab.addEventListener('click', () => {
@@ -334,13 +350,9 @@
         templeSlider.classList.add('hidden');
         ritualSlider.classList.remove('hidden');
 
-        setTimeout(() => {
-            swiper2.update();
-            swiper2.slideTo(0);
-        }, 100);
+        swiper2.update();
     });
 </script>
-
 
     {{-- Emergency contact --}}
     <script>
@@ -897,11 +909,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                                            <hr class="border-dashed border-gray-300 my-4">
-                                                                                            <div class="flex items-start gap-3">
-                                                                                                <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                                                <p class="text-gray-800">${data.description}</p>
-                                                                                            </div>` : ''}
+                                                                                        <hr class="border-dashed border-gray-300 my-4">
+                                                                                        <div class="flex items-start gap-3">
+                                                                                            <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                                            <p class="text-gray-800">${data.description}</p>
+                                                                                        </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
