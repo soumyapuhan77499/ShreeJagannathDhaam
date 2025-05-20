@@ -58,17 +58,20 @@
                         @forelse ($temples->chunk(4) as $chunk)
                             <div class="submenu-column">
                                 @foreach ($chunk as $temple)
-                                    <a href="{{ route('nearby-temple-view', $temple->name) }}">{{ $temple->name }}</a>
+                                    <a href="{{ route('nearby-temple-view', $temple->name) }}">
+                                        <i class="fa fa-university me-2"></i> {{ $temple->name }}
+                                    </a>
                                 @endforeach
                             </div>
                         @empty
                             <div class="submenu-column">
-                                <a
-                                    href="#">{{ $language === 'Odia' ? 'ମନ୍ଦିର ମିଳିଲା ନାହିଁ' : 'No Temples Found' }}</a>
+                                <a href="#">
+                                    <i class="fa fa-exclamation-circle me-2"></i>
+                                    {{ $language === 'Odia' ? 'ମନ୍ଦିର ମିଳିଲା ନାହିଁ' : 'No Temples Found' }}
+                                </a>
                             </div>
                         @endforelse
                     </div>
-
                 </li>
 
                 <li class="has-submenu">
