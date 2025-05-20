@@ -259,6 +259,7 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
+    {{-- temple slider --}}
     <script>
         const swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
@@ -576,27 +577,32 @@
             const navMenu = document.querySelector(".nav-menu");
             const navClose = document.querySelector(".nav-close");
 
-            // === Autoplay video immediately
-            if (video) {
-                video.play().catch(() => {});
-            }
-
             // === Autoplay audio after 1 second
             setTimeout(() => {
                 audio.play().then(() => {
-                    audio.muted = false; // if autoplay succeeds, unmute
+                    audio.muted = false; // Unmute on successful play
                     console.log("Audio autoplay success.");
+                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
                 }).catch(err => {
                     console.warn("Autoplay blocked. Waiting for user interaction...");
+                    audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+
                     // Wait for user interaction
                     document.body.addEventListener("click", () => {
                         audio.muted = false;
-                        audio.play().catch(() => {});
+                        audio.play().then(() => {
+                            audioMuteToggle.innerHTML =
+                                '<i class="fa fa-volume-up"></i>';
+                        }).catch(() => {
+                            audioMuteToggle.innerHTML =
+                                '<i class="fa fa-volume-mute"></i>';
+                        });
                     }, {
                         once: true
                     });
                 });
             }, 1000);
+
 
             // === Play/Pause Toggle
             videoPlayPauseButton?.addEventListener("click", function() {
@@ -831,11 +837,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                            <hr class="border-dashed border-gray-300 my-4">
-                                                                            <div class="flex items-start gap-3">
-                                                                                <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                                <p class="text-gray-800">${data.description}</p>
-                                                                            </div>` : ''}
+                                                                                <hr class="border-dashed border-gray-300 my-4">
+                                                                                <div class="flex items-start gap-3">
+                                                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                                    <p class="text-gray-800">${data.description}</p>
+                                                                                </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
