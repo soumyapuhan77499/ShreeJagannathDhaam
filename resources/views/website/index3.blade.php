@@ -637,15 +637,11 @@
         </div>
 
         <!-- Tab Buttons -->
-        <div class="flex justify-end mt-8 space-x-4 px-4">
-            <button id="templeTab" class="tab-button px-4 py-2 text-white bg-orange-500 rounded">
-                Temple
-            </button>
-            <button id="ritualTab" class="tab-button px-4 py-2 text-orange-500 bg-white border border-orange-500 rounded">
-                Ritual Site
-            </button>
+        <div class="flex justify-center mt-8 space-x-4">
+            <button id="templeTab" class="tab-button px-4 py-2 text-white bg-orange-500 rounded active">Temple</button>
+            <button id="ritualTab"
+                class="tab-button px-4 py-2 text-orange-500 bg-white border border-orange-500 rounded">Ritual Site</button>
         </div>
-
 
         <!-- Temple Slider -->
         <div id="templeSlider" class="swiper-container mySwiper mt-12">
