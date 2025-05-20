@@ -288,10 +288,10 @@
                 slidesPerView: 1.2,
             },
             480: {
-                slidesPerView: 2.8,
+                slidesPerView: 3,
             },
             640: {
-                slidesPerView: 2.6,
+                slidesPerView: 3,
             },
             768: {
                 slidesPerView: 3,
