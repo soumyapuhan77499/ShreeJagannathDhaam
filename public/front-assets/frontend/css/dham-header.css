@@ -72,6 +72,7 @@ body {
 
 /* Mega Menu Wrapper Centered */
 .has-submenu .submenu {
+  display: none;
   position: absolute;
   top: 100%;
   left: 50%;
@@ -83,10 +84,10 @@ body {
   z-index: 2000;
   border-radius: 0 0 10px 10px;
   box-sizing: border-box;
+  flex-wrap: wrap;
   gap: 30px;
   justify-content: flex-start;
-   display: flex;
-  flex-wrap: wrap;
+  
 }
 
 /* Show on Hover */
@@ -98,7 +99,6 @@ body {
 .submenu-column {
   flex: 1;
   min-width: 180px;
-  margin-right: 20px;
 }
 
 /* Column Title */
