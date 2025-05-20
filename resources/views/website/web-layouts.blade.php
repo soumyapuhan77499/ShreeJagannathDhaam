@@ -265,14 +265,15 @@
 
     {{-- temple slider --}}
     <script>
-        // Temple Swiper
+        // Initialize Temple Swiper
         const swiper1 = new Swiper("#templeSlider", {
             effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
             loop: true,
-            slidesPerView: 5,
+            initialSlide: 1,
             spaceBetween: 16,
+            slidesPerView: 1.2,
             coverflowEffect: {
                 rotate: 0,
                 stretch: 0,
@@ -285,29 +286,27 @@
                 prevEl: "#templeSlider .swiper-button-prev",
             },
             breakpoints: {
-                0: {
-                    slidesPerView: 1.2,
-                },
-                480: {
-                    slidesPerView: 2,
+                640: {
+                    slidesPerView: 2.2,
                 },
                 768: {
                     slidesPerView: 3,
                 },
                 1024: {
-                    slidesPerView: 5, // 2 left, 1 center, 2 right
+                    slidesPerView: 4,
                 },
             },
         });
 
-        // Ritual Swiper
+        // Initialize Ritual Swiper
         const swiper2 = new Swiper("#ritualSlider", {
             effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
             loop: true,
-            slidesPerView: 5,
+            initialSlide: 1,
             spaceBetween: 16,
+            slidesPerView: 1.2,
             coverflowEffect: {
                 rotate: 0,
                 stretch: 0,
@@ -320,22 +319,19 @@
                 prevEl: "#ritualSlider .swiper-button-prev",
             },
             breakpoints: {
-                0: {
-                    slidesPerView: 1.2,
-                },
-                480: {
-                    slidesPerView: 2,
+                640: {
+                    slidesPerView: 2.2,
                 },
                 768: {
                     slidesPerView: 3,
                 },
                 1024: {
-                    slidesPerView: 5, // 2 left, 1 center, 2 right
+                    slidesPerView: 4,
                 },
             },
         });
 
-        // Tab Switching Logic
+        // Tab switching logic
         const templeTab = document.getElementById('templeTab');
         const ritualTab = document.getElementById('ritualTab');
         const templeSlider = document.getElementById('templeSlider');
@@ -350,9 +346,7 @@
             ritualSlider.classList.add('hidden');
             templeSlider.classList.remove('hidden');
 
-            setTimeout(() => {
-                swiper1.update();
-            }, 100);
+            swiper1.update();
         });
 
         ritualTab.addEventListener('click', () => {
@@ -364,11 +358,10 @@
             templeSlider.classList.add('hidden');
             ritualSlider.classList.remove('hidden');
 
-            setTimeout(() => {
-                swiper2.update();
-            }, 100);
+            swiper2.update();
         });
     </script>
+
 
     {{-- Emergency contact --}}
     <script>
@@ -925,11 +918,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                                                <hr class="border-dashed border-gray-300 my-4">
-                                                                                                <div class="flex items-start gap-3">
-                                                                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                                                    <p class="text-gray-800">${data.description}</p>
-                                                                                                </div>` : ''}
+                                                                                            <hr class="border-dashed border-gray-300 my-4">
+                                                                                            <div class="flex items-start gap-3">
+                                                                                                <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                                                <p class="text-gray-800">${data.description}</p>
+                                                                                            </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
