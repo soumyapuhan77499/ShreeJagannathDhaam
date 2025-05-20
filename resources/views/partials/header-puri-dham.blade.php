@@ -38,15 +38,20 @@
                     <ul class="submenu">
                         <div class="submenu-column">
                             <li>
-                                <a
-                                    href="{{ url('/view-festival-details') }}">{{ $language === 'Odia' ? 'ପର୍ବପର୍ବାଣୀ' : 'Festival' }}</a>
+                                <a href="{{ url('/view-festival-details') }}">
+                                    <i class="fas fa-calendar-days me-2"></i>
+                                    {{ $language === 'Odia' ? 'ପର୍ବପର୍ବାଣୀ' : 'Festival' }}
+                                </a>
                             </li>
                             <li>
-                                <a
-                                    href="{{ url('/do-and-donts') }}">{{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's & Don'ts" }}</a>
+                                <a href="{{ url('/do-and-donts') }}">
+                                    <i class="fas fa-check-circle me-1"></i><i class="fas fa-ban me-2"></i>
+                                    {{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's & Don'ts" }}
+                                </a>
                             </li>
                         </div>
                     </ul>
+
                 </li>
 
                 <li class="has-submenu">
