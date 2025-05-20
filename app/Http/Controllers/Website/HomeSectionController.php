@@ -93,6 +93,8 @@ public function puriWebsite()
         'nitis' => $finalNitiList->values(),
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
         'nearbyTemples' => NearByTemple::where('language', $language)->whereNotNull('photo')->get(),
+        'templePlaces' => NearByTemple::where('language', $language)->where('place_type', 'temple')->whereNotNull('photo')->get(),
+        'ritualSites' => NearByTemple::where('language', $language)->where('place_type', 'ritual_site')->whereNotNull('photo')->get(),
         'aboutTemple' => TempleAboutDetail::where('status', 'active')->first(),
         'photos' => TemplePhotosVideos::first(),
         'matha' => Matha::where('status', 'active')->first(),

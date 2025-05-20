@@ -635,6 +635,13 @@
             <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-24 h-4">
         </div>
 
+        
+    <!-- Tab Buttons -->
+    <div class="flex justify-center mt-8 space-x-4">
+        <button id="templeTab" class="tab-button px-4 py-2 text-white bg-orange-500 rounded active">Temple</button>
+        <button id="ritualTab" class="tab-button px-4 py-2 text-orange-500 bg-white border border-orange-500 rounded">Ritual Site</button>
+    </div>
+
        
 
         <div class="swiper mySwiper mt-12">
