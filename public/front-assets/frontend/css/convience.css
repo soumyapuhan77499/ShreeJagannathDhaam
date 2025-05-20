@@ -105,8 +105,8 @@
 }
 
 .convenience-item img {
-  max-width: 36px;
-  max-height: 36px;
+  max-width: 56px;
+  max-height: 66px;
   object-fit: contain;
 }
 
