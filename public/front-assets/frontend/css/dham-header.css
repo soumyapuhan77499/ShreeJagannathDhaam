@@ -73,10 +73,10 @@ body {
 /* Mega Menu Wrapper Centered */
 .has-submenu .submenu {
   position: absolute;
-  top: 100%;
-  left: 50%;
+  top: 47px;
+  left: -214px;
   transform: translateX(-50%);
-  min-width: 80vw;
+  min-width: 60vw;
   background: #fff;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   padding: 30px 40px;
