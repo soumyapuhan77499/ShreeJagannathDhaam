@@ -66,11 +66,11 @@ body {
 
 .desktop-menu a:hover {
   color: #db4d30;
-}/* Mega Menu Container */
+}
 .has-submenu {
   position: relative;
 }
-
+/* Mega Menu Wrapper */
 .has-submenu .submenu {
   display: none;
   position: absolute;
@@ -78,48 +78,50 @@ body {
   left: 0;
   width: 100vw;
   background: #fff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  padding: 40px 60px;
-  box-sizing: border-box;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px 40px;
+  z-index: 2000;
   border-radius: 0 0 10px 10px;
-  z-index: 999;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+  box-sizing: border-box;
 }
 
-/* Show submenu on hover */
+/* Show on Hover */
 .has-submenu:hover .submenu {
   display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
 }
 
-/* Each column inside mega menu */
+/* Submenu columns */
 .submenu-column {
-  min-width: 220px;
   flex: 1;
+  min-width: 100%;
+  margin: 0 15px;
 }
 
+/* Submenu links */
 .submenu-column h4 {
-  font-size: 15px;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+  text-transform: uppercase;
   font-weight: 600;
-  margin-bottom: 12px;
-  color: #222;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 6px;
 }
 
 .submenu-column a {
   display: block;
+  padding: 6px 0;
   color: #555559;
   font-size: 14px;
-  margin: 6px 0;
   text-decoration: none;
   transition: color 0.3s;
 }
 
 .submenu-column a:hover {
   color: #db4d30;
+  background-color: transparent;
 }
+
 
 /* Mobile Navigation */
 .hamburger-icon {
