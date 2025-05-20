@@ -1,6 +1,8 @@
 <!-- Ionicons for Hamburger -->
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 <!-- HEADER -->
 @php
     use App\Models\NearByTemple;
@@ -75,66 +77,55 @@
                         <i class="fa fa-chevron-down ms-2"></i>
                     </a>
                     <ul class="submenu">
+
                         <div class="submenu-column">
-                            <li><a
-                                    href="{{ url('/bhaktanibas-list') }}">{{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nibas' }}</a>
-                            </li>
-                            <li><a
-                                    href="{{ url('/parking-list') }}">{{ $language === 'Odia' ? 'ପାର୍କିଂ' : 'Parking' }}</a>
-                            </li>
-                            <li><a
-                                    href="{{ url('/locker-shoe-list') }}">{{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା' : 'Locker & Shoe' }}</a>
-                            </li>
-                            <li><a
-                                    href="{{ url('/services/drinking_water') }}">{{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</a>
-                            </li>
+                            <li><a href="{{ url('/bhaktanibas-list') }}"><i class="fa fa-bed me-2"></i>
+                                    {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nibas' }}</a></li>
+                            <li><a href="{{ url('/parking-list') }}"><i class="fa fa-car me-2"></i>
+                                    {{ $language === 'Odia' ? 'ପାର୍କିଂ' : 'Parking' }}</a></li>
+                            <li><a href="{{ url('/locker-shoe-list') }}"><i class="fa fa-shoe-prints me-2"></i>
+                                    {{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା' : 'Locker & Shoe' }}</a></li>
+                            <li><a href="{{ url('/services/drinking_water') }}"><i class="fa fa-tint me-2"></i>
+                                    {{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</a></li>
                         </div>
 
                         <div class="submenu-column">
-                            <li><a
-                                    href="{{ url('/services-emergency') }}">{{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ' : 'Emergency' }}</a>
+                            <li><a href="{{ url('/services-emergency') }}"><i class="fa fa-ambulance me-2"></i>
+                                    {{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ' : 'Emergency' }}</a></li>
+                            <li><a href="{{ url('/services-abled') }}"><i class="fa fa-wheelchair me-2"></i>
+                                    {{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</a>
                             </li>
-                            <li><a
-                                    href="{{ url('/services-abled') }}">{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</a>
-                            </li>
-                            <li><a href="#">{{ $language === 'Odia' ? 'ମାର୍ଗ ମାନଚିତ୍ର' : 'Route Map' }}</a></li>
-                            <li><a
-                                    href="{{ url('/services/lost_and_found_booth') }}">{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</a>
-                            </li>
-
+                            <li><a href="#"><i class="fa fa-map me-2"></i>
+                                    {{ $language === 'Odia' ? 'ମାର୍ଗ ମାନଚିତ୍ର' : 'Route Map' }}</a></li>
+                            <li><a href="{{ url('/services/lost_and_found_booth') }}"><i class="fa fa-search me-2"></i>
+                                    {{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</a></li>
                         </div>
 
                         <div class="submenu-column">
-                            <li><a
-                                    href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a>
-                            </li>
-                            <li><a
-                                    href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
-                            </li>
-                            <li><a
-                                    href="{{ url('/services/life_guard_booth') }}">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a>
-                            </li>
-                            <li><a
-                                    href="{{ url('/services/life_guard_booth') }}">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a>
-                            </li>
-
+                            <li><a href="{{ url('/services/toilet') }}"><i class="fa fa-restroom me-2"></i>
+                                    {{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a></li>
+                            <li><a href="{{ url('/services/beach') }}"><i class="fa fa-umbrella-beach me-2"></i>
+                                    {{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a></li>
+                            <li><a href="{{ url('/services/life_guard_booth') }}"><i class="fa fa-life-ring me-2"></i>
+                                    {{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a></li>
+                            <li><a href="{{ url('/services/life_guard_booth') }}"><i class="fa fa-life-ring me-2"></i>
+                                    {{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a></li>
                         </div>
 
                         <div class="submenu-column">
-                            <li><a
-                                    href="{{ url('/services/atm') }}">{{ $language === 'Odia' ? 'ଏ.ଟି.ଏମ୍' : 'ATM' }}</a>
+                            <li><a href="{{ url('/services/atm') }}"><i class="fa fa-credit-card me-2"></i>
+                                    {{ $language === 'Odia' ? 'ଏ.ଟି.ଏମ୍' : 'ATM' }}</a></li>
+                            <li><a href="{{ url('/services/charging_station') }}"><i class="fa fa-bolt me-2"></i>
+                                    {{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</a></li>
+                            <li><a href="{{ url('/bus-railway-station') }}"><i class="fa fa-bus me-2"></i>
+                                    {{ $language === 'Odia' ? 'ବସ୍/ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand/Railway Station' }}</a>
                             </li>
-                            <li><a
-                                    href="{{ url('/services/charging_station') }}">{{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</a>
-                            </li>
-                            <li><a
-                                    href="{{ url('/bus-railway-station') }}">{{ $language === 'Odia' ? 'ବସ୍/ରେଲୱେ ଷ୍ଟେସନ୍' : 'Bus Stand/Railway Station' }}</a>
-                            </li>
-                            <li><a
-                                    href="{{ url('/services/petrol_pump') }}">{{ $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' }}</a>
-                            </li>
+                            <li><a href="{{ url('/services/petrol_pump') }}"><i class="fa fa-gas-pump me-2"></i>
+                                    {{ $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' }}</a></li>
                         </div>
+
                     </ul>
+
                 </li>
 
             </ul>
@@ -216,7 +207,8 @@
                     </li>
                     <li><a href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a>
                     </li>
-                    <li><a href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
+                    <li><a
+                            href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
                     </li>
                     <li><a
                             href="{{ url('/services/life_guard_booth') }}">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a>
