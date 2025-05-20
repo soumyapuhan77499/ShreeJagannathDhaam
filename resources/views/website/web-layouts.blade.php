@@ -264,95 +264,104 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     {{-- temple slider --}}
-    <script>
-        // Initialize Temple Swiper
-        const swiper1 = new Swiper("#templeSlider", {
-            grabCursor: true,
-            loop: false, // Disable looping to paginate batches of 5
-            slidesPerView: 5,
-            spaceBetween: 20,
-            navigation: {
-                nextEl: "#templeSlider .swiper-button-next",
-                prevEl: "#templeSlider .swiper-button-prev",
+  <script>
+    // Initialize Temple Swiper
+    const swiper1 = new Swiper("#templeSlider", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        loop: true,
+        initialSlide: 1,
+        spaceBetween: 16,
+        slidesPerView: 1.2,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 150,
+            modifier: 2.5,
+            slideShadows: false,
+        },
+        navigation: {
+            nextEl: "#templeSlider .swiper-button-next",
+            prevEl: "#templeSlider .swiper-button-prev",
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2.2,
             },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1.2,
-                },
-                480: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1024: {
-                    slidesPerView: 4,
-                },
-                1280: {
-                    slidesPerView: 5,
-                },
+            768: {
+                slidesPerView: 3,
             },
-        });
-
-        // Initialize Ritual Swiper
-        const swiper2 = new Swiper("#ritualSlider", {
-            grabCursor: true,
-            loop: false,
-            slidesPerView: 5,
-            spaceBetween: 20,
-            navigation: {
-                nextEl: "#ritualSlider .swiper-button-next",
-                prevEl: "#ritualSlider .swiper-button-prev",
+            1024: {
+                slidesPerView: 4,
             },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1.2,
-                },
-                480: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1024: {
-                    slidesPerView: 4,
-                },
-                1280: {
-                    slidesPerView: 5,
-                },
+        },
+    });
+
+    // Initialize Ritual Swiper
+    const swiper2 = new Swiper("#ritualSlider", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        loop: true,
+        initialSlide: 1,
+        spaceBetween: 16,
+        slidesPerView: 1.2,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 150,
+            modifier: 2.5,
+            slideShadows: false,
+        },
+        navigation: {
+            nextEl: "#ritualSlider .swiper-button-next",
+            prevEl: "#ritualSlider .swiper-button-prev",
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2.2,
             },
-        });
+            768: {
+                slidesPerView: 3,
+            },
+            1024: {
+                slidesPerView: 4,
+            },
+        },
+    });
 
-        // Tab switching logic
-        const templeTab = document.getElementById('templeTab');
-        const ritualTab = document.getElementById('ritualTab');
-        const templeSlider = document.getElementById('templeSlider');
-        const ritualSlider = document.getElementById('ritualSlider');
+    // Tab switching logic
+    const templeTab = document.getElementById('templeTab');
+    const ritualTab = document.getElementById('ritualTab');
+    const templeSlider = document.getElementById('templeSlider');
+    const ritualSlider = document.getElementById('ritualSlider');
 
-        templeTab.addEventListener('click', () => {
-            templeTab.classList.add('bg-orange-500', 'text-white');
-            templeTab.classList.remove('bg-white', 'text-orange-500');
-            ritualTab.classList.remove('bg-orange-500', 'text-white');
-            ritualTab.classList.add('bg-white', 'text-orange-500');
+    templeTab.addEventListener('click', () => {
+        templeTab.classList.add('bg-orange-500', 'text-white');
+        templeTab.classList.remove('bg-white', 'text-orange-500');
+        ritualTab.classList.remove('bg-orange-500', 'text-white');
+        ritualTab.classList.add('bg-white', 'text-orange-500');
 
-            ritualSlider.classList.add('hidden');
-            templeSlider.classList.remove('hidden');
+        ritualSlider.classList.add('hidden');
+        templeSlider.classList.remove('hidden');
 
-            swiper1.update();
-        });
+        swiper1.update();
+    });
 
-        ritualTab.addEventListener('click', () => {
-            ritualTab.classList.add('bg-orange-500', 'text-white');
-            ritualTab.classList.remove('bg-white', 'text-orange-500');
-            templeTab.classList.remove('bg-orange-500', 'text-white');
-            templeTab.classList.add('bg-white', 'text-orange-500');
+    ritualTab.addEventListener('click', () => {
+        ritualTab.classList.add('bg-orange-500', 'text-white');
+        ritualTab.classList.remove('bg-white', 'text-orange-500');
+        templeTab.classList.remove('bg-orange-500', 'text-white');
+        templeTab.classList.add('bg-white', 'text-orange-500');
 
-            templeSlider.classList.add('hidden');
-            ritualSlider.classList.remove('hidden');
+        templeSlider.classList.add('hidden');
+        ritualSlider.classList.remove('hidden');
 
-            swiper2.update();
-        });
-    </script>
+        swiper2.update();
+    });
+</script>
+
 
     {{-- Emergency contact --}}
     <script>
@@ -909,11 +918,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                                            <hr class="border-dashed border-gray-300 my-4">
-                                                                                            <div class="flex items-start gap-3">
-                                                                                                <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                                                <p class="text-gray-800">${data.description}</p>
-                                                                                            </div>` : ''}
+                                                                                        <hr class="border-dashed border-gray-300 my-4">
+                                                                                        <div class="flex items-start gap-3">
+                                                                                            <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                                            <p class="text-gray-800">${data.description}</p>
+                                                                                        </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
