@@ -59,7 +59,7 @@
                             <div class="submenu-column">
                                 @foreach ($chunk as $temple)
                                     <a href="{{ route('nearby-temple-view', $temple->name) }}">
-                                        <i class="fa fa-university me-2"></i> {{ $temple->name }}
+                                        <i class="fas fa-place-of-worship me-2"></i>{{ $temple->name }}
                                     </a>
                                 @endforeach
                             </div>
