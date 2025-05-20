@@ -250,7 +250,7 @@
     <script src="front-assets/frontend/js/toastr.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
     <script>
         "use strict";
@@ -306,7 +306,7 @@
             },
         });
 
-        // Tab functionality
+        // Tab switching logic
         const templeTab = document.getElementById('templeTab');
         const ritualTab = document.getElementById('ritualTab');
         const templeSlider = document.getElementById('templeSlider');
@@ -888,11 +888,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                                    <hr class="border-dashed border-gray-300 my-4">
-                                                                                    <div class="flex items-start gap-3">
-                                                                                        <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                                        <p class="text-gray-800">${data.description}</p>
-                                                                                    </div>` : ''}
+                                                                                        <hr class="border-dashed border-gray-300 my-4">
+                                                                                        <div class="flex items-start gap-3">
+                                                                                            <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                                            <p class="text-gray-800">${data.description}</p>
+                                                                                        </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
