@@ -1,5 +1,4 @@
 /* Reset */
-/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -68,44 +67,61 @@ body {
 .desktop-menu a:hover {
   color: #db4d30;
 }
-
-/* Submenu Styles */
+.has-submenu {
+  position: relative;
+}
+/* Mega Menu Wrapper */
 .has-submenu .submenu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
+  width: 100vw;
   background: #fff;
-  min-width: 200px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  padding: 10px 0;
+  padding: 30px 40px;
   z-index: 2000;
+  border-radius: 0 0 10px 10px;
+  box-sizing: border-box;
 }
 
+/* Show on Hover */
 .has-submenu:hover .submenu {
-  display: block;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
 }
 
-.submenu li {
-  padding: 0;
-  margin: 0;
+/* Submenu columns */
+.submenu-column {
+  flex: 1;
+  min-width: 200px;
+  margin: 0 15px;
 }
 
-.submenu li a {
+/* Submenu links */
+.submenu-column h4 {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.submenu-column a {
   display: block;
-  padding: 10px 20px;
+  padding: 6px 0;
   color: #555559;
   font-size: 14px;
-  font-weight: 500;
   text-decoration: none;
-  white-space: nowrap;
+  transition: color 0.3s;
 }
 
-.submenu li a:hover {
-  background-color: #f5f5f5;
+.submenu-column a:hover {
   color: #db4d30;
+  background-color: transparent;
 }
+
 
 /* Mobile Navigation */
 .hamburger-icon {
