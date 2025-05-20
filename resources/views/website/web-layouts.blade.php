@@ -264,80 +264,93 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     {{-- temple slider --}}
-   <script>
-    const swiper1 = new Swiper("#templeSlider", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        loop: true,
-        spaceBetween: 16,
-        slidesPerView: 1.2,
-        coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 150,
-            modifier: 2.5,
-            slideShadows: false,
-        },
-        navigation: {
-            nextEl: "#templeSlider .swiper-button-next",
-            prevEl: "#templeSlider .swiper-button-prev",
-        },
-        breakpoints: {
-            0: {
-                slidesPerView: 3,
+    <script>
+        const swiper1 = new Swiper("#templeSlider", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            loop: true,
+            spaceBetween: 16,
+            slidesPerView: 1.2,
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 150,
+                modifier: 2.5,
+                slideShadows: false,
             },
-            480: {
-                slidesPerView: 2.5,
+            navigation: {
+                nextEl: "#templeSlider .swiper-button-next",
+                prevEl: "#templeSlider .swiper-button-prev",
             },
-            640: {
-                slidesPerView: 2.5,
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.2,
+                },
+                480: {
+                    slidesPerView: 1.5,
+                },
+                640: {
+                    slidesPerView: 2.2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+                1280: {
+                    slidesPerView: 5, // Added for large screens
+                },
+                1440: {
+                    slidesPerView: 5, // Optional for ultra-wide screens
+                }
             },
-            768: {
-                slidesPerView: 3,
-            },
-            1024: {
-                slidesPerView: 4,
-            },
-        },
-    });
+        });
 
-    const swiper2 = new Swiper("#ritualSlider", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        loop: true,
-        spaceBetween: 16,
-        slidesPerView: 1.2,
-        coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 150,
-            modifier: 2.5,
-            slideShadows: false,
-        },
-        navigation: {
-            nextEl: "#ritualSlider .swiper-button-next",
-            prevEl: "#ritualSlider .swiper-button-prev",
-        },
-        breakpoints: {
-            0: {
-                slidesPerView: 1.2,
+        const swiper2 = new Swiper("#ritualSlider", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            loop: true,
+            spaceBetween: 16,
+            slidesPerView: 1.2,
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 150,
+                modifier: 2.5,
+                slideShadows: false,
             },
-            480: {
-                slidesPerView: 1.5,
+            navigation: {
+                nextEl: "#ritualSlider .swiper-button-next",
+                prevEl: "#ritualSlider .swiper-button-prev",
             },
-            640: {
-                slidesPerView: 2.2,
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.2,
+                },
+                480: {
+                    slidesPerView: 1.5,
+                },
+                640: {
+                    slidesPerView: 2.2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+                1280: {
+                    slidesPerView: 5,
+                },
+                1440: {
+                    slidesPerView: 5,
+                }
             },
-            768: {
-                slidesPerView: 3,
-            },
-            1024: {
-                slidesPerView: 4,
-            },
-        },
-    });
+        });
+
 
         // Tab switching logic
         const templeTab = document.getElementById('templeTab');
@@ -925,11 +938,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                                            <hr class="border-dashed border-gray-300 my-4">
-                                                                                            <div class="flex items-start gap-3">
-                                                                                                <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                                                <p class="text-gray-800">${data.description}</p>
-                                                                                            </div>` : ''}
+                                                                                                <hr class="border-dashed border-gray-300 my-4">
+                                                                                                <div class="flex items-start gap-3">
+                                                                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                                                    <p class="text-gray-800">${data.description}</p>
+                                                                                                </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
