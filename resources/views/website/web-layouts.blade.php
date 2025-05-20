@@ -285,13 +285,13 @@
         },
         breakpoints: {
             0: {
-                slidesPerView: 1.2,
+                slidesPerView: 3,
             },
             480: {
-                slidesPerView: 1.5,
+                slidesPerView: 3,
             },
             640: {
-                slidesPerView: 2.2,
+                slidesPerView: 3,
             },
             768: {
                 slidesPerView: 3,
