@@ -264,95 +264,83 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     {{-- temple slider --}}
-    <script>
-        // Initialize Temple Swiper
-        const swiper1 = new Swiper("#templeSlider", {
-            grabCursor: true,
-            loop: false, // Disable looping to paginate batches of 5
-            slidesPerView: 5,
-            spaceBetween: 20,
-            navigation: {
-                nextEl: "#templeSlider .swiper-button-next",
-                prevEl: "#templeSlider .swiper-button-prev",
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1.2,
-                },
-                480: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1024: {
-                    slidesPerView: 4,
-                },
-                1280: {
-                    slidesPerView: 5,
-                },
-            },
-        });
+  <script>
+    // Tab Elements
+    const templeTab = document.getElementById('templeTab');
+    const ritualTab = document.getElementById('ritualTab');
+    const templeSlider = document.getElementById('templeSlider');
+    const ritualSlider = document.getElementById('ritualSlider');
 
-        // Initialize Ritual Swiper
-        const swiper2 = new Swiper("#ritualSlider", {
-            grabCursor: true,
-            loop: false,
-            slidesPerView: 5,
-            spaceBetween: 20,
-            navigation: {
-                nextEl: "#ritualSlider .swiper-button-next",
-                prevEl: "#ritualSlider .swiper-button-prev",
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1.2,
-                },
-                480: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1024: {
-                    slidesPerView: 4,
-                },
-                1280: {
-                    slidesPerView: 5,
-                },
-            },
-        });
+    // Initialize Temple Swiper
+    let swiper1 = new Swiper("#templeSlider", {
+        grabCursor: true,
+        loop: false,
+        slidesPerView: 5,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: "#templeSlider .swiper-button-next",
+            prevEl: "#templeSlider .swiper-button-prev",
+        },
+        breakpoints: {
+            0: { slidesPerView: 1.2 },
+            480: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
+            1280: { slidesPerView: 5 },
+        },
+    });
 
-        // Tab switching logic
-        const templeTab = document.getElementById('templeTab');
-        const ritualTab = document.getElementById('ritualTab');
-        const templeSlider = document.getElementById('templeSlider');
-        const ritualSlider = document.getElementById('ritualSlider');
+    // Initialize Ritual Swiper
+    let swiper2 = new Swiper("#ritualSlider", {
+        grabCursor: true,
+        loop: false,
+        slidesPerView: 5,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: "#ritualSlider .swiper-button-next",
+            prevEl: "#ritualSlider .swiper-button-prev",
+        },
+        breakpoints: {
+            0: { slidesPerView: 1.2 },
+            480: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
+            1280: { slidesPerView: 5 },
+        },
+    });
 
-        templeTab.addEventListener('click', () => {
-            templeTab.classList.add('bg-orange-500', 'text-white');
-            templeTab.classList.remove('bg-white', 'text-orange-500');
-            ritualTab.classList.remove('bg-orange-500', 'text-white');
-            ritualTab.classList.add('bg-white', 'text-orange-500');
+    // Tab Switching Logic
+    templeTab.addEventListener('click', () => {
+        templeTab.classList.add('bg-orange-500', 'text-white');
+        templeTab.classList.remove('bg-white', 'text-orange-500');
+        ritualTab.classList.remove('bg-orange-500', 'text-white');
+        ritualTab.classList.add('bg-white', 'text-orange-500');
 
-            ritualSlider.classList.add('hidden');
-            templeSlider.classList.remove('hidden');
+        ritualSlider.classList.add('hidden');
+        templeSlider.classList.remove('hidden');
 
+        setTimeout(() => {
             swiper1.update();
-        });
+            swiper1.slideTo(0);
+        }, 100);
+    });
 
-        ritualTab.addEventListener('click', () => {
-            ritualTab.classList.add('bg-orange-500', 'text-white');
-            ritualTab.classList.remove('bg-white', 'text-orange-500');
-            templeTab.classList.remove('bg-orange-500', 'text-white');
-            templeTab.classList.add('bg-white', 'text-orange-500');
+    ritualTab.addEventListener('click', () => {
+        ritualTab.classList.add('bg-orange-500', 'text-white');
+        ritualTab.classList.remove('bg-white', 'text-orange-500');
+        templeTab.classList.remove('bg-orange-500', 'text-white');
+        templeTab.classList.add('bg-white', 'text-orange-500');
 
-            templeSlider.classList.add('hidden');
-            ritualSlider.classList.remove('hidden');
+        templeSlider.classList.add('hidden');
+        ritualSlider.classList.remove('hidden');
 
+        setTimeout(() => {
             swiper2.update();
-        });
-    </script>
+            swiper2.slideTo(0);
+        }, 100);
+    });
+</script>
+
 
     {{-- Emergency contact --}}
     <script>
