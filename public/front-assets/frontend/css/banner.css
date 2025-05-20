@@ -149,7 +149,7 @@
 }
 
 .nav-menu li a::before {
-    content: "›";
+    content: ".";
     margin-right: 8px;
     color: #fff;
 }
