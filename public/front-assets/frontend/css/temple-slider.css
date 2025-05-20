@@ -196,3 +196,20 @@
     padding: 0 10px;
   }
 }
+@media (max-width: 640px) {
+  .tab-button-group {
+    display: flex;
+    flex-direction: row; /* horizontal alignment */
+    justify-content: center; /* optional: center them */
+    gap: 10px;
+    padding: 0 10px;
+    flex-wrap: wrap; /* allows wrapping if screen is too narrow */
+  }
+
+  .tab-button {
+    flex: 1 1 auto; /* allows responsive shrinking */
+    font-size: 14px;
+    padding: 10px 16px;
+    white-space: nowrap;
+  }
+}
