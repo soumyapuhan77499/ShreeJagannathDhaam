@@ -264,61 +264,69 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     {{-- temple slider --}}
- <script>
+  <script>
     // Initialize Temple Swiper
     const swiper1 = new Swiper("#templeSlider", {
+        effect: "coverflow",
         grabCursor: true,
-        loop: false, // Disable looping to paginate batches of 5
-        slidesPerView: 5,
-        spaceBetween: 20,
+        centeredSlides: true,
+        loop: true,
+        initialSlide: 1,
+        spaceBetween: 16,
+        slidesPerView: 1.2,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 150,
+            modifier: 2.5,
+            slideShadows: false,
+        },
         navigation: {
             nextEl: "#templeSlider .swiper-button-next",
             prevEl: "#templeSlider .swiper-button-prev",
         },
         breakpoints: {
-            0: {
-                slidesPerView: 1.2,
-            },
-            480: {
-                slidesPerView: 2,
+            640: {
+                slidesPerView: 2.2,
             },
             768: {
                 slidesPerView: 3,
             },
             1024: {
                 slidesPerView: 4,
-            },
-            1280: {
-                slidesPerView: 5,
             },
         },
     });
 
     // Initialize Ritual Swiper
     const swiper2 = new Swiper("#ritualSlider", {
+        effect: "coverflow",
         grabCursor: true,
-        loop: false,
-        slidesPerView: 5,
-        spaceBetween: 20,
+        centeredSlides: true,
+        loop: true,
+        initialSlide: 1,
+        spaceBetween: 16,
+        slidesPerView: 1.2,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 150,
+            modifier: 2.5,
+            slideShadows: false,
+        },
         navigation: {
             nextEl: "#ritualSlider .swiper-button-next",
             prevEl: "#ritualSlider .swiper-button-prev",
         },
         breakpoints: {
-            0: {
-                slidesPerView: 1.2,
-            },
-            480: {
-                slidesPerView: 2,
+            640: {
+                slidesPerView: 2.2,
             },
             768: {
                 slidesPerView: 3,
             },
             1024: {
                 slidesPerView: 4,
-            },
-            1280: {
-                slidesPerView: 5,
             },
         },
     });
@@ -353,6 +361,7 @@
         swiper2.update();
     });
 </script>
+
 
     {{-- Emergency contact --}}
     <script>
