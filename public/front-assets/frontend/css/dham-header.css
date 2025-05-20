@@ -74,7 +74,7 @@ body {
 .has-submenu .submenu {
   display: none;
   position: absolute;
-  top: 47px;
+  top: 100%;
   left: -214px;
   transform: translateX(-50%);
   min-width: 65vw;
