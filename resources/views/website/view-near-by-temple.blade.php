@@ -390,21 +390,21 @@
 
             <div class="tab-buttons">
 
-                  <button class="tab-link active" onclick="showTab(event, 'gallery')">
+                <button class="tab-link active" onclick="showTab(event, 'gallery')">
                     <i class="fa fa-images"></i> Photo Gallery
                 </button>
 
                 <button class="tab-link" onclick="showTab(event, 'address')">
                     <i class="fa fa-map-marker-alt"></i> Address
                 </button>
-              
+
                 {{-- <button class="tab-link " onclick="showTab(event, 'details')">
                     <i class="fa fa-info-circle"></i> Temple Details
                 </button>
                 <button class="tab-link" onclick="showTab(event, 'history')">
                     <i class="fa fa-book"></i> History
                 </button> --}}
-                
+
             </div>
 
             <div id="address" class="tab-content">
@@ -413,7 +413,8 @@
                         <li><strong>Distance:</strong> {{ $temple->distance_from_temple }}</li>
                     @endif
                     @if ($temple->city_village || $temple->district || $temple->state)
-                        <li><strong>Location:</strong>{{ $temple->landmark }}, {{ $temple->city_village }}, {{ $temple->district }}, {{ $temple->pincode }},
+                        <li><strong>Location:</strong>{{ $temple->landmark }}, {{ $temple->city_village }},
+                            {{ $temple->district }}, {{ $temple->pincode }},
                             {{ $temple->state }}</li>
                     @endif
                     @if ($temple->google_map_link)
@@ -471,17 +472,27 @@
                 @if (!empty($photos))
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
                         @foreach ($photos as $photo)
-                            <div
-                                style="border-radius: 8px; overflow: hidden; border: 1px solid #ddd; background: #fafafa;">
+                            <div onclick="openModal('{{ asset($photo) }}')"
+                                style="cursor: pointer; border-radius: 8px; overflow: hidden; border: 1px solid #ddd; background: #fafafa;">
                                 <img src="{{ asset($photo) }}" alt="Temple Photo"
                                     style="width: 100%; height: 180px; object-fit: cover;">
                             </div>
                         @endforeach
+
                     </div>
                 @else
                     <p>No photos available.</p>
                 @endif
             </div>
+            <!-- Modal -->
+            <div id="photoModal"
+                style="display: none; position: fixed; top: 0; left: 0; z-index: 9999; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center;">
+                <span onclick="closeModal()"
+                    style="position: absolute; top: 20px; right: 30px; color: white; font-size: 30px; cursor: pointer;">&times;</span>
+                <img id="modalImage" src="" alt="Full Image"
+                    style="max-width: 90%; max-height: 90%; border-radius: 8px;">
+            </div>
+
         </div>
     </section>
 
@@ -499,6 +510,19 @@
             evt.currentTarget.classList.add('active');
         }
     </script>
+    <script>
+    function openModal(src) {
+        const modal = document.getElementById("photoModal");
+        const img = document.getElementById("modalImage");
+        img.src = src;
+        modal.style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("photoModal").style.display = "none";
+    }
+</script>
+
 </body>
 
 </html>
