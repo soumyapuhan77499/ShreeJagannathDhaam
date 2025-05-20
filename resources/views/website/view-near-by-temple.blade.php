@@ -413,7 +413,7 @@
                         <li><strong>Distance:</strong> {{ $temple->distance_from_temple }}</li>
                     @endif
                     @if ($temple->city_village || $temple->district || $temple->state)
-                        <li><strong>Location:</strong> {{ $temple->city_village }}, {{ $temple->district }},
+                        <li><strong>Location:</strong>{{ $temple->landmark }}, {{ $temple->city_village }}, {{ $temple->district }}, {{ $temple->pincode }},
                             {{ $temple->state }}</li>
                     @endif
                     @if ($temple->google_map_link)
