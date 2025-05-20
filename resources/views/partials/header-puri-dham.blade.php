@@ -52,16 +52,21 @@
                         {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ଧାର୍ମିକ ସ୍ଥଳ' : 'Nearby Temples' }}
                         <i class="fa fa-chevron-down ms-2"></i>
                     </a>
-                    <ul class="submenu">
-                        @forelse ($temples as $temple)
-                            <li><a href="{{ route('nearby-temple-view', $temple->name) }}">{{ $temple->name }}</a>
-                            </li>
+                    <div class="submenu">
+                        @forelse ($temples->chunk(4) as $chunk)
+                            <div class="submenu-column">
+                                @foreach ($chunk as $temple)
+                                    <a href="{{ route('nearby-temple-view', $temple->name) }}">{{ $temple->name }}</a>
+                                @endforeach
+                            </div>
                         @empty
-                            <li><a
+                            <div class="submenu-column">
+                                <a
                                     href="#">{{ $language === 'Odia' ? 'ମନ୍ଦିର ମିଳିଲା ନାହିଁ' : 'No Temples Found' }}</a>
-                            </li>
+                            </div>
                         @endforelse
-                    </ul>
+                    </div>
+
                 </li>
 
                 <li class="has-submenu">
@@ -96,13 +101,13 @@
                             <li><a
                                     href="{{ url('/services/lost_and_found_booth') }}">{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</a>
                             </li>
-                            <li><a
-                                    href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a>
-                            </li>
+
                         </div>
 
                         <div class="submenu-column">
-
+                            <li><a
+                                    href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a>
+                            </li>
                             <li><a
                                     href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
                             </li>
@@ -112,13 +117,13 @@
                             <li><a
                                     href="{{ url('/services/life_guard_booth') }}">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a>
                             </li>
+
+                        </div>
+
+                        <div class="submenu-column">
                             <li><a
                                     href="{{ url('/services/atm') }}">{{ $language === 'Odia' ? 'ଏ.ଟି.ଏମ୍' : 'ATM' }}</a>
                             </li>
-                        </div>
-                        
-                        <div class="submenu-column">
-
                             <li><a
                                     href="{{ url('/services/charging_station') }}">{{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</a>
                             </li>
