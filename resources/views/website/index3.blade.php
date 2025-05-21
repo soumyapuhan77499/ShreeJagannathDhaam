@@ -956,7 +956,7 @@
         </div>
     </section> --}}
 
-    {{-- <section class="bg-100 p-2 relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
+    <section class="bg-100 p-2 relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
         <div class="max-w-6xl mx-auto text-center relative">
             <!-- Tabs -->
             <div class="absolute top-14 right-0 flex space-x-3 p-3 rounded-lg">
@@ -978,7 +978,7 @@
                     class="w-[600px] h-[800px] object-contain rounded-xl shadow-md" />
             </div>
 
-        </div> --}}
+        </div>
 
     {{-- <div class="timeline-footer">
             © {{ date('Y') }} Temple Management System. All rights reserved. <a style="color: red"
