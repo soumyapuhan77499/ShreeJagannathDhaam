@@ -28,7 +28,6 @@
 
                 <li><a href="{{ url('/maha-prasad') }}">{{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}</a></li>
 
-
                 <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
                         {{ $language === 'Odia' ? 'ତ୍ଵରିତ ସେବା' : 'Quick Services' }}
@@ -138,7 +137,7 @@
 
             </ul>
         </nav>
-
+        
         <!-- Hamburger Icon -->
         <div class="hamburger-icon" onclick="toggleMobileMenu(this)">
             <div class="hamburger-menu">
