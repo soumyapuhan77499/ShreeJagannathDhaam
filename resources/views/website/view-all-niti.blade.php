@@ -255,7 +255,7 @@
 
             .timeline-item::after,
             .timeline-item.right::after {
-                left: 12px;
+                left: 11px;
                 top: 24px;
                 transform: translateX(0);
             }
