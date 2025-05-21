@@ -14,7 +14,7 @@
     <div class="header-content">
         <!-- Logo -->
         <div class="logo">
-            <a href="#">
+            <a href="{{ url('/') }}">
                 <img src="{{ asset('website/logo.png') }}" alt="logo">
             </a>
         </div>
@@ -22,6 +22,8 @@
         <!-- Desktop Menu -->
         <nav class="nav-menu desktop-menu">
             <ul>
+                 <li><a href="{{ url('/puri-dham') }}">{{ $language === 'Odia' ? 'ପ୍ରଧାନ ପୃଷ୍ଠା' : 'Home' }}</a></li>
+
                 <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
 
                 <li><a href="{{ url('/darshan-timeline') }}">{{ $language === 'Odia' ? 'ଦର୍ଶନ' : 'Darshan' }}</a></li>
@@ -231,7 +233,6 @@
                     </li>
                 </ul>
             </li>
-
 
         </ul>
     </nav>

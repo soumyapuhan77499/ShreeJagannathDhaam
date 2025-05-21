@@ -141,8 +141,7 @@
     }
   
     .footer-bottom-container {
-      flex-direction: row;
-      gap: 15px;
+      flex-direction: column;
     }
   
     .app-button {
