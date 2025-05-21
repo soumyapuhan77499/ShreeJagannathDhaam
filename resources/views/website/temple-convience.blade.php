@@ -36,79 +36,77 @@
             background-color: #fff7f0;
         }
 
-       @media (max-width: 768px) {
-    .container {
-        width: 100%;
-        padding: 16px;
-    }
+        @media (max-width: 768px) {
+            table.min-w-full {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
 
-    table.min-w-full {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-        white-space: nowrap;
-        border-collapse: separate;
-    }
+            table.min-w-full thead {
+                display: none;
+            }
 
-    table.min-w-full thead {
-        display: none;
-    }
+            table.min-w-full tbody,
+            table.min-w-full tr,
+            table.min-w-full td {
+                display: block;
+                width: 100%;
+            }
 
-    table.min-w-full tbody,
-    table.min-w-full tr,
-    table.min-w-full td {
-        display: block;
-        width: 100%;
-    }
+            table.min-w-full tr {
+                margin-bottom: 16px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                background: #fff;
+                padding: 16px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            }
 
-    table.min-w-full tr {
-        margin-bottom: 16px;
-        border: 1px solid #ddd;
-        border-radius: 12px;
-        background-color: #fafafa;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        padding: 16px;
-        transition: background-color 0.3s;
-    }
+            table.min-w-full td {
+                text-align: left;
+                padding: 12px 16px;
+                position: relative;
+                font-size: 15px;
+                color: #333;
+                border-bottom: 1px solid #eee;
+            }
 
-    table.min-w-full tr:hover {
-        background-color: #f5f5f5;
-    }
+            table.min-w-full td:last-child {
+                border-bottom: none;
+            }
 
-    table.min-w-full td {
-        text-align: left;
-        padding: 12px 16px;
-        position: relative;
-        font-size: 15px;
-        color: #333;
-        border-bottom: 1px solid #eee;
-    }
+            table.min-w-full td::before {
+                content: attr(data-label);
+                position: absolute;
+                top: 12px;
+                left: 16px;
+                font-weight: 600;
+                color: #f06292;
+                font-size: 13px;
+                text-transform: capitalize;
+            }
 
-    table.min-w-full td:last-child {
-        border-bottom: none;
-    }
+            table.min-w-full td img {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                display: block;
+                margin: 10px 0;
+            }
 
-    table.min-w-full td::before {
-        content: attr(data-label);
-        position: absolute;
-        top: 12px;
-        left: 16px;
-        font-weight: 600;
-        color: #007aff;
-        font-size: 13px;
-        text-transform: capitalize;
-    }
-
-    table.min-w-full td img {
-        width: 100%;
-        max-width: 120px;
-        height: auto;
-        border-radius: 8px;
-        display: block;
-        margin: 10px 0;
-    }
-}
-
+            table.min-w-full td a,
+            table.min-w-full td button {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 
@@ -194,7 +192,7 @@
                 <tbody>
                     @forelse($services as $service)
                         <tr class="table-row hover:bg-pink-100 transition duration-300">
-                            <td class="py-4 px-6">
+                            <td class="py-4 px-6" data-label="{{ $language === 'Odia' ? 'ଫୋଟୋ' : 'Photo' }}">
                                 @php
                                     $photos = json_decode($service->photo, true);
                                     $firstPhoto = $photos[0] ?? null;
@@ -212,13 +210,17 @@
                                 @endif
                             </td>
 
-                            <td class="py-4 px-6 font-semibold">{{ $service->service_name }}</td>
+                            <td class="py-4 px-6 font-semibold"
+                                data-label="{{ $language === 'Odia' ? 'ନାମ' : 'Service Name' }}">
+                                {{ $service->service_name }}
+                            </td>
 
-                            <td class="py-4 px-6">
+                            <td class="py-4 px-6"
+                                data-label="{{ $language === 'Odia' ? 'ଦିଗ ନିର୍ଦ୍ଦେଶ' : 'Directions' }}">
                                 @if ($service->google_map_link)
                                     <a href="{{ $service->google_map_link }}" target="_blank"
-                                        class="px-3 py-1 rounded-md text-sm hover:scale-105 transition"
-                                        style="background: linear-gradient(90deg, #f9ce62, #f1769f); color: white;padding: 10px;">
+                                        class="rounded-md text-sm hover:scale-105 transition"
+                                        style="background: linear-gradient(90deg, #f9ce62, #f1769f); color: white;">
                                         <i class="fas fa-map-marker-alt"></i>
                                         {{ $language === 'Odia' ? 'ଦିଗ ନିର୍ଦ୍ଦେଶ' : 'Directions' }}
                                     </a>
@@ -229,10 +231,10 @@
                                 @endif
                             </td>
 
-                            <td class="py-4 px-6">
+                            <td class="py-4 px-6" data-label="{{ $language === 'Odia' ? 'ବିବରଣୀ' : 'Details' }}">
                                 <button onclick="openModal({{ $service->id }})"
-                                    class="text-white px-3 py-1 rounded-md hover:scale-105 transition"
-                                    style="background: linear-gradient(90deg, #f9ce62, #f1769f);padding: 10px;">
+                                    class="text-white rounded-md hover:scale-105 transition"
+                                    style="background: linear-gradient(90deg, #f9ce62, #f1769f);">
                                     {{ $language === 'Odia' ? 'ପୂର୍ଣ୍ଣ ବିବରଣୀ' : 'View Full Info' }}
                                 </button>
                             </td>
