@@ -503,7 +503,7 @@
         </div>
     </section>
 
-    <div style="margin-top: -18px"
+    <div style="margin-top: -10px"
         class="section-header-row flex flex-row justify-center items-center gap-2 sm:gap-5 text-center sm:mt-8 mb-14 block md:hidden">
         <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 sm:w-36 h-5">
         <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-24 sm:w-36 h-5">
