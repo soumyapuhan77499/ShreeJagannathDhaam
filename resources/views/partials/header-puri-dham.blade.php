@@ -115,13 +115,11 @@
                                     {{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a></li>
                             <li><a href="{{ url('/services/life_guard_booth') }}"><i class="fa fa-life-ring me-2"></i>
                                     {{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a></li>
-                            <li><a href="{{ url('/services/life_guard_booth') }}"><i class="fa fa-life-ring me-2"></i>
-                                    {{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life Guards' }}</a></li>
+                            <li><a href="{{ url('/services/atm') }}"><i class="fa fa-credit-card me-2"></i>
+                                    {{ $language === 'Odia' ? 'ଏ.ଟି.ଏମ୍' : 'ATM' }}</a></li>
                         </div>
 
                         <div class="submenu-column">
-                            <li><a href="{{ url('/services/atm') }}"><i class="fa fa-credit-card me-2"></i>
-                                    {{ $language === 'Odia' ? 'ଏ.ଟି.ଏମ୍' : 'ATM' }}</a></li>
                             <li><a href="{{ url('/services/charging_station') }}"><i class="fa fa-bolt me-2"></i>
                                     {{ $language === 'Odia' ? 'ଚାର୍ଜିଂ ସ୍ଟେସନ୍' : 'Charging Station' }}</a></li>
                             <li><a href="{{ url('/bus-railway-station') }}"><i class="fa fa-bus me-2"></i>
@@ -137,7 +135,7 @@
 
             </ul>
         </nav>
-        
+
         <!-- Hamburger Icon -->
         <div class="hamburger-icon" onclick="toggleMobileMenu(this)">
             <div class="hamburger-menu">
