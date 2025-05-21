@@ -34,8 +34,8 @@
                         <i class="fa fa-chevron-down ms-2"></i>
                     </a>
 
-                    <ul class="submenu">
-                        <div class="submenu-column" style="width: 200px !important;">
+                    <ul class="submenu" style="width: 200px !important;">
+                        <div class="submenu-column" >
                             <li>
                                 <a href="{{ url('/view-festival-details') }}">
                                     <i class="fas fa-calendar-days me-2"></i>
