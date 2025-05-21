@@ -79,12 +79,11 @@
   .bar-blue   { background-color: #6577e6; }
   .bar-cyan   { background-color: #22c5ee; }
   .bar-green  { background-color: #6bbf84; }
-  
-  /* Enhanced mobile responsiveness */
-  @media (max-width: 768px) {
+  /* For screens up to 768px */
+@media (max-width: 768px) {
   .services-sections {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
     gap: 16px;
     padding: 0 12px;
   }
@@ -149,13 +148,14 @@
   }
 }
 
+/* For screens up to 640px and even 480px – keep 2 cards per row */
 @media (max-width: 640px) {
   .services-sections {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr); /* still 2 cards per row */
   }
 
   .card-desc {
-    display: none;
+    display: none; /* hide description on very small screens */
   }
 
   .quick-service-header {
