@@ -86,15 +86,15 @@
                             <li>ମନ୍ଦିର ପରିସର ଭିତରେ ଏବଂ ଚାରିପାଖରେ ଜୋତା ଓ ଚମଡା ଜିନିଷ ବ୍ୟବହାର ନିଷିଦ୍ଧ ଅଟେ।</li>
                             <li>ଛତା, ମୋବାଇଲ୍ ଫୋନ୍, ଇଲେକ୍ଟ୍ରୋନିକ୍ ଉପକରଣ, ଚମଡା ଜିନିଷ ଇତ୍ୟାଦି ସାଙ୍ଗରେ ନେଇଯିବାକୁ ନିଷିଦ୍ଧ ଅଟେ।</li>
                         @else
-                            <li>Consume liquor or other intoxicants during Darshan of the Deities.</li>
-                            <li>Eat non-vegetarian food.</li>
-                            <li>Carry cooked food.</li>
-                            <li>Encourage beggary.</li>
-                            <li>Spit or commit nuisance.</li>
-                            <li>Waste water.</li>
-                            <li>Spit, urinate or defecate in the premises of temple.</li>
-                            <li>Footwear and leather items in and around the premises of the temple.</li>
-                            <li>Carry umbrella, mobile phones, electronic gadgets, leather items etc.</li>
+                            <li>Dont's consume liquor or other intoxicants during Darshan of the Deities.</li>
+                            <li>Dont's eat non-vegetarian food.</li>
+                            <li>Dont's carry cooked food.</li>
+                            <li>Dont's encourage beggary.</li>
+                            <li>Dont's spit or commit nuisance.</li>
+                            <li>Dont's waste water.</li>
+                            <li>Dont's spit, urinate or defecate in the premises of temple.</li>
+                            <li>Dont's footwear and leather items in and around the premises of the temple.</li>
+                            <li>Dont's carry umbrella, mobile phones, electronic gadgets, leather items etc.</li>
                         @endif
                     </ul>
                 </div>

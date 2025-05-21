@@ -240,7 +240,7 @@
             }
 
             .timeline::before {
-                left: 8px;
+                left: 25px;
                 width: 4px;
                 transform: none;
             }
@@ -255,7 +255,7 @@
 
             .timeline-item::after,
             .timeline-item.right::after {
-                left: -7px;
+                left: 12px;
                 top: 24px;
                 transform: translateX(0);
             }
