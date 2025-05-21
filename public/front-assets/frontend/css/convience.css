@@ -170,8 +170,8 @@
 /* ✅ Very Small Mobile (2 Columns) */
 @media (max-width: 480px) {
   .convenience-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px 15px;
   }
 
   .conv {
