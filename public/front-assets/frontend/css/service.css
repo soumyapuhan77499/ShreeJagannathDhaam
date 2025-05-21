@@ -151,6 +151,10 @@
   .service-cards.full-width-card {
     grid-column: span 2;
   }
+
+  .section-header-row {
+    display: none;
+  }
 }
 
 /* For screens up to 640px and even 480px – keep 2 cards per row */
@@ -190,5 +194,8 @@
     white-space: nowrap;
     color: #db4d30;
     flex-shrink: 0;
+  }
+  .section-header-row {
+    display: none;
   }
 }
