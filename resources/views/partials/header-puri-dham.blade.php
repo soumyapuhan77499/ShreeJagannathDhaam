@@ -35,7 +35,7 @@
                     </a>
 
                     <ul class="submenu">
-                        <div class="submenu-column">
+                        <div class="submenu-column" style="width: 100% !important;">
                             <li>
                                 <a href="{{ url('/view-festival-details') }}">
                                     <i class="fas fa-calendar-days me-2"></i>
@@ -128,9 +128,7 @@
                             <li><a href="{{ url('/services/petrol_pump') }}"><i class="fa fa-gas-pump me-2"></i>
                                     {{ $language === 'Odia' ? 'ପେଟ୍ରୋଲ ପମ୍ପ' : 'Petrol Pump' }}</a></li>
                         </div>
-
                     </ul>
-
                 </li>
 
             </ul>
