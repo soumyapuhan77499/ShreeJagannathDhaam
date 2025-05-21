@@ -147,6 +147,10 @@
     width: 50px;
     border-radius: 5px;
   }
+
+  .service-cards.full-width-card {
+    grid-column: span 2;
+  }
 }
 
 /* For screens up to 640px and even 480px – keep 2 cards per row */

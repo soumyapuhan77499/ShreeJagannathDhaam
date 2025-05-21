@@ -505,7 +505,7 @@
 
     <section class="services-sections">
         <!-- Bhakta Nibas -->
-        <a href="{{ route('bhaktanibas.list') }}" class="service-cards">
+<a href="{{ route('bhaktanibas.list') }}" class="service-cards full-width-card">
             <div class="card-top">
                 <div class="card-text">
                     <div class="card-title">
