@@ -285,7 +285,7 @@
         },
         breakpoints: {
             0: {
-                slidesPerView: 3,
+                slidesPerView: 1.2,
             },
             480: {
                 slidesPerView: 3,
@@ -322,7 +322,7 @@
         },
         breakpoints: {
             0: {
-                slidesPerView: 3,
+                slidesPerView: 1.2,
             },
             480: {
                 slidesPerView: 3,
