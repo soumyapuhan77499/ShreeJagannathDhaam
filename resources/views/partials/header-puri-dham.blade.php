@@ -153,22 +153,20 @@
             <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
             <li><a href="{{ url('/darshan-timeline') }}">{{ $language === 'Odia' ? 'ଦର୍ଶନ' : 'Darshan' }}</a> </li>
             <li><a href="{{ url('/maha-prasad') }}">{{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}</a></li>
-            
+
             <li class="has-submenu">
                 <a href="javascript:void(0)" class="submenu-toggle">
                     {{ $language === 'Odia' ? 'ତ୍ଵରିତ ସେବା' : 'Quick Services' }}
                     <i class="fa fa-chevron-down ms-2"></i>
                 </a>
                 <ul class="submenu">
-
-                    <li><a
-                            href="{{ url('/view-festival-details') }}">{{ $language === 'Odia' ? 'ପର୍ବପର୍ବାଣୀ' : 'Festival' }}</a>
-                    </li>
-                    <li><a
-                            href="{{ url('/do-and-donts') }}">{{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's & Don'ts" }}</a>
-                    </li>
+                    <li><a href="{{ url('/view-festival-details') }}">
+                            {{ $language === 'Odia' ? 'ପର୍ବପର୍ବାଣୀ' : 'Festival' }}</a></li>
+                    <li><a href="{{ url('/do-and-donts') }}">
+                            {{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's & Don'ts" }}</a></li>
                 </ul>
             </li>
+
 
             <li class="has-submenu">
                 <a href="javascript:void(0)" class="submenu-toggle">
