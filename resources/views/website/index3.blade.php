@@ -415,7 +415,7 @@
         <!-- Section Title -->
 
         <div class="section-header-row flex flex-row justify-center items-center gap-2 sm:gap-5 text-center mt-4 sm:mt-8 mb-14"
-            style="margin-left: -40px;">
+            style="margin-left: -18px;">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 sm:w-36 h-5">
             <h2 class="text-xl sm:text-2xl text-[#db4d30] font-sans font-semibold ">
                 {{ $language === 'Odia' ? 'ତ୍ଵରିତ ସେବା' : 'Quick Services' }}
