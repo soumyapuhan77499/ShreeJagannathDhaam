@@ -81,10 +81,11 @@
 
 .footer-bottom-container {
     display: flex;
+    flex-direction: column; /* <-- key change for vertical layout */
     justify-content: center;
     align-items: center;
     gap: 20px;
-    flex-wrap: wrap; /* Stack on smaller screens */
+    flex-wrap: wrap;
     max-width: 100%;
     margin: 0 auto;
 }
@@ -141,7 +142,8 @@
     }
   
     .footer-bottom-container {
-      flex-direction: column;
+      flex-direction: row;
+      gap: 15px;
     }
   
     .app-button {
