@@ -17,7 +17,7 @@
     @php
         $language = session('app_language', 'English');
     @endphp
-    
+
     <section class="hero">
         <img class="hero-bg" src="{{ asset('website/fest.jpg') }}" alt="Mandir Background" />
         <div class="hero-overlay"></div>
@@ -1172,6 +1172,21 @@
         const tbody = document.getElementById("festivalBody");
         const searchInput = document.getElementById("searchInput");
 
+        // Helper: Convert DD/MM/YYYY to a Date object
+        function parseDate(dateStr) {
+            const [day, month, year] = dateStr.split("/").map(Number);
+            return new Date(year, month - 1, day);
+        }
+
+        // Filter out past dates
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Normalize to midnight for accurate comparison
+
+        const upcomingFestivals = festival.filter(item => {
+            const festivalDate = parseDate(item.date);
+            return festivalDate >= today; // Keep today's or future dates
+        });
+
         function renderTable(data) {
             tbody.innerHTML = '';
             data.forEach(item => {
@@ -1188,7 +1203,7 @@
 
         function filterFestival() {
             const keyword = searchInput.value.toLowerCase();
-            const filtered = festival.filter(item => {
+            const filtered = upcomingFestivals.filter(item => {
                 const name = language === 'Odia' ? item.odiaName : item.name;
                 return name.toLowerCase().includes(keyword);
             });
@@ -1196,7 +1211,10 @@
         }
 
         // Initial load
-        renderTable(festival);
+        renderTable(upcomingFestivals);
+
+        // Optional: connect search input
+        searchInput.addEventListener("input", filterFestival);
     </script>
     @include('partials.website-footer')
 
