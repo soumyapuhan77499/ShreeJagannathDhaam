@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
 
     <style>
-         body {
+        body {
             font-family: Arial, sans-serif;
             background: #fff;
             margin: 0;
@@ -163,14 +163,14 @@
         .Completed .card {
             background: #fffaf3;
             border-left: 6px solid #db4d30;
-                border: 1px solid rgb(213, 213, 213);
+            border: 1px solid rgb(213, 213, 213);
         }
 
         .Started .card {
             background: #db4d30;
             color: #ffae35;
             border-left: 6px solid #fff;
-                border: 1px solid rgb(213, 213, 213);
+            border: 1px solid rgb(213, 213, 213);
         }
 
         .Started .card h3 {
@@ -203,81 +203,112 @@
 
         @media (max-width: 768px) {
             .timeline {
-                padding: 0 10px;
-                margin: 40px auto;
+                padding: 0 12px;
+                margin: 24px auto;
+                position: relative;
             }
 
             .timeline::before {
-                left: 10px;
+                content: '';
+                position: absolute;
+                left: 12px;
+                top: 0;
+                height: 100%;
                 width: 4px;
-                transform: none;
+                background-color: #db4d30;
             }
 
             .timeline-item,
             .timeline-item.right {
+                position: relative;
                 width: 100%;
-                left: 0;
-                padding: 20px 20px 20px 30px;
+                padding: 20px 16px 20px 36px;
                 box-sizing: border-box;
+                margin-bottom: 20px;
+                left: 0;
             }
 
             .timeline-item::after,
             .timeline-item.right::after {
-                left: -9px;
-                top: 30px;
-                transform: none;
+                content: '';
+                position: absolute;
+                left: 6px;
+                top: 24px;
+                width: 14px;
+                height: 14px;
+                background-color: #db4d30;
+                border: 3px solid #fff;
+                border-radius: 50%;
+                z-index: 1;
             }
 
             .card {
-                padding: 16px;
+                background-color: #fff;
                 border-radius: 12px;
+                padding: 16px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             }
 
             .card-header {
+                display: flex;
                 flex-direction: column;
+                gap: 10px;
                 align-items: flex-start;
-                gap: 12px;
+            }
+
+            .darshan-img-wrapper {
+                width: 100%;
             }
 
             .darshan-img-wrapper img {
-                width: 40%;
+                width: 100%;
                 max-width: 100%;
                 height: auto;
-                margin: 0;
+                border-radius: 10px;
             }
 
             .badge {
+                display: inline-flex;
+                align-items: center;
                 font-size: 13px;
-                padding: 5px 12px;
-                margin-bottom: 8px;
+                padding: 5px 10px;
+                background-color: #f5f5f5;
+                border-radius: 6px;
+                margin-bottom: 6px;
+                color: #db4d30;
+                font-weight: 500;
             }
 
             .badge i {
-                font-size: 13px;
+                margin-right: 6px;
+                font-size: 14px;
             }
 
             .prasad-name {
                 font-size: 16px;
-                margin-left: 0;
-                margin-top: 4px;
+                font-weight: 600;
+                color: #333;
+                margin-top: 2px;
             }
 
             .card h3 {
-                font-size: 17px;
-                margin: 0 0 10px;
+                font-size: 16px;
+                margin: 0;
             }
 
             .card p {
                 font-size: 14px;
                 margin: 6px 0;
+                color: #444;
             }
 
             .prasad-times {
-                margin-top: 10px;
+                margin-top: 12px;
             }
 
             .prasad-times p {
                 font-size: 13px;
+                margin: 4px 0;
             }
 
             .prasad-times i {
@@ -285,13 +316,21 @@
                 margin-right: 6px;
             }
 
+            /* Optional: Color left border based on status */
             .Started .card {
-                border-left: 4px solid #fff;
+                border-left: 4px solid #4caf50;
             }
 
-            .Completed .card,
+            .Completed .card {
+                border-left: 4px solid #2196f3;
+            }
+
             .Upcoming .card {
-                border-left: 4px solid #db4d30;
+                border-left: 4px solid #ff9800;
+            }
+
+            .Unknown .card {
+                border-left: 4px solid #999;
             }
         }
     </style>
@@ -300,103 +339,113 @@
 <body>
     @include('partials.header-puri-dham')
 
-   @php
-    $language = session('app_language', 'English');
-@endphp
+    @php
+        $language = session('app_language', 'English');
+    @endphp
 
-<!-- Hero Section -->
-<div class="hero">
-    <img class="hero-bg" src="{{ asset('website/prsd.jpg') }}" alt="Mandir Background" />
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1>
-            {{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ ସମୟ' : 'Maha Prasad Timeline' }}
-        </h1>
-        <p>
-            {{ $language === 'Odia' ? 'ପବିତ୍ର ଭୋଜନ, ସମୟ ଓ ବିବରଣୀ ଜାଣନ୍ତୁ' : 'Explore sacred offerings, their time and items served' }}
-        </p>
+    <!-- Hero Section -->
+    <div class="hero">
+        <img class="hero-bg" src="{{ asset('website/prsd.jpg') }}" alt="Mandir Background" />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>
+                {{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ ସମୟ' : 'Maha Prasad Timeline' }}
+            </h1>
+            <p>
+                {{ $language === 'Odia' ? 'ପବିତ୍ର ଭୋଜନ, ସମୟ ଓ ବିବରଣୀ ଜାଣନ୍ତୁ' : 'Explore sacred offerings, their time and items served' }}
+            </p>
+        </div>
     </div>
-</div>
 
-<!-- Timeline -->
-<div class="timeline">
-    @foreach ($prasadList as $index => $prasad)
-        @php
-            $start = $prasad->start_time;
-            $status = $prasad->today_status;
-            $side = $index % 2 === 0 ? 'left' : 'right';
+    <!-- Timeline -->
+    <div class="timeline">
+        @foreach ($prasadList as $index => $prasad)
+            @php
+                $start = $prasad->start_time;
+                $status = $prasad->today_status;
+                $side = $index % 2 === 0 ? 'left' : 'right';
 
-            $icon = match ($status) {
-                'Completed' => 'fa-check-circle',
-                'Started' => 'fa-sun',
-                'Upcoming' => 'fa-bell',
-                default => 'fa-clock',
-            };
+                $icon = match ($status) {
+                    'Completed' => 'fa-check-circle',
+                    'Started' => 'fa-sun',
+                    'Upcoming' => 'fa-bell',
+                    default => 'fa-clock',
+                };
 
-            $statusClass = $status;
-            $formattedStart = $start ? \Carbon\Carbon::parse($start)->format('h:i A') : null;
-        @endphp
+                $statusClass = $status;
+                $formattedStart = $start ? \Carbon\Carbon::parse($start)->format('h:i A') : null;
+            @endphp
 
-        <div class="timeline-item {{ $side }} {{ $statusClass }}">
-            <div class="card timeline-content">
-                <div class="card-header">
-                    @if ($prasad->prasad_name)
-                        <div class="darshan-img-wrapper" style="margin-bottom: 10px;">
-                            <img src="{{ asset('website/prasad.png') }}" alt="{{ $prasad->prasad_name }}"
-                                 style="width: 100%; max-width: 300px; border-radius: 10px;">
+            <div class="timeline-item {{ $side }} {{ $statusClass }}">
+                <div class="card timeline-content">
+                    <div class="card-header">
+                        @if ($prasad->prasad_name)
+                            <div class="darshan-img-wrapper" style="margin-bottom: 10px;">
+                                <img src="{{ asset('website/prasad.png') }}" alt="{{ $prasad->prasad_name }}"
+                                    style="width: 100%; max-width: 300px; border-radius: 10px;">
+                            </div>
+                        @endif
+
+                        <div>
+                            <span class="badge {{ $statusClass }}">
+                                <i class="fas {{ $icon }}"></i>
+                                @if ($language === 'Odia')
+                                    @switch($status)
+                                        @case('Started')
+                                            ଚାଲିଛି
+                                        @break
+
+                                        @case('Completed')
+                                            ସମାପ୍ତ
+                                        @break
+
+                                        @case('Upcoming')
+                                            ଆଗାମୀ
+                                        @break
+
+                                        @default
+                                            ଅଜଣା
+                                    @endswitch
+                                @else
+                                    {{ $status === 'Started' ? 'Going On' : $status }}
+                                @endif
+                            </span>
+
+                            <h3 class="prasad-name">
+                                {{ $language === 'Odia' ? $prasad->prasad_name : $prasad->english_prasad_name ?? $prasad->prasad_name }}
+                            </h3>
                         </div>
-                    @endif
+                    </div>
 
-                    <div>
-                        <span class="badge {{ $statusClass }}">
-                            <i class="fas {{ $icon }}"></i>
-                            @if ($language === 'Odia')
-                                @switch($status)
-                                    @case('Started') ଚାଲିଛି @break
-                                    @case('Completed') ସମାପ୍ତ @break
-                                    @case('Upcoming') ଆଗାମୀ @break
-                                    @default ଅଜଣା
-                                @endswitch
-                            @else
-                                {{ $status === 'Started' ? 'Going On' : $status }}
-                            @endif
-                        </span>
+                    <div class="prasad-times">
+                        @if ($status === 'Started' && $start)
+                            <p class="right-align">
+                                <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
+                                {{ $language === 'Odia' ? convertToOdiaTime($formattedStart) : strtolower($formattedStart) }}
+                            </p>
+                        @endif
 
-                        <h3 class="prasad-name">
-                            {{ $language === 'Odia' ? $prasad->prasad_name : ($prasad->english_prasad_name ?? $prasad->prasad_name) }}
-                        </h3>
+                        @if ($status === 'Completed' && $start)
+                            <p class="right-align">
+                                <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
+                                {{ $language === 'Odia' ? convertToOdiaTime($formattedStart) : strtolower($formattedStart) }}
+                            </p>
+                        @endif
+
+                        @if ($status === 'Upcoming')
+                            <p class="right-align">
+                                <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Starts' }}:</strong>
+                                {{ $language === 'Odia' ? 'ଏପର୍ଯ୍ୟନ୍ତ ଆରମ୍ଭ ହୋଇନାହିଁ' : 'Not yet started' }}
+                            </p>
+                        @endif
                     </div>
                 </div>
-
-                <div class="prasad-times">
-                    @if ($status === 'Started' && $start)
-                        <p class="right-align">
-                            <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
-                            {{ $language === 'Odia' ? convertToOdiaTime($formattedStart) : strtolower($formattedStart) }}
-                        </p>
-                    @endif
-
-                    @if ($status === 'Completed' && $start)
-                        <p class="right-align">
-                            <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
-                            {{ $language === 'Odia' ? convertToOdiaTime($formattedStart) : strtolower($formattedStart) }}
-                        </p>
-                    @endif
-
-                    @if ($status === 'Upcoming')
-                        <p class="right-align">
-                            <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Starts' }}:</strong>
-                            {{ $language === 'Odia' ? 'ଏପର୍ଯ୍ୟନ୍ତ ଆରମ୍ଭ ହୋଇନାହିଁ' : 'Not yet started' }}
-                        </p>
-                    @endif
-                </div>
             </div>
-        </div>
-    @endforeach
-</div>
+        @endforeach
+    </div>
 
     @include('partials.website-footer')
-   
+
 </body>
 
 </html>
