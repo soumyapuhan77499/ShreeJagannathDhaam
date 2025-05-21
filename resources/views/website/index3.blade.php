@@ -413,7 +413,6 @@
 
     <section class="services-section py-10">
         <!-- Section Title -->
-
         <div class="section-header-row flex flex-row justify-center items-center gap-2 sm:gap-5 text-center sm:mt-8 mb-14"
             style="margin-left: -7px;">
             <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 sm:w-36 h-5">
@@ -512,7 +511,7 @@
     <section class="services-sections">
         <!-- Bhakta Nibas -->
         <a href="{{ route('bhaktanibas.list') }}" class="service-cards full-width-card show-desc"
-            style="margin-top: -35px">
+          >
             <div class="card-top">
                 <div class="card-text">
                     <div class="card-title">
@@ -979,6 +978,7 @@
             </div>
 
         </div>
+    </section>
 
     {{-- <div class="timeline-footer">
             © {{ date('Y') }} Temple Management System. All rights reserved. <a style="color: red"
