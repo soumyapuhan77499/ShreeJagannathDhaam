@@ -35,7 +35,7 @@
                     </a>
 
                     <ul class="submenu">
-                        <div class="submenu-column" style="width: 100% !important;">
+                        <div class="submenu-column" style="width: 200px !important;">
                             <li>
                                 <a href="{{ url('/view-festival-details') }}">
                                     <i class="fas fa-calendar-days me-2"></i>
