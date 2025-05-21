@@ -78,7 +78,7 @@
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
             position: relative;
-                border: 1px solid rgb(213, 213, 213);
+            border: 1px solid rgb(213, 213, 213);
             transition: all 0.3s ease;
         }
 
@@ -203,73 +203,100 @@
 
         @media (max-width: 768px) {
             .timeline {
-                padding: 0 10px;
-                margin: 40px auto;
+                padding: 0 12px;
+                margin: 24px auto;
+                position: relative;
             }
 
             .timeline::before {
-                left: 10px;
+                content: '';
+                position: absolute;
+                left: 12px;
+                top: 0;
                 width: 4px;
-                transform: none;
+                height: 100%;
+                background-color: #db4d30;
             }
 
             .timeline-item,
             .timeline-item.right {
                 width: 100%;
                 left: 0;
-                padding: 20px 20px 20px 30px;
+                padding: 20px 16px 20px 36px;
                 box-sizing: border-box;
+                margin-bottom: 24px;
             }
 
             .timeline-item::after,
             .timeline-item.right::after {
-                left: -9px;
-                top: 30px;
-                transform: none;
+                content: '';
+                position: absolute;
+                left: 6px;
+                top: 28px;
+                width: 14px;
+                height: 14px;
+                background-color: #db4d30;
+                border: 3px solid #fff;
+                border-radius: 50%;
             }
 
             .card {
                 padding: 16px;
                 border-radius: 12px;
+                background: #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             }
 
             .card-header {
+                display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 12px;
             }
 
+            .darshan-img-wrapper {
+                width: 100%;
+                margin-bottom: 12px;
+            }
+
             .darshan-img-wrapper img {
                 width: 100%;
-                max-width: 100%;
                 height: auto;
-                margin: 0;
+                border-radius: 10px;
+                display: block;
             }
 
             .badge {
                 font-size: 13px;
                 padding: 6px 12px;
-                margin-bottom: 8px;
+                border-radius: 6px;
+                background-color: #f5f5f5;
+                color: #db4d30;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
             }
 
             .badge i {
-                font-size: 13px;
+                font-size: 14px;
             }
 
             .darshan-name {
                 font-size: 16px;
-                margin-left: 0;
+                font-weight: 600;
+                color: #333;
                 margin-top: 4px;
             }
 
             .card h3 {
-                font-size: 17px;
-                margin: 0 0 10px;
+                font-size: 16px;
+                margin: 0;
             }
 
             .card p {
                 font-size: 14px;
                 margin: 6px 0;
+                color: #444;
             }
 
             .darshan-times {
@@ -278,6 +305,7 @@
 
             .darshan-times p {
                 font-size: 13px;
+                margin: 4px 0;
             }
 
             .darshan-times i {
@@ -286,12 +314,15 @@
             }
 
             .Started .card {
-                border-left: 4px solid #fff;
+                border-left: 4px solid #4caf50;
             }
 
-            .Completed .card,
+            .Completed .card {
+                border-left: 4px solid #2196f3;
+            }
+
             .Upcoming .card {
-                border-left: 4px solid #db4d30;
+                border-left: 4px solid #ff9800;
             }
         }
     </style>
@@ -394,7 +425,7 @@
                                 <p class="right-align">
                                     <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
                                     {{ $language === 'Odia' ? convertToOdiaTime($startTimeFormatted) : strtolower($startTimeFormatted) }}
-                                 </p>
+                                </p>
                             @endif
                             @if ($end)
                                 <p class="right-align">
