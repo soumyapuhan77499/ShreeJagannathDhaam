@@ -68,18 +68,20 @@
                     <li><a
                             href="{{ url('/services-emergency') }}">{{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ' : 'Emergency' }}</a>
                     </li>
-                </ul>
-            </div>
-
-            <!-- Extra Convenience Links -->
-            <div>
-                <ul>
-                    <li><a
+                     <li><a
                             href="{{ url('/services-abled') }}">{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</a>
                     </li>
                     <li><a
                             href="{{ url('/services/lost_and_found_booth') }}">{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost And Found' }}</a>
                     </li>
+                </ul>
+            </div>
+
+            <!-- Extra Convenience Links -->
+            <div>
+                <h3>{{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}</h3>
+                <ul>
+                   
                     <li><a href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a>
                     </li>
                     <li><a href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
