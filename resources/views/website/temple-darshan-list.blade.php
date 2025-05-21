@@ -260,9 +260,9 @@
             }
 
             .darshan-img-wrapper img {
-                width: 100%;
+                width: 40%;
                 height: auto;
-                border-radius: 10px;
+                border-radius: 40px;
                 display: block;
             }
 
