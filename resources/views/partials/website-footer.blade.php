@@ -125,7 +125,7 @@
     style="height: 80px; width: 100%; background-color: #ffae35; display: flex; align-items: center; justify-content: center;">
     <div class="text-center text-sm text-black-400 mt-10 mb-6">
         © {{ date('Y') }}
-        {{ $language === 'Odia' ? 'ମନ୍ଦିର ପରିଚାଳନା ପ୍ରଣାଳୀ। ସମସ୍ତ ସ୍ୱତ୍ୱ ଅଧିକାର ସଂରକ୍ଷିତ।' : 'Temple Management System. All rights reserved.' }}
+        {{ $language === 'Odia' ? 'ଶ୍ରୀ ଜଗନ୍ନାଥ ମନ୍ଦିର ପ୍ରଶାସନ (SJTA)' : 'Shree Jagannath Temple Administration (SJTA)' }}
     </div>
 </div>
 
