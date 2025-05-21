@@ -504,126 +504,125 @@
     </section>
 
     <section class="services-sections">
-        <!-- Bhakta Nibas -->
-        <a href="{{ route('bhaktanibas.list') }}" class="service-cards" style="text-decoration: none;">
-            <div class="card-top">
-                <div class="card-text">
-                    <div class="card-title">
-                        {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nibas' }}
-                    </div>
-                    <div class="card-desc">
-                        {{ $language === 'Odia' ? 'ତୀର୍ଥଯାତ୍ରୀମାନଙ୍କ ପାଇଁ ମନ୍ଦିର ପାଖରେ ରହିବା ସ୍ଥାନ' : 'Temple owned properties for pilgrim stay' }}
-                    </div>
+    <!-- Bhakta Nibas -->
+    <a href="{{ route('bhaktanibas.list') }}" class="service-cards">
+        <div class="card-top">
+            <div class="card-text">
+                <div class="card-title">
+                    {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nibas' }}
                 </div>
-                <div class="arrow-icon" style="font-size: 25px;">
-                    <i class="fa-solid fa-arrow-right" style="color: #e9372b;"></i>
+                <div class="card-desc">
+                    {{ $language === 'Odia' ? 'ତୀର୍ଥଯାତ୍ରୀମାନଙ୍କ ପାଇଁ ମନ୍ଦିର ପାଖରେ ରହିବା ସ୍ଥାନ' : 'Temple owned properties for pilgrim stay' }}
                 </div>
             </div>
-            <div class="card-bottom">
-                <div class="card-icons">
-                    <img src="{{ asset('website/niwas.png') }}" alt="Bhakta Nibas" style="height: 40px; width: 40px;">
-                </div>
-                <div class="footer-bar bar-orange"></div>
+            <div class="arrow-icon">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </a>
+        </div>
+        <div class="card-bottom">
+            <div class="card-icons">
+                <img src="{{ asset('website/niwas.png') }}" alt="Bhakta Nibas">
+            </div>
+            <div class="footer-bar bar-orange"></div>
+        </div>
+    </a>
 
-        <!-- Parking Areas -->
-        <a href="{{ route('parking.list') }}" class="service-cards" style="text-decoration: none;">
-            <div class="card-top">
-                <div class="card-text">
-                    <div class="card-title">
-                        {{ $language === 'Odia' ? 'ପାର୍କିଂ ସ୍ଥଳ' : 'Parking Areas' }}
-                    </div>
-                    <div class="card-desc">
-                        {{ $language === 'Odia' ? '୨, ୩, ୪ ଚକା ବାହନ' : '2, 3, 4 Wheelers' }}
-                    </div>
+    <!-- Parking Areas -->
+    <a href="{{ route('parking.list') }}" class="service-cards">
+        <div class="card-top">
+            <div class="card-text">
+                <div class="card-title">
+                    {{ $language === 'Odia' ? 'ପାର୍କିଂ ସ୍ଥଳ' : 'Parking Areas' }}
                 </div>
-                <div class="arrow-icon" style="font-size: 25px;">
-                    <i class="fa-solid fa-arrow-right" style="color: #e9372b;"></i>
+                <div class="card-desc">
+                    {{ $language === 'Odia' ? '୨, ୩, ୪ ଚକା ବାହନ' : '2, 3, 4 Wheelers' }}
                 </div>
             </div>
-            <div class="card-bottom">
-                <div
-                    style="margin-right:5%; height: 50px; width: 50px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                    <img src="{{ asset('website/park.png') }}" alt="Parking" style="height: 40px; width: 40px;">
-                </div>
-                <div class="footer-bar bar-red"></div>
+            <div class="arrow-icon">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </a>
+        </div>
+        <div class="card-bottom">
+            <div class="card-icons">
+                <img src="{{ asset('website/park.png') }}" alt="Parking">
+            </div>
+            <div class="footer-bar bar-red"></div>
+        </div>
+    </a>
 
-        <!-- Locker & Shoes -->
-        <a href="{{ route('lockershoe.list') }}" class="service-cards" style="text-decoration: none;">
-            <div class="card-top">
-                <div class="card-text">
-                    <div class="card-title">
-                        {{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା ସ୍ଥାନ' : 'Locker & Shoes Stands' }}
-                    </div>
-                    <div class="card-desc">
-                        {{ $language === 'Odia' ? 'ଜୋତା, ମୋବାଇଲ ଫୋନ ଇତ୍ୟାଦି' : 'Shoes, Mobile Phones etc' }}
-                    </div>
+    <!-- Locker & Shoes -->
+    <a href="{{ route('lockershoe.list') }}" class="service-cards">
+        <div class="card-top">
+            <div class="card-text">
+                <div class="card-title">
+                    {{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା ସ୍ଥାନ' : 'Locker & Shoes Stands' }}
                 </div>
-                <div class="arrow-icon" style="font-size: 25px;">
-                    <i class="fa-solid fa-arrow-right" style="color: #e9372b;"></i>
+                <div class="card-desc">
+                    {{ $language === 'Odia' ? 'ଜୋତା, ମୋବାଇଲ ଫୋନ ଇତ୍ୟାଦି' : 'Shoes, Mobile Phones etc' }}
                 </div>
             </div>
-            <div class="card-bottom">
-                <div class="card-icons">
-                    <img src="{{ asset('website/lck.png') }}" alt="Locker" style="height: 40px; width: 40px;">
-                </div>
-                <div class="footer-bar bar-blue"></div>
+            <div class="arrow-icon">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </a>
+        </div>
+        <div class="card-bottom">
+            <div class="card-icons">
+                <img src="{{ asset('website/lck.png') }}" alt="Locker">
+            </div>
+            <div class="footer-bar bar-blue"></div>
+        </div>
+    </a>
 
-        <!-- Online Donations -->
-        <a href="{{ route('online.donation') }}" class="service-cards" style="text-decoration: none;">
-            <div class="card-top">
-                <div class="card-text">
-                    <div class="card-title">
-                        {{ $language === 'Odia' ? 'ଅନଲାଇନ୍ ଦାନ' : 'Online Donations' }}
-                    </div>
-                    <div class="card-desc" style="font-weight: 500;">
-                        {{ $language === 'Odia' ? 'ଦାନ କରନ୍ତୁ' : 'Donate Now' }}
-                    </div>
+    <!-- Online Donations -->
+    <a href="{{ route('online.donation') }}" class="service-cards">
+        <div class="card-top">
+            <div class="card-text">
+                <div class="card-title">
+                    {{ $language === 'Odia' ? 'ଅନଲାଇନ୍ ଦାନ' : 'Online Donations' }}
                 </div>
-                <div class="arrow-icon" style="font-size: 25px;">
-                    <i class="fa-solid fa-arrow-right" style="color: #e9372b;"></i>
+                <div class="card-desc">
+                    {{ $language === 'Odia' ? 'ଦାନ କରନ୍ତୁ' : 'Donate Now' }}
                 </div>
             </div>
-            <div class="card-bottom">
-                <div class="card-icons">
-                    <img src="{{ asset('website/donation.png') }}" alt="Donation" style="height: 40px; width: 40px;">
-                </div>
-                <div class="footer-bar bar-cyan"></div>
+            <div class="arrow-icon">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </a>
+        </div>
+        <div class="card-bottom">
+            <div class="card-icons">
+                <img src="{{ asset('website/donation.png') }}" alt="Donation">
+            </div>
+            <div class="footer-bar bar-cyan"></div>
+        </div>
+    </a>
 
-        <!-- Hundi Collection -->
-        <a href="{{ route('hundi.collection') }}" class="service-cards" style="text-decoration: none;">
-            <div class="card-top">
-                <div class="card-text">
-                    <div class="card-title">
-                        {{ $language === 'Odia' ? 'ହୁଣ୍ଡି ସଂଗ୍ରହ' : 'Hundi Collection' }}
-                    </div>
-                    <div class="card-desc">
-                        {{ $language === 'Odia' ? convertToOdiaDate(\Carbon\Carbon::today()) : \Carbon\Carbon::today()->format('jS M, Y') }}
-                        <br>
-                        <span style="color:#e75230; font-weight:600;">
-                            ₹{{ number_format($hundi->rupees ?? 0, 2) }}/-
-                        </span>
-                    </div>
+    <!-- Hundi Collection -->
+    <a href="{{ route('hundi.collection') }}" class="service-cards">
+        <div class="card-top">
+            <div class="card-text">
+                <div class="card-title">
+                    {{ $language === 'Odia' ? 'ହୁଣ୍ଡି ସଂଗ୍ରହ' : 'Hundi Collection' }}
                 </div>
-                <div class="arrow-icon" style="font-size: 25px; margin-left: 20px;">
-                    <i class="fa-solid fa-arrow-right" style="color: #e9372b;"></i>
+                <div class="card-desc">
+                    {{ $language === 'Odia' ? convertToOdiaDate(\Carbon\Carbon::today()) : \Carbon\Carbon::today()->format('jS M, Y') }}
+                    <br>
+                    <span style="color:#e75230; font-weight:600;">
+                        ₹{{ number_format($hundi->rupees ?? 0, 2) }}/-
+                    </span>
                 </div>
             </div>
-            <div class="card-bottom">
-                <div class="card-icons">
-                    <img src="{{ asset('website/hundic.png') }}" alt="Hundi" style="height: 40px; width: 40px;">
-                </div>
-                <div class="footer-bar bar-green"></div>
+            <div class="arrow-icon">
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </a>
-    </section>
+        </div>
+        <div class="card-bottom">
+            <div class="card-icons">
+                <img src="{{ asset('website/hundic.png') }}" alt="Hundi">
+            </div>
+            <div class="footer-bar bar-green"></div>
+        </div>
+    </a>
+</section>
 
     <section class="temple-slider bg-white bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
 

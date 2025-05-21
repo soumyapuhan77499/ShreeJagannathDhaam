@@ -22,7 +22,7 @@
         <!-- Desktop Menu -->
         <nav class="nav-menu desktop-menu">
             <ul>
-                 <li><a href="{{ url('/puri-dham') }}">{{ $language === 'Odia' ? 'ପ୍ରଧାନ ପୃଷ୍ଠା' : 'Home' }}</a></li>
+                <li><a href="{{ url('/puri-dham') }}">{{ $language === 'Odia' ? 'ପ୍ରଧାନ ପୃଷ୍ଠା' : 'Home' }}</a></li>
 
                 <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
 
@@ -37,7 +37,7 @@
                     </a>
 
                     <ul class="submenu" style="width: 200px !important;">
-                        <div class="submenu-column" >
+                        <div class="submenu-column">
                             <li>
                                 <a href="{{ url('/view-festival-details') }}">
                                     <i class="fas fa-calendar-days me-2"></i>
@@ -65,7 +65,8 @@
                             <div class="submenu-column">
                                 @foreach ($chunk as $temple)
                                     <a href="{{ route('nearby-temple-view', $temple->name) }}">
-                                        <i class="fas fa-place-of-worship me-2" style="margin-left: 10px"></i>{{ $temple->name }}
+                                        <i class="fas fa-place-of-worship me-2"
+                                            style="margin-left: 10px"></i>{{ $temple->name }}
                                     </a>
                                 @endforeach
                             </div>
@@ -150,18 +151,16 @@
         <ul>
             <li><a href="{{ url('/puri-dham') }}">{{ $language === 'Odia' ? 'ପ୍ରଧାନ ପୃଷ୍ଠା' : 'Home' }}</a></li>
             <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
-
+            <li><a href="{{ url('/darshan-timeline') }}">{{ $language === 'Odia' ? 'ଦର୍ଶନ' : 'Darshan' }}</a> </li>
+            <li><a href="{{ url('/maha-prasad') }}">{{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}</a></li>
+            
             <li class="has-submenu">
                 <a href="javascript:void(0)" class="submenu-toggle">
                     {{ $language === 'Odia' ? 'ତ୍ଵରିତ ସେବା' : 'Quick Services' }}
                     <i class="fa fa-chevron-down ms-2"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="{{ url('/darshan-timeline') }}">{{ $language === 'Odia' ? 'ଦର୍ଶନ' : 'Darshan' }}</a>
-                    </li>
-                    <li><a
-                            href="{{ url('/maha-prasad') }}">{{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}</a>
-                    </li>
+
                     <li><a
                             href="{{ url('/view-festival-details') }}">{{ $language === 'Odia' ? 'ପର୍ବପର୍ବାଣୀ' : 'Festival' }}</a>
                     </li>

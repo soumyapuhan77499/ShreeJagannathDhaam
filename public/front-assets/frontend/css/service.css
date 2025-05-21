@@ -83,67 +83,65 @@
   /* Enhanced mobile responsiveness */
   @media (max-width: 768px) {
     .services-sections {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      padding-left: 10px;
-      padding-right: 10px;
+        grid-template-columns: repeat(2, 1fr);
+        padding-left: 10px;
+        padding-right: 10px;
     }
-  
-    .service-cards {
-      width: 100%;
-      max-width: 100%;
-    }
-  
+
     .card-title {
-      font-size: 1rem;
+        font-size: 1rem;
     }
-  
+
     .card-desc {
-      font-size: 0.85rem;
+        font-size: 0.85rem;
     }
-  
+
     .arrow-icon {
-      width: 40px;
-      height: 24px;
+        width: 40px;
+        height: 24px;
     }
-  
+
     .card-icons {
-      width: 40px;
-      height: 40px;
-      margin-right: 0;
+        width: 40px;
+        height: 40px;
     }
-  
+
     .footer-bar {
-      width: 50px;
+        width: 50px;
     }
-  }
+}
 
+/* Mobile: Hide description */
 @media (max-width: 640px) {
-  .quick-service-header {
-    display: flex;
-    flex-direction: row !important;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    text-align: center;
-    flex-wrap: nowrap;
-  }
+    .card-desc {
+        display: none;
+    }
 
-  .quick-service-header img {
-    width: 40px;
-    height: auto;
-    flex-shrink: 0;
-  }
+    .quick-service-header {
+        display: flex;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        text-align: center;
+        flex-wrap: nowrap;
+    }
 
-  .quick-service-header h2 {
-    font-size: 15px;
-    font-weight: 600;
-    white-space: nowrap;
-    color: #db4d30;
-    flex-shrink: 0;
-  }
+    .quick-service-header img {
+        width: 40px;
+        height: auto;
+        flex-shrink: 0;
+    }
+
+    .quick-service-header h2 {
+        font-size: 15px;
+        font-weight: 600;
+        white-space: nowrap;
+        color: #db4d30;
+        flex-shrink: 0;
+    }
 }
