@@ -36,82 +36,79 @@
             background-color: #fff7f0;
         }
 
-        @media (max-width: 768px) {
-            table.min-w-full {
-                display: block;
-                width: 100%;
-                overflow-x: auto;
-                white-space: normal;
-            }
+       @media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 16px;
+    }
 
-            table.min-w-full thead {
-                display: none;
-                /* Hide table headers */
-            }
+    table.min-w-full {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        border-collapse: separate;
+    }
 
-            table.min-w-full tbody,
-            table.min-w-full tr {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: nowrap;
-                align-items: flex-start;
-                justify-content: flex-start;
-                width: 100%;
-                margin-bottom: 16px;
-                border: 1px solid #e5e7eb;
-                border-radius: 10px;
-                background-color: #fff;
-                padding: 12px;
-                gap: 12px;
-            }
+    table.min-w-full thead {
+        display: none;
+    }
 
-            table.min-w-full td {
-                display: block;
-                flex: 1;
-                padding: 8px 10px;
-                position: relative;
-                font-size: 14px;
-                text-align: left;
-            }
+    table.min-w-full tbody,
+    table.min-w-full tr,
+    table.min-w-full td {
+        display: block;
+        width: 100%;
+    }
 
-            table.min-w-full td::before {
-                content: attr(data-label);
-                display: none;
-                /* Hide label since we use row layout now */
-            }
+    table.min-w-full tr {
+        margin-bottom: 16px;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        background-color: #fafafa;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        padding: 16px;
+        transition: background-color 0.3s;
+    }
 
-            /* Image column – fixed width */
-            table.min-w-full td:first-child {
-                flex: 0 0 100px;
-                max-width: 100px;
-                padding: 0;
-            }
+    table.min-w-full tr:hover {
+        background-color: #f5f5f5;
+    }
 
-            table.min-w-full td:first-child img {
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-                border-radius: 8px;
-            }
+    table.min-w-full td {
+        text-align: left;
+        padding: 12px 16px;
+        position: relative;
+        font-size: 15px;
+        color: #333;
+        border-bottom: 1px solid #eee;
+    }
 
-            /* Content section */
-            table.min-w-full td:nth-child(2),
-            table.min-w-full td:nth-child(3),
-            table.min-w-full td:nth-child(4) {
-                padding: 4px 0;
-            }
+    table.min-w-full td:last-child {
+        border-bottom: none;
+    }
 
-            /* Buttons and links full width for mobile */
-            table.min-w-full td a,
-            table.min-w-full td button {
-                display: inline-block;
-                margin-top: 6px;
-                font-size: 13px;
-                padding: 8px 10px;
-                white-space: nowrap;
-                width: auto;
-            }
-        }
+    table.min-w-full td::before {
+        content: attr(data-label);
+        position: absolute;
+        top: 12px;
+        left: 16px;
+        font-weight: 600;
+        color: #007aff;
+        font-size: 13px;
+        text-transform: capitalize;
+    }
+
+    table.min-w-full td img {
+        width: 100%;
+        max-width: 120px;
+        height: auto;
+        border-radius: 8px;
+        display: block;
+        margin: 10px 0;
+    }
+}
+
     </style>
 </head>
 
