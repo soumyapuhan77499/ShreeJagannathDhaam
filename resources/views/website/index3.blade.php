@@ -452,8 +452,8 @@
                 <!-- Maha Prasad -->
                 <a href="{{ route('prasad.timeline') }}"
                     class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300"
-                    style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
-                    <img src="{{ asset('website/prasad.png') }}" alt="Maha Prasad" style="height: 70px; width:70px">
+                    style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;margin-top: -19px">
+                    <img src="{{ asset('website/prasad.png') }}" alt="Maha Prasad" style="height: 70px; width:70px;">
                     <div>
                         <h3 class="text-lg font-semibold text-[#db4d30]">
                             {{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}
