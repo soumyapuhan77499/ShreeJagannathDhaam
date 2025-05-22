@@ -174,7 +174,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -184,21 +184,18 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                dateClick: function(info) {
-                    // Set selected date
+                dateClick: function (info) {
                     document.getElementById('eventDate').value = info.dateStr;
                     document.getElementById('selectedDate').textContent = info.dateStr;
 
-                    // Reset fields and form method
                     resetFormFields();
                     document.getElementById('formMethod').value = 'POST';
                     document.getElementById('eventForm').action = "{{ route('templeuser.savePanji') }}";
 
-                    // Show modal
                     var addEventModal = new bootstrap.Modal(document.getElementById('addEventModal'));
                     addEventModal.show();
                 },
-                eventClick: function(info) {
+                eventClick: function (info) {
                     const event = info.event;
                     const props = event.extendedProps;
 
@@ -218,7 +215,6 @@
                     document.getElementById('bad_time').value = props.bad_time || '';
                     document.getElementById('eventDescription').value = props.description || '';
 
-                    // Change form action and method for update
                     document.getElementById('eventForm').action = "/admin/update-panji/" + event.id;
                     document.getElementById('formMethod').value = "PUT";
 
@@ -252,36 +248,43 @@
             calendar.render();
 
             function resetFormFields() {
-                const fields = ['language', 'event_name', 'tithi', 'nakshatra', 'yoga', 'pakshya', 'karana',
-                    'sun_set', 'sun_rise', 'good_time', 'bad_time', 'eventDescription'
+                const fields = [
+                    'language', 'event_name', 'tithi', 'nakshatra', 'yoga',
+                    'pakshya', 'karana', 'sun_set', 'sun_rise',
+                    'good_time', 'bad_time', 'eventDescription'
                 ];
                 fields.forEach(id => document.getElementById(id).value = '');
             }
-        });
 
-        const form = document.getElementById('eventForm');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
+            // Optional: remove this block if you're submitting with actual backend (no AJAX needed)
+            // Keep this ONLY if you are not refreshing and want instant calendar update
+            // Otherwise remove e.preventDefault()
+            const form = document.getElementById('eventForm');
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    // Optional: only enable this block if you're NOT submitting to server
+                    // e.preventDefault();  // Comment this if using Laravel controller submission
 
-                const eventDate = document.getElementById('eventDate').value;
-                const language = document.getElementById('language').value;
-                const eventName = document.getElementById('event_name').value;
-                const description = document.getElementById('eventDescription').value;
+                    // Optional: for frontend visual update
+                    // const eventDate = document.getElementById('eventDate').value;
+                    // const language = document.getElementById('language').value;
+                    // const eventName = document.getElementById('event_name').value;
+                    // const description = document.getElementById('eventDescription').value;
 
-                calendar.addEvent({
-                    title: eventName + ' (' + language + ')',
-                    start: eventDate,
-                    description: description,
-                    backgroundColor: '#28a745',
-                    borderColor: '#28a745'
+                    // calendar.addEvent({
+                    //     title: eventName + ' (' + language + ')',
+                    //     start: eventDate,
+                    //     description: description,
+                    //     backgroundColor: '#28a745',
+                    //     borderColor: '#28a745'
+                    // });
+
+                    // Hide modal after submission
+                    const addEventModal = bootstrap.Modal.getInstance(document.getElementById('addEventModal'));
+                    addEventModal.hide();
                 });
-
-                this.reset();
-                const addEventModal = bootstrap.Modal.getInstance(document.getElementById('addEventModal'));
-                addEventModal.hide();
-            });
-        }
+            }
         });
     </script>
 @endsection
+
