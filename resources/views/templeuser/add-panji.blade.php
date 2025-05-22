@@ -71,13 +71,14 @@
                 <!-- Body -->
                 <div class="modal-body">
                     <form id="eventForm" action="{{ route('templeuser.savePanji') }}" method="POST">
-
                         @csrf
+                        <!-- Hidden method field to allow dynamic PUT/POST -->
+                        <input type="hidden" id="formMethod" name="_method" value="POST">
 
+                        <!-- Hidden date field -->
                         <input type="hidden" id="eventDate" name="date">
 
                         <div class="row">
-                            <!-- Language Selection -->
                             <div class="col-md-6 mb-3">
                                 <label for="language" class="form-label">Select Language</label>
                                 <select class="form-control" id="language" name="language">
@@ -87,8 +88,6 @@
                                     <option value="Odia">Odia</option>
                                 </select>
                             </div>
-
-                            <!-- Event Name -->
                             <div class="col-md-6 mb-3">
                                 <label for="event_name" class="form-label">Event Name</label>
                                 <input type="text" class="form-control" id="event_name" name="event_name"
@@ -97,7 +96,6 @@
                         </div>
 
                         <div class="row">
-                            <!-- Tithi -->
                             <div class="col-md-6 mb-3">
                                 <label for="tithi" class="form-label">Tithi</label>
                                 <input type="text" class="form-control" id="tithi" name="tithi"
@@ -111,12 +109,10 @@
                         </div>
 
                         <div class="row">
-                            <!-- Sun Set -->
                             <div class="col-md-6 mb-3">
                                 <label for="sun_set" class="form-label">Sun Set</label>
                                 <input type="time" class="form-control" id="sun_set" name="sun_set">
                             </div>
-                            <!-- Sun Rise -->
                             <div class="col-md-6 mb-3">
                                 <label for="sun_rise" class="form-label">Sun Rise</label>
                                 <input type="time" class="form-control" id="sun_rise" name="sun_rise">
@@ -124,19 +120,18 @@
                         </div>
 
                         <div class="row">
-                            <!-- Good Time -->
                             <div class="col-md-6 mb-3">
                                 <label for="good_time" class="form-label">Good Time</label>
                                 <input type="text" class="form-control" id="good_time" name="good_time"
                                     placeholder="Enter Good Time">
                             </div>
-                            <!-- Bad Time -->
                             <div class="col-md-6 mb-3">
                                 <label for="bad_time" class="form-label">Bad Time</label>
                                 <input type="text" class="form-control" id="bad_time" name="bad_time"
                                     placeholder="Enter Bad Time">
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="yoga" class="form-label">Yoga</label>
@@ -148,15 +143,13 @@
                                 <input type="text" class="form-control" id="pakshya" name="pakshya"
                                     placeholder="Enter Pakshya">
                             </div>
-
                             <div class="col-md-6 mb-3">
                                 <label for="karana" class="form-label">Karana</label>
                                 <input type="text" class="form-control" id="karana" name="karana"
                                     placeholder="Enter Karana">
                             </div>
-
                         </div>
-                        <!-- Description -->
+
                         <div class="mb-3">
                             <label for="eventDescription" class="form-label">Description</label>
                             <textarea class="form-control" id="eventDescription" name="description" rows="2"></textarea>
@@ -192,9 +185,16 @@
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 dateClick: function(info) {
+                    // Set selected date
                     document.getElementById('eventDate').value = info.dateStr;
                     document.getElementById('selectedDate').textContent = info.dateStr;
+
+                    // Reset fields and form method
                     resetFormFields();
+                    document.getElementById('formMethod').value = 'POST';
+                    document.getElementById('eventForm').action = "{{ route('templeuser.savePanji') }}";
+
+                    // Show modal
                     var addEventModal = new bootstrap.Modal(document.getElementById('addEventModal'));
                     addEventModal.show();
                 },
@@ -204,6 +204,7 @@
 
                     document.getElementById('eventDate').value = event.startStr;
                     document.getElementById('selectedDate').textContent = event.startStr;
+
                     document.getElementById('language').value = props.language || '';
                     document.getElementById('event_name').value = event.title || '';
                     document.getElementById('tithi').value = props.tithi || '';
@@ -217,13 +218,15 @@
                     document.getElementById('bad_time').value = props.bad_time || '';
                     document.getElementById('eventDescription').value = props.description || '';
 
-                    document.getElementById('addEventModal').querySelector('form').action = "/admin/update-panji/" + event.id;
+                    // Change form action and method for update
+                    document.getElementById('eventForm').action = "/admin/update-panji/" + event.id;
+                    document.getElementById('formMethod').value = "PUT";
 
                     var addEventModal = new bootstrap.Modal(document.getElementById('addEventModal'));
                     addEventModal.show();
                 },
                 events: [
-                    @foreach($events as $event)
+                    @foreach ($events as $event)
                         {!! json_encode([
                             'id' => $event->id,
                             'title' => $event->event_name,
@@ -249,33 +252,36 @@
             calendar.render();
 
             function resetFormFields() {
-                const fields = ['language', 'event_name', 'tithi', 'nakshatra', 'yoga', 'pakshya', 'karana', 'sun_set', 'sun_rise', 'good_time', 'bad_time', 'eventDescription'];
+                const fields = ['language', 'event_name', 'tithi', 'nakshatra', 'yoga', 'pakshya', 'karana',
+                    'sun_set', 'sun_rise', 'good_time', 'bad_time', 'eventDescription'
+                ];
                 fields.forEach(id => document.getElementById(id).value = '');
             }
+        });
 
-            const form = document.getElementById('eventForm');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
+        const form = document.getElementById('eventForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
 
-                    const eventDate = document.getElementById('eventDate').value;
-                    const language = document.getElementById('language').value;
-                    const eventName = document.getElementById('event_name').value;
-                    const description = document.getElementById('eventDescription').value;
+                const eventDate = document.getElementById('eventDate').value;
+                const language = document.getElementById('language').value;
+                const eventName = document.getElementById('event_name').value;
+                const description = document.getElementById('eventDescription').value;
 
-                    calendar.addEvent({
-                        title: eventName + ' (' + language + ')',
-                        start: eventDate,
-                        description: description,
-                        backgroundColor: '#28a745',
-                        borderColor: '#28a745'
-                    });
-
-                    this.reset();
-                    const addEventModal = bootstrap.Modal.getInstance(document.getElementById('addEventModal'));
-                    addEventModal.hide();
+                calendar.addEvent({
+                    title: eventName + ' (' + language + ')',
+                    start: eventDate,
+                    description: description,
+                    backgroundColor: '#28a745',
+                    borderColor: '#28a745'
                 });
-            }
+
+                this.reset();
+                const addEventModal = bootstrap.Modal.getInstance(document.getElementById('addEventModal'));
+                addEventModal.hide();
+            });
+        }
         });
     </script>
 @endsection
