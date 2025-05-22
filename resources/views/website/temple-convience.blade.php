@@ -36,7 +36,7 @@
             background-color: #fff7f0;
         }
 
-    @media (max-width: 768px) {
+   @media (max-width: 768px) {
     table.min-w-full {
         display: block;
         width: 100%;
