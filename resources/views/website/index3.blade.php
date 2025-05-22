@@ -425,6 +425,7 @@
         <!-- Services Layout -->
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start"
             style="max-width: 1290px !important;">
+
             <!-- Left Featured Card -->
             <div class="p-6 sm:p-8 flex flex-col justify-between transition-all duration-500 hover:scale-105 h-[455px] sm:h-[455px] max-h-[455px] overflow-hidden"
                 style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
@@ -449,9 +450,8 @@
             <div class="flex flex-col gap-6 justify-between h-[450px]">
                 <!-- Maha Prasad -->
                 <a href="{{ route('prasad.timeline') }}"
-                    class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300 mb-5 md:mb-0"
+                    class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300"
                     style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
-
                     <img src="{{ asset('website/prasad.png') }}" alt="Maha Prasad" style="height: 70px; width:70px;">
                     <div>
                         <h3 class="text-lg font-semibold text-[#db4d30]">
@@ -467,9 +467,8 @@
 
                 <!-- Temple Festival -->
                 <a href="{{ route('view.festival.details') }}"
-                    class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300 mb-5 md:mb-0"
+                    class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300"
                     style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
-
                     <img src="{{ asset('website/festival21.png') }}" alt="Offering" style="height: 70px; width:70px">
                     <div>
                         <h3 class="text-lg font-semibold text-[#db4d30]">
@@ -485,9 +484,8 @@
 
                 <!-- Do and Don'ts -->
                 <a href="{{ url('do-and-donts') }}"
-                    class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300 mb-5 md:mb-0"
+                    class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300"
                     style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
-
                     <img src="{{ asset('website/dodonts.png') }}" alt="Do and Don'ts" style="height: 70px; width:70px">
                     <div>
                         <h3 class="text-lg font-semibold text-[#db4d30]">
