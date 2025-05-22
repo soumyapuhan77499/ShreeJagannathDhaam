@@ -633,11 +633,11 @@
 
         <!-- Section Heading -->
         <div class="flex justify-center items-center gap-5 mt-8">
-            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-26 h-4">
+            <img src="{{ asset('website/left.png') }}" alt="Shree Jagannatha Dham" class="w-24 h-4">
             <h2 class="text-xl text-[#db4d30] font-semibold">
                 {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ଧାର୍ମିକ ସ୍ଥଳ' : 'Nearby Temples' }}
             </h2>
-            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-26 h-4">
+            <img src="{{ asset('website/right.png') }}" alt="Shree Jagannatha Dham" class="w-24 h-4">
         </div>
 
         <!-- Tab Buttons -->
