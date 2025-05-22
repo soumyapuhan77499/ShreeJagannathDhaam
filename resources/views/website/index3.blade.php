@@ -510,8 +510,7 @@
 
     <section class="services-sections">
         <!-- Bhakta Nibas -->
-        <a href="{{ route('bhaktanibas.list') }}" class="service-cards full-width-card show-desc"
-          >
+        <a href="{{ route('bhaktanibas.list') }}" class="service-cards full-width-card show-desc">
             <div class="card-top">
                 <div class="card-text">
                     <div class="card-title">
@@ -955,7 +954,7 @@
         </div>
     </section> --}}
 
-    <section class="bg-100 p-2 relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
+    {{-- <section class="bg-100 p-2 relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
         <div class="max-w-6xl mx-auto text-center relative">
             <!-- Tabs -->
             <div class="absolute top-14 right-0 flex space-x-3 p-3 rounded-lg">
@@ -978,7 +977,7 @@
             </div>
 
         </div>
-    </section>
+    </section> --}}
 
     {{-- <div class="timeline-footer">
             © {{ date('Y') }} Temple Management System. All rights reserved. <a style="color: red"
