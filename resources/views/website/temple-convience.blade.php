@@ -35,69 +35,62 @@
         .table-row:nth-child(odd) {
             background-color: #fff7f0;
         }
+        
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 20px;
+            }
 
-   @media (max-width: 768px) {
-    table.min-w-full {
-        display: block;
-        width: 100%;
-    }
+            table.min-w-full {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
 
-    table.min-w-full thead {
-        display: none;
-    }
+            table.min-w-full thead {
+                display: none;
+                /* Hide header for smaller devices */
+            }
 
-    table.min-w-full tbody {
-        display: block;
-    }
+            table.min-w-full tbody,
+            table.min-w-full tr,
+            table.min-w-full td {
+                display: block;
+                width: 100%;
+            }
 
-    table.min-w-full tr {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 15px;
-        gap: 15px;
-    }
+            table.min-w-full tr {
+                margin-bottom: 15px;
+                border: 1px solid #e5e7eb;
+                border-radius: 10px;
+                background: #fff;
+                padding: 15px;
+            }
 
-    table.min-w-full td {
-        border: none;
-        padding: 0;
-    }
+            table.min-w-full td {
+                text-align: left;
+                padding: 10px 10px;
+                position: relative;
+            }
 
-    /* Image container */
-    table.min-w-full td:first-child {
-        flex: 0 0 auto;
-        width: 100px;
-    }
+            table.min-w-full td::before {
+                content: attr(data-label);
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                font-weight: bold;
+                color: #f06292;
+                font-size: 14px;
+                text-transform: capitalize;
+            }
 
-    table.min-w-full td:first-child img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    /* Content container */
-    table.min-w-full td:not(:first-child) {
-        flex: 1 1 auto;
-        padding: 5px 0;
-        position: relative;
-    }
-
-    table.min-w-full td:not(:first-child)::before {
-        content: attr(data-label);
-        display: block;
-        font-weight: bold;
-        color: #f06292;
-        font-size: 14px;
-        margin-bottom: 3px;
-    }
-}
-
-
+            table.min-w-full td img {
+                width: 100px;
+                height: 100px;
+            }
+        }
     </style>
 </head>
 
