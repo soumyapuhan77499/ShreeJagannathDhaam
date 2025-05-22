@@ -86,7 +86,7 @@
     grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
     gap: 16px;
     padding: 0 12px;
-    margin-top: -21px;
+    margin-top: -26px;
   }
 
   .service-cards {
