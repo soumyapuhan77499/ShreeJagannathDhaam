@@ -199,3 +199,10 @@
     display: none;
   }
 }
+
+@media (max-width: 767px) {
+    .mobile-mb-20 {
+        margin-bottom: 20px;
+    }
+}
+
