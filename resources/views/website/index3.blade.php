@@ -447,10 +447,10 @@
             </div>
 
             <!-- Right Side Cards -->
-            <div class="mobile-mb-20 flex flex-col gap-6 justify-between h-[450px]">
+            <div class="flex flex-col gap-6 justify-between h-[450px]">
                 <!-- Maha Prasad -->
                 <a href="{{ route('prasad.timeline') }}"
-                    class="bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300"
+                    class="mobile-mb-20 bg-white border-l-4 border-[#db4d30] px-5 py-4 flex items-center gap-5 h-[150px] hover:translate-x-1 duration-300"
                     style="border: 1px solid rgb(213, 213, 213); border-radius: 13px;">
                     <img src="{{ asset('website/prasad.png') }}" alt="Maha Prasad" style="height: 70px; width:70px;">
                     <div>
