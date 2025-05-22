@@ -216,7 +216,7 @@
                     document.getElementById('eventDescription').value = props.description || '';
 
                     document.getElementById('eventForm').action = "/admin/update-panji/" + event.id;
-                    document.getElementById('formMethod').value = "PUT";
+                    document.getElementById('formMethod').value = "POST";
 
                     var addEventModal = new bootstrap.Modal(document.getElementById('addEventModal'));
                     addEventModal.show();
