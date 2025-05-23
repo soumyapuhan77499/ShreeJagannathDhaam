@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   
 </head>
 
 <body>
@@ -44,47 +46,69 @@
         </div>
     </div>
 
-   <div class="container">
-    <div class="service-grid">
-        @foreach ($bhaktaNibas as $item)
-            @php
-                $photoArray = json_decode($item->photo, true);
-                $firstPhoto = $photoArray[0] ?? null;
-            @endphp
+    <div class="container">
+        <div class="service-grid">
+            @foreach ($bhaktaNibas as $item)
+                @php
+                    $photoArray = json_decode($item->photo, true);
+                    $firstPhoto = $photoArray[0] ?? null;
+                @endphp
 
-            <div class="service-card-bhakta">
-                <h5>{{ $item->name }}</h5>
+                <div class="service-card-bhakta">
+                    <h5>{{ $item->name }}</h5>
 
-                {{-- Large Main Image --}}
-                <div class="image-section">
-                    <img id="mainImage-{{ $loop->index }}" class="main-display-image"
-                        src="{{ asset($firstPhoto) }}" alt="Main Image">
+                    {{-- Large Main Image --}}
+                    <div class="image-section" style="width: 100%; height: 237px; overflow: hidden;">
+                        <img id="mainImage-{{ $loop->index }}" class="main-display-image"
+                            src="{{ asset($firstPhoto) }}" alt="Main Image">
+                    </div>
+
+                    {{-- Thumbnails Row --}}
+                    <div class="thumbnail-section">
+                        @foreach ($photoArray as $index => $photo)
+                            <img src="{{ asset($photo) }}" class="thumbnail"
+                                onclick="updateMainImage('{{ asset($photo) }}', {{ $loop->parent->index }})"
+                                alt="Thumbnail {{ $index + 1 }}">
+                        @endforeach
+                    </div>
+
+                    {{-- Info Block --}}
+                    <div class="service-info" style="display: flex; justify-content: space-between;">
+                        <div>
+                            <div class="info-line">
+                                <span class="icon"></span>
+                                {{ $item->landmark ? $item->landmark . ', ' : '' }}
+                                {{ $item->city_village ? $item->city_village . ', ' : '' }}
+                            </div>
+
+                            <div class="info-line">
+                                <span class="icon"></span> Check In: {{ $item->check_in_time ?? 'N/A' }} | Out:
+                                {{ $item->check_out_time ?? 'N/A' }}
+                            </div>
+
+                            <div class="info-line">
+                                <span class="icon"></span> {{ $item->contact_no ?? 'Not Available' }}
+                            </div>
+
+                            @if ($item->google_map_link)
+                                <div class="info-line">
+                                    <span class="icon"></span>
+                                    <a class="btn btn-info btn-sm" style="color:white"
+                                        href="{{ $item->google_map_link }}" target="_blank">Direction</a>
+                                </div>
+                            @endif
+                        </div>
+
+                        {{-- <div>
+                            <a href="tel:{{ $item->contact_no }}">
+                                <button class="booking-btn">Call to Book</button>
+                            </a>
+                        </div> --}}
+                    </div>
                 </div>
-
-                {{-- Thumbnails --}}
-                <div class="thumbnail-section">
-                    @foreach ($photoArray as $index => $photo)
-                        <img src="{{ asset($photo) }}" class="thumbnail"
-                            onclick="updateMainImage('{{ asset($photo) }}', {{ $loop->parent->index }})"
-                            alt="Thumbnail {{ $index + 1 }}">
-                    @endforeach
-                </div>
-
-                {{-- Aligned Service Info --}}
-                <div class="service-info-block">
-                    <p><strong>Location:</strong> {{ $item->landmark }}, {{ $item->city_village }}</p>
-                    <p><strong>Check In:</strong> {{ $item->check_in_time ?? 'N/A' }} |
-                        <strong>Check Out:</strong> {{ $item->check_out_time ?? 'N/A' }}</p>
-                    <p><strong>Contact:</strong> <a href="tel:{{ $item->contact_no }}">{{ $item->contact_no }}</a></p>
-                    @if ($item->google_map_link)
-                        <p><a class="map-direction-btn" href="{{ $item->google_map_link }}" target="_blank">📍 Get Directions</a></p>
-                    @endif
-                </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
-</div>
-
 
     @include('partials.website-footer')
 
