@@ -107,10 +107,12 @@
                         </div>
 
                         <div>
-                            <div class="info-line">
-                                <strong>Address</strong>
-                                {{ $item->landmark ? $item->landmark . ', ' : '' }}
-                                {{ $item->city_village ? $item->city_village . ', ' : '' }}
+                            <div class="info-line address-block">
+                                <strong>Address:</strong><br>
+                                <span class="address-text">
+                                    {{ $item->landmark ? $item->landmark . ', ' : '' }}
+                                    {{ $item->city_village ? $item->city_village . ', ' : '' }}
+                                </span>
                             </div>
 
                             <div class="info-lines">
@@ -120,7 +122,7 @@
                         </div>
                     </div>
 
-                  
+
                 </div>
         </div>
         @endforeach
