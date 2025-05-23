@@ -197,7 +197,7 @@ body {
     color: #3e1d6e;
     margin: 12px 0;
     font-size: 16px;
-}
+}/* Container for Service Info */
 .service-info {
     display: flex;
     justify-content: space-between;
@@ -209,73 +209,59 @@ body {
     gap: 20px;
 }
 
+/* Each Half of the Info Section */
 .service-info > div {
     flex: 1 1 45%;
 }
 
-/* Info Lines */
+/* Generic Info Block Styling */
+.info-block {
+    margin-bottom: 12px;
+}
+
+/* Standard Line Style */
 .info-line {
-    margin-bottom: 8px;
-    color: #333;
-    line-height: 1.5;
-}
-
-/* Info Line Styling */
-.info-lines {
     display: flex;
-    align-items: center;
-    font-size: 14px;
-    margin: 8px 0;
+    align-items: flex-start;
     padding: 8px 12px;
+    margin-bottom: 8px;
     border: 1px solid #ddd;
     border-radius: 6px;
     background-color: #fff;
+    color: #333;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    width: 50%;
-}
-.address-block,
-.contact-block {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: #fff;
-    margin-bottom: 10px;
-    overflow-wrap: break-word;
     word-break: break-word;
-    max-width: 100%;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
-/* Optional: tighter styling for long text */
-.address-text {
-    font-weight: 400;
-    color: #444;
-    margin-top: 4px;
+/* Address Block Specific Styling */
+.address-block {
+    flex-direction: column;
+    align-items: flex-start;
 }
 
+.address-block strong {
+    margin-bottom: 4px;
+}
 
-/* Call Icon (use emoji or inline SVG/font-awesome) */
-.info-lines .icon::before {
+/* Phone Line With Icon */
+.contact-line .icon::before {
     content: "📞";
     margin-right: 8px;
     font-size: 16px;
 }
 
-
-/* Icon Placeholder if Used */
+/* Reusable Icon Style */
 .icon {
-    margin-right: 6px;
     font-size: 16px;
-    vertical-align: middle;
+    margin-right: 8px;
+    line-height: 1;
 }
 
 /* Property Offer Section Title */
 .property-offer-section {
     font-weight: bold;
-    margin-bottom: 6px;
     color: #000;
+    margin-bottom: 6px;
 }
 
 /* Direction Button */
@@ -287,6 +273,22 @@ body {
     border-radius: 6px;
     color: white;
     text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-sm:hover {
+    background-color: #e44a4e;
+}
+
+/* Responsive Handling */
+@media (max-width: 768px) {
+    .service-info {
+        flex-direction: column;
+    }
+
+    .service-info > div {
+        flex: 1 1 100%;
+    }
 }
 
 .btn-sm:hover {
