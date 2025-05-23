@@ -39,8 +39,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
 
             <!-- Police -->
+            <!-- Police -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-shield-alt text-[#FFA726] text-3xl"></i>
+                <i
+                    class="fas fa-shield-alt text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
                     <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ପୁଲିସ୍' : 'Police' }}</p>
                     <p class="text-gray-600">100</p>
@@ -49,7 +51,8 @@
 
             <!-- Ambulance -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-ambulance text-[#FFA726] text-3xl"></i>
+                <i
+                    class="fas fa-ambulance text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
                     <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଆମ୍ବୁଲାନ୍ସ୍' : 'Ambulance' }}</p>
                     <p class="text-gray-600">108</p>
@@ -58,7 +61,8 @@
 
             <!-- Fire Service -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-fire-extinguisher text-[#FFA726] text-3xl"></i>
+                <i
+                    class="fas fa-fire-extinguisher text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
                     <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଅଗ୍ନିଶମନ ବିଭାଗ' : 'Fire Service' }}</p>
                     <p class="text-gray-600">101</p>
@@ -67,7 +71,8 @@
 
             <!-- Elder Person -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-user-shield text-[#FFA726] text-3xl"></i>
+                <i
+                    class="fas fa-user-shield text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
                     <p class="font-semibold text-lg">
                         {{ $language === 'Odia' ? 'ବୃଦ୍ଧ ଲୋକ ହେଲ୍ପଲାଇନ୍' : 'Elder Person Helpline' }}</p>
@@ -77,7 +82,8 @@
 
             <!-- Child Helpline -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-child text-[#FFA726] text-3xl"></i>
+                <i
+                    class="fas fa-child text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
                     <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଶିଶୁ ହେଲ୍ପଲାଇନ୍' : 'Child Helpline' }}
                     </p>
@@ -87,7 +93,8 @@
 
             <!-- Women Helpline -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-female text-[#FFA726] text-3xl"></i>
+                <i
+                    class="fas fa-female text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
                     <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ମହିଳା ହେଲ୍ପଲାଇନ୍' : 'Women Helpline' }}
                     </p>
@@ -97,19 +104,23 @@
 
             <!-- Life Guard -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-life-ring text-[#FFA726] text-3xl"></i>
+                <i
+                    class="fas fa-life-ring text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
                     <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡ୍' : 'Life Guard' }}</p>
                     <p class="text-gray-600">8260777771</p>
                 </div>
             </div>
 
+
             <!-- Highway -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-road text-[#FFA726] text-3xl"></i>
+                <i
+                    class="fas fa-road text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
                     <p class="font-semibold text-lg">
-                        {{ $language === 'Odia' ? 'ଜାତୀୟ ରାଜପଥ ହେଲ୍ପଲାଇନ୍' : 'National Highway Helpline' }}</p>
+                        {{ $language === 'Odia' ? 'ଜାତୀୟ ରାଜପଥ ହେଲ୍ପଲାଇନ୍' : 'National Highway Helpline' }}
+                    </p>
                     <p class="text-gray-600">1033</p>
                 </div>
             </div>
