@@ -73,10 +73,18 @@
                         @endforeach
                     </div>
 
+                    <div class="description-row" style="display: flex; align-items: center; margin: 10px 0;">
+                        <span class="location-icon" style="color: #FFC107; font-size: 1.2em; margin-right: 8px;">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        <span class="description-text" style="color: #FFC107; font-weight: 500;">
+                            {{ $item->description }}
+                        </span>
+                    </div>
+
                     {{-- Info Block --}}
                     <div class="service-info" style="display: flex; justify-content: space-between;">
                         <div>
-
                             <div class="info-line">
                                 <div class="property-offer-section">
                                     <strong>Property Offer</strong>
