@@ -1,7 +1,6 @@
 @extends('website.web-layouts')
 
 @section('content')
-
     <div class="modal fade" id="noticeModal" tabindex="-1" aria-labelledby="noticeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -17,6 +16,7 @@
             </div>
         </div>
     </div>
+
 
     @php
         $language = session('app_language', 'English');

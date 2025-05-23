@@ -78,7 +78,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
+ <style>
     .modal-header {
       background-color: #FFA726;
       color: white;
@@ -968,25 +968,32 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-  window.onload = function () {
-    fetch('/api/latest-temple-notice') // Replace with your actual API endpoint
-      .then(response => response.json())
-      .then(data => {
-        if (data.status && data.data.length > 0) {
-          document.getElementById('modalNoticeContent').innerHTML = data.data[0].description || 'No description available.';
-          const noticeModal = new bootstrap.Modal(document.getElementById('noticeModal'));
-          noticeModal.show();
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching notice:', error);
-      });
-  };
-</script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const noticeShown = localStorage.getItem('noticeModalShown');
 
+    if (!noticeShown) {
+      fetch('/api/get-latest-notice') // Replace with your actual API endpoint
+        .then(response => response.json())
+        .then(data => {
+          if (data.status && data.data.length > 0) {
+            const notice = data.data[0];
+            document.getElementById('modalNoticeContent').innerHTML = notice.description || 'No description available.';
+
+            const noticeModal = new bootstrap.Modal(document.getElementById('noticeModal'));
+            noticeModal.show();
+
+            localStorage.setItem('noticeModalShown', 'true');
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching notice:', error);
+        });
+    }
+  });
+</script>
 </body>
 
 
