@@ -1,22 +1,6 @@
 @extends('website.web-layouts')
 
 @section('content')
-    <div class="modal fade" id="noticeModal" tabindex="-1" aria-labelledby="noticeModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="noticeModalLabel">Latest Notice</h5>
-                </div>
-                <div class="modal-body" id="modalNoticeContent">
-                    Loading...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-custom" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     @php
         $language = session('app_language', 'English');
