@@ -205,4 +205,8 @@ public function doDonts(){
 
 }
 
+public function contactSupport(){
+    return view('website.contact-details');
+}
+
 }
