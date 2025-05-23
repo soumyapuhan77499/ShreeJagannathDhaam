@@ -100,22 +100,19 @@
 
                         <div>
                             <div class="info-line">
-                                <strong>Property Offer</strong>
+                                <strong>Address</strong>
                                 {{ $item->landmark ? $item->landmark . ', ' : '' }}
                                 {{ $item->city_village ? $item->city_village . ', ' : '' }}
                             </div>
 
-                            <div class="info-line">
+                            <div class="info-lines">
                                 <span class="icon"></span> {{ $item->contact_no ?? 'Not Available' }}
                             </div>
+
                         </div>
                     </div>
 
-                    {{-- <div>
-                            <a href="tel:{{ $item->contact_no }}">
-                                <button class="booking-btn">Call to Book</button>
-                            </a>
-                        </div> --}}
+                  
                 </div>
         </div>
         @endforeach

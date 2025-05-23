@@ -220,6 +220,27 @@ body {
     line-height: 1.5;
 }
 
+/* Info Line Styling */
+.info-lines {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin: 8px 0;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Call Icon (use emoji or inline SVG/font-awesome) */
+.info-line .icon::before {
+    content: "📞";
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+
 /* Icon Placeholder if Used */
 .icon {
     margin-right: 6px;
