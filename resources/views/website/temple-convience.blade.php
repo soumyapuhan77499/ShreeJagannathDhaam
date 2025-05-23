@@ -113,6 +113,7 @@
             'toilet' => 'ଶୌଚାଳୟ',
             'beach' => 'ସମୁଦ୍ର କୂଳ',
             'life guard booth' => 'ଲାଇଫ୍ ଗାର୍ଡ',
+            'charging station' => 'ଚାର୍ଜିଂ ଷ୍ଟେସନ୍',
         ];
 
         $localizedTitle = $language === 'Odia' ? $odiaTitles[strtolower($title)] ?? $title : $title;

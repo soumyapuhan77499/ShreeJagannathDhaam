@@ -845,7 +845,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/charghingstation89.png') }}" alt="Charging Station">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ଚାର୍ଜିଂ <br> ସ୍ଟେସନ୍' : 'Charging <br> Station' !!}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ଚାର୍ଜିଂ <br> ଷ୍ଟେସନ୍' : 'Charging <br> Station' !!}</p>
                 </a>
             </div>
 
