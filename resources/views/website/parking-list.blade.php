@@ -44,7 +44,7 @@
                 <p>
                     {{ $language === 'Odia'
                         ? 'ନିମ୍ନଲିଖିତ ସ୍ଥାନଗୁଡିକରେ ଆପଣଙ୍କର ୨, ୩ ଓ ୪ ଚକିଆ ଯାନ ସହଜରେ ପାର୍କ କରନ୍ତୁ।'
-                        : 'Park your two, three & four Wheelers with <br> ease at the following spaces' }}
+                        : 'Park your two, three & four Wheelers with ease at the following spaces' }}
                 </p>
             </div>
         </div>
@@ -72,23 +72,23 @@
                     <div class="service-info" style="display: flex; justify-content: space-between;">
                         <div>
                             <div class="info-line">
-                                <span class="icon">📍</span>
+                                <span class="icon"></span>
                                 {{ $item->landmark ? $item->landmark . ', ' : '' }}
                                 {{ $item->city_village ? $item->city_village . ', ' : '' }}
                             </div>
 
                             <div class="info-line">
-                                <span class="icon">⏰</span> 24/7
+                                <span class="icon"></span> 24/7
                             </div>
                             <div
                                 class="info-line availability {{ $item->parking_availability > 50 ? 'green' : 'red' }}">
-                                <span class="icon">🅿️</span> {{ $item->parking_availability }}/250 Spots Available
+                                {{-- <span class="icon">🅿️</span> {{ $item->parking_availability }}/250 Spots Available --}}
                             </div>
                         </div>
 
-                        <div style="margin-top: 45px;">
+                        {{-- <div style="margin-top: 45px;">
                             <button class="booking-btn">Confirm Booking</button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             @endforeach

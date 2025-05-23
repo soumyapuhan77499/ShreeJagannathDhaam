@@ -76,23 +76,23 @@
                     <div class="service-info" style="display: flex; justify-content: space-between;">
                         <div>
                             <div class="info-line">
-                                <span class="icon">📍</span>
+                                <span class="icon"></span>
                                 {{ $item->landmark ? $item->landmark . ', ' : '' }}
                                 {{ $item->city_village ? $item->city_village . ', ' : '' }}
                             </div>
 
                             <div class="info-line">
-                                <span class="icon">⏰</span> Check In: {{ $item->check_in_time ?? 'N/A' }} | Out:
+                                <span class="icon"></span> Check In: {{ $item->check_in_time ?? 'N/A' }} | Out:
                                 {{ $item->check_out_time ?? 'N/A' }}
                             </div>
 
                             <div class="info-line">
-                                <span class="icon">📞</span> {{ $item->contact_no ?? 'Not Available' }}
+                                <span class="icon"></span> {{ $item->contact_no ?? 'Not Available' }}
                             </div>
 
                             @if ($item->google_map_link)
                                 <div class="info-line">
-                                    <span class="icon">🗺️</span>
+                                    <span class="icon"></span>
                                     <a class="btn btn-info btn-sm" style="color:white"
                                         href="{{ $item->google_map_link }}" target="_blank">View Map</a>
                                 </div>

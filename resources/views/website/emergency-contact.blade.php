@@ -15,86 +15,107 @@
 <body>
     @include('partials.header-puri-dham')
 
+    @php
+        $language = session('app_language', 'English');
+    @endphp
+
     <section class="hero">
         <img class="hero-bg" src="{{ asset('website/fest.jpg') }}" alt="Mandir Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Emergency Contact</h1>
-            <p>List Of Emergency Contact</p>
+            <h1>
+                {{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ' : 'Emergency Contact' }}
+            </h1>
+            <p>
+                {{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ସଂପର୍କ ସୂଚୀ' : 'List Of Emergency Contact' }}
+            </p>
         </div>
     </section>
 
     <section class="py-12 px-4 md:px-12 bg-gray-100">
-        <h2 class="text-3xl font-bold text-center mb-10 text-[#F06292]">Emergency Helpline Numbers</h2>
+        <h2 class="text-3xl font-bold text-center mb-10 text-[#db4d30]">
+            {{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ସହଯୋଗ ସଂଖ୍ୟା' : 'Emergency Helpline Numbers' }}
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-    
+
+            <!-- Police -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
                 <i class="fas fa-shield-alt text-[#FFA726] text-3xl"></i>
                 <div>
-                    <p class="font-semibold text-lg">Police</p>
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ପୁଲିସ୍' : 'Police' }}</p>
                     <p class="text-gray-600">100</p>
                 </div>
             </div>
-    
+
+            <!-- Ambulance -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-ambulance text-[#F06292] text-3xl"></i>
+                <i class="fas fa-ambulance text-[#FFA726] text-3xl"></i>
                 <div>
-                    <p class="font-semibold text-lg">Ambulance</p>
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଆମ୍ବୁଲାନ୍ସ୍' : 'Ambulance' }}</p>
                     <p class="text-gray-600">108</p>
                 </div>
             </div>
-    
+
+            <!-- Fire Service -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
                 <i class="fas fa-fire-extinguisher text-[#FFA726] text-3xl"></i>
                 <div>
-                    <p class="font-semibold text-lg">Fire Service</p>
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଅଗ୍ନିଶମନ ବିଭାଗ' : 'Fire Service' }}</p>
                     <p class="text-gray-600">101</p>
                 </div>
             </div>
-    
+
+            <!-- Elder Person -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-user-shield text-[#F06292] text-3xl"></i>
+                <i class="fas fa-user-shield text-[#FFA726] text-3xl"></i>
                 <div>
-                    <p class="font-semibold text-lg">Elder Person Helpline</p>
+                    <p class="font-semibold text-lg">
+                        {{ $language === 'Odia' ? 'ବୃଦ୍ଧ ଲୋକ ହେଲ୍ପଲାଇନ୍' : 'Elder Person Helpline' }}</p>
                     <p class="text-gray-600">1090</p>
                 </div>
             </div>
-    
+
+            <!-- Child Helpline -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
                 <i class="fas fa-child text-[#FFA726] text-3xl"></i>
                 <div>
-                    <p class="font-semibold text-lg">Child Helpline</p>
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଶିଶୁ ହେଲ୍ପଲାଇନ୍' : 'Child Helpline' }}
+                    </p>
                     <p class="text-gray-600">1098</p>
                 </div>
             </div>
-    
+
+            <!-- Women Helpline -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-female text-[#F06292] text-3xl"></i>
+                <i class="fas fa-female text-[#FFA726] text-3xl"></i>
                 <div>
-                    <p class="font-semibold text-lg">Women Helpline</p>
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ମହିଳା ହେଲ୍ପଲାଇନ୍' : 'Women Helpline' }}
+                    </p>
                     <p class="text-gray-600">1091</p>
                 </div>
             </div>
-    
+
+            <!-- Life Guard -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
                 <i class="fas fa-life-ring text-[#FFA726] text-3xl"></i>
                 <div>
-                    <p class="font-semibold text-lg">Life Guard</p>
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡ୍' : 'Life Guard' }}</p>
                     <p class="text-gray-600">8260777771</p>
                 </div>
             </div>
-    
+
+            <!-- Highway -->
             <div class="flex items-center gap-4 bg-white shadow-md p-4 rounded-lg">
-                <i class="fas fa-road text-[#F06292] text-3xl"></i>
+                <i class="fas fa-road text-[#FFA726] text-3xl"></i>
                 <div>
-                    <p class="font-semibold text-lg">National Highway Helpline</p>
+                    <p class="font-semibold text-lg">
+                        {{ $language === 'Odia' ? 'ଜାତୀୟ ରାଜପଥ ହେଲ୍ପଲାଇନ୍' : 'National Highway Helpline' }}</p>
                     <p class="text-gray-600">1033</p>
                 </div>
             </div>
-    
+
         </div>
     </section>
-    
 
     @include('partials.website-footer')
 
