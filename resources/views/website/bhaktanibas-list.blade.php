@@ -99,11 +99,11 @@
                             @endif
                         </div>
 
-                        <div>
+                        {{-- <div>
                             <a href="tel:{{ $item->contact_no }}">
                                 <button class="booking-btn">Call to Book</button>
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             @endforeach
