@@ -72,7 +72,7 @@
                 <div class="bg-white rounded-lg shadow p-6 border-t-4 border-red-500">
                     <h3 class="text-xl font-semibold text-red-600 mb-4 flex items-center">
                         <i class="fas fa-ban mr-2"></i>
-                        {{ $language === 'Odia' ? 'କରନ୍ତୁ ନାହିଁ' : 'DON’TS' }}
+                        {{ $language === 'Odia' ? 'କରନ୍ତୁ ନାହିଁ' : 'DONT’S' }}
                     </h3>
                     <ul class="space-y-3 list-inside list-disc text-gray-800">
                         @if ($language === 'Odia')
@@ -86,15 +86,15 @@
                             <li>ମନ୍ଦିର ପରିସର ଭିତରେ ଏବଂ ଚାରିପାଖରେ ଜୋତା ଓ ଚମଡା ଜିନିଷ ବ୍ୟବହାର ନିଷିଦ୍ଧ ଅଟେ।</li>
                             <li>ଛତା, ମୋବାଇଲ୍ ଫୋନ୍, ଇଲେକ୍ଟ୍ରୋନିକ୍ ଉପକରଣ, ଚମଡା ଜିନିଷ ଇତ୍ୟାଦି ସାଙ୍ଗରେ ନେଇଯିବାକୁ ନିଷିଦ୍ଧ ଅଟେ।</li>
                         @else
-                            <li>Dont's consume liquor or other intoxicants during Darshan of the Deities.</li>
-                            <li>Dont's eat non-vegetarian food.</li>
-                            <li>Dont's carry cooked food.</li>
-                            <li>Dont's encourage beggary.</li>
-                            <li>Dont's spit or commit nuisance.</li>
-                            <li>Dont's waste water.</li>
-                            <li>Dont's spit, urinate or defecate in the premises of temple.</li>
-                            <li>Dont's footwear and leather items in and around the premises of the temple.</li>
-                            <li>Dont's carry umbrella, mobile phones, electronic gadgets, leather items etc.</li>
+                            <li>Do not consume liquor or other intoxicants during Darshan of the Deities.</li>
+                            <li>Do not eat non-vegetarian food.</li>
+                            <li>Do not carry cooked food.</li>
+                            <li>Do not encourage beggary.</li>
+                            <li>Do not spit or commit nuisance.</li>
+                            <li>Do not waste water.</li>
+                            <li>Do not spit, urinate or defecate in the premises of temple.</li>
+                            <li>Do not footwear and leather items in and around the premises of the temple.</li>
+                            <li>Do not carry umbrella, mobile phones, electronic gadgets, leather items etc.</li>
                         @endif
                     </ul>
                 </div>

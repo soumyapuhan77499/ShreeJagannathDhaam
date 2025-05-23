@@ -134,6 +134,17 @@
                     </ul>
                 </li>
 
+                 <li class="has-submenu">
+                    <a href="javascript:void(0)" class="submenu-toggle">
+                        {{ $language === 'Odia' ? 'ଭାଷା' : 'Language' }}
+                        <i class="fa fa-chevron-down ms-2"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ url('/lang/Odia') }}">ଓଡ଼ିଆ</a></li>
+                        <li><a href="{{ url('/lang/English') }}">English</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
 
@@ -230,6 +241,17 @@
                     </li>
                 </ul>
             </li>
+             <li class="has-submenu">
+                    <a href="javascript:void(0)" class="submenu-toggle">
+                        {{ $language === 'Odia' ? 'ଭାଷା' : 'Language' }}
+                        <i class="fa fa-chevron-down ms-2"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ url('/lang/Odia') }}">ଓଡ଼ିଆ</a></li>
+                        <li><a href="{{ url('/lang/English') }}">English</a></li>
+                    </ul>
+                </li>
+
 
         </ul>
     </nav>
