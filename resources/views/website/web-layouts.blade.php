@@ -665,17 +665,15 @@
             const navMenu = document.querySelector(".nav-menu");
             const navClose = document.querySelector(".nav-close");
 
+            let userPaused = false; // Track if user manually paused
+
             // === Autoplay audio after 1 second
             setTimeout(() => {
                 audio.play().then(() => {
-                    audio.muted = false; // Unmute on successful play
-                    console.log("Audio autoplay success.");
+                    audio.muted = false;
                     audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
-                }).catch(err => {
-                    console.warn("Autoplay blocked. Waiting for user interaction...");
+                }).catch(() => {
                     audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
-
-                    // Wait for user interaction
                     document.body.addEventListener("click", () => {
                         audio.muted = false;
                         audio.play().then(() => {
@@ -691,7 +689,6 @@
                 });
             }, 1000);
 
-
             // === Play/Pause Toggle
             videoPlayPauseButton?.addEventListener("click", function() {
                 if (video?.paused) {
@@ -700,12 +697,14 @@
                     audio.muted = false;
                     this.innerHTML = '<i class="fa fa-pause"></i>';
                     audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
+                    userPaused = false;
                 } else {
                     video.pause();
                     audio.pause();
                     audio.muted = true;
                     this.innerHTML = '<i class="fa fa-play"></i>';
                     audioMuteToggle.innerHTML = '<i class="fa fa-volume-mute"></i>';
+                    userPaused = true;
                 }
             });
 
@@ -718,19 +717,19 @@
                     '<i class="fa fa-volume-up"></i>';
             });
 
-            // === Scroll-Based Pause
+            // === Scroll-Based Pause/Play
             function checkScroll() {
                 if (!video || !audio) return;
                 const rect = video.getBoundingClientRect();
                 const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-                if (inView) {
+                if (inView && !userPaused) {
                     video.play().catch(() => {});
                     audio.play().catch(() => {});
                     audio.muted = false;
                     videoPlayPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
                     audioMuteToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
-                } else {
+                } else if (!inView) {
                     video.pause();
                     audio.pause();
                     audio.muted = true;
@@ -757,7 +756,6 @@
             });
         });
     </script>
-
 
     {{-- temple information --}}
     <script>
@@ -925,11 +923,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                                                <hr class="border-dashed border-gray-300 my-4">
-                                                                                                <div class="flex items-start gap-3">
-                                                                                                    <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                                                    <p class="text-gray-800">${data.description}</p>
-                                                                                                </div>` : ''}
+                                                                                                    <hr class="border-dashed border-gray-300 my-4">
+                                                                                                    <div class="flex items-start gap-3">
+                                                                                                        <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                                                        <p class="text-gray-800">${data.description}</p>
+                                                                                                    </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =

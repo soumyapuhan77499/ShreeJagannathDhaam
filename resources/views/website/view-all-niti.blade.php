@@ -346,7 +346,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             @if ($language === 'Odia')
-                <h1>ନିତିର ଦୈନିକ ତାଲିକା</h1>
+                <h1>ନୀତି ର ଦୈନିକ ତାଲିକା</h1>
                 <p>ଦୈନିକ ନୀତି ବିଷୟରେ ଲାଇଭ୍ ଅଦ୍ୟତନ</p>
             @else
                 <h1>Daily List Of Nitis</h1>
@@ -408,7 +408,7 @@
                                         @break
 
                                         @case('Upcoming')
-                                            ଆସନ୍ତାକାଲି
+                                            ଆଗାମୀ 
                                         @break
 
                                         @default
