@@ -13,6 +13,21 @@
 
 
     <style>
+        .tab-btn {
+            padding: 10px 25px;
+            border: none;
+            background: #eee;
+            color: #333;
+            font-size: 16px;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .tab-btn.active {
+            background: #2d7b2d;
+            color: #fff;
+        }
+   
         .service-card img,
         .service-card-bhakta img {
             width: 100%;
@@ -59,6 +74,15 @@
                 {{ $language === 'Odia' ? 'ମାନଚିତ୍ର ଦୃଶ୍ୟ' : 'Map View' }}
             </button>
         </div>
+    </div>
+    
+    <div class="tab-buttons" style="display: flex; justify-content: center; margin: 30px 0;"></div>
+        <button id="fourWheelerTab" class="tab-btn active" style="margin-right: 10px;">
+            {{ $language === 'Odia' ? '୪ ଚକିଆ' : 'Four Wheeler' }}
+        </button>
+        <button id="twoWheelerTab" class="tab-btn">
+            {{ $language === 'Odia' ? '୨ ଚକିଆ' : 'Two Wheeler' }}
+        </button>
     </div>
 
 
