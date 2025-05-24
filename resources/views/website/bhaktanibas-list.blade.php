@@ -100,7 +100,7 @@
                             <div class="info-line address-block">
                                 <strong>Address:</strong><br>
                                 <span class="address-text">
-                                    {{ $item->landmark ? $item->landmark . ', ' : '' }}
+                                    {{ $item->landmark }}
                                     {{ $item->city_village }}
                                 </span>
                             </div>
