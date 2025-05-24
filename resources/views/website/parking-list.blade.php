@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Visitor Parking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/web-service.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/web-service.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
@@ -72,19 +72,16 @@
                     <div class="service-info" style="display: flex; justify-content: space-between;">
                         <div>
                             <div class="info-line">
-                                <span class="icon"></span>
+                                <i class="fas fa-map-marker-alt icon"></i>
                                 {{ $item->landmark ? $item->landmark . ', ' : '' }}
                                 {{ $item->city_village ? $item->city_village . ', ' : '' }}
                             </div>
 
                             <div class="info-line">
-                                <span class="icon"></span> 24/7
-                            </div>
-                            <div
-                                class="info-line availability {{ $item->parking_availability > 50 ? 'green' : 'red' }}">
-                                {{-- <span class="icon">🅿️</span> {{ $item->parking_availability }}/250 Spots Available --}}
+                                <i class="fas fa-clock icon"></i> 24/7
                             </div>
                         </div>
+
 
                         {{-- <div style="margin-top: 45px;">
                             <button class="booking-btn">Confirm Booking</button>
