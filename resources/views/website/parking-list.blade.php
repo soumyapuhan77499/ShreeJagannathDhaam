@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
 
-
-
     <style>
-       
         .service-card img,
         .service-card-bhakta img {
             width: 100%;
