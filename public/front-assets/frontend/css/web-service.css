@@ -342,6 +342,12 @@ body {
     color: #333;
 }
 
+.address-text {
+   
+    font-size: 12px;
+   
+}
+
     .service-grid {
         flex-direction: column;
         gap: 20px;
