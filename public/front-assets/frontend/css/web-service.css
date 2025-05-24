@@ -225,11 +225,21 @@ body {
     font-weight: bold;
     font-size: 17px;
 }
+.address-block {
+    max-width: 300px; /* Adjust as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .address-text {
     display: block;
     margin-top: 4px;
     color: #444;
+    font-size: 15px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    white-space: normal; /* allow wrapping */
 }
 
 .btn {
