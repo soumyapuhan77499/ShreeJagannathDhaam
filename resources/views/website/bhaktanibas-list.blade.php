@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <title>Bhakta Niwas</title>
@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-   
+
 </head>
 
 <body>
@@ -105,9 +106,13 @@
                                 </span>
                             </div>
 
-                            <div class="info-line">
-                                <span class="icon"></span> {{ $item->contact_no ?? 'Not Available' }}
+
+                            <div class="info-line"
+                                style="border: 1px solid #ccc; border-radius: 8px; padding: 8px 12px; display: inline-flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-phone" style="color: #333;"></i>
+                                {{ $item->contact_no ?? 'Not Available' }}
                             </div>
+
 
                         </div>
                     </div>
