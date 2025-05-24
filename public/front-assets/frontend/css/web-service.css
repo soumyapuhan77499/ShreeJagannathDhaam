@@ -337,6 +337,10 @@ body {
         align-items: flex-start;
     }
 
+.info-line {
+    font-size: 12px;
+    color: #333;
+}
 
     .service-grid {
         flex-direction: column;
@@ -360,56 +364,5 @@ body {
     }
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    .service-info {
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    .address-block {
-        max-width: 100%;
-        white-space: normal;
-    }
-
-    .address-text {
-        width: 100%;
-        font-size: 14px;
-    }
-
-    .phone-box {
-        font-size: 16px;
-        padding: 8px 12px;
-    }
-
-    .btns {
-        width: 100%;
-        text-align: center;
-        padding: 10px;
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .info-line {
-        font-size: 14px;
-    }
-
-    .property-offer-section strong,
-    .address-block strong {
-        font-size: 15px;
-    }
-
-    .phone-box {
-        flex-direction: row;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .btns-info {
-        font-size: 14px;
-        padding: 10px 15px;
-    }
-}
 
 
