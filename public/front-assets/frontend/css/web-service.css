@@ -198,52 +198,75 @@ body {
     margin: 12px 0;
     font-size: 16px;
 }
-
 .service-info {
-    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff7f4;
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .info-line {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    margin: 8px 0;
+    margin-bottom: 10px;
+    font-size: 16px;
     color: #333;
 }
-.icon {
-    font-size: 16px;
-    margin-right: 8px;
-    line-height: 1;
-    vertical-align: middle;
-}
 
-.availability.green {
-    color: green;
+.property-offer-section strong {
     font-weight: bold;
+    font-size: 17px;
+    display: block;
+    margin-bottom: 5px;
 }
 
-.availability.red {
-    color: red;
+.address-block strong {
     font-weight: bold;
+    font-size: 17px;
 }
 
-.booking-btn {
-    margin-top: 10px;
-    padding: 8px 16px;
-    border: 2px solid #0aaf4c;
-    background-color: white;
-    color: #0aaf4c;
-    font-size: 14px;
-    font-weight: 600;
+.address-text {
+    display: block;
+    margin-top: 4px;
+    color: #444;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
     border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.booking-btn:hover {
-    background-color: #0aaf4c;
+.btn-info {
+    background: linear-gradient(to right, #ffa500, #ff69b4);
     color: white;
+    font-weight: bold;
 }
+
+.icon {
+    margin-right: 6px;
+    color: #333;
+}
+
+/* Phone Button Box */
+.phone-box {
+    border: 1px solid #ccc;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    color: black;
+}
+
 
 /* ✅ Image Section and Thumbnails */
 .image-section {
