@@ -241,7 +241,6 @@ body {
 }
 
 .btn {
-    padding: 15px 25px;
     border: none;
     border-radius: 8px;
     font-size: 14px;
@@ -255,6 +254,8 @@ body {
     background: linear-gradient(to right, #ffa500, #ff69b4);
     color: white;
     font-weight: bold;
+    padding: 15px 25px;
+
 }
 
 .icon {
