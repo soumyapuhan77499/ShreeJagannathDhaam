@@ -211,7 +211,7 @@
             .timeline::before {
                 content: '';
                 position: absolute;
-                left: 12px;
+                left: 18px;
                 top: 0;
                 width: 4px;
                 height: 100%;
@@ -231,7 +231,7 @@
             .timeline-item.right::after {
                 content: '';
                 position: absolute;
-                left: 6px;
+                left: 14px;
                 top: 28px;
                 width: 14px;
                 height: 14px;
@@ -314,11 +314,11 @@
             }
 
             .Started .card {
-                border-left: 4px solid #4caf50;
+                border-left: 4px solid #db4d30;
             }
 
             .Completed .card {
-                border-left: 4px solid #2196f3;
+                border-left: 4px solid #db4d30;
             }
 
             .Upcoming .card {

@@ -578,6 +578,6 @@ Route::controller(QuickServiceController::class)->group(function() {
     Route::get('/online-donation', 'onlineDonation')->name('online.donation');
     Route::get('/hundi-collection', 'hundiCollection')->name('hundi.collection');
     Route::get('/contact-support', 'contactSupport')->name('contactSupport');
-
+    Route::get('/sea-beach', 'seaBeach')->name('seabeach');
 });
 

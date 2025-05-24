@@ -788,7 +788,7 @@
 
             <!-- Beach -->
             <div class="conv">
-                <a href="{{ route('services.byType', 'beach') }}">
+                <a href="{{ route('seabeach') }}">
                     <div class="convenience-item">
                         <img src="{{ asset('website/sea.png') }}" alt="Beach">
                     </div>

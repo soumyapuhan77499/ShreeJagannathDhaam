@@ -209,4 +209,16 @@ public function contactSupport(){
     return view('website.contact-details');
 }
 
+public function seaBeach(){
+
+    $language = session('app_language', 'English');
+
+    $seabeach = PublicServices::where('service_type', 'beach')
+                ->where('status', 'active') // Only active services
+                ->where('language', $language) // Filter by language
+                ->get();
+
+    return view('website.sea-beach-list', compact('seabeach'));
+}
+
 }
