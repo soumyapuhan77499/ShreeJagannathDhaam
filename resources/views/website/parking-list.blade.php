@@ -23,11 +23,12 @@
             cursor: pointer;
             transition: background 0.2s;
         }
+
         .tab-btn.active {
             background: #2d7b2d;
             color: #fff;
         }
-   
+
         .service-card img,
         .service-card-bhakta img {
             width: 100%;
@@ -75,8 +76,12 @@
             </button>
         </div>
     </div>
-    
-    <div class="tab-buttons" style="display: flex; justify-content: center; margin: 30px 0;"></div>
+
+
+
+    <div class="container">
+
+        <div class="tab-buttons" style="display: flex; justify-content: center; margin: 30px 0;"></div>
         <button id="fourWheelerTab" class="tab-btn active" style="margin-right: 10px;">
             {{ $language === 'Odia' ? '୪ ଚକିଆ' : 'Four Wheeler' }}
         </button>
@@ -84,36 +89,33 @@
             {{ $language === 'Odia' ? '୨ ଚକିଆ' : 'Two Wheeler' }}
         </button>
     </div>
-
-
-    <div class="container">
-        <div class="service-grid">
-            @foreach ($parking as $item)
-                <div class="service-card">
-                    <h5>{{ $item->parking_name }}</h5>
-                    <img src="{{ $item->parking_photo ? asset($item->parking_photo) : asset('website/parking.jpeg') }}"
-                        alt="{{ $item->parking_name }}">
-                    <div class="service-info" style="display: flex; justify-content: space-between;">
-                        <div>
-                            <div class="info-line">
-                                <i class="fas fa-map-marker-alt icon"></i>
-                                {{ $item->landmark ? $item->landmark . ', ' : '' }}
-                                {{ $item->city_village ? $item->city_village . ', ' : '' }}
-                            </div>
-
-                            <div class="info-line">
-                                <i class="fas fa-clock icon"></i> 24/7
-                            </div>
+    <div class="service-grid">
+        @foreach ($parking as $item)
+            <div class="service-card">
+                <h5>{{ $item->parking_name }}</h5>
+                <img src="{{ $item->parking_photo ? asset($item->parking_photo) : asset('website/parking.jpeg') }}"
+                    alt="{{ $item->parking_name }}">
+                <div class="service-info" style="display: flex; justify-content: space-between;">
+                    <div>
+                        <div class="info-line">
+                            <i class="fas fa-map-marker-alt icon"></i>
+                            {{ $item->landmark ? $item->landmark . ', ' : '' }}
+                            {{ $item->city_village ? $item->city_village . ', ' : '' }}
                         </div>
 
+                        <div class="info-line">
+                            <i class="fas fa-clock icon"></i> 24/7
+                        </div>
+                    </div>
 
-                        {{-- <div style="margin-top: 45px;">
+
+                    {{-- <div style="margin-top: 45px;">
                             <button class="booking-btn">Confirm Booking</button>
                         </div> --}}
-                    </div>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
+    </div>
     </div>
 
     @include('partials.website-footer')
