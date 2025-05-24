@@ -91,7 +91,7 @@
                             @if ($item->google_map_link)
                                 <div class="info-line">
                                     <span class="icon"></span>
-                                    <a class="btn btn-info btn-sm" style="color:white"
+                                    <a class="btns btns-info btn-sm" style="color:white"
                                         href="{{ $item->google_map_link }}" target="_blank">Direction</a>
                                 </div>
                             @endif
