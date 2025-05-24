@@ -35,64 +35,60 @@
         .table-row:nth-child(odd) {
             background-color: #fff7f0;
         }
-
+        
         @media (max-width: 768px) {
-            table thead {
-                display: none;
+            .container {
+                width: 100%;
+                padding: 20px;
             }
 
-            table,
-            table tbody,
-            table tr,
-            table td {
+            table.min-w-full {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            table.min-w-full thead {
+                display: none;
+                /* Hide header for smaller devices */
+            }
+
+            table.min-w-full tbody,
+            table.min-w-full tr,
+            table.min-w-full td {
                 display: block;
                 width: 100%;
             }
 
-            table tr {
-                margin-bottom: 20px;
-                border: 1px solid #ddd;
+            table.min-w-full tr {
+                margin-bottom: 15px;
+                border: 1px solid #e5e7eb;
                 border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-                cursor: pointer;
-                transition: transform 0.2s ease;
+                background: #fff;
+                padding: 15px;
             }
 
-            table tr:hover {
-                transform: scale(1.01);
-            }
-
-            table td {
-                padding: 10px 15px;
+            table.min-w-full td {
                 text-align: left;
+                padding: 10px 10px;
+                position: relative;
             }
 
-            table td:nth-child(1) img {
-                width: 100%;
-                height: auto;
-                border-radius: 0;
+            table.min-w-full td::before {
+                content: attr(data-label);
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                font-weight: bold;
+                color: #f06292;
+                font-size: 14px;
+                text-transform: capitalize;
             }
 
-            table td:nth-child(2),
-            table td:nth-child(3) {
-                font-size: 16px;
-                font-weight: 600;
-                color: #333;
-            }
-
-            table td:nth-child(4) {
-                display: none !important;
-                /* hide full info button */
-            }
-
-            /* Optional: make entire card clickable (link to directions) */
-            table tr[data-link] {
-                cursor: pointer;
-            }
-
-            table tr[data-link]:hover {
-                background-color: #fef4f8;
+            table.min-w-full td img {
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
