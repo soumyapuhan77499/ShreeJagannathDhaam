@@ -14,7 +14,127 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-   
+    <style>
+        /* Base Layout */
+        .services-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.01);
+        }
+
+        /* Image */
+        .service-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            max-height: 220px;
+        }
+
+        .no-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            color: gray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+        }
+
+        /* Info */
+        .service-info {
+            padding: 15px;
+        }
+
+        .service-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #4b2e83;
+        }
+
+        .service-address {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 12px;
+        }
+
+        .service-address i {
+            color: #888;
+            margin-right: 6px;
+        }
+
+        .direction-btn {
+            display: inline-block;
+            padding: 8px 12px;
+            background: linear-gradient(90deg, #f9ce62, #f1769f);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .no-link {
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Responsive for Mobile */
+        @media (max-width: 768px) {
+            .service-card {
+                flex-direction: row;
+                align-items: flex-start;
+                max-width: 100%;
+            }
+
+            .service-image {
+                flex-shrink: 0;
+                width: 150px;
+                height: 150px;
+                overflow: hidden;
+            }
+
+            .service-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .no-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .service-info {
+                padding: 10px;
+                flex: 1;
+            }
+
+            .service-title {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 
 <body>
