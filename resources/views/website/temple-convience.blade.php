@@ -213,41 +213,47 @@
     </div>
 
     <div class="block lg:hidden space-y-4">
-        @foreach ($services as $service)
-            @php
-                $photos = json_decode($service->photo, true);
-                $firstPhoto = $photos[0] ?? null;
-            @endphp
-            <div class="bg-white rounded-lg shadow p-4">
-                @if ($firstPhoto)
-                    <img src="{{ asset($firstPhoto) }}" alt="{{ $service->service_name }}"
-                        class="w-full h-48 object-cover rounded-md mb-2">
-                @else
-                    <div class="text-center text-gray-400 italic mb-2">
-                        {{ $language === 'Odia' ? 'ଫୋଟୋ ନାହିଁ' : 'No Image' }}
-                    </div>
-                @endif
+    @foreach ($services as $service)
+        @php
+            $photos = json_decode($service->photo, true);
+            $firstPhoto = $photos[0] ?? null;
+        @endphp
+        <div class="bg-white rounded-lg shadow p-3 flex space-x-4">
+            @if ($firstPhoto)
+                <img src="{{ asset($firstPhoto) }}" alt="{{ $service->service_name }}"
+                    class="w-[150px] h-[150px] object-cover rounded-md flex-shrink-0">
+            @else
+                <div class="w-[150px] h-[150px] bg-gray-100 flex items-center justify-center rounded-md text-gray-400 italic">
+                    {{ $language === 'Odia' ? 'ଫୋଟୋ ନାହିଁ' : 'No Image' }}
+                </div>
+            @endif
 
-                <h3 class="text-lg font-semibold mb-1">{{ $service->service_name }}</h3>
-
-                <div class="mb-2">
-                    @if ($service->google_map_link)
-                        <a href="{{ $service->google_map_link }}" target="_blank"
-                            class="inline-block text-sm text-white px-3 py-1 rounded"
-                            style="background: linear-gradient(90deg, #f9ce62, #f1769f);">
-                            {{ $language === 'Odia' ? 'ଦିଗ ନିର୍ଦ୍ଦେଶ' : 'Directions' }}
-                        </a>
-                    @else
-                        <span
-                            class="text-gray-400 italic">{{ $language === 'Odia' ? 'ଲିଙ୍କ ନାହିଁ' : 'No Link' }}</span>
-                    @endif
+            <div class="flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-semibold mb-1 text-purple-900">
+                        {{ $service->service_name }}
+                    </h3>
+                    <p class="text-sm text-gray-600">
+                        <i class="fas fa-map-marker-alt mr-1 text-gray-500"></i>
+                        {{ $service->location ?? 'No Address' }}
+                    </p>
                 </div>
 
-                <!-- Hide full info button on mobile if needed -->
-                {{-- <button class="hidden">Full Info</button> --}}
+                @if ($service->google_map_link)
+                    <a href="{{ $service->google_map_link }}" target="_blank"
+                        class="mt-2 inline-block text-sm text-white px-3 py-1 rounded"
+                        style="background: linear-gradient(90deg, #f9ce62, #f1769f);">
+                        {{ $language === 'Odia' ? 'ଦିଗ ନିର୍ଦ୍ଦେଶ' : 'Directions' }}
+                    </a>
+                @else
+                    <span class="mt-2 text-sm text-gray-400 italic">
+                        {{ $language === 'Odia' ? 'ଲିଙ୍କ ନାହିଁ' : 'No Link' }}
+                    </span>
+                @endif
             </div>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
+</div>
 
 
 
