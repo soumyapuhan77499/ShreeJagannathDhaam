@@ -14,13 +14,13 @@
     <style>
         /* Base Layout */
         .services-wrapper {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             padding: 20px;
-            justify-content:center;
             margin-top: 40px;
         }
+
 
         .service-card {
             background-color: white;
@@ -159,7 +159,7 @@
         </div>
     </div>
 
-     <div class="services-wrapper">
+    <div class="services-wrapper">
         @foreach ($services as $service)
             @php
                 $photos = json_decode($service->photo, true);
@@ -194,10 +194,10 @@
         @endforeach
     </div>
 
-   
+
     @include('partials.website-footer')
 
-   
+
 </body>
 
 </html>
