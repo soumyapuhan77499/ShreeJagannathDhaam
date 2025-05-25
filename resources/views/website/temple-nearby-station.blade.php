@@ -17,8 +17,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            padding: 50px 140px;
-            justify-content:flex-start;
+            padding: 20px;
+            justify-content:center;
             margin-top: 40px;
         }
 
