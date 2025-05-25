@@ -11,87 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/footer.css') }}">
-
     <style>
-        body {
-            min-height: 100vh;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .container {
-            width: 1300px;
-            padding-top: 70px;
-        }
-
-        .table-header {
-            background: linear-gradient(90deg, #FFA726, #F06292);
-            color: white;
-        }
-
-        .table-row:nth-child(even) {
-            background-color: #fdf2f8;
-        }
-
-        .table-row:nth-child(odd) {
-            background-color: #fff7f0;
-        }
-        
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .container {
-                width: 100%;
+                width: 100% !important;
                 padding: 20px;
-            }
-
-            table.min-w-full {
-                display: block;
-                width: 100%;
-                overflow-x: auto;
-                white-space: nowrap;
-            }
-
-            table.min-w-full thead {
-                display: none;
-                /* Hide header for smaller devices */
-            }
-
-            table.min-w-full tbody,
-            table.min-w-full tr,
-            table.min-w-full td {
-                display: block;
-                width: 100%;
-            }
-
-            table.min-w-full tr {
-                margin-bottom: 15px;
-                border: 1px solid #e5e7eb;
-                border-radius: 10px;
-                background: #fff;
-                padding: 15px;
-            }
-
-            table.min-w-full td {
-                text-align: left;
-                padding: 10px 10px;
-                position: relative;
-            }
-
-            table.min-w-full td::before {
-                content: attr(data-label);
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                font-weight: bold;
-                color: #f06292;
-                font-size: 14px;
-                text-transform: capitalize;
-            }
-
-            table.min-w-full td img {
-                width: 100px;
-                height: 100px;
             }
         }
     </style>
+
 </head>
 
 <body>
@@ -111,7 +39,6 @@
             'route map' => 'ମାର୍ଗ ମାନଚିତ୍ର',
             'lost and found booth' => 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର',
             'toilet' => 'ଶୌଚାଳୟ',
-            'beach' => 'ସମୁଦ୍ର କୂଳ',
             'life guard booth' => 'ଲାଇଫ୍ ଗାର୍ଡ',
             'charging station' => 'ଚାର୍ଜିଂ ଷ୍ଟେସନ୍',
             'petrol pump' => 'ପେଟ୍ରୋଲ ପମ୍ପ',
@@ -155,7 +82,7 @@
         $language = session('app_language', 'English');
     @endphp
 
-    <div class="container mx-auto">
+    <div class="hidden lg:block">
         <div class="overflow-x-auto rounded-lg shadow-lg bg-white">
             <table class="min-w-full">
                 <thead class="table-header">
@@ -171,8 +98,7 @@
                             {{ $language === 'Odia' ? 'ଅବସ୍ଥିତି' : 'Location' }} <i class="fas fa-map-marker-alt"></i>
                         </th>
                         <th class="py-3 px-6 text-left">
-                            {{ $language === 'Odia' ? 'ସମ୍ପୂର୍ଣ୍ଣ ସୂଚନା' : 'Full Information' }} <i
-                                class="fas fa-tools"></i>
+                            {{ $language === 'Odia' ? 'ସମ୍ପୂର୍ଣ୍ଣ ସୂଚନା' : 'Full Info' }} <i class="fas fa-tools"></i>
                         </th>
                     </tr>
                 </thead>
@@ -184,41 +110,32 @@
                                     $photos = json_decode($service->photo, true);
                                     $firstPhoto = $photos[0] ?? null;
                                 @endphp
-
                                 @if ($firstPhoto)
-                                    <button onclick="openPhotoModal({{ $service->id }})">
-                                        <img src="{{ asset($firstPhoto) }}" alt="{{ $service->service_name }}"
-                                            class="w-20 h-20 object-cover rounded-md shadow-md hover:scale-105 transition duration-300">
-                                    </button>
+                                    <img src="{{ asset($firstPhoto) }}" alt="{{ $service->service_name }}"
+                                        class="w-20 h-20 object-cover rounded-md shadow-md">
                                 @else
-                                    <span class="text-gray-400 italic">
-                                        {{ $language === 'Odia' ? 'ଫୋଟୋ ନାହିଁ' : 'No Image' }}
-                                    </span>
+                                    <span
+                                        class="text-gray-400 italic">{{ $language === 'Odia' ? 'ଫୋଟୋ ନାହିଁ' : 'No Image' }}</span>
                                 @endif
                             </td>
-
                             <td class="py-4 px-6 font-semibold">{{ $service->service_name }}</td>
-
                             <td class="py-4 px-6">
                                 @if ($service->google_map_link)
                                     <a href="{{ $service->google_map_link }}" target="_blank"
-                                        class="px-3 py-1 rounded-md text-sm hover:scale-105 transition"
-                                        style="background: linear-gradient(90deg, #f9ce62, #f1769f); color: white;padding: 10px;">
-                                        <i class="fas fa-map-marker-alt"></i>
+                                        class="px-3 py-1 rounded-md text-sm text-white"
+                                        style="background: linear-gradient(90deg, #f9ce62, #f1769f);">
                                         {{ $language === 'Odia' ? 'ଦିଗ ନିର୍ଦ୍ଦେଶ' : 'Directions' }}
                                     </a>
                                 @else
-                                    <span class="text-gray-400 italic">
-                                        {{ $language === 'Odia' ? 'ଲିଙ୍କ ନାହିଁ' : 'No Link' }}
-                                    </span>
+                                    <span
+                                        class="text-gray-400 italic">{{ $language === 'Odia' ? 'ଲିଙ୍କ ନାହିଁ' : 'No Link' }}</span>
                                 @endif
                             </td>
-
                             <td class="py-4 px-6">
                                 <button onclick="openModal({{ $service->id }})"
-                                    class="text-white px-3 py-1 rounded-md hover:scale-105 transition"
-                                    style="background: linear-gradient(90deg, #f9ce62, #f1769f);padding: 10px;">
-                                    {{ $language === 'Odia' ? 'ପୂର୍ଣ୍ଣ ବିବରଣୀ' : 'View Full Info' }}
+                                    class="text-white px-3 py-1 rounded-md"
+                                    style="background: linear-gradient(90deg, #f9ce62, #f1769f);">
+                                    {{ $language === 'Odia' ? 'ପୂର୍ଣ୍ଣ ବିବରଣୀ' : 'Full Info' }}
                                 </button>
                             </td>
                         </tr>
@@ -294,6 +211,44 @@
             </table>
         </div>
     </div>
+
+    <div class="block lg:hidden space-y-4">
+        @foreach ($services as $service)
+            @php
+                $photos = json_decode($service->photo, true);
+                $firstPhoto = $photos[0] ?? null;
+            @endphp
+            <div class="bg-white rounded-lg shadow p-4">
+                @if ($firstPhoto)
+                    <img src="{{ asset($firstPhoto) }}" alt="{{ $service->service_name }}"
+                        class="w-full h-48 object-cover rounded-md mb-2">
+                @else
+                    <div class="text-center text-gray-400 italic mb-2">
+                        {{ $language === 'Odia' ? 'ଫୋଟୋ ନାହିଁ' : 'No Image' }}
+                    </div>
+                @endif
+
+                <h3 class="text-lg font-semibold mb-1">{{ $service->service_name }}</h3>
+
+                <div class="mb-2">
+                    @if ($service->google_map_link)
+                        <a href="{{ $service->google_map_link }}" target="_blank"
+                            class="inline-block text-sm text-white px-3 py-1 rounded"
+                            style="background: linear-gradient(90deg, #f9ce62, #f1769f);">
+                            {{ $language === 'Odia' ? 'ଦିଗ ନିର୍ଦ୍ଦେଶ' : 'Directions' }}
+                        </a>
+                    @else
+                        <span
+                            class="text-gray-400 italic">{{ $language === 'Odia' ? 'ଲିଙ୍କ ନାହିଁ' : 'No Link' }}</span>
+                    @endif
+                </div>
+
+                <!-- Hide full info button on mobile if needed -->
+                {{-- <button class="hidden">Full Info</button> --}}
+            </div>
+        @endforeach
+    </div>
+
 
 
     @include('partials.website-footer')
