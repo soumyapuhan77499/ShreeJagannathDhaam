@@ -22,6 +22,7 @@
     gap: 20px;
     padding: 20px;
     justify-content: center;
+    margin-top: 40px;
 }
 
 .service-card {
