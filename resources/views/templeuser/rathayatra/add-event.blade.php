@@ -14,7 +14,7 @@
         </div>
         <div class="justify-content-center mt-2">
             <ol class="breadcrumb d-flex justify-content-between align-items-center">
-                <li class="breadcrumb-item tx-15"><a href="{{ url('templeuser/manage-parking') }}"
+                <li class="breadcrumb-item tx-15"><a href="{{ route('rathayatra.manageEvent') }}"
                         class="btn btn-warning text-dark">Manage Event</a></li>
                 <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Dashboard</a></li>
             </ol>
