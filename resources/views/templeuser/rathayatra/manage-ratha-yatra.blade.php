@@ -43,7 +43,7 @@
             <form action="{{ route('rathayatra.toggleLiveVideo') }}" method="POST">
                 @csrf
                 <button type="submit"
-                    class="btn btn-outline-{{ $status->live_video === 'active' ? 'danger' : 'success' }}">
+                        class="btn btn-outline-{{ $status->live_video === 'active' ? 'danger' : 'success' }}">
                     {{ $status->live_video === 'active' ? 'Deactivate' : 'Activate' }}
                 </button>
             </form>
@@ -63,7 +63,8 @@
             </div>
             <form action="{{ route('rathayatra.toggleSection') }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-outline-{{ $status->section === 'active' ? 'danger' : 'success' }}">
+                <button type="submit"
+                        class="btn btn-outline-{{ $status->section === 'active' ? 'danger' : 'success' }}">
                     {{ $status->section === 'active' ? 'Deactivate' : 'Activate' }}
                 </button>
             </form>

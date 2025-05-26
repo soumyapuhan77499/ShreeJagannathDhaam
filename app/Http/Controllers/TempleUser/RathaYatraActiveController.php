@@ -11,10 +11,10 @@ class RathaYatraActiveController extends Controller
    
 public function index()
 {
-    $status = \App\Models\RathaYatraActive::firstOrCreate(
-        [], // match nothing, ensure always one record
-        ['live_video' => 'inactive', 'section' => 'inactive'] // default values
-    );
+    $status = RathaYatraActive::firstOrCreate([], [
+            'live_video' => 'inactive',
+            'section' => 'inactive',
+        ]);
 
         return view('templeuser.rathayatra.manage-ratha-yatra', compact('status'));
 }
