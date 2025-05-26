@@ -1,7 +1,6 @@
 @extends('website.ratha-yatra-layouts')
 
 @section('content')
-
     <section class="banner-sections">
         <!-- Video Banner -->
 
@@ -137,53 +136,34 @@
     @php
         use Carbon\Carbon;
         $todayDate = Carbon::now()->format('d-m-Y');
+
+        // Example: Only one festival (assuming it's passed as $festival)
+$isToday = $festival['date'] === $todayDate;
     @endphp
 
     <div class="niti-cards-scroll">
         <div class="niti-cards">
-            @foreach ($nitiKanti as $nitiDay)
-                <div class="niti-card-wrapper">
-                    <div class="niti-day-header">
-                        <h3>{{ $nitiDay['name'] }}</h3>
-                        <p>
-                            {{ $language === 'Odia' ? convertToOdiaDate($nitiDay['date']) : $nitiDay['day'] . ', ' . $nitiDay['date'] }}
+            <div class="niti-card-wrapper">
+                <div class="niti-card {{ $isToday ? 'active' : '' }}">
+                    <div class="niti-content">
+                        <h4>{{ $festival['name'] }}</h4>
+                        <p style="color: {{ $isToday ? '#28a745' : '#333' }};">
+                            @if ($language === 'Odia')
+                                {{ $isToday ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
+                            @else
+                                {{ $isToday ? 'Started' : 'Upcoming' }}
+                            @endif
                         </p>
                     </div>
 
-                    @foreach ($nitiDay['niti'] as $niti)
-                        @php
-                            $isToday = $nitiDay['date'] === $todayDate;
-                            $startTime = $niti['startTime'];
-                            $formattedTime = Carbon::parse($startTime)->format('h:i A');
-                            $nitiStatus = $isToday ? 'Started' : 'Upcoming';
-                        @endphp
-
-                        <div class="niti-card {{ $isToday && $loop->first ? 'active' : '' }}">
-                            <div class="niti-content">
-                                <h4>{{ $niti['nitiName'] }}</h4>
-                                <p style="color: {{ $nitiStatus === 'Started' ? '#28a745' : '#333' }};">
-                                    @if ($language === 'Odia')
-                                        {{ $nitiStatus === 'Started' ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
-                                    @else
-                                        {{ $nitiStatus }}
-                                    @endif
-                                </p>
-                            </div>
-
-                            <div class="niti-icons">
-                                <p>
-                                    <ion-icon name="time-outline"></ion-icon>
-                                    {{ $language === 'Odia' ? convertToOdiaTime($formattedTime) : $formattedTime }}
-                                </p>
-                                <p>
-                                    <ion-icon name="calendar-outline"></ion-icon>
-                                    {{ $language === 'Odia' ? convertToOdiaDate($nitiDay['date']) : $nitiDay['date'] }}
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
+                    <div class="niti-icons">
+                        <p>
+                            <ion-icon name="calendar-outline"></ion-icon>
+                            {{ $language === 'Odia' ? convertToOdiaDate($festival['date']) : $festival['day'] . ', ' . $festival['date'] }}
+                        </p>
+                    </div>
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
 

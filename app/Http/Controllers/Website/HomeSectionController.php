@@ -113,11 +113,30 @@ public function rathaSpecial(){
       $json = file_get_contents(storage_path('app/nitiKanti.json'));
       $nitiKanti = json_decode($json, true);
 
+      $festival = [
+    "id" => 1,
+    "name" => "Debasnan Purnima",
+    "description" => "A collection of wise sayings...",
+    "date" => "11-06-2025",
+    "day" => "Wednesday",
+    "niti" => [
+        [
+            "id" => 1,
+            "nitiName" => "Satyam Vada",
+            "nitiDescription" => "Speak the truth always.",
+            "startTime" => "08:00",
+            "endTime" => "08:30"
+        ]
+    ]
+];
+
+
       return view('website.ratha-yatra-special', [
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
         'temples' => NearByTemple::where('language', $language)->get(),
         'nitiKanti' => $nitiKanti,
         'language' => $language,
+        'festival' => $festival,
     ]);
 }
 
