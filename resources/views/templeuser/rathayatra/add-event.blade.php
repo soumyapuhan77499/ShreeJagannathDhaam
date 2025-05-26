@@ -69,6 +69,11 @@
                                     <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter event description"></textarea>
                                 </div>
                             </div>
+
+                            <div class="col-md-12 mt-3 text-end">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                            
                         </div>
                     </form>
                 </div>
