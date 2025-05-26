@@ -201,6 +201,17 @@
             filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
         }
 
+         .card.timeline-content {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    padding: 16px;
+                    border-radius: 12px;
+                    background: #fff;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                    gap: 16px;
+                }
+
         @media (max-width: 768px) {
             @media (max-width: 768px) {
                 .timeline {
