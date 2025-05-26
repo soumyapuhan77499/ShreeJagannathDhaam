@@ -63,7 +63,7 @@
             border: 4px solid #db4d30;
             border-radius: 50%;
             z-index: 2;
-            left: calc(100% - 14px);
+            left: calc(100% - 0px);
             transform: translateX(-50%);
         }
 
