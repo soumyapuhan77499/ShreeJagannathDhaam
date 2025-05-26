@@ -22,7 +22,6 @@ class RathaYatraEventController extends Controller
             'event_name' => 'required|string|max:255',
             'date' => 'nullable|date',
             'description' => 'nullable|string',
-            'photo.*' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
         ]);
 
         // Handle file uploads
