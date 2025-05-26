@@ -201,45 +201,60 @@
             filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
         }
 
-        @media (max-width: 768px) {
+       @media (max-width: 768px) {
             .timeline {
                 padding: 0 12px;
                 margin: 24px auto;
                 position: relative;
             }
 
-            .timeline::before,
-            .timeline-item::after,
-            .timeline-item.right::after {
-                display: none;
-                /* Remove vertical line and dots for mobile */
+            .timeline::before {
+                content: '';
+                position: absolute;
+                left: 18px;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background-color: #db4d30;
             }
 
             .timeline-item,
             .timeline-item.right {
                 width: 100%;
-                left: 0 !important;
+                left: 0;
                 padding: 0;
                 box-sizing: border-box;
                 margin-bottom: 24px;
                 position: relative;
             }
 
+            .timeline-item::after,
+            .timeline-item.right::after {
+                content: '';
+                position: absolute;
+                left: 14px;
+                top: 28px;
+                width: 14px;
+                height: 14px;
+                background-color: #db4d30;
+                border: 3px solid #fff;
+                border-radius: 50%;
+            }
+
             .card.timeline-content {
                 display: flex;
                 flex-direction: row;
-                /* Horizontal row layout */
                 align-items: flex-start;
                 padding: 16px;
                 border-radius: 12px;
                 background: #fff;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
                 gap: 16px;
-                margin-left: 0;
+                margin-left: 40px;
             }
 
             .darshan-img-wrapper {
-                width: 70px;
+                width: 80px;
                 flex-shrink: 0;
             }
 
@@ -251,10 +266,10 @@
             }
 
             .card-header {
-                flex: 1;
                 display: flex;
                 flex-direction: column;
                 gap: 8px;
+                flex-grow: 1;
             }
 
             .badge {
@@ -316,6 +331,7 @@
                 border-left: 4px solid #ff9800;
             }
         }
+
     </style>
 </head>
 
