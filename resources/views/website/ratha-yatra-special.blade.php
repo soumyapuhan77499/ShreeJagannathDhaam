@@ -132,13 +132,10 @@
         </nav>
 
     </section>
-
     @php
         use Carbon\Carbon;
         $todayDate = Carbon::now()->format('d-m-Y');
-
-        // Example: Only one festival (assuming it's passed as $festival)
-$isToday = $festival['date'] === $todayDate;
+        $isToday = $festival['date'] === $todayDate;
     @endphp
 
     <div class="niti-cards-scroll">
@@ -166,6 +163,7 @@ $isToday = $festival['date'] === $todayDate;
             </div>
         </div>
     </div>
+
 
     <section class="shree-mandir-section  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
 
