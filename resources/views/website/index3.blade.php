@@ -148,6 +148,9 @@
                     </ul>
                 </li>
 
+                 <li>
+                    <a href="{{ url('/rath-yatra-special') }}">{{ $language === 'Odia' ? 'ରଥ ଯାତ୍ରା' : 'Ratha Yatra' }}</a>
+                </li>
 
             </ul>
         </nav>

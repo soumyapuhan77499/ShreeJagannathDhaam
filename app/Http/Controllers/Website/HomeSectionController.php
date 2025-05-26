@@ -51,10 +51,10 @@ public function puriWebsite()
         ])
         ->orderBy('niti_order', 'asc')
         ->get();
-    
+
     // Step 2: Find the last started Niti
     $currentIndex = null;
-    
+
     foreach ($allNitis as $index => $niti) {
         if (
             optional($niti->todayStartTime)->niti_status === 'Started'
@@ -62,7 +62,7 @@ public function puriWebsite()
             $currentIndex = $index;
         }
     }
-    
+
     // Step 3: Pick current started and next upcoming
     $finalNitiList = collect();
     
@@ -105,6 +105,19 @@ public function puriWebsite()
         'prasad' => TemplePrasad::where('status', 'active')->first(),
         'todayPanji' => $todayPanji,
         'temples' => NearByTemple::where('language', $language)->get()
+    ]);
+}
+
+public function rathaSpecial(){
+
+      $language = session('app_language', 'English');
+
+      return view('website.ratha-yatra-special', [
+
+        'nitis' => $finalNitiList->values(),
+        'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
+        'temples' => NearByTemple::where('language', $language)->get()
+
     ]);
 }
 

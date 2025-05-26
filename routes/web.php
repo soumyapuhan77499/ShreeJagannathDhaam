@@ -549,6 +549,7 @@ Route::controller(HomeSectionController::class)->group(function() {
     Route::get('/mandir-radio', 'mandirRadio')->name('radio.layout');
     Route::get('view-near-by-temple/{name}', 'viewNearByTemple')->name('nearby-temple-view');
     Route::get('puri-website/privacy-policy', 'privacyPolicy')->name('privacy.policy');
+    Route::get('rath-yatra-special', 'rathaSpecial')->name('rathaSpecial');
 });
 
 Route::post('/get-panji-details', function (Illuminate\Http\Request $request) {
