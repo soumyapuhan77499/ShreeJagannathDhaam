@@ -145,7 +145,10 @@
             <i style="height:18px;width: 18px" class="fa fa-volume-up"></i>
         </button>
     </section>
-
+@php
+    use Carbon\Carbon;
+    $todayDate = Carbon::now()->format('d-m-Y');
+@endphp
    <div class="niti-cards-scroll" >
         <div class="niti-cards" style="display: inline-flex;">
             @foreach ($nitiKanti as $nitiDay)
