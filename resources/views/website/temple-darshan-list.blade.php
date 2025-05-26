@@ -387,10 +387,8 @@
                                 <img src="{{ asset('website/darshan.png') }}" alt="{{ $darshan->darshan_name }}">
                             </div>
                         @endif
-                    </div>
 
-                    <div class="darshan-times">
-                          <div>
+                        <div>
                             <span class="badge {{ $statusClass }}">
                                 <i class="fas {{ $icon }}"></i>
                                 @if ($language === 'Odia')
@@ -419,6 +417,9 @@
                                 {{ $language === 'Odia' ? $darshan->darshan_name : $darshan->english_darshan_name ?? $darshan->darshan_name }}
                             </h3>
                         </div>
+                    </div>
+
+                    <div class="darshan-times">
                         @if ($status === 'Started' && $start)
                             <p class="right-align">
                                 <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
