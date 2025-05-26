@@ -58,6 +58,7 @@ use App\Http\Controllers\TempleUser\TempleEmergencyController;
 use App\Http\Controllers\TempleUser\TemplePublicServiceController;
 use App\Http\Controllers\TempleUser\TempleGalleryController;
 use App\Http\Controllers\TempleUser\TempleLostAndFoundController;
+use App\Http\Controllers\TempleUser\RathaYatraEventController;
 
 
 // website
@@ -96,41 +97,41 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/lang/{locale}', function ($locale) {
-    if (in_array($locale, ['English', 'Odia'])) {
-        session(['app_language' => ucfirst($locale)]); // Stores 'English' or 'Odia'
-    }
-    return redirect()->back();
-});
+    Route::get('/lang/{locale}', function ($locale) {
+        if (in_array($locale, ['English', 'Odia'])) {
+            session(['app_language' => ucfirst($locale)]); // Stores 'English' or 'Odia'
+        }
+        return redirect()->back();
+    });
 
-Route::controller(MenuController::class)->group(function() {
-    Route::get('add-menu', 'addMainMenu')->name('addMainMenu');
-    Route::post('/save-sub-menu', 'saveSubMenu')->name('saveSubMenu');
-    Route::post('/save-main-menu', 'saveMainMenu')->name('saveMainMenu');
-});
+    Route::controller(MenuController::class)->group(function() {
+        Route::get('add-menu', 'addMainMenu')->name('addMainMenu');
+        Route::post('/save-sub-menu', 'saveSubMenu')->name('saveSubMenu');
+        Route::post('/save-main-menu', 'saveMainMenu')->name('saveMainMenu');
+    });
 
-Route::controller(ApkController::class)->group(function() {
-    Route::get('templeuser/add-apk', 'addApk')->name('addApk');
-    Route::post('templeuser/save-apk', 'saveApk')->name('saveApk');
-    Route::get('templeuser/manage-apk', 'manageApk')->name('manageApk');
-    Route::delete('templeuser/delete-apk/{id}', 'deleteApk')->name('deleteApk');
-    Route::get('templeuser/edit-apk/{id}', 'editApk')->name('editApk');
-});
+    Route::controller(ApkController::class)->group(function() {
+        Route::get('templeuser/add-apk', 'addApk')->name('addApk');
+        Route::post('templeuser/save-apk', 'saveApk')->name('saveApk');
+        Route::get('templeuser/manage-apk', 'manageApk')->name('manageApk');
+        Route::delete('templeuser/delete-apk/{id}', 'deleteApk')->name('deleteApk');
+        Route::get('templeuser/edit-apk/{id}', 'editApk')->name('editApk');
+    });
 
-Route::controller(TempleRegistrationController::class)->group(function() {
-    Route::get('templeuser/temple-register', 'templeregister')->name('temple-register');
-    Route::post('templeuser/temple-register','registerTemple');
-    Route::post('/temple-logout','logout')->name('temple.logout');
-});
+    Route::controller(TempleRegistrationController::class)->group(function() {
+        Route::get('templeuser/temple-register', 'templeregister')->name('temple-register');
+        Route::post('templeuser/temple-register','registerTemple');
+        Route::post('/temple-logout','logout')->name('temple.logout');
+    });
 
-Route::controller(TempleUserController::class)->group(function () {
-    // Public routes (accessible without authentication)
-    Route::get('templeuser/templelogin', 'templelogin')->name('templelogin');
-    Route::post('templeuser/send-otp', 'sendOtp');
-    Route::post('templeuser/verify-otp', 'verifyOtp');
-});
+    Route::controller(TempleUserController::class)->group(function () {
+        // Public routes (accessible without authentication)
+        Route::get('templeuser/templelogin', 'templelogin')->name('templelogin');
+        Route::post('templeuser/send-otp', 'sendOtp');
+        Route::post('templeuser/verify-otp', 'verifyOtp');
+    });
 
-Route::prefix('templeuser')->middleware('templeauth')->group(function () {
+    Route::prefix('templeuser')->middleware('templeauth')->group(function () {
 
     Route::controller(TempleUserController::class)->group(function() {
         Route::get('/temple-dashboard', 'templedashboard')->name('templedashboard');
@@ -581,3 +582,11 @@ Route::controller(QuickServiceController::class)->group(function() {
     Route::get('/sea-beach', 'seaBeach')->name('seabeach');
 });
 
+Route::controller(RathaYatraEventController::class)->group(function() {
+    Route::get('templeuser/add-rathayatra-event', 'addEvent')->name('rathayatra.addEvent');
+    Route::post('templeuser/save-rathayatra-event', 'saveEvent')->name('rathayatra.saveEvent');
+    Route::get('templeuser/manage-rathayatra-event', 'manageEvent')->name('rathayatra.manageEvent');
+    Route::get('templeuser/edit-rathayatra-event/{id}', 'editEvent')->name('rathayatra.editEvent');
+    Route::put('templeuser/update-rathayatra-event/{id}', 'updateEvent')->name('rathayatra.updateEvent');
+    Route::delete('templeuser/delete-rathayatra-event/{id}', 'deleteEvent')->name('rathayatra.deleteEvent');
+});

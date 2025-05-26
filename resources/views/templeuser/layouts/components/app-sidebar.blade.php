@@ -281,6 +281,14 @@
 										<li><a class="slide-item" href="{{route('addMainMenu')}}">Menu Management</a></li>
 										<li><a class="slide-item" href="{{route('templeuser.darshanManagement')}}">Darshan Management</a></li>
 
+
+									</ul>
+								</li>
+
+								<li class="slide">
+									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><img src="{{asset('assets/img/brand/service.png')}}" style="height: 20px;width: 20px" alt="logo"><span class="side-menu__label" style="margin-left: 10px">Ratha Yatra</span><i class="angle fe fe-chevron-right"></i></a>
+									<ul class="slide-menu">
+										<li><a class="slide-item" href="{{route('rathayatra.manageEvent')}}">Manage Event</a></li>
 									</ul>
 								</li>
 							</ul>
