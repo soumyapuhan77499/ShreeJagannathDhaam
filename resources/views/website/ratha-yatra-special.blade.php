@@ -1,9 +1,6 @@
 @extends('website.ratha-yatra-layouts')
 
 @section('content')
-    @php
-        $language = session('app_language', 'English');
-    @endphp
 
     <section class="banner-sections">
         <!-- Video Banner -->
@@ -189,7 +186,6 @@
             @endforeach
         </div>
     </div>
-
 
     <section class="shree-mandir-section  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
 

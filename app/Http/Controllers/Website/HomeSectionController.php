@@ -117,6 +117,7 @@ public function rathaSpecial(){
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
         'temples' => NearByTemple::where('language', $language)->get(),
         'nitiKanti' => $nitiKanti,
+        'language' => $language,
     ]);
 }
 
