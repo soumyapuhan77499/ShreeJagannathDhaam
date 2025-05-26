@@ -316,4 +316,6 @@ Route::controller(TemplePrasadController::class)->group(function () {
 
 Route::controller(RathaYatraController::class)->group(function () {
  Route::get('/rathayatra/status','getStatus');
+ Route::get('/rathayatra/events','getEvent');
+
 });

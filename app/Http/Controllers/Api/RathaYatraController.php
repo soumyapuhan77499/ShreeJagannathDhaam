@@ -23,7 +23,7 @@ class RathaYatraController extends Controller
 
             return response()->json([
                 'message' => 'Collection data retrieved successfully',
-                'status' => 200,
+                'status' => true,
                 'data' => [
                     'live_video' => $status->live_video,
                     'section' => $status->section,
@@ -33,7 +33,26 @@ class RathaYatraController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Server error occurred',
-                'status' => 500
+                'status' => false
+            ], 500);
+        }
+    }
+
+     public function getEvents()
+    {
+        try {
+            $events = RathaYatraEvent::all();
+
+            return response()->json([
+                'message' => 'Events retrieved successfully',
+                'status' => true,
+                'data' => $events
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Server error occurred',
+                'status' => false
             ], 500);
         }
     }
