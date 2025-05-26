@@ -10,16 +10,10 @@
 
         <img src="{{ asset('website/d.png') }}" alt="Default Banner" style="width: 100%;">
 
-        <!-- Background Audio -->
-
-        <audio id="backgroundAudio" preload="auto" loop muted>
-            <source src="{{ asset('website/background.mp3') }}" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-
         <a href="{{ url('/') }}" class="logo">
             <img src="{{ asset('website/logo.png') }}" alt="logo">
         </a>
+
         <!-- Hamburger Icon -->
         <div class="hamburger-icon">
             <div class="hamburger-menu">
@@ -141,11 +135,6 @@
             </ul>
         </nav>
 
-        <button id="playPauseButton" class="play-pause-button"><i class="fa fa-pause"></i></button>
-
-        <button id="audioMuteToggle" class="mute-toggle">
-            <i style="height:18px;width: 18px" class="fa fa-volume-up"></i>
-        </button>
     </section>
 
     @php

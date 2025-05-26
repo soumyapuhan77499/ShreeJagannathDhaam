@@ -11,15 +11,48 @@
 .niti-cards-scroll::-webkit-scrollbar {
   display: none;
 }
-
-/* Card Layout */
 .niti-cards {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
-  width: max-content;
-  padding-left: 20px;
+  width: 90%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  position: relative;
+  bottom: 10%;
 }
+
+.niti-card {
+  background: white;
+  margin-top: -177px;
+  color: black;
+  border-radius: 8px;
+  padding: 15px;
+  width: 430px;
+  height: 140px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  border-left: 5px solid transparent;
+  position: relative;
+  gap: 15px;
+  border: 1px solid rgb(220, 220, 220);
+}
+
+/* Active Card Styling */
+.niti-card.active {
+  position: relative;
+  background: #f9f9f9;
+  border-radius: 8px;
+  /* Now works properly */
+  padding: 15px;
+  border: 2px solid rgba(243, 105, 89, 1);
+  /* Transparent border to allow gradient effect */
+}
+
 
 .niti-card-wrapper {
   flex: 0 0 auto;
@@ -29,28 +62,6 @@
 .niti-day-header {
   text-align: center;
   padding-bottom: 10px;
-}
-
-/* Niti Card */
-.niti-card {
-  background: white;
-  color: black;
-  border-radius: 8px;
-  padding: 15px;
-  border: 1px solid #e0e0e0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: row;
-  height: 140px;
-  position: relative;
-  transition: all 0.3s ease-in-out;
-}
-
-/* Active Card Styling */
-.niti-card.active {
-  background: #f9f9f9;
-  border: 2px solid rgba(243, 105, 89, 1);
 }
 
 .niti-card.active::after {
