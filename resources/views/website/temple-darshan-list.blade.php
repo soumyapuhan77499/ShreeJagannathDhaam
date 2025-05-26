@@ -265,12 +265,13 @@
                 display: block;
             }
 
-            .card-header {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                flex-grow: 1;
-            }
+          
+              .card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
 
             .badge {
                 font-size: 13px;
