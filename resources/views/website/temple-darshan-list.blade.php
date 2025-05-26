@@ -312,7 +312,7 @@
 
             .darshan-times p {
                 font-size: 13px;
-                margin: 4px 0;
+                margin: 14px 0;
             }
 
             .darshan-times i {
