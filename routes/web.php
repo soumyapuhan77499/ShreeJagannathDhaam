@@ -59,6 +59,7 @@ use App\Http\Controllers\TempleUser\TemplePublicServiceController;
 use App\Http\Controllers\TempleUser\TempleGalleryController;
 use App\Http\Controllers\TempleUser\TempleLostAndFoundController;
 use App\Http\Controllers\TempleUser\RathaYatraEventController;
+use App\Http\Controllers\TempleUser\RathaYatraActiveController;
 
 
 // website
@@ -590,7 +591,7 @@ Route::controller(RathaYatraEventController::class)->group(function() {
     Route::delete('templeuser/delete-rathayatra-event/{id}', 'deleteEvent')->name('rathayatra.deleteEvent');
 });
 
-Route::controller(RathaYatraEventController::class)->group(function() {
+Route::controller(RathaYatraActiveController::class)->group(function() {
    Route::get('templeuser/manage-rathayatra','index')->name('rathayatra.manage');
    Route::post('templeuser/toggle-live-video', 'toggleLiveVideo')->name('rathayatra.toggleLiveVideo');
    Route::post('templeuser/toggle-section',  'toggleSection')->name('rathayatra.toggleSection');
