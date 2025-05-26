@@ -95,8 +95,9 @@
     <!-- Edit Event Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <form method="POST" action="{{ route('rathayatra.updateEvent') }}">
+            <form method="POST" id="editForm">
                 @csrf
+                @method('PUT')
                 <input type="hidden" name="id" id="edit_id">
                 <div class="modal-content p-3">
                     <h5>Edit Event</h5>
@@ -154,44 +155,63 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-    function showPhotos(photoJson) {
-        const photos = JSON.parse(photoJson);
-        let gallery = document.getElementById('photoGallery');
-        gallery.innerHTML = '';
-        photos.forEach(url => {
-            let img = document.createElement('img');
-            img.src = url;
-            img.className = 'img-thumbnail';
-            img.style.width = '150px';
-            gallery.appendChild(img);
-        });
-        new bootstrap.Modal(document.getElementById('photoModal')).show();
-    }
+    <script>
+        function showPhotos(photoJson) {
+            const photos = JSON.parse(photoJson);
+            let gallery = document.getElementById('photoGallery');
+            gallery.innerHTML = '';
+            photos.forEach(url => {
+                let img = document.createElement('img');
+                img.src = url;
+                img.className = 'img-thumbnail';
+                img.style.width = '150px';
+                gallery.appendChild(img);
+            });
+            new bootstrap.Modal(document.getElementById('photoModal')).show();
+        }
 
-    function openEditModal(event) {
-        document.getElementById('edit_id').value = event.id;
-        document.getElementById('edit_event_name').value = event.event_name;
-        document.getElementById('edit_date').value = event.date;
-        document.getElementById('edit_language').value = event.language;
-        document.getElementById('edit_description').value = event.description;
-        new bootstrap.Modal(document.getElementById('editModal')).show();
-    }
+        function openEditModal(event) {
+            document.getElementById('edit_id').value = event.id;
+            document.getElementById('edit_event_name').value = event.event_name;
+            document.getElementById('edit_date').value = event.date;
+            document.getElementById('edit_language').value = event.language;
+            document.getElementById('edit_description').value = event.description;
 
-    function confirmDelete(id) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "This event will be deleted!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#aaa',
-            confirmButtonText: 'Yes, delete it!'
-        }).then(result => {
-            if (result.isConfirmed) {
-                window.location.href = `/templeuser/delete-rathayatra-event/${id}`;
-            }
-        });
-    }
-</script>
+            // Set action URL dynamically with ID
+            document.getElementById('editForm').action = `/templeuser/update-rathayatra-event/${event.id}`;
+
+            new bootstrap.Modal(document.getElementById('editModal')).show();
+        }
+
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This event will be deleted!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#aaa',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    fetch(`/templeuser/delete-rathayatra-event/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                'content'),
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            Swal.fire('Deleted!', 'Event has been deleted.', 'success')
+                                .then(() => window.location.reload());
+                        } else {
+                            Swal.fire('Error', 'Failed to delete the event.', 'error');
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

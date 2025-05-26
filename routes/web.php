@@ -586,7 +586,6 @@ Route::controller(RathaYatraEventController::class)->group(function() {
     Route::get('templeuser/add-rathayatra-event', 'addEvent')->name('rathayatra.addEvent');
     Route::post('templeuser/save-rathayatra-event', 'saveEvent')->name('rathayatra.saveEvent');
     Route::get('templeuser/manage-rathayatra-event', 'manageEvent')->name('rathayatra.manageEvent');
-    Route::get('templeuser/edit-rathayatra-event/{id}', 'editEvent')->name('rathayatra.editEvent');
     Route::put('templeuser/update-rathayatra-event/{id}', 'updateEvent')->name('rathayatra.updateEvent');
     Route::delete('templeuser/delete-rathayatra-event/{id}', 'deleteEvent')->name('rathayatra.deleteEvent');
 });
