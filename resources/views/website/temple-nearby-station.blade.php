@@ -180,7 +180,7 @@
                 $firstPhoto = $photos[0] ?? null;
             @endphp
 
-            <div class="service-card">
+            <div class="service-card" data-commute="{{ strtolower($service->commute_type) }}">
                 <div class="service-image">
                     @if ($firstPhoto)
                         <img src="{{ asset($firstPhoto) }}" alt="{{ $service->name }}">
