@@ -131,7 +131,6 @@ public function rathaSpecial(){
       return view('website.ratha-yatra-special', [
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
         'temples' => NearByTemple::where('language', $language)->get(),
-        'nitiKanti' => $nitiKanti,
         'language' => $language,
         'festival' => $festival,
     ]);
