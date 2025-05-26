@@ -201,135 +201,136 @@
             filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
         }
 
-      @media (max-width: 768px) {
-    .timeline {
-        padding: 0 12px;
-        margin: 24px auto;
-        position: relative;
-    }
+       @media (max-width: 768px) {
+            .timeline {
+                padding: 0 12px;
+                margin: 24px auto;
+                position: relative;
+            }
 
-    .timeline::before {
-        content: '';
-        position: absolute;
-        left: 18px;
-        top: 0;
-        width: 4px;
-        height: 100%;
-        background-color: #db4d30;
-    }
+            .timeline::before {
+                content: '';
+                position: absolute;
+                left: 18px;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background-color: #db4d30;
+            }
 
-    .timeline-item,
-    .timeline-item.right {
-        width: 100%;
-        left: 0;
-        padding: 0;
-        box-sizing: border-box;
-        margin-bottom: 24px;
-        position: relative;
-    }
+            .timeline-item,
+            .timeline-item.right {
+                width: 100%;
+                left: 0;
+                padding: 0;
+                box-sizing: border-box;
+                margin-bottom: 24px;
+                position: relative;
+            }
 
-    .timeline-item::after,
-    .timeline-item.right::after {
-        content: '';
-        position: absolute;
-        left: 14px;
-        top: 28px;
-        width: 14px;
-        height: 14px;
-        background-color: #db4d30;
-        border: 3px solid #fff;
-        border-radius: 50%;
-    }
+            .timeline-item::after,
+            .timeline-item.right::after {
+                content: '';
+                position: absolute;
+                left: 14px;
+                top: 28px;
+                width: 14px;
+                height: 14px;
+                background-color: #db4d30;
+                border: 3px solid #fff;
+                border-radius: 50%;
+            }
 
-    .card.timeline-content {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        padding: 16px;
-        border-radius: 12px;
-        background: #fff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        gap: 16px;
-    }
+            .card.timeline-content {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                padding: 16px;
+                border-radius: 12px;
+                background: #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                gap: 16px;
+                margin-left: 40px;
+            }
 
-    .darshan-img-wrapper {
-        width: 80px;
-        flex-shrink: 0;
-    }
+            .darshan-img-wrapper {
+                width: 80px;
+                flex-shrink: 0;
+            }
 
-    .darshan-img-wrapper img {
-        width: 100%;
-        height: auto;
-        border-radius: 40px;
-        display: block;
-    }
+            .darshan-img-wrapper img {
+                width: 100%;
+                height: auto;
+                border-radius: 50%;
+                display: block;
+            }
 
-    .card-header {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        flex-grow: 1;
-    }
+            .card-header {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                flex-grow: 1;
+            }
 
-    .badge {
-        font-size: 13px;
-        padding: 6px 12px;
-        border-radius: 6px;
-        background-color: #f5f5f5;
-        color: #db4d30;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-    }
+            .badge {
+                font-size: 13px;
+                padding: 6px 12px;
+                border-radius: 6px;
+                background-color: #f5f5f5;
+                color: #db4d30;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            }
 
-    .badge i {
-        font-size: 14px;
-    }
+            .badge i {
+                font-size: 14px;
+            }
 
-    .darshan-name {
-        font-size: 16px;
-        font-weight: 600;
-        color: #333;
-        margin-top: 4px;
-    }
+            .darshan-name {
+                font-size: 16px;
+                font-weight: 600;
+                color: #333;
+                margin-top: 4px;
+            }
 
-    .card h3 {
-        font-size: 16px;
-        margin: 0;
-    }
+            .card h3 {
+                font-size: 16px;
+                margin: 0;
+            }
 
-    .card p {
-        font-size: 14px;
-        margin: 6px 0;
-        color: #444;
-    }
+            .card p {
+                font-size: 14px;
+                margin: 6px 0;
+                color: #444;
+            }
 
-    .darshan-times {
-        margin-top: 8px;
-    }
+            .darshan-times {
+                margin-top: 8px;
+            }
 
-    .darshan-times p {
-        font-size: 13px;
-        margin: 4px 0;
-    }
+            .darshan-times p {
+                font-size: 13px;
+                margin: 4px 0;
+            }
 
-    .darshan-times i {
-        font-size: 13px;
-        margin-right: 6px;
-    }
+            .darshan-times i {
+                font-size: 13px;
+                margin-right: 6px;
+            }
 
-    .Started .card {
-        border-left: 4px solid #db4d30;
-    }
+            .Started .card {
+                border-left: 4px solid #db4d30;
+            }
 
-    .Completed .card {
-        border-left: 4px solid #db4d30;
-    }
+            .Completed .card {
+                border-left: 4px solid #db4d30;
+            }
 
-    .Upcoming .card {
-        border-left: 4px solid #ff9800;
-    }
-}
+            .Upcoming .card {
+                border-left: 4px solid #ff9800;
+            }
+        }
 
     </style>
 </head>
