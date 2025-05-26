@@ -18,7 +18,7 @@
             flex-wrap: wrap;
             gap: 20px;
             padding: 20px;
-            justify-content:center;
+            justify-content: center;
             margin-top: 40px;
         }
 
@@ -159,7 +159,21 @@
         </div>
     </div>
 
-     <div class="services-wrapper">
+    <!-- Tabs Section -->
+    <div class="flex justify-center mt-8">
+        <div class="inline-flex bg-white rounded-lg shadow overflow-hidden">
+            <button id="tab-railway" class="px-6 py-2 focus:outline-none font-semibold text-gray-700 bg-yellow-200"
+                onclick="showTab('railway')">
+                {{ $language === 'Odia' ? 'ରେଲୱେ ଷ୍ଟେସନ୍' : 'Railway Station' }}
+            </button>
+            <button id="tab-bus" class="px-6 py-2 focus:outline-none font-semibold text-gray-700"
+                onclick="showTab('bus')">
+                {{ $language === 'Odia' ? 'ବସ୍ ଷ୍ଟାଣ୍ଡ' : 'Bus Stand' }}
+            </button>
+        </div>
+    </div>
+
+    <div class="services-wrapper">
         @foreach ($services as $service)
             @php
                 $photos = json_decode($service->photo, true);
@@ -194,10 +208,30 @@
         @endforeach
     </div>
 
-   
+
     @include('partials.website-footer')
 
-   
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab('railway'); // Default active
+        });
+
+        function showTab(type) {
+            // Toggle button highlight
+            document.getElementById('tab-railway').classList.toggle('bg-yellow-200', type === 'railway');
+            document.getElementById('tab-bus').classList.toggle('bg-yellow-200', type === 'bus');
+
+            // Show/Hide cards based on commute type
+            document.querySelectorAll('.service-card').forEach(function(card) {
+                if (card.dataset.commute === type) {
+                    card.style.display = 'flex'; // or 'block' depending on layout
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
 </body>
 
 </html>
