@@ -36,8 +36,7 @@ use App\Http\Controllers\Api\TempleNitiController; // Import the TempleNitiContr
 use App\Http\Controllers\Api\WebsiteBannerController;
 use App\Http\Controllers\Api\TempleInformationController;
 use App\Http\Controllers\Api\QuickServiceController;
-
-
+use App\Http\Controllers\Api\RathaYatraController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -312,4 +311,9 @@ Route::controller(TemplePrasadController::class)->group(function () {
   Route::get('/special-prasad','getSpecialPrasad');
   Route::middleware('auth:niti_admin')->post('/start-prasad','startPrasad');
   Route::get('/daily-special-started-prasad','getPrasadApi');
+});
+
+
+Route::controller(RathaYatraController::class)->group(function () {
+ Route::get('/rathayatra/status','getStatus');
 });
