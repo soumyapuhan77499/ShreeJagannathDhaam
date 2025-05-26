@@ -44,4 +44,38 @@ class RathaYatraEventController extends Controller
 
         return redirect()->back()->with('success', 'Event saved successfully!');
     }
+
+    public function manageEvent()
+    {
+        // Fetch all events from the database
+        $events = RathaYatraEvent::all();
+
+        // Return the view with events data
+        return view('templeuser.rathayatra.manage-event', compact('events'));
+    }
+
+    public function updateEvent(Request $request)
+{
+    $request->validate([
+        'id' => 'required|exists:ratha__yatra_event,id',
+        'event_name' => 'required',
+        'date' => 'required|date',
+        'language' => 'required',
+        'description' => 'nullable|string',
+    ]);
+
+    $event = RathaYatraEvent::find($request->id);
+    $event->update($request->only(['event_name', 'date', 'language', 'description']));
+
+    return redirect()->back()->with('success', 'Event updated successfully!');
+}
+
+public function deleteEvent($id)
+{
+    $event = RathaYatraEvent::findOrFail($id);
+    $event->delete();
+
+    return redirect()->back()->with('success', 'Event deleted successfully!');
+}
+
 }
