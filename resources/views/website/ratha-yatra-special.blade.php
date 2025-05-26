@@ -8,17 +8,8 @@
 
     <section class="banner-sections">
         <!-- Video Banner -->
-        @if ($latestWebVideo && $latestWebVideo->banner_video)
-            <div class="banner-video">
-                <video id="bannerVideo" autoplay loop playsinline muted preload="metadata"
-                    poster="{{ asset('storage/' . $latestWebVideo->banner_image ?? 'website/d.png') }}">
-                    <source src="{{ asset('website/banner.mp4') }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        @else
-            <img src="{{ asset('website/d.png') }}" alt="Default Banner" style="width: 100%;">
-        @endif
+
+        <img src="{{ asset('website/d.png') }}" alt="Default Banner" style="width: 100%;">
 
         <!-- Background Audio -->
 
