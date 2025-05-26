@@ -145,7 +145,6 @@
     transform: scale(1.05);
     opacity: 1;
     filter: grayscale(0%);
-    border: 2px solid #db4d30;
   }
 
   .swiper-slide .p-3,
