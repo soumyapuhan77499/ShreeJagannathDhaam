@@ -202,6 +202,7 @@
         }
 
         @media (max-width: 768px) {
+             @media (max-width: 768px) {
             .timeline {
                 padding: 0 12px;
                 margin: 24px auto;
@@ -222,9 +223,10 @@
             .timeline-item.right {
                 width: 100%;
                 left: 0;
-                padding: 20px 16px 20px 36px;
+                padding: 0;
                 box-sizing: border-box;
                 margin-bottom: 24px;
+                position: relative;
             }
 
             .timeline-item::after,
@@ -240,30 +242,35 @@
                 border-radius: 50%;
             }
 
-            .card {
+            .card.timeline-content {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
                 padding: 16px;
                 border-radius: 12px;
                 background: #fff;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                gap: 16px;
+                margin-left: 40px;
+            }
+
+            .darshan-img-wrapper {
+                width: 80px;
+                flex-shrink: 0;
+            }
+
+            .darshan-img-wrapper img {
+                width: 100%;
+                height: auto;
+                border-radius: 50%;
+                display: block;
             }
 
             .card-header {
                 display: flex;
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-
-            .darshan-img-wrapper {
-                width: 100%;
-                margin-bottom: 12px;
-            }
-
-            .darshan-img-wrapper img {
-                width: 40%;
-                height: auto;
-                border-radius: 40px;
-                display: block;
+                gap: 8px;
+                flex-grow: 1;
             }
 
             .badge {
@@ -300,7 +307,7 @@
             }
 
             .darshan-times {
-                margin-top: 10px;
+                margin-top: 8px;
             }
 
             .darshan-times p {
@@ -324,6 +331,7 @@
             .Upcoming .card {
                 border-left: 4px solid #ff9800;
             }
+        }
         }
     </style>
 </head>
