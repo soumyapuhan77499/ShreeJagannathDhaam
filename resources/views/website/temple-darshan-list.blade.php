@@ -77,34 +77,48 @@
             padding: 25px 30px;
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            position: relative;
             border: 1px solid rgb(213, 213, 213);
             transition: all 0.3s ease;
-            position: relative;
         }
 
         .card-header {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            flex: 1;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        .darshan-img-wrapper {
-            width: 60px;
+        .card-header .darshan-img-wrapper {
             flex-shrink: 0;
         }
 
-        .darshan-img-wrapper img {
-            width: 100%;
-            height: auto;
-            border-radius: 50%;
+        .card-header img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 10px;
         }
 
-        .card h3,
-        .darshan-name {
-            margin: 0;
+        .card-header .darshan-name {
+            flex-grow: 1;
             font-size: 18px;
             font-weight: bold;
+            margin: 0;
+            color: #db4d30;
+            margin-left: 20px;
+        }
+
+        .card-header .badge {
+            white-space: nowrap;
+        }
+
+
+        .card h3 {
+            margin: 0 0 12px;
+            font-size: 20px;
+            font-weight: 600;
             color: #db4d30;
         }
 
@@ -122,11 +136,13 @@
             border-radius: 30px;
             font-size: 13px;
             font-weight: 600;
-            background-color: #f5f5f5;
-            color: #db4d30;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.6px;
+        }
+
+        .badge i {
+            font-size: 14px;
         }
 
         .badge.Completed {
@@ -147,16 +163,17 @@
         .Completed .card {
             background: #fffaf3;
             border-left: 6px solid #db4d30;
+            border: 1px solid rgb(213, 213, 213);
         }
 
         .Started .card {
             background: #db4d30;
             color: #ffae35;
             border-left: 6px solid #fff;
+            border: 1px solid rgb(213, 213, 213);
         }
 
-        .Started .card h3,
-        .Started .card .darshan-name {
+        .Started .card h3 {
             color: #ffae35;
         }
 
@@ -173,6 +190,7 @@
         .darshan-times i {
             width: 17px;
             display: inline-block;
+            text-align: center;
             margin-right: 8px;
             font-size: 14px;
             color: #999;
@@ -188,15 +206,6 @@
                 padding: 0 12px;
                 margin: 24px auto;
                 position: relative;
-            }
-
-            .card.timeline-content {
-                display: flex;
-                flex-direction: row;
-                /* <-- Row layout */
-                align-items: flex-start;
-                padding: 16px;
-                gap: 16px;
             }
 
             .timeline::before {
