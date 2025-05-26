@@ -66,7 +66,7 @@
                             <div class="col-md-12 mt-3">
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter event description"></textarea>
+                                    <textarea class="form-control" id="description" name="description" rows="2" placeholder="Enter event description"></textarea>
                                 </div>
                             </div>
 
