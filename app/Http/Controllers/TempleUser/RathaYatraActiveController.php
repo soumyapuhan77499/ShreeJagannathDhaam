@@ -8,11 +8,16 @@ use App\Models\RathaYatraActive;
 
 class RathaYatraActiveController extends Controller
 {
-     public function index()
-    {
-        $status = RathaYatraActive::first(); // Assuming only one row exists
+   
+public function index()
+{
+    $status = \App\Models\RathaYatraActive::firstOrCreate(
+        [], // match nothing, ensure always one record
+        ['live_video' => 'inactive', 'section' => 'inactive'] // default values
+    );
+
         return view('templeuser.rathayatra.manage-ratha-yatra', compact('status'));
-    }
+}
 
     public function toggleLiveVideo()
     {
