@@ -1,7 +1,6 @@
-@extends('website.web-layouts')
+@extends('website.ratha-yatra-layouts')
 
 @section('content')
-
     @php
         $language = session('app_language', 'English');
     @endphp
@@ -113,9 +112,12 @@
                                 href="{{ url('/services-abled') }}">{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</a>
                         </li>
                         <li><a href="#">{{ $language === 'Odia' ? 'ଯାତାୟାତ ମାର୍ଗ' : 'Route Map' }}</a></li>
-                        <li><a href="{{ url('/services/lost_and_found_booth') }}">{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</a></li>                        
-                        <li><a href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a></li>
-                    
+                        <li><a
+                                href="{{ url('/services/lost_and_found_booth') }}">{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</a>
+                        </li>
+                        <li><a href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a>
+                        </li>
+
                         <li><a href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
                         </li>
                         <li><a
@@ -145,11 +147,13 @@
             <i style="height:18px;width: 18px" class="fa fa-volume-up"></i>
         </button>
     </section>
-@php
-    use Carbon\Carbon;
-    $todayDate = Carbon::now()->format('d-m-Y');
-@endphp
-   <div class="niti-cards-scroll" >
+
+    @php
+        use Carbon\Carbon;
+        $todayDate = Carbon::now()->format('d-m-Y');
+    @endphp
+
+    <div class="niti-cards-scroll">
         <div class="niti-cards" style="display: inline-flex;">
             @foreach ($nitiKanti as $nitiDay)
                 <div class="niti-card-wrapper" style="margin-right: 20px;">
@@ -208,7 +212,7 @@
             @endforeach
         </div>
     </div>
-    
+
     <section class="shree-mandir-section  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
 
         <div class="section-container">
@@ -384,10 +388,9 @@
             </div>
         </div>
 
-       
+
 
     </section>
 
     @include('partials.website-footer')
-    
 @endsection
