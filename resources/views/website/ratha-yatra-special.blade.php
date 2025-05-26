@@ -143,14 +143,12 @@
     @endphp
 
     <div class="niti-cards-scroll">
-        <div class="niti-cards" style="display: inline-flex;">
+        <div class="niti-cards">
             @foreach ($nitiKanti as $nitiDay)
-                <div class="niti-card-wrapper" style="margin-right: 20px;">
-                    <div class="niti-day-header" style="text-align: center; padding: 10px;">
-                        <h3 style="font-size: 18px; margin-bottom: 5px;">
-                            {{ $nitiDay['name'] }}
-                        </h3>
-                        <p style="color: #555;">
+                <div class="niti-card-wrapper">
+                    <div class="niti-day-header">
+                        <h3>{{ $nitiDay['name'] }}</h3>
+                        <p>
                             {{ $language === 'Odia' ? convertToOdiaDate($nitiDay['date']) : $nitiDay['day'] . ', ' . $nitiDay['date'] }}
                         </p>
                     </div>
@@ -163,17 +161,10 @@
                             $nitiStatus = $isToday ? 'Started' : 'Upcoming';
                         @endphp
 
-                        <div class="niti-card {{ $isToday && $loop->first ? 'active' : '' }}"
-                            style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 10px; background-color: {{ $isToday ? '#e6ffe6' : '#fff' }}">
-
+                        <div class="niti-card {{ $isToday && $loop->first ? 'active' : '' }}">
                             <div class="niti-content">
-                                <h4 style="font-size: 16px; padding-bottom:5px;">
-                                    {{ $niti['nitiName'] }}
-                                </h4>
-
-                                <p
-                                    style="padding-top: 5px; font-weight: bold;
-                                color: {{ $nitiStatus === 'Started' ? '#28a745' : '#333' }};">
+                                <h4>{{ $niti['nitiName'] }}</h4>
+                                <p style="color: {{ $nitiStatus === 'Started' ? '#28a745' : '#333' }};">
                                     @if ($language === 'Odia')
                                         {{ $nitiStatus === 'Started' ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
                                     @else
@@ -183,15 +174,12 @@
                             </div>
 
                             <div class="niti-icons">
-                                <p style="color: rgb(139, 137, 137)">
-                                    <ion-icon name="time-outline"
-                                        style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
+                                <p>
+                                    <ion-icon name="time-outline"></ion-icon>
                                     {{ $language === 'Odia' ? convertToOdiaTime($formattedTime) : $formattedTime }}
                                 </p>
-
-                                <p style="color: rgb(139, 137, 137)">
-                                    <ion-icon name="calendar-outline"
-                                        style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
+                                <p>
+                                    <ion-icon name="calendar-outline"></ion-icon>
                                     {{ $language === 'Odia' ? convertToOdiaDate($nitiDay['date']) : $nitiDay['date'] }}
                                 </p>
                             </div>
@@ -201,6 +189,7 @@
             @endforeach
         </div>
     </div>
+
 
     <section class="shree-mandir-section  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
 
