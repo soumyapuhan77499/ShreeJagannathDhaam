@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class RathaYatraEventController extends Controller
 {
+    public function addEvent(){
+        // Return the view for adding an event
+        return view('templeuser.rathayatra.add-event');
+    }
+
      public function saveEvent(Request $request)
     {
         // Validate request
