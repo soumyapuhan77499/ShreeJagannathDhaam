@@ -133,36 +133,50 @@
 
     </section>
     @php
-        use Carbon\Carbon;
-        $todayDate = Carbon::now()->format('d-m-Y');
-        $isToday = $festival['date'] === $todayDate;
-    @endphp
+    use Carbon\Carbon;
+    $todayDate = Carbon::now()->format('d-m-Y');
+    $isToday = $festival['date'] === $todayDate;
+@endphp
 
-    <div class="niti-cards-scroll">
-        <div class="niti-cards">
-            <div class="niti-card-wrapper">
-                <div class="niti-card {{ $isToday ? 'active' : '' }}">
-                    <div class="niti-content">
-                        <h4>{{ $festival['name'] }}</h4>
-                        <p style="color: {{ $isToday ? '#28a745' : '#333' }};">
-                            @if ($language === 'Odia')
-                                {{ $isToday ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
-                            @else
-                                {{ $isToday ? 'Started' : 'Upcoming' }}
-                            @endif
-                        </p>
-                    </div>
+<div class="niti-cards-scroll">
+    <div class="niti-cards">
+        <div class="niti-card-wrapper">
+            <div class="niti-card {{ $isToday ? 'active' : '' }}">
+                <div class="niti-content">
+                    <h4>{{ $festival['name'] }}</h4>
+                    <p style="color: {{ $isToday ? '#28a745' : '#333' }};">
+                        @if ($language === 'Odia')
+                            {{ $isToday ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
+                        @else
+                            {{ $isToday ? 'Started' : 'Upcoming' }}
+                        @endif
+                    </p>
+                </div>
 
-                    <div class="niti-icons">
-                        <p>
-                            <ion-icon name="calendar-outline"></ion-icon>
-                            {{ $language === 'Odia' ? convertToOdiaDate($festival['date']) : $festival['day'] . ', ' . $festival['date'] }}
-                        </p>
-                    </div>
+                <div class="niti-icons">
+                    <p>
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        {{ $language === 'Odia' ? convertToOdiaDate($festival['date']) : $festival['day'] . ', ' . $festival['date'] }}
+                    </p>
                 </div>
             </div>
+
+            @if (!empty($festival['niti']))
+                <div class="niti-nitis">
+                    @foreach ($festival['niti'] as $niti)
+                        <div class="niti-line">
+                            <strong>{{ $niti['nitiName'] }}:</strong>
+                            <span>{{ $niti['nitiDescription'] }}</span>
+                            <br>
+                            <small>{{ $niti['startTime'] }} - {{ $niti['endTime'] }}</small>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
+</div>
+
 
 
     <section class="shree-mandir-section  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">

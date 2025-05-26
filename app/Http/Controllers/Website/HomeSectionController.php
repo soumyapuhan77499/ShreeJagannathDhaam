@@ -108,33 +108,32 @@ public function puriWebsite()
     ]);
 }
 
-public function rathaSpecial(){
-
+public function rathaSpecial()
+{
     $language = session('app_language', 'English');
-
     $festivalList = json_decode(file_get_contents(storage_path('app/nitiKanti.json')), true);
 
-    $todayDate = Carbon::now()->format('d-m-Y');
+    $todayDate = \Carbon\Carbon::now()->format('d-m-Y');
 
-    // Find today's festival
     $festival = collect($festivalList)->firstWhere('date', $todayDate);
 
     if (!$festival) {
-            $festival = [
-                'name' => 'No Festival Today',
-                'date' => $todayDate,
-                'day' => Carbon::now()->format('l'),
-                'niti' => []
-            ];
+        $festival = [
+            'name' => 'No Festival Today',
+            'date' => $todayDate,
+            'day' => \Carbon\Carbon::now()->format('l'),
+            'niti' => []
+        ];
     }
 
-      return view('website.ratha-yatra-special', [
+    return view('website.ratha-yatra-special', [
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
         'temples' => NearByTemple::where('language', $language)->get(),
         'language' => $language,
         'festival' => $festival,
     ]);
 }
+
 
 public function viewAllNiti()
 {
