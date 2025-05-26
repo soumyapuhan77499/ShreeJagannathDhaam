@@ -285,13 +285,13 @@
             },
             breakpoints: {
                 0: {
-                    slidesPerView: 2.2,
+                    slidesPerView: 1.2, // Less than 2.2 to center active card better
                 },
                 480: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                 },
                 640: {
-                    slidesPerView: 3,
+                    slidesPerView: 2.5,
                 },
                 768: {
                     slidesPerView: 3,
@@ -299,7 +299,7 @@
                 1024: {
                     slidesPerView: 4,
                 },
-            },
+            }
         });
 
         const swiper2 = new Swiper("#ritualSlider", {
@@ -322,13 +322,13 @@
             },
             breakpoints: {
                 0: {
-                    slidesPerView: 2.2,
+                    slidesPerView: 1.2, // Less than 2.2 to center active card better
                 },
                 480: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                 },
                 640: {
-                    slidesPerView: 3,
+                    slidesPerView: 2.5,
                 },
                 768: {
                     slidesPerView: 3,
@@ -336,7 +336,7 @@
                 1024: {
                     slidesPerView: 4,
                 },
-            },
+            }
         });
 
         // Tab switching logic
@@ -923,11 +923,11 @@
                             <p class="text-gray-800">Sunset: <span class="font-medium">${data.sun_set ?? '-'}</span></p>
                         </div>
                         ${data.description ? `
-                                                                                                    <hr class="border-dashed border-gray-300 my-4">
-                                                                                                    <div class="flex items-start gap-3">
-                                                                                                        <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
-                                                                                                        <p class="text-gray-800">${data.description}</p>
-                                                                                                    </div>` : ''}
+                                                                                                            <hr class="border-dashed border-gray-300 my-4">
+                                                                                                            <div class="flex items-start gap-3">
+                                                                                                                <i class="fas fa-info-circle text-gray-600 mt-1 w-5 h-5"></i>
+                                                                                                                <p class="text-gray-800">${data.description}</p>
+                                                                                                            </div>` : ''}
                     `;
                         } else {
                             panjiContent.innerHTML =
