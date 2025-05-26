@@ -109,27 +109,24 @@ public function puriWebsite()
 }
 
 public function rathaSpecial(){
-      $language = session('app_language', 'English');
-      $json = file_get_contents(storage_path('app/nitiKanti.json'));
-      $nitiKanti = json_decode($json, true);
 
-      $festival = [
-    "id" => 1,
-    "name" => "Debasnan Purnima",
-    "description" => "A collection of wise sayings...",
-    "date" => "11-06-2025",
-    "day" => "Wednesday",
-    "niti" => [
-        [
-            "id" => 1,
-            "nitiName" => "Satyam Vada",
-            "nitiDescription" => "Speak the truth always.",
-            "startTime" => "08:00",
-            "endTime" => "08:30"
-        ]
-    ]
-];
+    $language = session('app_language', 'English');
 
+    $festivalList = json_decode(file_get_contents(storage_path('app/festivals.json')), true);
+
+    $todayDate = Carbon::now()->format('d-m-Y');
+
+    // Find today's festival
+    $festival = collect($festivalList)->firstWhere('date', $todayDate);
+
+    if (!$festival) {
+            $festival = [
+                'name' => 'No Festival Today',
+                'date' => $todayDate,
+                'day' => Carbon::now()->format('l'),
+                'niti' => []
+            ];
+    }
 
       return view('website.ratha-yatra-special', [
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
