@@ -1,7 +1,6 @@
 @extends('website.web-layouts')
 
 @section('content')
-
     @php
         $language = session('app_language', 'English');
     @endphp
@@ -113,9 +112,12 @@
                                 href="{{ url('/services-abled') }}">{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</a>
                         </li>
                         <li><a href="#">{{ $language === 'Odia' ? 'ଯାତାୟାତ ମାର୍ଗ' : 'Route Map' }}</a></li>
-                        <li><a href="{{ url('/services/lost_and_found_booth') }}">{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</a></li>                        
-                        <li><a href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a></li>
-                    
+                        <li><a
+                                href="{{ url('/services/lost_and_found_booth') }}">{{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost & Found' }}</a>
+                        </li>
+                        <li><a href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a>
+                        </li>
+
                         <li><a href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
                         </li>
                         <li><a
@@ -146,72 +148,71 @@
         </button>
     </section>
 
-    <div class="niti-cards-scroll">
-        <div class="niti-cards">
-            @foreach ($nitis as $niti)
-                <div class="niti-card {{ $loop->first ? 'active' : '' }}">
-                    <div class="niti-content">
-                        <h3 style="font-size: 21px; padding-bottom:5px;">
-                            {{ $niti->display_name }}
+    @php
+        use Carbon\Carbon;
+        $todayDate = Carbon::now()->format('d-m-Y');
+    @endphp
+
+    <div class="niti-cards-scroll" style="overflow-x: auto; white-space: nowrap;">
+        <div class="niti-cards" style="display: inline-flex;">
+            @foreach ($nitiKanti as $nitiDay)
+                <div class="niti-card-wrapper" style="margin-right: 20px;">
+                    <div class="niti-day-header" style="text-align: center; padding: 10px;">
+                        <h3 style="font-size: 18px; margin-bottom: 5px;">
+                            {{ $nitiDay['name'] }}
                         </h3>
-
-                        <p
-                            style="padding-top: 5px; font-weight: bold;
-                        color: {{ $niti->niti_status == 'Started' ? '#28a745' : '#333' }};">
-                            @if ($language === 'Odia')
-                                {{ $niti->niti_status === 'Started' ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
-                            @else
-                                {{ $niti->niti_status }}
-                            @endif
+                        <p style="color: #555;">
+                            {{ $language === 'Odia' ? convertToOdiaDate($nitiDay['date']) : $nitiDay['day'] . ', ' . $nitiDay['date'] }}
                         </p>
                     </div>
 
-                    <div class="niti-icons">
+                    @foreach ($nitiDay['niti'] as $niti)
+                        @php
+                            $isToday = $nitiDay['date'] === $todayDate;
+                            $startTime = $niti['startTime'];
+                            $formattedTime = Carbon::parse($startTime)->format('h:i A');
+                            $nitiStatus = $isToday ? 'Started' : 'Upcoming';
+                        @endphp
 
-                        <p style="color: rgb(139, 137, 137)">
-                            <ion-icon name="time-outline" style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
-                            @php
-                                $startTime = optional($niti->todayStartTime)->start_time;
-                            @endphp
+                        <div class="niti-card {{ $isToday && $loop->first ? 'active' : '' }}"
+                            style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 10px; background-color: {{ $isToday ? '#e6ffe6' : '#fff' }}">
 
-                            @if ($niti->niti_status === 'Upcoming' || !$startTime)
-                                {{ $language === 'Odia' ? 'ଆରମ୍ଭ ହୋଇନାହିଁ' : 'Not Started' }}
-                            @else
-                                @php
-                                    $formattedTime = \Carbon\Carbon::parse($startTime)->format('h:i A');
-                                @endphp
+                            <div class="niti-content">
+                                <h4 style="font-size: 16px; padding-bottom:5px;">
+                                    {{ $niti['nitiName'] }}
+                                </h4>
 
-                                {{ $language === 'Odia' ? convertToOdiaTime($formattedTime) : $formattedTime }}
-                            @endif
-                        </p>
+                                <p
+                                    style="padding-top: 5px; font-weight: bold;
+                                color: {{ $nitiStatus === 'Started' ? '#28a745' : '#333' }};">
+                                    @if ($language === 'Odia')
+                                        {{ $nitiStatus === 'Started' ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
+                                    @else
+                                        {{ $nitiStatus }}
+                                    @endif
+                                </p>
+                            </div>
 
-                        <p style="color: rgb(139, 137, 137)">
-                            <ion-icon name="calendar-outline"
-                                style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
-                            @php
-                                $today = \Carbon\Carbon::now();
-                            @endphp
+                            <div class="niti-icons">
+                                <p style="color: rgb(139, 137, 137)">
+                                    <ion-icon name="time-outline"
+                                        style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
+                                    {{ $language === 'Odia' ? convertToOdiaTime($formattedTime) : $formattedTime }}
+                                </p>
 
-                            {{ $language === 'Odia' ? convertToOdiaDate($today) : $today->format('jS M') }}
-                        </p>
-
-                    </div>
+                                <p style="color: rgb(139, 137, 137)">
+                                    <ion-icon name="calendar-outline"
+                                        style="margin: 6px; color: #ff0011; font-size: 16px;"></ion-icon>
+                                    {{ $language === 'Odia' ? convertToOdiaDate($nitiDay['date']) : $nitiDay['date'] }}
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             @endforeach
-
-            <!-- View All Niti Card -->
-            <div class="niti-card" id="niti-mobile">
-                <div class="niti-content text-center">
-                    <h3 style="font-size: 21px; padding-bottom: 5px;">
-                        <a href="{{ route('all.niti') }}">
-                            {{ $language === 'Odia' ? 'ସମସ୍ତ ନୀତି ଦେଖନ୍ତୁ' : 'View All Niti' }}
-                        </a>
-                    </h3>
-                </div>
-            </div>
         </div>
     </div>
-    
+
     <section class="shree-mandir-section  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
 
         <div class="section-container">
@@ -308,8 +309,6 @@
         </div>
     </section>
 
-   
-
     <section class="temple-convenience">
         <!-- Section Header -->
         <div class="section-header-row flex flex-row justify-center items-center gap-2 sm:gap-5 text-center mt-4 sm:mt-8"
@@ -389,7 +388,7 @@
             </div>
         </div>
 
-       
+
 
     </section>
 

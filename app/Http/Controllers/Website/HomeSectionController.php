@@ -109,72 +109,14 @@ public function puriWebsite()
 }
 
 public function rathaSpecial(){
-
       $language = session('app_language', 'English');
-
-        $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
-
-    if (!$latestDayId) {
-        return response()->json([
-            'status' => false,
-            'message' => 'No active Niti found to determine day_id.'
-        ], 404);
-    }
-    
-    // Step 1: Get all active Nitis ordered by date_time (or serial)
-    $allNitis = NitiMaster::where('status', 'active')
-        ->where('niti_type', 'daily') // adjust this if needed
-        ->with([
-            'todayStartTime' => function ($query) use ($latestDayId) {
-                $query->where('day_id', $latestDayId)
-                      ->select('niti_id', 'niti_status', 'start_time');
-            },
-            'subNitis'
-        ])
-        ->orderBy('niti_order', 'asc')
-        ->get();
-
-    // Step 2: Find the last started Niti
-    $currentIndex = null;
-
-    foreach ($allNitis as $index => $niti) {
-        if (
-            optional($niti->todayStartTime)->niti_status === 'Started'
-        ) {
-            $currentIndex = $index;
-        }
-    }
-
-    // Step 3: Pick current started and next upcoming
-    $finalNitiList = collect();
-    
-    if ($currentIndex !== null) {
-        // Add the currently started Niti
-        $finalNitiList->push($allNitis[$currentIndex]);
-    
-        // Add the next one if it exists
-        if (isset($allNitis[$currentIndex + 1])) {
-            $finalNitiList->push($allNitis[$currentIndex + 1]);
-        }
-    } else {
-        // If nothing is started, show first 2 upcoming
-        foreach ($allNitis as $niti) {
-            if (
-                optional($niti->todayStartTime)->niti_status === 'Upcoming'
-            ) {
-                $finalNitiList->push($niti);
-                if ($finalNitiList->count() >= 2) break;
-            }
-        }
-    }
-
+      $json = file_get_contents(storage_path('app/nitiKanti.json'));
+      $nitiKanti = json_decode($json, true);
 
       return view('website.ratha-yatra-special', [
-
-        'nitis' => $finalNitiList->values(),
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
-        'temples' => NearByTemple::where('language', $language)->get()
-
+        'temples' => NearByTemple::where('language', $language)->get(),
+        'nitiKanti' => $nitiKanti,
     ]);
 }
 
