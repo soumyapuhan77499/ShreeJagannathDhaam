@@ -112,7 +112,7 @@ public function rathaSpecial(){
 
     $language = session('app_language', 'English');
 
-    $festivalList = json_decode(file_get_contents(storage_path('app/festivals.json')), true);
+    $festivalList = json_decode(file_get_contents(storage_path('app/nitiKanti.json')), true);
 
     $todayDate = Carbon::now()->format('d-m-Y');
 
