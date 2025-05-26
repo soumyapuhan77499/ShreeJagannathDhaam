@@ -63,7 +63,7 @@
             border: 4px solid #db4d30;
             border-radius: 50%;
             z-index: 2;
-            left: calc(100% - 0px);
+            left: calc(100% - 14px);
             transform: translateX(-50%);
         }
 
@@ -77,48 +77,34 @@
             padding: 25px 30px;
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            position: relative;
             border: 1px solid rgb(213, 213, 213);
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .card-header {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
         }
 
-        .card-header .darshan-img-wrapper {
+        .darshan-img-wrapper {
+            width: 60px;
             flex-shrink: 0;
         }
 
-        .card-header img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-right: 10px;
+        .darshan-img-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
         }
 
-        .card-header .darshan-name {
-            flex-grow: 1;
+        .card h3,
+        .darshan-name {
+            margin: 0;
             font-size: 18px;
             font-weight: bold;
-            margin: 0;
-            color: #db4d30;
-            margin-left: 20px;
-        }
-
-        .card-header .badge {
-            white-space: nowrap;
-        }
-
-
-        .card h3 {
-            margin: 0 0 12px;
-            font-size: 20px;
-            font-weight: 600;
             color: #db4d30;
         }
 
@@ -136,13 +122,11 @@
             border-radius: 30px;
             font-size: 13px;
             font-weight: 600;
+            background-color: #f5f5f5;
+            color: #db4d30;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.6px;
-        }
-
-        .badge i {
-            font-size: 14px;
         }
 
         .badge.Completed {
@@ -163,17 +147,16 @@
         .Completed .card {
             background: #fffaf3;
             border-left: 6px solid #db4d30;
-            border: 1px solid rgb(213, 213, 213);
         }
 
         .Started .card {
             background: #db4d30;
             color: #ffae35;
             border-left: 6px solid #fff;
-            border: 1px solid rgb(213, 213, 213);
         }
 
-        .Started .card h3 {
+        .Started .card h3,
+        .Started .card .darshan-name {
             color: #ffae35;
         }
 
@@ -190,7 +173,6 @@
         .darshan-times i {
             width: 17px;
             display: inline-block;
-            text-align: center;
             margin-right: 8px;
             font-size: 14px;
             color: #999;
@@ -201,11 +183,20 @@
             filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
         }
 
-       @media (max-width: 768px) {
+        @media (max-width: 768px) {
             .timeline {
                 padding: 0 12px;
                 margin: 24px auto;
                 position: relative;
+            }
+
+            .card.timeline-content {
+                display: flex;
+                flex-direction: row;
+                /* <-- Row layout */
+                align-items: flex-start;
+                padding: 16px;
+                gap: 16px;
             }
 
             .timeline::before {
@@ -222,10 +213,9 @@
             .timeline-item.right {
                 width: 100%;
                 left: 0;
-                padding: 0;
+                padding: 20px 16px 20px 36px;
                 box-sizing: border-box;
                 margin-bottom: 24px;
-                position: relative;
             }
 
             .timeline-item::after,
@@ -241,37 +231,31 @@
                 border-radius: 50%;
             }
 
-            .card.timeline-content {
-                display: flex;
-                flex-direction: row;
-                align-items: flex-start;
+            .card {
                 padding: 16px;
                 border-radius: 12px;
                 background: #fff;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-                gap: 16px;
-                margin-left: 40px;
+            }
+
+            .card-header {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
             }
 
             .darshan-img-wrapper {
-                width: 80px;
-                flex-shrink: 0;
+                width: 100%;
+                margin-bottom: 12px;
             }
 
             .darshan-img-wrapper img {
-                width: 100%;
+                width: 40%;
                 height: auto;
-                border-radius: 50%;
+                border-radius: 40px;
                 display: block;
             }
-
-          
-              .card-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
 
             .badge {
                 font-size: 13px;
@@ -307,12 +291,12 @@
             }
 
             .darshan-times {
-                margin-top: 8px;
+                margin-top: 10px;
             }
 
             .darshan-times p {
                 font-size: 13px;
-                margin: 14px 0;
+                margin: 4px 0;
             }
 
             .darshan-times i {
@@ -332,7 +316,6 @@
                 border-left: 4px solid #ff9800;
             }
         }
-
     </style>
 </head>
 
