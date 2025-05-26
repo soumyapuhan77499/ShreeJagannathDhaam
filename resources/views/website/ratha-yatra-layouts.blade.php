@@ -68,7 +68,7 @@
 
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/puri-dhams.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/banner.css') }}">
-    <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/ratha-yatr-niti.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/ratha-yatra-niti.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/shree-mandir.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/service.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/temple-slider.css') }}">
