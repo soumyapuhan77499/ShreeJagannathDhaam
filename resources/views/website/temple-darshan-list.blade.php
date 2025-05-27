@@ -283,8 +283,9 @@
                 .darshan-img-wrapper img {
                     width: 100%;
                     height: auto;
-                    border-radius: 50%;
+                    border-radius: 26%;
                     display: block;
+                    margin-top: 30px;
                 }
 
                 .card-header {
