@@ -389,31 +389,25 @@
     </div>
 
 
-    <div class="timeline">
-        @foreach ($darshanList as $index => $darshan)
-            @php
-                $start = $darshan->start_time;
-                $end = $darshan->end_time;
-                $status = $darshan->today_status ?? 'Upcoming';
-                $side = $index % 2 === 0 ? 'left' : 'right'; // ✅ Add this line
+  <div class="timeline">
+    @foreach ($darshanList as $index => $darshan)
+        @php
+            $start = $darshan->start_time;
+            $end = $darshan->end_time;
+            $status = $darshan->today_status ?? 'Upcoming';
+            $side = $index % 2 === 0 ? 'left' : 'right';
 
-                $icon = match ($status) {
-                    'Completed' => 'fa-check-circle',
-                    'Started' => 'fa-sun',
-                    'Upcoming' => 'fa-bell',
-                    default => 'fa-clock',
-                };
+            $icon = match ($status) {
+                'Completed' => 'fa-check-circle',
+                'Started' => 'fa-sun',
+                'Upcoming' => 'fa-bell',
+                default => 'fa-clock',
+            };
 
-                $statusClass = $status;
-                $startTimeFormatted = $start ? \Carbon\Carbon::parse($start)->format('h:i A') : null;
-                $endTimeFormatted = $end ? \Carbon\Carbon::parse($end)->format('h:i A') : null;
-            @endphp
-
-            <div class="timeline-item {{ $side }} {{ $statusClass }}">
-                <!-- your card content here -->
-            </div>
-        @endforeach
-
+            $statusClass = $status;
+            $startTimeFormatted = $start ? \Carbon\Carbon::parse($start)->format('h:i A') : null;
+            $endTimeFormatted = $end ? \Carbon\Carbon::parse($end)->format('h:i A') : null;
+        @endphp
 
         <div class="timeline-item {{ $side }} {{ $statusClass }}">
             <div class="card timeline-content">
@@ -430,26 +424,14 @@
                         <i class="fas {{ $icon }}"></i>
                         @if ($language === 'Odia')
                             @switch($status)
-                                @case('Started')
-                                    ଚାଲିଛି
-                                @break
-
-                                @case('Completed')
-                                    ସମାପ୍ତ
-                                @break
-
-                                @case('Upcoming')
-                                    ଆଗାମୀ
-                                @break
-
-                                @default
-                                    ଅଜଣା
+                                @case('Started') ଚାଲିଛି @break
+                                @case('Completed') ସମାପ୍ତ @break
+                                @case('Upcoming') ଆଗାମୀ @break
+                                @default ଅଜଣା
                             @endswitch
                         @else
                             {{ $status === 'Started' ? 'Going On' : $status }}
                         @endif
-
-
                     </span>
 
                     <h3 class="darshan-name">
@@ -489,8 +471,9 @@
                 </div>
             </div>
         </div>
-        @endforeach
-    </div>
+    @endforeach
+</div>
+
 
 
     @include('partials.website-footer')
