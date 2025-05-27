@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="{{ asset('front-assets/frontend/css/dham-header.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
 </head>
 
 <body>
@@ -74,25 +72,22 @@
                     </div>
 
                     {{-- Info Block --}}
-                    <div class="service-info" style="display: flex; justify-content: space-between;">
+                    <div class="service-info">
                         <div>
-                            <div class="info-line">
-                                <div class="property-offer-section">
-                                    <strong>Property Offer</strong>
-                                </div>
-                                <div class="info-line">
-                                    Breakfast / Lunch / Dinner
-                                </div>
-                                <div class="info-line">
-                                    AC Room Available
-                                </div>
+                            <div class="property-offer-section">
+                                <strong>Property Offer</strong>
                             </div>
+                            <div class="info-line">Breakfast / Lunch / Dinner</div>
+                            <div class="info-line">AC Room Available</div>
 
                             @if ($item->google_map_link)
-                                <div class="info-line">
-                                    <span class="icon"></span>
-                                    <a class="btns btns-info btn-sm" style="color:white"
-                                        href="{{ $item->google_map_link }}" target="_blank">Direction</a>
+                                <div class="info-line direction-contact-wrapper">
+                                    <a class="btns btns-info btn-sm direction-btn" href="{{ $item->google_map_link }}"
+                                        target="_blank">Direction</a>
+                                    <div class="phone-box">
+                                        <i class="fas fa-phone"></i>
+                                        {{ $item->contact_no ?? 'Not Available' }}
+                                    </div>
                                 </div>
                             @endif
                         </div>
@@ -105,17 +100,9 @@
                                     {{ $item->city_village }}
                                 </span>
                             </div>
-
-
-                            <div class="info-line"
-                                style="border: 1px solid #ccc; border-radius: 8px; padding: 8px 12px; display: inline-flex; align-items: center; gap: 8px;">
-                                <i class="fas fa-phone" style="color: #333;"></i>
-                                {{ $item->contact_no ?? 'Not Available' }}
-                            </div>
-
-
                         </div>
                     </div>
+
                 </div>
             @endforeach
         </div>

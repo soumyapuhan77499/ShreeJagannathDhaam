@@ -1,6 +1,9 @@
 @extends('website.ratha-yatra-layouts')
 
 @section('content')
+
+    @php use Carbon\Carbon; @endphp
+
     <section class="banner-sections">
         <!-- Video Banner -->
 
@@ -133,8 +136,6 @@
 
     </section>
     
-    @php use Carbon\Carbon; @endphp
-
     <div class="niti-cards-scroll">
         <div class="niti-cards">
             @foreach ($festivals as $festival)
