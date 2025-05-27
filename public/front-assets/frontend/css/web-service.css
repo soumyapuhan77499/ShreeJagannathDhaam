@@ -230,7 +230,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    height: 100px;
+    height: 150px;
 }
 
 .address-text {
