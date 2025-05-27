@@ -192,8 +192,7 @@
                     <h3 class="service-title">{{ $service->name }}</h3>
                     <p class="service-address">
                         <i class="fas fa-map-marker-alt"></i>
-                        {{ $service->landmark ?? '' }} {{ $service->city_village ?? '' }},
-                        {{ $service->district ?? '' }}
+                        {{ $service->landmark ?? '' }}{{ $service->district ?? '' }}
                     </p>
 
                     @if ($service->google_map_link)

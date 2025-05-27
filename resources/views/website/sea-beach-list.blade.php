@@ -89,7 +89,7 @@
                                 <strong>Address:</strong><br>
                                 <span class="address-text">
                                     {{ $item->landmark }}
-                                    {{ $item->city_village }}
+                                    {{ $item->district }}
                                 </span>
                             </div>
 
