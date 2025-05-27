@@ -15,6 +15,7 @@ class TempleDarshan extends Model
         'temple_id',
         'darshan_day',
         'darshan_name',
+        'english_darshan_name',
         'darshan_start_time',
         'darshan_end_time',
         'darshan_duration',

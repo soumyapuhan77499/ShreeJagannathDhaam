@@ -435,7 +435,7 @@
                     </span>
 
                     <h3 class="darshan-name">
-                        {{ $language === 'Odia' ? $darshan->darshan_name : $darshan->english_darshan_name ?? $darshan->english_darshan_name }}
+                        {{ $language === 'Odia' ? $darshan->darshan_name : $darshan->english_darshan_name ?? $darshan->darshan_name }}
                     </h3>
 
                     <div class="darshan-times">
