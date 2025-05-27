@@ -253,7 +253,7 @@
                 .timeline-item.right::after {
                     content: '';
                     position: absolute;
-                    left: 14px;
+                    left: 7px;
                     top: 28px;
                     width: 14px;
                     height: 14px;
@@ -302,6 +302,7 @@
                     display: inline-flex;
                     align-items: center;
                     gap: 6px;
+                    width: 40%;
                 }
 
                 .badge i {
