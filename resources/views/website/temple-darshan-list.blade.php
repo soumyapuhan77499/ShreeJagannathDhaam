@@ -388,7 +388,6 @@
         </div>
     </div>
 
-
     <div class="timeline">
         @foreach ($darshanList as $index => $darshan)
             @php
@@ -407,10 +406,14 @@
                 $statusClass = $status;
                 $startTimeFormatted = $start ? \Carbon\Carbon::parse($start)->format('h:i A') : null;
                 $endTimeFormatted = $end ? \Carbon\Carbon::parse($end)->format('h:i A') : null;
+                $tooltip =
+                    $language === 'Odia'
+                        ? $darshan->description
+                        : $darshan->english_description ?? $darshan->description;
             @endphp
 
             <div class="timeline-item {{ $side }} {{ $statusClass }}">
-                <div class="card timeline-content">
+                <div class="card timeline-content" title="{{ $tooltip }}">
                     {{-- Left: Image --}}
                     @if ($darshan->darshan_name)
                         <div class="darshan-img-wrapper">
@@ -448,7 +451,6 @@
                             {{ $language === 'Odia' ? $darshan->darshan_name : $darshan->english_darshan_name ?? $darshan->darshan_name }}
                         </h3>
 
-
                         <div class="darshan-times">
                             @if ($status === 'Started' && $start)
                                 <p>
@@ -484,7 +486,6 @@
             </div>
         @endforeach
     </div>
-
 
 
     @include('partials.website-footer')

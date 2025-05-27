@@ -21,6 +21,7 @@ class TempleDarshan extends Model
         'darshan_duration',
         'darshan_image',
         'description',
+        'english_description',
         'created_at',
         'updated_at',
         'status'
