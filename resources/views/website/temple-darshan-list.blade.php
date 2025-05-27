@@ -279,6 +279,7 @@
                 .darshan-img-wrapper {
                     width: 80px;
                     flex-shrink: 0;
+                    margin-top: 10px;
                 }
 
                 .darshan-img-wrapper img {
@@ -304,7 +305,7 @@
                     display: inline-flex;
                     align-items: center;
                     gap: 6px;
-                    width: 40%;
+                    width: 60%;
                 }
 
                 .badge i {
