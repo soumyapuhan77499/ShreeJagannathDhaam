@@ -402,80 +402,79 @@
 
             <div class="timeline-item {{ $side }} {{ $statusClass }}">
                 <div class="card timeline-content">
-                    <div class="card-header">
-
-                        @if ($darshan->darshan_name)
-                            <div class="darshan-img-wrapper" style="margin-bottom: 10px;">
-                                <img src="{{ asset('website/darshan.png') }}" alt="{{ $darshan->darshan_name }}">
-                            </div>
-                        @endif
-
-                    </div>
-
-                    <div class="darshan-times">
-
-                        <div class="card-content">
-                            <span class="badge {{ $statusClass }}">
-                                <i class="fas {{ $icon }}"></i>
-                                @if ($language === 'Odia')
-                                    @switch($status)
-                                        @case('Started')
-                                            ଚାଲିଛି
-                                        @break
-
-                                        @case('Completed')
-                                            ସମାପ୍ତ
-                                        @break
-
-                                        @case('Upcoming')
-                                            ଆଗାମୀ
-                                        @break
-
-                                        @default
-                                            ଅଜଣା
-                                    @endswitch
-                                @else
-                                    {{ $status === 'Started' ? 'Going On' : $status }}
-                                @endif
-                            </span>
-
-                            <h3 class="darshan-name">
-                                {{ $language === 'Odia' ? $darshan->darshan_name : $darshan->english_darshan_name ?? $darshan->darshan_name }}
-                            </h3>
+                    {{-- Left: Image --}}
+                    @if ($darshan->darshan_name)
+                        <div class="darshan-img-wrapper">
+                            <img src="{{ asset('website/darshan.png') }}" alt="{{ $darshan->darshan_name }}">
                         </div>
-                        @if ($status === 'Started' && $start)
-                            <p class="right-align">
-                                <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
-                                {{ $language === 'Odia' ? convertToOdiaTime($startTimeFormatted) : strtolower($startTimeFormatted) }}
-                            </p>
-                        @endif
+                    @endif
 
-                        @if ($status === 'Completed')
-                            @if ($start)
-                                <p class="right-align">
+                    {{-- Right: Content --}}
+                    <div class="card-content">
+                        <span class="badge {{ $statusClass }}">
+                            <i class="fas {{ $icon }}"></i>
+                            @if ($language === 'Odia')
+                                @switch($status)
+                                    @case('Started')
+                                        ଚାଲିଛି
+                                    @break
+
+                                    @case('Completed')
+                                        ସମାପ୍ତ
+                                    @break
+
+                                    @case('Upcoming')
+                                        ଆଗାମୀ
+                                    @break
+
+                                    @default
+                                        ଅଜଣା
+                                @endswitch
+                            @else
+                                {{ $status === 'Started' ? 'Going On' : $status }}
+                            @endif
+                        </span>
+
+                        <h3 class="darshan-name">
+                            {{ $language === 'Odia' ? $darshan->darshan_name : $darshan->english_darshan_name ?? $darshan->darshan_name }}
+                        </h3>
+
+                        <div class="darshan-times">
+                            @if ($status === 'Started' && $start)
+                                <p>
                                     <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
                                     {{ $language === 'Odia' ? convertToOdiaTime($startTimeFormatted) : strtolower($startTimeFormatted) }}
                                 </p>
                             @endif
-                            @if ($end)
-                                <p class="right-align">
-                                    <strong>{{ $language === 'Odia' ? 'ସମାପ୍ତ' : 'Completed' }}:</strong>
-                                    {{ $language === 'Odia' ? convertToOdiaTime($endTimeFormatted) : strtolower($endTimeFormatted) }}
+
+                            @if ($status === 'Completed')
+                                @if ($start)
+                                    <p>
+                                        <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
+                                        {{ $language === 'Odia' ? convertToOdiaTime($startTimeFormatted) : strtolower($startTimeFormatted) }}
+                                    </p>
+                                @endif
+                                @if ($end)
+                                    <p>
+                                        <strong>{{ $language === 'Odia' ? 'ସମାପ୍ତ' : 'Completed' }}:</strong>
+                                        {{ $language === 'Odia' ? convertToOdiaTime($endTimeFormatted) : strtolower($endTimeFormatted) }}
+                                    </p>
+                                @endif
+                            @endif
+
+                            @if ($status === 'Upcoming')
+                                <p>
+                                    <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Starts' }}:</strong>
+                                    {{ $language === 'Odia' ? 'ଏପର୍ଯ୍ୟନ୍ତ ଆରମ୍ଭ ହୋଇନାହିଁ' : 'Not yet started' }}
                                 </p>
                             @endif
-                        @endif
-
-                        @if ($status === 'Upcoming')
-                            <p class="right-align">
-                                <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Starts' }}:</strong>
-                                {{ $language === 'Odia' ? 'ଏପର୍ଯ୍ୟନ୍ତ ଆରମ୍ଭ ହୋଇନାହିଁ' : 'Not yet started' }}
-                            </p>
-                        @endif
+                        </div>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
+
 
     @include('partials.website-footer')
 
