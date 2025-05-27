@@ -77,7 +77,6 @@
         .card.timeline-content {
             display: flex;
             flex-direction: row;
-            /* Ensures horizontal layout */
             align-items: flex-start;
             gap: 20px;
             padding: 20px;
