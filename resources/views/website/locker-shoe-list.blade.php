@@ -100,11 +100,7 @@
                             @endif
                         </div>
 
-                        <div style="margin-top: 84px;">
-                            <a href="tel:{{ $item->contact_no }}">
-                                <button class="booking-btn">Call</button>
-                            </a>
-                        </div>
+                     
                     </div>
                 </div>
             @endforeach
