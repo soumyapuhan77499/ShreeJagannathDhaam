@@ -278,6 +278,9 @@
                 .darshan-img-wrapper {
                     width: 80px;
                     flex-shrink: 0;
+                    
+                    margin-top: 30px;
+
                 }
 
                 .darshan-img-wrapper img {
@@ -285,7 +288,6 @@
                     height: auto;
                     border-radius: 26%;
                     display: block;
-                    margin-top: 30px;
                 }
 
                 .card-header {
