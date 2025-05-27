@@ -80,13 +80,13 @@
             position: relative;
             border: 1px solid rgb(213, 213, 213);
             transition: all 0.3s ease;
+            display: flex;
+            flex-wrap: wrap;
+
         }
 
         .card-header {
-            display: flex;
-            align-items: center;
             gap: 15px;
-            flex-wrap: wrap;
         }
 
         .card-header .darshan-img-wrapper {
