@@ -248,37 +248,11 @@
   }
 }
 
-@media (max-width: 1200px) {
-  .niti-cards {
-    gap: 16px;
-    width: 95%;
-  }
-
+@media (min-width: 1200px) {
   .niti-card {
-    width: 100%;
-    height: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    margin-top: 20px;
-  }
-
-  .niti-content {
-    margin-left: 0;
-  }
-
-  .niti-icons {
-    margin-right: 0;
-    margin-top: 10px;
-    width: 100%;
-  }
-
-  .niti-card::after,
-  .niti-card.active::after {
-    top: unset;
-    bottom: 15px;
-    right: 15px;
-    transform: none;
-    font-size: 18px;
+    flex: 0 0 calc(33.333% - 20px); /* 3 in a row with gap */
+    max-width: calc(33.333% - 20px);
   }
 }
+
+
