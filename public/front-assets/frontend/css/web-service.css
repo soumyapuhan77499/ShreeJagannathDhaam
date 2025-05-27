@@ -204,15 +204,6 @@ body {
     justify-content: space-between;
     padding: 20px;
     font-family: 'Segoe UI', sans-serif;
-    flex-wrap: wrap;
-}
-
-.property-offer-section strong,
-.address-block strong {
-    font-weight: bold;
-    font-size: 17px;
-    display: block;
-    margin-bottom: 5px;
 }
 
 .info-line {
@@ -221,8 +212,21 @@ body {
     color: #333;
 }
 
+.property-offer-section strong {
+    font-weight: bold;
+    font-size: 17px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.address-block strong {
+    font-weight: bold;
+    font-size: 17px;
+}
+
 .address-block {
     max-width: 300px;
+    /* Adjust as needed */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -236,15 +240,8 @@ body {
     line-height: 1.4;
     word-wrap: break-word;
     white-space: normal;
+    /* allow wrapping */
     width: 155px;
-}
-
-/* Button + Phone aligned */
-.direction-contact-wrapper {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    margin-top: 10px;
 }
 
 .btns {
@@ -264,11 +261,17 @@ body {
     font-weight: bold;
 }
 
+.icon {
+    margin-right: 6px;
+    color: #333;
+}
+
+/* Phone Button Box */
 .phone-box {
     border: 1px solid #ccc;
     padding: 10px 16px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     gap: 8px;
