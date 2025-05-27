@@ -97,22 +97,25 @@ public function lockerShoeList()
 
 public function getDarshanList()
 {
-    $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
+        $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
 
-    if (!$latestDayId) {
-        return response()->json([
-            'status' => false,
-            'message' => 'No active Niti found to determine day_id.'
-        ], 404);
-    }
+        if (!$latestDayId) {
+            return response()->json([
+                'status' => false,
+                'message' => 'No active Niti found to determine day_id.'
+            ], 404);
+        }   
 
-    $darshans = DarshanDetails::where('status', 'active')->where('language', 'Odia')->get();
+        $darshans = DarshanDetails::where('status', 'active')->where('language', 'Odia')->get();
 
-    $darshanList = $darshans->map(function ($darshan) use ($latestDayId) {
+        $darshanList = $darshans->map(function ($darshan) use ($latestDayId) {
+       
+
         $todayLog = DarshanManagement::where('darshan_id', $darshan->id)
-            ->where('day_id', $latestDayId)
-            ->latest('start_time')
-            ->first();
+        ->where('day_id', $latestDayId)
+        ->orderByDesc('id') // or 'start_time'
+        ->first();
+
 
         return (object) [
             'darshan_id'     => $darshan->id,
@@ -158,7 +161,6 @@ public function busAndRailaway()
 public function lostAndFound(){
   return view('website.lost-and-found');
 }
-
 
 public function viewPanji()
 {

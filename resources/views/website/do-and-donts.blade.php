@@ -25,7 +25,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>
-                {{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's and don'ts" }}
+                {{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's and don'ts at Jaganntha temple Puri" }}
             </h1>
             <p>
                 {{ $language === 'Odia'
@@ -93,7 +93,7 @@
                             <li>Do not spit or commit nuisance.</li>
                             <li>Do not waste water.</li>
                             <li>Do not spit, urinate or defecate in the premises of temple.</li>
-                            <li>Do not footwear and leather items in and around the premises of the temple.</li>
+                            <li>Do not wear footwear and leather items in and around the premises of the temple.</li>
                             <li>Do not carry umbrella, mobile phones, electronic gadgets, leather items etc.</li>
                         @endif
                     </ul>

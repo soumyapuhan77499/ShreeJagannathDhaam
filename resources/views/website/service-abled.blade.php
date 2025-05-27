@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Special Abled Person</title>
+    <title>Specially Abled Person</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,7 +25,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>
-                {{ $language === 'Odia' ? 'ବିଶେଷ କ୍ଷମତା ବିଶିଷ୍ଟ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}
+                {{ $language === 'Odia' ? 'ବିଶେଷ କ୍ଷମତା ବିଶିଷ୍ଟ ବ୍ୟକ୍ତି' : 'Specially Abled Person' }}
             </h1>
             <p>
                 {{ $language === 'Odia' ? 'ବିଶେଷ କ୍ଷମତା ବିଶିଷ୍ଟ ଭକ୍ତଙ୍କ ପାଇଁ ନିର୍ଦ୍ଦେଶନାମା' : 'Instructions for Specially Abled Devotees' }}
@@ -40,7 +40,7 @@
             <div class="text-center mb-6">
                 <i class="fas fa-wheelchair text-5xl mb-4" style="color: #db4d30;"></i>
                 <h2 class="text-3xl font-bold" style="color: #db4d30;">
-                    {{ $language === 'Odia' ? 'ବିଶେଷ କ୍ଷମତା ବିଶିଷ୍ଟ ବ୍ୟକ୍ତି ସେବା' : 'Special Abled Person Services' }}
+                    {{ $language === 'Odia' ? 'ବିଶେଷ କ୍ଷମତା ବିଶିଷ୍ଟ ବ୍ୟକ୍ତି ସେବା' : 'Specially Abled Person Services' }}
                 </h2>
             </div>
 

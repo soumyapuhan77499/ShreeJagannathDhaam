@@ -150,7 +150,7 @@
         $odiaTitles = [
             'drinking water' => 'ପାନୀୟ ଜଳ',
             'emergency' => 'ଜରୁରୀ ସେବା',
-            'special abled person' => 'ବିଶେଷ କ୍ଷମତା ବ୍ୟକ୍ତି',
+            'specially abled person' => 'ବିଶେଷ କ୍ଷମତା ବ୍ୟକ୍ତି',
             'route map' => 'ମାର୍ଗ ମାନଚିତ୍ର',
             'lost and found booth' => 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର',
             'toilet' => 'ଶୌଚାଳୟ',

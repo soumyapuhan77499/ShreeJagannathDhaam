@@ -517,10 +517,10 @@
             <div class="card-top">
                 <div class="card-text">
                     <div class="card-title">
-                        {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nibas' }}
+                        {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nivas' }}
                     </div>
                     <div class="card-desc">
-                        {{ $language === 'Odia' ? 'ତୀର୍ଥଯାତ୍ରୀମାନଙ୍କ ପାଇଁ ମନ୍ଦିର ପାଖରେ ରହିବା ସ୍ଥାନ' : 'Temple owned properties for pilgrim stay' }}
+                        {{ $language === 'Odia' ? 'ତୀର୍ଥଯାତ୍ରୀମାନଙ୍କ ପାଇଁ ମନ୍ଦିର ପାଖରେ ରହିବା ସ୍ଥାନ' : 'Temple owned properties for pilgrims to stay' }}
                     </div>
                 </div>
                 <div class="arrow-icon">
@@ -529,7 +529,7 @@
             </div>
             <div class="card-bottom">
                 <div class="card-icons">
-                    <img src="{{ asset('website/niwas.png') }}" alt="Bhakta Nibas">
+                    <img src="{{ asset('website/niwas.png') }}" alt="Bhakta Nivas">
                 </div>
                 <div class="footer-bar bar-orange"></div>
             </div>
@@ -563,10 +563,10 @@
             <div class="card-top">
                 <div class="card-text">
                     <div class="card-title">
-                        {{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା ସ୍ଥାନ' : 'Locker & Shoes Stands' }}
+                        {{ $language === 'Odia' ? 'ଜୋତା ସ୍ଥାନ' : 'Locker & Shoes Stand' }}
                     </div>
                     <div class="card-desc">
-                        {{ $language === 'Odia' ? 'ଜୋତା, ମୋବାଇଲ ଫୋନ ଇତ୍ୟାଦି' : 'Shoes, Mobile Phones etc' }}
+                        {{ $language === 'Odia' ? 'ନିଃଶୁଳ୍କ  ସେବା' : 'Free Services' }}
                     </div>
                 </div>
                 <div class="arrow-icon">
@@ -727,7 +727,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/physical21.png') }}" alt="Special Abled">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ବିଶେଷ <br>ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special<br> Abled Person' !!}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ବିଶେଷ <br>ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Specially <br> Abled Person' !!}</p>
                 </a>
             </div>
 
@@ -737,7 +737,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/ph.png') }}" alt="Emergency">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ <br>ଯୋଗାଯୋଗ' : 'Emergency' !!}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ <br>ଯୋଗାଯୋଗ' : 'Emergency Contact' !!}</p>
                 </a>
             </div>
 
@@ -747,7 +747,7 @@
                     <div class="convenience-item">
                         <img src="{{ asset('website/guard.png') }}" alt="Life Guards">
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ଲାଇଫ <br> ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life<br> Guards' !!}</p>
+                    <p class="mt-2 text-sm font-medium text-gray-800">{!! $language === 'Odia' ? 'ଲାଇଫ <br> ଗାର୍ଡଙ୍କ ଯୋଗାଯୋଗ' : 'Life<br> Guard Contacts' !!}</p>
                 </a>
             </div>
 

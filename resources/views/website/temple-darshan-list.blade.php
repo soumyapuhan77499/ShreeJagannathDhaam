@@ -128,10 +128,10 @@
             margin-bottom: 6px;
             background-color: #f5f5f5;
             color: #db4d30;
-         
+
         }
 
-        .badge{
+        .badge {
             width: auto;
             max-width: 40%;
             white-space: nowrap;
@@ -361,7 +361,7 @@
                 .Upcoming .card {
                     border-left: 4px solid #ff9800;
                 }
-                
+
             }
         }
     </style>
@@ -394,8 +394,7 @@
             @php
                 $start = $darshan->start_time;
                 $end = $darshan->end_time;
-                $status = $darshan->today_status;
-                $side = $index % 2 === 0 ? 'left' : 'right';
+                $status = $darshan->today_status ?? 'Upcoming';
 
                 $icon = match ($status) {
                     'Completed' => 'fa-check-circle',
@@ -409,6 +408,7 @@
                 $startTimeFormatted = $start ? \Carbon\Carbon::parse($start)->format('h:i A') : null;
                 $endTimeFormatted = $end ? \Carbon\Carbon::parse($end)->format('h:i A') : null;
             @endphp
+
 
             <div class="timeline-item {{ $side }} {{ $statusClass }}">
                 <div class="card timeline-content">
@@ -443,6 +443,8 @@
                             @else
                                 {{ $status === 'Started' ? 'Going On' : $status }}
                             @endif
+
+                            
                         </span>
 
                         <h3 class="darshan-name">

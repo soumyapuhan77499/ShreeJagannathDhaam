@@ -29,7 +29,7 @@
         <div class="hero-content">
             <div class="hero-left">
                 <h1>
-                    {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Niwas' }}
+                    {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nivas' }}
                 </h1>
                 <p>
                     {{ $language === 'Odia'
