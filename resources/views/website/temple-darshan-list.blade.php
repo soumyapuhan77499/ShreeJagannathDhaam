@@ -127,6 +127,7 @@
             margin-bottom: 6px;
             background-color: #f5f5f5;
             color: #db4d30;
+            width: 40%;
         }
 
         .badge i {
