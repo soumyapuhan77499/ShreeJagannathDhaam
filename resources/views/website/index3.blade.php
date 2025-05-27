@@ -563,7 +563,7 @@
             <div class="card-top">
                 <div class="card-text">
                     <div class="card-title">
-                        {{ $language === 'Odia' ? 'ଜୋତା ସ୍ଥାନ' : 'Locker & Shoes Stand' }}
+                        {{ $language === 'Odia' ? 'ଜୋତା ଷ୍ଟାଣ୍ଡ' : 'Locker & Shoes Stand' }}
                     </div>
                     <div class="card-desc">
                         {{ $language === 'Odia' ? 'ନିଃଶୁଳ୍କ  ସେବା' : 'Free Services' }}
