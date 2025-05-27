@@ -128,10 +128,10 @@
             margin-bottom: 6px;
             background-color: #f5f5f5;
             color: #db4d30;
-
+         
         }
 
-        .badge {
+        .badge{
             width: auto;
             max-width: 40%;
             white-space: nowrap;
@@ -361,28 +361,7 @@
                 .Upcoming .card {
                     border-left: 4px solid #ff9800;
                 }
-
-                .badge.Completed {
-                    background-color: #fef3ec;
-                    color: #db4d30;
-                }
-
-                .badge.Started {
-                    background-color: #fef3ec;
-                    color: #2e5b02;
-                }
-
-                .badge.Upcoming {
-                    background-color: #f5f5f5;
-                    color: #db4d30;
-                }
-
-                .card-content .darshan-name {
-                    font-size: 18px;
-                    font-weight: bold;
-                    color: #db4d30;
-                    margin: 0;
-                }
+                
             }
         }
     </style>
