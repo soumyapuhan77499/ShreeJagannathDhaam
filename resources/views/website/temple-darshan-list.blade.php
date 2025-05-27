@@ -77,6 +77,7 @@
         .card.timeline-content {
             display: flex;
             flex-direction: row;
+            /* Ensures horizontal layout */
             align-items: flex-start;
             gap: 20px;
             padding: 20px;
@@ -84,6 +85,8 @@
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
             border: 1px solid rgb(213, 213, 213);
+            flex-wrap: nowrap;
+            /* Prevent stacking */
         }
 
         /* Image on the left */
@@ -91,6 +94,9 @@
             width: 70px;
             height: 70px;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .darshan-img-wrapper img {
@@ -105,6 +111,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             gap: 10px;
         }
 
