@@ -89,7 +89,7 @@
 /* Image left */
 .darshan-img-wrapper {
     width: 70px;
-    height: 70px;
+    height: 100px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
