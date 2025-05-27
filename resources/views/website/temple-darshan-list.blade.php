@@ -305,7 +305,7 @@
                     display: inline-flex;
                     align-items: center;
                     gap: 6px;
-                    width: 60%;
+                    width: 100%;
                 }
 
                 .badge i {
