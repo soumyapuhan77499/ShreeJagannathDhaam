@@ -118,7 +118,6 @@
         .card-content .badge {
             display: inline-flex;
             align-items: center;
-            justify-content: flex-start;
             /* aligns icon and text properly */
             gap: 6px;
             padding: 6px 14px;
