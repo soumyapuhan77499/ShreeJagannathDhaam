@@ -94,8 +94,8 @@
         }
 
         .card-header img {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             object-fit: cover;
             border-radius: 10px;
             margin-right: 10px;
@@ -179,7 +179,7 @@
 
         .Started .card p,
         .Started .darshan-times i {
-            color: #fff;
+            color: #272525;
         }
 
         .Upcoming .card {
