@@ -72,63 +72,43 @@
             transform: translateX(-50%);
         }
 
-        .card {
+        /* ================== CARD STYLING ================== */
+
+        .card.timeline-content {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
             background: #fff;
-            padding: 25px 30px;
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            position: relative;
             border: 1px solid rgb(213, 213, 213);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-wrap: wrap;
-
         }
 
-        .card-header {
-            gap: 15px;
-        }
-
-        .card-header .darshan-img-wrapper {
+        /* Image on the left */
+        .darshan-img-wrapper {
+            width: 70px;
+            height: 70px;
             flex-shrink: 0;
         }
 
-        .card-header img {
-            width: 70px;
-            height: 70px;
+        .darshan-img-wrapper img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 10px;
-            margin-top: 10px;
+            border-radius: 50%;
         }
 
-        .card-header .darshan-name {
-            flex-grow: 1;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0;
-            color: #db4d30;
-            margin-left: 20px;
+        /* Textual content on the right */
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .card-header .badge {
-            white-space: nowrap;
-        }
-
-
-        .card h3 {
-            margin: 0 0 12px;
-            font-size: 20px;
-            font-weight: 600;
-            color: #db4d30;
-        }
-
-        .card p {
-            margin: 8px 0;
-            font-size: 15px;
-            color: #333;
-        }
-
-        .badge {
+        .card-content .badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -136,9 +116,11 @@
             border-radius: 30px;
             font-size: 13px;
             font-weight: 600;
-            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.6px;
+            margin-bottom: 6px;
+            background-color: #f5f5f5;
+            color: #db4d30;
         }
 
         .badge i {
@@ -160,31 +142,34 @@
             color: #db4d30;
         }
 
-        .Completed .card {
-            background: #fffaf3;
-            border-left: 6px solid #db4d30;
-            border: 1px solid rgb(213, 213, 213);
+        .card-content .darshan-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #db4d30;
+            margin: 0;
         }
 
-        .Started .card {
-            background: #db4d30;
-            color: #ffae35;
-            border-left: 6px solid #fff;
-            border: 1px solid rgb(213, 213, 213);
+        .card-content h3 {
+            margin: 0 0 12px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #db4d30;
         }
 
-        .Started .card h3 {
-            color: #ffae35;
+        .card-content p {
+            margin: 6px 0;
+            font-size: 14px;
+            color: #444;
         }
 
-        .Started .card p,
-        .Started .darshan-times i {
-            color: #272525;
+        .darshan-times {
+            margin-top: 8px;
         }
 
-        .Upcoming .card {
-            background: #ffffff;
-            border-left: 6px solid #db4d30;
+        .darshan-times p {
+            margin: 4px 0;
+            font-size: 14px;
+            color: #333;
         }
 
         .darshan-times i {
@@ -201,16 +186,34 @@
             filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
         }
 
-         .card.timeline-content {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: flex-start;
-                    padding: 16px;
-                    border-radius: 12px;
-                    background: #fff;
-                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-                    gap: 16px;
-                }
+        /* ================== CARD COLOR BY STATUS ================== */
+
+        .Completed .card {
+            background: #fffaf3;
+            border-left: 6px solid #db4d30;
+        }
+
+        .Started .card {
+            background: #db4d30;
+            color: #ffae35;
+            border-left: 6px solid #fff;
+        }
+
+        .Started .card h3,
+        .Started .darshan-name {
+            color: #ffae35;
+        }
+
+        .Started .card p,
+        .Started .darshan-times i {
+            color: #272525;
+        }
+
+        .Upcoming .card {
+            background: #ffffff;
+            border-left: 6px solid #db4d30;
+        }
+
 
         @media (max-width: 768px) {
             @media (max-width: 768px) {
@@ -404,7 +407,7 @@
 
                     <div class="darshan-times">
 
-                        <div>
+                        <div class="card-content">
                             <span class="badge {{ $statusClass }}">
                                 <i class="fas {{ $icon }}"></i>
                                 @if ($language === 'Odia')
