@@ -118,6 +118,8 @@
         .card-content .badge {
             display: inline-flex;
             align-items: center;
+            justify-content: flex-start;
+            /* aligns icon and text properly */
             gap: 6px;
             padding: 6px 14px;
             border-radius: 30px;
@@ -128,7 +130,9 @@
             margin-bottom: 6px;
             background-color: #f5f5f5;
             color: #db4d30;
-            width: 40%;
+            width: auto;
+            max-width: 100%;
+            white-space: nowrap;
         }
 
         .badge i {
