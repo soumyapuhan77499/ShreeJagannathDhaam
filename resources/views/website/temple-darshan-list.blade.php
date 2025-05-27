@@ -400,7 +400,6 @@
                             </div>
                         @endif
 
-
                     </div>
 
                     <div class="darshan-times">
