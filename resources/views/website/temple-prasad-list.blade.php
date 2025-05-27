@@ -89,11 +89,12 @@
 /* Image left */
 .darshan-img-wrapper {
     width: 70px;
-    height: 100px;
+    height: 70px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 18px;
 }
 
 .darshan-img-wrapper img {
