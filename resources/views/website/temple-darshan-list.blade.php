@@ -98,7 +98,7 @@
             height: 70px;
             object-fit: cover;
             border-radius: 10px;
-            margin-right: 10px;
+            margin-top: 10px;
         }
 
         .card-header .darshan-name {
