@@ -133,7 +133,7 @@
 
         .badge{
             width: auto;
-            max-width: 50%;
+            max-width: 40%;
             white-space: nowrap;
         }
 
