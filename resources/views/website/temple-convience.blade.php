@@ -214,7 +214,7 @@
                     <h3 class="service-title">{{ $service->service_name }}</h3>
                     <p class="service-address">
                         <i class="fas fa-map-marker-alt"></i>
-                        {{ $service->landmark ?? '' }} {{ $service->city_village ?? '' }},
+                        {{ $service->landmark ?? '' }} {{ $service->pincode ?? '' }},
                         {{ $service->district ?? '' }}
                     </p>
 
