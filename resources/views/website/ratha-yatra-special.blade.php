@@ -132,7 +132,7 @@
                 </li>
             </ul>
         </nav>
-        
+
         <div class="niti-cards-scroll">
             <div class="niti-cards">
                 @foreach ($festivals as $festival)
@@ -143,8 +143,8 @@
                     <div class="niti-card-wrapper">
                         <div class="niti-card {{ $isToday ? 'active' : '' }}">
                             <div class="niti-content">
-                                <h4>{{ $festival['name'] }}</h4>
-                                <p style="color: {{ $isToday ? '#28a745' : '#333' }};">
+                                <h4 style="font-size: 21px; padding-bottom:5px;">{{ $festival['name'] }}</h4>
+                                <p style="color: {{ $isToday ? '#28a745' : '#333' }};padding-top: 5px; font-weight: bold;">
                                     @if ($language === 'Odia')
                                         {{ $isToday ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
                                     @else
