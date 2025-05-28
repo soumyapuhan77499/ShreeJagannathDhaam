@@ -70,12 +70,18 @@
     flex: 1;
     margin-right: 10px;
 }
+
 .niti-content h4 {
-    font-size: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 21px;
     font-weight: 600;
     color: #747576;
     margin-bottom: 5px;
     position: relative;
+    padding-bottom: 5px;
 }
 .niti-content h4::after {
     content: "";

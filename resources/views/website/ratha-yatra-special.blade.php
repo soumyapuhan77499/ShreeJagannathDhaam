@@ -143,7 +143,7 @@
                     <div class="niti-card-wrapper">
                         <div class="niti-card {{ $isToday ? 'active' : '' }}">
                             <div class="niti-content">
-                                <h4 style="font-size: 21px; padding-bottom:5px;">{{ $festival['name'] }}</h4>
+                                <h4 >{{ $festival['name'] }}</h4>
                                 <p style="color: {{ $isToday ? '#28a745' : '#333' }};padding-top: 5px; font-weight: bold;">
                                     @if ($language === 'Odia')
                                         {{ $isToday ? 'ଆରମ୍ଭ ହୋଇଛି' : 'ଆଗାମୀ' }}
