@@ -77,30 +77,27 @@
                     <div class="service-info" style="display: flex; justify-content: space-between;">
                         <div>
                             <div class="info-line">
-                                <span class="icon">📍</span>
+                                <span class="icon"></span>
                                 {{ $item->landmark ? $item->landmark . ', ' : '' }}
                                 {{ $item->city_village ? $item->city_village . ', ' : '' }}
                             </div>
 
                             <div class="info-line">
-                                <span class="icon">⏰</span> {{ $item->opening_time ?? 'N/A' }} -
+                                <span class="icon"></span> {{ $item->opening_time ?? 'N/A' }} -
                                 {{ $item->closing_time ?? 'N/A' }}
                             </div>
+                        </div>
 
-                            <div class="info-line">
-                                <span class="icon">📞</span> {{ $item->contact_no ?? 'Not Available' }}
-                            </div>
-
+                        <div>
                             @if ($item->google_map_link)
                                 <div class="info-line">
-                                    <span class="icon">🗺️</span>
+                                    <span class="icon"></span>
                                     <a class="btn btn-sm btn-info" style="color: white"
-                                        href="{{ $item->google_map_link }}" target="_blank">View Map</a>
+                                        href="{{ $item->google_map_link }}" target="_blank">Direction</a>
                                 </div>
                             @endif
                         </div>
 
-                     
                     </div>
                 </div>
             @endforeach
