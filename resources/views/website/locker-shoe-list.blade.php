@@ -92,7 +92,7 @@
                             @if ($item->google_map_link)
                                 <div class="info-line">
                                     <span class="icon"></span>
-                                    <a class="btn btn-sm btn-info" style="color: white"
+                                    <a class="btn btn-sm" style="color: white; background: linear-gradient(90deg, #f9ce62, #f1769f);"
                                         href="{{ $item->google_map_link }}" target="_blank">Direction</a>
                                 </div>
                             @endif
