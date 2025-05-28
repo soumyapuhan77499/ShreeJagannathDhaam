@@ -133,10 +133,7 @@
                 </li>
             </ul>
         </nav>
-
-    </section>
-    
-    <div class="niti-cards-scroll">
+   <div class="niti-cards-scroll">
         <div class="niti-cards">
             @foreach ($festivals as $festival)
                 @php
@@ -167,6 +164,9 @@
         </div>
     </div>
 
+    </section>
+    
+ 
     <section class="shree-mandir-section  bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-100">
 
         <div class="section-container">
