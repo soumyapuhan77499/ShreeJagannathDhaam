@@ -203,13 +203,8 @@ public function startNiti(Request $request)
 
        $latestNews = TempleNews::where('type', 'information')
         ->where('niti_notice_status', 'Started')
-        ->get();
-        
-        foreach ($latestNews as $news) {
-
-         $news->update(['niti_notice_status' => 'Completed']);
-
-        }
+        ->orderBy('created_at', 'desc')
+        ->first();
 
         // ✅ Fetch NitiMaster and its day_id
         $nitiMaster = NitiMaster::where('niti_id', $request->niti_id)->first();
@@ -261,7 +256,6 @@ public function startNiti(Request $request)
             ], 409);
         }
 
-
         // ✅ Step 1: Start Niti
         $nitiManagement = NitiManagement::create([
             'niti_id'     => $request->niti_id,
@@ -275,6 +269,9 @@ public function startNiti(Request $request)
         // ✅ Update NitiMaster status
         $nitiMaster->update(['niti_status' => 'Started']);
 
+        if ($latestNews) {
+            $latestNews->update(['niti_notice_status' => 'Completed']);
+        }
 
         // ✅ Step 2: Start Darshan if linked
         $darshanLog = null;
@@ -293,35 +290,6 @@ public function startNiti(Request $request)
                 ->update(['darshan_status' => 'Started']);
         }
 
-        // ✅ Step 3: Start Mahaprasad if linked
-        $prasadLog = null;
-        if ($nitiMaster->connected_mahaprasad_id) {
-
-            $existingPrasad = PrasadManagement::where('day_id', $dayId)
-                ->where('prasad_status', 'Started')
-                ->latest()
-                ->first();
-
-            if ($existingPrasad) {
-                $existingPrasad->update(['prasad_status' => 'Completed']);
-                TemplePrasad::where('id', $existingPrasad->prasad_id)->update(['prasad_status' => 'Completed']);
-            }
-
-            // Create new PrasadManagement entry
-            $prasadLog = PrasadManagement::create([
-                'prasad_id'     => $nitiMaster->connected_mahaprasad_id,
-                'sebak_id'      => $user->sebak_id,
-                'day_id'        => $dayId,
-                'date'          => $now->toDateString(),
-                'start_time'    => $now->format('H:i:s'),
-                'prasad_status' => 'Started',
-                'temple_id'     => $nitiMaster->temple_id ?? null,
-            ]);
-
-            TemplePrasad::where('id', $nitiMaster->connected_mahaprasad_id)
-                ->update(['prasad_status' => 'Started']);
-        }
-
         // ✅ Final response
         return response()->json([
             'status' => true,
@@ -329,7 +297,6 @@ public function startNiti(Request $request)
             'data' => [
                 'niti_management'    => $nitiManagement,
                 'darshan_management' => $darshanLog,
-                'prasad_management'  => $prasadLog,
             ]
         ], 200);
 
@@ -341,6 +308,7 @@ public function startNiti(Request $request)
         ], 500);
     }
 }
+
 
 public function pauseNiti(Request $request)
 {
@@ -561,17 +529,13 @@ public function stopNiti(Request $request)
         $tz = 'Asia/Kolkata';
         $now = Carbon::now($tz);
 
+        // ✅ Get latest TempleNews to complete
+        $latestNews = TempleNews::where('type', 'information')
+            ->where('niti_notice_status', 'Started')
+            ->orderBy('created_at', 'desc')
+            ->first();
 
-      $latestNews = TempleNews::where('type', 'information')
-        ->where('niti_notice_status', 'Started')
-        ->get();
-        
-        foreach ($latestNews as $news) {
-
-         $news->update(['niti_notice_status' => 'Completed']);
-
-        }
-        // ✅ Get day_id from NitiMaster
+        // ✅ Fetch NitiMaster and check day_id
         $nitiMaster = NitiMaster::where('niti_id', $request->niti_id)->first();
 
         if (!$nitiMaster || !$nitiMaster->day_id) {
@@ -583,7 +547,7 @@ public function stopNiti(Request $request)
 
         $dayId = $nitiMaster->day_id;
 
-        // ✅ Get the latest active Niti by day_id
+        // ✅ Get the active Started Niti row
         $activeNiti = NitiManagement::where('niti_id', $request->niti_id)
             ->where('niti_status', 'Started')
             ->where('day_id', $dayId)
@@ -597,30 +561,21 @@ public function stopNiti(Request $request)
             ], 400);
         }
 
-     $latestEntry = NitiManagement::where('niti_id', $request->niti_id)
-    ->where('day_id', $dayId)
-    ->latest('created_at')
-    ->first();
+        // ✅ Validate based on latest entry
+        $latestEntry = NitiManagement::where('niti_id', $request->niti_id)
+            ->where('day_id', $dayId)
+            ->latest('created_at')
+            ->first();
 
-    $nitiType = $nitiMaster->niti_type;
+        $nitiType = $nitiMaster->niti_type;
 
-    // For "other" Niti: block if latest is already Completed
-    if (
-        $nitiType === 'other' &&
-        $latestEntry &&
-        $latestEntry->niti_status === 'Completed'
-    ) {
-        return response()->json([
-            'status' => false,
-            'message' => 'This Niti (other type) is already marked as completed recently.'
-        ], 400);
-    }
-
-    // For other types: only one completion allowed per day
         if (
-            $nitiType !== 'other' &&
             $latestEntry &&
-            $latestEntry->niti_status === 'Completed'
+            $latestEntry->niti_status === 'Completed' &&
+            (
+                ($nitiType === 'other') ||
+                ($nitiType !== 'other')
+            )
         ) {
             return response()->json([
                 'status' => false,
@@ -639,25 +594,24 @@ public function stopNiti(Request $request)
         $runningTime = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
         $durationText = $hours > 0 ? "{$hours} hr {$minutes} min" : ($minutes > 0 ? "{$minutes} min" : "{$seconds} sec");
 
-        // ✅ Save completed Niti entry
-        $completedNiti = new NitiManagement();
-        $completedNiti->niti_id       = $request->niti_id;
-        $completedNiti->sebak_id      = $user->sebak_id;
-        $completedNiti->day_id        = $dayId;
-        $completedNiti->start_time    = $activeNiti->start_time;
-        $completedNiti->pause_time    = $activeNiti->pause_time;
-        $completedNiti->resume_time   = $activeNiti->resume_time;
-        $completedNiti->date          = $now->toDateString();
-        $completedNiti->end_time      = $now->format('H:i:s');
-        $completedNiti->running_time  = $runningTime;
-        $completedNiti->duration      = trim($durationText);
-        $completedNiti->niti_status   = 'Completed';
-        $completedNiti->save();
+        // ✅ Update the same NitiManagement row
+        $activeNiti->update([
+            'end_user_id'    => $user->sebak_id,
+            'end_time'      => $now->format('H:i:s'),
+            'running_time'  => $runningTime,
+            'duration'      => $durationText,
+            'niti_status'   => 'Completed',
+        ]);
 
         // ✅ Update NitiMaster
         $nitiMaster->update([
             'niti_status' => 'Completed'
         ]);
+
+        // ✅ Update TempleNews
+        if ($latestNews) {
+            $latestNews->update(['niti_notice_status' => 'Completed']);
+        }
 
         // ✅ Stop interconnected Darshan (if any)
         $darshanCompleted = null;
@@ -673,30 +627,55 @@ public function stopNiti(Request $request)
                 $darshanStart = Carbon::parse($activeDarshan->date . ' ' . $activeDarshan->start_time);
                 $darshanDuration = $darshanStart->diff($now)->format('%H:%I:%S');
 
-                $darshanCompleted = DarshanManagement::create([
-                    'darshan_id'     => $nitiMaster->connected_darshan_id,
-                    'sebak_id'       => $user->sebak_id,
-                    'temple_id'      => $activeDarshan->temple_id ?? null,
-                    'day_id'         => $dayId,
-                    'date'           => $now->toDateString(),
-                    'start_time'     => $activeDarshan->start_time,
+                $activeDarshan->update([
                     'end_time'       => $now->format('H:i:s'),
                     'duration'       => $darshanDuration,
                     'darshan_status' => 'Completed',
                 ]);
 
-                // ✅ Update DarshanDetails
-                DarshanDetails::where('id', $nitiMaster->connected_darshan_id)->update(['darshan_status' => 'Completed']);
+                DarshanDetails::where('id', $nitiMaster->connected_darshan_id)
+                    ->update(['darshan_status' => 'Completed']);
 
+                $darshanCompleted = $activeDarshan;
             }
+        }
+
+           // ✅ Step 3: Start Mahaprasad if linked
+        $prasadLog = null;
+        if ($nitiMaster->connected_mahaprasad_id) {
+
+            $existingPrasad = PrasadManagement::where('day_id', $dayId)
+                ->where('prasad_status', 'Started')
+                ->latest()
+                ->first();
+
+            if ($existingPrasad) {
+                $existingPrasad->update(['prasad_status' => 'Completed']);
+                TemplePrasad::where('id', $existingPrasad->prasad_id)->update(['prasad_status' => 'Completed']);
+            }
+
+            // Create new PrasadManagement entry
+            $prasadLog = PrasadManagement::create([
+                'prasad_id'     => $nitiMaster->connected_mahaprasad_id,
+                'sebak_id'      => $user->sebak_id,
+                'day_id'        => $dayId,
+                'date'          => $now->toDateString(),
+                'start_time'    => $now->format('H:i:s'),
+                'prasad_status' => 'Started',
+                'temple_id'     => $nitiMaster->temple_id ?? null,
+            ]);
+
+            TemplePrasad::where('id', $nitiMaster->connected_mahaprasad_id)
+                ->update(['prasad_status' => 'Started']);
         }
 
         return response()->json([
             'status' => true,
             'message' => 'Niti (and linked Darshan if any) stopped successfully.',
             'data' => [
-                'niti'    => $completedNiti,
-                'darshan'=> $darshanCompleted
+                'niti'    => $activeNiti,
+                'darshan'=> $darshanCompleted,
+                'prasad_management'  => $prasadLog
             ]
         ], 200);
 
