@@ -702,34 +702,75 @@ public function completedNiti()
 
         $dayId = $nitiMaster->day_id;
 
-        // Fetch completed Niti entries for today along with related Niti name
-        $completed = NitiManagement::with('master:niti_id,niti_name')
+        // Step 1: Get all Completed entries from NitiManagement with master relation
+        $completedManagement = NitiManagement::with('master')
             ->where('niti_status', 'Completed')
             ->where('day_id', $dayId)
             ->get()
             ->map(function ($item) {
                 return [
-                    'niti_id'       => $item->niti_id,
-                    'niti_name'     => optional($item->master)->niti_name,
-                    'sebak_id'      => $item->sebak_id,
-                    'date'          => $item->date,
-                    'start_time'    => $item->start_time,
-                    'end_time'      => $item->end_time,
-                    'duration'      => $item->duration,
-                    'niti_status'   => $item->niti_status,
+                    'id'                       => $item->id,
+                    'niti_id'                  => $item->niti_id,
+                    'niti_name'                => optional($item->master)->niti_name,
+                    'sebak_id'                 => $item->sebak_id,
+                    'date'                     => $item->date,
+                    'start_time'               => $item->start_time,
+                    'end_time'                 => $item->end_time,
+                    'duration'                 => $item->duration,
+                    'niti_status'              => $item->niti_status,
+                    'start_user_id'            => $item->start_user_id,
+                    'end_user_id'              => $item->end_user_id,
+                    'start_time_edit_user_id'  => $item->start_time_edit_user_id,
+                    'end_time_edit_user_id'    => $item->end_time_edit_user_id,
                 ];
             });
 
+        // Step 2: Get one Started Niti from NitiMaster not in completed list
+        $excludedNitiIds = $completedManagement->pluck('niti_id')->unique()->toArray();
+
+        $oneStartedFromMaster = NitiMaster::where('day_id', $dayId)
+            ->where('niti_status', 'Started')
+            ->whereNotIn('niti_id', $excludedNitiIds)
+            ->first();
+
+        $startedNiti = collect();
+
+        if ($oneStartedFromMaster) {
+            $latestStartedEntry = NitiManagement::where('niti_id', $oneStartedFromMaster->niti_id)
+                ->where('niti_status', 'Started')
+                ->orderBy('start_time', 'desc')
+                ->first();
+
+            $startedNiti->push([
+                'id'                       => optional($latestStartedEntry)->id,
+                'niti_id'                  => $oneStartedFromMaster->niti_id,
+                'niti_name'                => $oneStartedFromMaster->niti_name,
+                'sebak_id'                 => optional($latestStartedEntry)->sebak_id,
+                'date'                     => Carbon::parse($oneStartedFromMaster->date_time)->toDateString(),
+                'start_time'               => optional($latestStartedEntry)->start_time,
+                'end_time'                 => null,
+                'duration'                 => null,
+                'niti_status'              => 'Started',
+                'start_user_id'            => optional($latestStartedEntry)->start_user_id,
+                'end_user_id'              => optional($latestStartedEntry)->end_user_id,
+                'start_time_edit_user_id'  => optional($latestStartedEntry)->start_time_edit_user_id,
+                'end_time_edit_user_id'    => optional($latestStartedEntry)->end_time_edit_user_id,
+            ]);
+        }
+
+        // Fix: convert to base collection to merge arrays
+        $merged = $completedManagement->toBase()->merge($startedNiti)->values();
+
         return response()->json([
             'status' => true,
-            'message' => 'Completed Niti list for today fetched successfully.',
-            'data' => $completed,
+            'message' => 'Niti data fetched successfully.',
+            'data' => $merged,
         ], 200);
 
     } catch (\Exception $e) {
         return response()->json([
             'status' => false,
-            'message' => 'Failed to fetch completed Niti data.',
+            'message' => 'Failed to fetch Niti data.',
             'error' => $e->getMessage(),
         ], 500);
     }
