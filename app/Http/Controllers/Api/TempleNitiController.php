@@ -1203,7 +1203,7 @@ public function softDeleteSubNiti($id)
     }
 }
 
-public function store(Request $request)
+public function saveHundi(Request $request)
 {
   
     try {
@@ -1229,7 +1229,7 @@ public function store(Request $request)
     }
 }
 
-public function index()
+public function getHundi()
 {
     try {
         $hundiRecords = TempleHundi::orderBy('date', 'desc')->get();
