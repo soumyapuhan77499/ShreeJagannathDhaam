@@ -42,6 +42,7 @@ public function puriWebsite()
     // Step 1: Get all active Nitis ordered by date_time (or serial)
     $allNitis = NitiMaster::where('status', 'active')
         ->where('niti_type', 'daily') // adjust this if needed
+        ->where('niti_status', '!=', 'NotStarted')
         ->with([
             'todayStartTime' => function ($query) use ($latestDayId) {
                 $query->where('day_id', $latestDayId)
@@ -139,6 +140,7 @@ public function viewAllNiti()
     // ✅ Only load daily & special nitis — exclude "other" completely
     $allNitis = NitiMaster::whereIn('niti_type', ['daily', 'special'])
         ->where('niti_privacy', 'public')
+        ->where('niti_status', '!=', 'NotStarted')
         ->orderBy('niti_order', 'asc')
         ->get()
         ->keyBy('niti_id');

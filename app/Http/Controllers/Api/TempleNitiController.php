@@ -51,6 +51,7 @@ public function manageNiti(Request $request)
         // ✅ Get all Daily Nitis
         $dailyNitis = NitiMaster::where('status', 'active')
             ->where('language', 'Odia')
+            ->where('niti_status', '!=', 'NotStarted')
             ->where('niti_type', 'daily')
             ->orderBy('niti_order', 'asc') // <-- will now correctly sort even decimal orders
             ->with([
@@ -67,6 +68,7 @@ public function manageNiti(Request $request)
         $specialNitisGrouped = NitiMaster::where('status', 'active')
             ->where('niti_type', 'special')
             ->where('language', 'Odia')
+            ->where('niti_status', '!=', 'NotStarted')
             ->whereDate('date_time', $today) // ✅ Filter by today's date here
             ->with([
                 'todayStartTime' => function ($query) use ($latestDayId) {
@@ -263,7 +265,7 @@ public function startNiti(Request $request)
         $nitiManagement = NitiManagement::create([
             'niti_id'     => $request->niti_id,
             'day_id'      => $dayId,
-            'sebak_id'    => $user->sebak_id,
+            'start_user_id'    => $user->sebak_id,
             'date'        => $now->toDateString(),
             'start_time'  => $now->format('H:i:s'),
             'niti_status' => 'Started'
@@ -841,13 +843,7 @@ public function storeOtherNiti(Request $request)
             ->where('status', ['active', 'other'])
             ->first();
 
-        if ($existingNiti) {
-            return response()->json([
-                'status'  => false,
-                'message' => 'Niti name already exists. Please update instead.',
-            ], 409);
-        }
-
+      
         // Create new Niti
         $niti = NitiMaster::create([
             'niti_id'        => 'NITI' . rand(10000, 99999),
@@ -1024,13 +1020,13 @@ public function startSubNiti(Request $request)
             'data' => $record
         ], 200);
 
-    } catch (\Exception $e) {
+     } catch (\Exception $e) {
         return response()->json([
             'status' => false,
             'message' => 'Failed to start Sub Niti.',
             'error' => $e->getMessage()
         ], 500);
-    }
+     }
 }
 
 public function addAndStartSubNiti(Request $request)
@@ -1242,7 +1238,7 @@ public function index()
 public function storeByNoticeName(Request $request)
 {
    
-    try {
+        try {
         $news = TempleNews::create([
             'type' => 'notice',
             'notice_name' => $request->notice_name,
@@ -1256,13 +1252,13 @@ public function storeByNoticeName(Request $request)
             'data' => $news
         ], 200);
 
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => false,
-            'message' => 'Something went wrong!',
-            'error' => $e->getMessage()
-        ], 500);
-    }
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong!',
+                'error' => $e->getMessage()
+            ], 500);
+        }
 }
 
 public function getLatestNotice()
@@ -1315,13 +1311,13 @@ public function updateNoticeName(Request $request)
         ],200);
 
         
-    } catch (\Exception $e) {
-        return response()->json([
+        } catch (\Exception $e) {
+         return response()->json([
             'status' => false,
             'message' => 'Failed to update notice name.',
             'error' => $e->getMessage()
-        ], 500);
-    }
+         ], 500);
+        }
 }
 
 public function updateHundiCollection(Request $request)
@@ -1342,6 +1338,8 @@ public function updateHundiCollection(Request $request)
             'rupees' => $request->rupees,
             'gold'   => $request->gold,
             'silver' => $request->silver,
+            'mix_gold' => $request->mix_gold,
+            'mix_silver' => $request->mix_silver,
         ]);
 
         return response()->json([
@@ -1414,8 +1412,8 @@ public function latestApk()
 {
     try {
         $apk = Apk::where('status', 'active')
-                  ->orderByDesc('id')
-                  ->first();
+        ->orderByDesc('id')
+        ->first();
 
         if (!$apk) {
             return response()->json([
@@ -1514,6 +1512,218 @@ public function deleteNitiInformation($id)
         'data' => $news,
         'status' => true
     ]);
+}
+
+public function editStartTime(Request $request)
+{
+    $request->validate([
+        'niti_management_id' => 'required|integer|exists:temple__niti_management,id',
+        'start_time'         => 'required|date_format:H:i:s',
+    ]);
+
+    $user = Auth::guard('niti_admin')->user();
+    if (!$user) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Unauthorized access.'
+        ], 401);
+    }
+
+    $niti = NitiManagement::find($request->niti_management_id);
+
+    // ✅ Update start_time
+    $niti->start_time = $request->start_time;
+    $niti->start_time_edit_user_id = $user->sebak_id;
+
+    $niti->save();
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Start time updated successfully.',
+        'data' => $niti
+    ]);
+}
+
+public function editEndTime(Request $request)
+{
+    $request->validate([
+        'niti_management_id' => 'required|integer|exists:temple__niti_management,id',
+        'end_time'           => 'required|date_format:H:i:s',
+    ]);
+
+    $user = Auth::guard('niti_admin')->user();
+
+    if (!$user) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Unauthorized access.'
+        ], 401);
+    }
+
+    $niti = NitiManagement::find($request->niti_management_id);
+
+    $tz = 'Asia/Kolkata';
+
+    // Recalculate duration and running time
+    $startDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $niti->date . ' ' . $niti->start_time, $tz);
+    $endDateTime   = Carbon::createFromFormat('Y-m-d H:i:s', $niti->date . ' ' . $request->end_time, $tz);
+
+    $durationInSeconds = $startDateTime->diffInSeconds($endDateTime);
+
+    $hours   = floor($durationInSeconds / 3600);
+    $minutes = floor(($durationInSeconds % 3600) / 60);
+    $seconds = $durationInSeconds % 60;
+
+    $runningTime = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+    $durationText = $hours > 0 ? "{$hours} hr {$minutes} min" : ($minutes > 0 ? "{$minutes} min" : "{$seconds} sec");
+
+    // ✅ Update fields
+    $niti->update([
+        'end_time'     => $request->end_time,
+        'running_time' => $runningTime,
+        'duration'     => trim($durationText),
+        'end_time_edit_user_id' => $user->sebak_id,
+    ]);
+
+    return response()->json([
+        'status' => true,
+        'message' => 'End time updated successfully.',
+        'data' => $niti
+    ]);
+}
+
+public function resetNiti(Request $request)
+{
+    $request->validate([
+        'niti_id' => 'required|string|exists:temple__niti_details,niti_id',
+    ]);
+
+    $user = Auth::guard('niti_admin')->user();
+
+    if (!$user) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Unauthorized access.'
+        ], 401);
+    }
+
+    $nitiMaster = NitiMaster::where('niti_id', $request->niti_id)->first();
+
+    if (!$nitiMaster || !$nitiMaster->day_id) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Niti not found or day_id missing.'
+        ], 404);
+    }
+
+    $dayId = $nitiMaster->day_id;
+
+    // ✅ Find the latest Started NitiManagement entry
+    $startedEntry = NitiManagement::where('niti_id', $request->niti_id)
+        ->where('day_id', $dayId)
+        ->where('niti_status', 'Started')
+        ->latest('created_at')
+        ->first();
+
+    if ($startedEntry) {
+        $startedEntry->delete(); // remove accidental start
+    }
+
+    // ✅ Reset NitiMaster status
+    $nitiMaster->update([
+        'niti_status' => 'Upcoming'
+    ]);
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Niti has been reset successfully.',
+        'data' => [
+            'niti_id' => $request->niti_id,
+            'day_id'  => $dayId
+        ]
+    ]);
+}
+
+public function markNitiAsNotStarted(Request $request)
+{
+    $request->validate([
+        'niti_id' => 'required|string|exists:temple__niti_details,niti_id',
+        'niti_not_done_reason' => 'required|string|max:255'
+    ]);
+
+    $user = Auth::guard('niti_admin')->user();
+    if (!$user) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Unauthorized access.'
+        ], 401);
+    }
+
+    $nitiMaster = NitiMaster::where('niti_id', $request->niti_id)->first();
+
+    if (!$nitiMaster || !$nitiMaster->day_id) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Niti not found or day_id missing.'
+        ], 404);
+    }
+
+    if ($nitiMaster->niti_status !== 'Upcoming') {
+        return response()->json([
+            'status' => false,
+            'message' => 'Only Upcoming Nitis can be marked as Not Started.'
+        ], 400);
+    }
+
+    $dayId = $nitiMaster->day_id;
+    $now = Carbon::now('Asia/Kolkata');
+
+    // ✅ Update NitiMaster status to NotStarted
+    $nitiMaster->update([
+        'niti_status' => 'NotStarted'
+    ]);
+
+    // ✅ Always create a new NitiManagement entry
+    $management = NitiManagement::create([
+        'niti_id'               => $request->niti_id,
+        'not_done_user_id'      => $user->sebak_id,
+        'day_id'                => $dayId,
+        'date'                  => $now->toDateString(),
+        'niti_status'           => 'NotStarted',
+        'niti_not_done_reason'  => $request->niti_not_done_reason,
+    ]);
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Niti marked as Not Started.',
+        'data' => [
+            'niti_id' => $request->niti_id,
+            'day_id'  => $dayId,
+            'reason'  => $request->niti_not_done_reason,
+            'entry_id' => $management->id
+        ]
+    ]);
+}
+
+public function getStartedDarshanData()
+{
+    try {
+        // Get the first started darshan (object) or null if none
+        $startedDarshan = DarshanDetails::where('status', 'active')->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Started darshan detail fetched successfully.',
+            'data' => $startedDarshan,  // object or null
+        ], 200);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed to fetch started darshan detail.',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
 }
 
 }

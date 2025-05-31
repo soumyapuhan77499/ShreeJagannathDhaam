@@ -9,7 +9,6 @@ class DarshanManagement extends Model
 {
     use HasFactory;
     
-    
     protected $table = 'temple__darshan_management';
 
     protected $fillable = [
@@ -23,4 +22,10 @@ class DarshanManagement extends Model
         'duration',
         'darshan_status'
     ];
+
+    public function darshanDetails()
+{
+    return $this->belongsTo(DarshanDetails::class, 'darshan_id', 'id');
+}
+
 }

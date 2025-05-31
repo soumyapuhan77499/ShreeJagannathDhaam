@@ -448,4 +448,84 @@ public function getSpecialDarshans()
         ], 500);
     }
 }
+
+public function editDarshan(Request $request)
+{
+    try {
+        $request->validate([
+            'action'     => 'required|string|in:start,closed',
+        ]);
+
+        $user = Auth::guard('niti_admin')->user();
+
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized access.',
+            ], 401);
+        }
+
+        if ($request->action === 'start') {
+            if (empty($request->darshan_id)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Darshan ID is required to start darshan.',
+                ], 400);
+            }
+
+            $darshanToStart = DarshanDetails::find($request->darshan_id);
+            if (!$darshanToStart) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Darshan not found.',
+                ], 404);
+            }
+
+            // Find if any darshan is currently started (excluding the one to start)
+            $startedDarshan = DarshanDetails::where('darshan_status', 'Started')
+                ->where('id', '!=', $request->darshan_id)
+                ->first();
+
+            if ($startedDarshan) {
+                // Mark previous started darshan as Completed
+                $startedDarshan->darshan_status = 'Completed';
+                $startedDarshan->save();
+            }
+
+            // Start the requested darshan
+            $darshanToStart->darshan_status = 'Started';
+            $darshanToStart->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Darshan started successfully.',
+                'data' => $darshanToStart,
+            ], 200);
+
+        } elseif ($request->action === 'closed') {
+            // Set all darshans to Upcoming (reset status)
+            DarshanDetails::whereIn('darshan_status', ['Started', 'Completed'])
+                ->update(['darshan_status' => 'Upcoming']);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'All darshans reset to Upcoming successfully.',
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Invalid action.',
+        ], 400);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed to edit darshan.',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
+}
+
+
 }

@@ -22,12 +22,18 @@ class NitiManagement extends Model
         'resume_time',
         'end_time',
         'duration',
+        'start_user_id',
+        'end_user_id',
+        'start_time_edit_user_id',
+        'end_time_edit_user_id',
+        'not_done_user_id',
+        'niti_not_done_reason',
         'niti_status'
     ];
 
     public function master()
-{
-    return $this->belongsTo(NitiMaster::class, 'niti_id', 'niti_id');
-}
+    {
+        return $this->belongsTo(NitiMaster::class, 'niti_id', 'niti_id');
+    }
 
 }

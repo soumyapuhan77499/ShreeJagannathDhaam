@@ -285,24 +285,33 @@ Route::controller(TempleNitiController::class)->group(function () {
       Route::post('/update-sub-niti-name/{id}', 'updateSubNitiName');
       Route::delete('/delete-sub-niti/{id}','softDeleteSubNiti'); 
       Route::post('/niti/delete-other/{id}', 'deleteOtherNiti');
+      Route::post('/niti/edit-start-time',  'editStartTime');
+      Route::post('/niti/edit-end-time',  'editEndTime');
+      Route::post('/niti/reset','resetNiti');
+      Route::post('/niti/not-started', 'markNitiAsNotStarted');
   });
 
   Route::post('/save-temple-news', 'storeByNoticeName');
   Route::get('/latest-temple-notice','getLatestNotice');
-  Route::post('/save-hundi-collection', 'store');
-  Route::get('/get-hundi-collections', 'index');
+  Route::post('/save-hundi-collection', 'saveHundi');
+  Route::get('/get-hundi-collections', 'getHundi');
   Route::post('/notice/update-name', 'updateNoticeName');
   Route::post('/hundi/update',  'updateHundiCollection');
   Route::post('/temple-notice/delete/{id}',  'deleteNotice');
   Route::post('/niti-information', 'addNitiInformation');
   Route::post('/niti-information/{id}', 'deleteNitiInformation');
-
+  Route::get('/darshan/started-data',  'getStartedDarshanData');
 });
 
 Route::controller(TempleDarshanController::class)->group(function () {
   Route::get('/get-darshan', 'getDarshanListApi');
-  Route::middleware('auth:niti_admin')->post('/start-darshan', 'startDarshan');
-  Route::middleware('auth:niti_admin')->post('/end-darshan', 'endDarshan');
+  
+  Route::middleware('auth:niti_admin')->group(function () {
+    Route::post('/darshan/edit',  'editDarshan');
+    Route::post('/start-darshan',  'startDarshan');
+    Route::post('/end-darshan',  'endDarshan');
+  });
+  
   Route::get('/completed-darshan-today', 'getTodayCompletedDarshans');
   Route::get('/special-darshans', 'getSpecialDarshans');
 });
@@ -312,7 +321,6 @@ Route::controller(TemplePrasadController::class)->group(function () {
   Route::middleware('auth:niti_admin')->post('/start-prasad','startPrasad');
   Route::get('/daily-special-started-prasad','getPrasadApi');
 });
-
 
 Route::controller(RathaYatraController::class)->group(function () {
   Route::get('/rathayatra/status','getStatus');
