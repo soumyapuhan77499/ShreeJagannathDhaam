@@ -163,9 +163,7 @@ class WebsiteBannerController extends Controller
                     return $group->where('niti_status', 'Completed')->first()
                         ?? $group->where('niti_status', 'Started')->first();
                 })
-                ->sortBy('start_time')
                 ->values();
-
 
             foreach ($otherNitiManagements as $nitiMgmt) {
                 $niti = $nitiMgmt->master;
