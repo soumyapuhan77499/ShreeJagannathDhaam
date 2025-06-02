@@ -23,51 +23,53 @@ class WebsiteBannerController extends Controller
     {
         try {
             $templeId = 'TEMPLE25402';
-$latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
 
-if (!$latestDayId) {
-    return response()->json([
-        'status' => false,
-        'message' => 'No active Niti found to determine day_id.'
-    ], 404);
-}
+            $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
 
-// 1. Get only daily & special nitis
-$allNitis = NitiMaster::whereIn('niti_type', ['daily', 'special'])
-    ->where('niti_privacy', 'public')
-    ->where('niti_status', '!=', 'NotStarted')
-    ->orderBy('niti_order', 'asc')
-    ->get()
-    ->keyBy('niti_id');
+            if (!$latestDayId) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'No active Niti found to determine day_id.'
+                ], 404);
+            }
 
-// 2. Get their management records
-$nitiManagements = NitiManagement::where('day_id', $latestDayId)
-    ->with('master')
-    ->whereHas('master', fn($q) => $q->whereIn('niti_type', ['daily', 'special']))
-    ->get()
-    ->groupBy('niti_id');
+            // 1. Get only daily & special nitis
+            $allNitis = NitiMaster::whereIn('niti_type', ['daily', 'special'])
+                ->where('niti_privacy', 'public')
+                ->where('niti_status', '!=', 'NotStarted')
+                ->orderBy('niti_order', 'asc')
+                ->get()
+                ->keyBy('niti_id');
 
-// 3. Running sub-nitis
-$activeNitiIds = NitiMaster::whereIn('niti_status', ['Started', 'Paused'])->pluck('niti_id');
-$runningSubNitis = TempleSubNitiManagement::where(function ($q) {
-        $q->where('status', 'Running')->orWhere('status', '!=', 'Deleted');
-    })
-    ->where('day_id', $latestDayId)
-    ->whereIn('niti_id', $activeNitiIds)
-    ->get();
+            // 2. Get their management records
+            $nitiManagements = NitiManagement::where('day_id', $latestDayId)
+                ->with('master')
+                ->whereHas('master', fn($q) => $q->whereIn('niti_type', ['daily', 'special']))
+                ->get()
+                ->groupBy('niti_id');
 
-// 4. Special grouped by after_special_niti
-$specialNitisGrouped = $allNitis->filter(fn($niti) => $niti->niti_type === 'special')->groupBy('after_special_niti');
+            // 3. Running sub-nitis
+            $activeNitiIds = NitiMaster::whereIn('niti_status', ['Started', 'Paused'])->pluck('niti_id');
 
-// 5. Get 'other' nitis that are Started or Completed
-$otherNitiManagements = NitiManagement::where('day_id', $latestDayId)
-    ->with('master')
-    ->whereHas('master', fn($q) => $q->where('niti_type', 'other'))
-    ->whereIn('niti_status', ['Started', 'Completed'])
-    ->orderBy('start_time')
-    ->get();
+            $runningSubNitis = TempleSubNitiManagement::where(function ($q) {
+                    $q->where('status', 'Running')->orWhere('status', '!=', 'Deleted');
+                })
+                ->where('day_id', $latestDayId)
+                ->whereIn('niti_id', $activeNitiIds)
+                ->get();
 
-$mergedNitiList = collect();
+            // 4. Special grouped by after_special_niti
+            $specialNitisGrouped = $allNitis->filter(fn($niti) => $niti->niti_type === 'special')->groupBy('after_special_niti');
+
+            // 5. Get 'other' nitis that are Started or Completed
+            $otherNitiManagements = NitiManagement::where('day_id', $latestDayId)
+                ->with('master')
+                ->whereHas('master', fn($q) => $q->where('niti_type', 'other'))
+                ->whereIn('niti_status', ['Started', 'Completed'])
+                ->orderBy('start_time')
+                ->get();
+
+           $mergedNitiList = collect();
 
 foreach ($allNitis as $niti_id => $niti) {
     $management = $nitiManagements->has($niti_id)
@@ -76,6 +78,7 @@ foreach ($allNitis as $niti_id => $niti) {
 
     $runningSubs = $runningSubNitis->where('niti_id', $niti_id);
 
+    // Push the daily/special
     $mergedNitiList->push([
         'niti_id' => $niti->niti_id,
         'niti_name' => $niti->niti_name,
@@ -105,9 +108,10 @@ foreach ($allNitis as $niti_id => $niti) {
         ])->values(),
     ]);
 
-    // Attach specials
+    // Special after this daily
     if ($niti->niti_type === 'daily') {
         $specialsAfter = $specialNitisGrouped->get($niti->niti_id, collect());
+
         foreach ($specialsAfter as $specialNiti) {
             $specialMgmt = $nitiManagements->has($specialNiti->niti_id)
                 ? $nitiManagements[$specialNiti->niti_id]->sortByDesc('created_at')->first()
@@ -145,10 +149,12 @@ foreach ($allNitis as $niti_id => $niti) {
             ]);
         }
 
-        // Append corresponding other nitis by time
-        $matchingOthers = $otherNitiManagements->filter(fn($other) =>
-            $management && $other->start_time >= $management->start_time
-        );
+        // 🟨 Insert matching "other" nitis under this daily/special block
+        $matchingOthers = $otherNitiManagements->filter(function ($other) use ($management) {
+            return $management && $other->start_time && $management->start_time &&
+                   $other->start_time >= $management->start_time &&
+                   $other->start_time <= ($management->end_time ?? now());
+        });
 
         foreach ($matchingOthers as $nitiMgmt) {
             $niti = $nitiMgmt->master;
@@ -185,47 +191,48 @@ foreach ($allNitis as $niti_id => $niti) {
                 ])->values(),
             ]);
 
-            $otherNitiManagements = $otherNitiManagements->reject(fn($item) => $item->id === $nitiMgmt->id);
+            // Remove added other
+            $otherNitiManagements = $otherNitiManagements->reject(fn($o) => $o->id === $nitiMgmt->id);
         }
     }
 }
 
-// Add remaining others at the end
-foreach ($otherNitiManagements as $nitiMgmt) {
-    $niti = $nitiMgmt->master;
-    if (!$niti) continue;
+            // Add remaining others at the end
+            foreach ($otherNitiManagements as $nitiMgmt) {
+                $niti = $nitiMgmt->master;
+                if (!$niti) continue;
 
-    $runningSubs = $runningSubNitis->where('niti_id', $niti->niti_id);
+                $runningSubs = $runningSubNitis->where('niti_id', $niti->niti_id);
 
-    $mergedNitiList->push([
-        'niti_id' => $niti->niti_id,
-        'niti_name' => $niti->niti_name,
-        'english_niti_name' => $niti->english_niti_name,
-        'niti_type' => $niti->niti_type,
-        'niti_status' => $niti->niti_status,
-        'date_time' => $niti->date_time,
-        'language' => $niti->language,
-        'niti_privacy' => $niti->niti_privacy,
-        'niti_about' => $niti->niti_about,
-        'niti_sebayat' => $niti->niti_sebayat,
-        'description' => $niti->description,
-        'english_description' => $niti->english_description,
-        'start_time' => $nitiMgmt->start_time,
-        'pause_time' => $nitiMgmt->pause_time,
-        'resume_time' => $nitiMgmt->resume_time,
-        'end_time' => $nitiMgmt->end_time,
-        'duration' => $nitiMgmt->duration,
-        'management_status' => $nitiMgmt->niti_status,
-        'after_special_niti_name' => null,
-        'running_sub_niti' => $runningSubs->map(fn($sub) => [
-            'sub_niti_id' => $sub->sub_niti_id,
-            'sub_niti_name' => $sub->sub_niti_name,
-            'start_time' => $sub->start_time,
-            'status' => $sub->status,
-            'date' => $sub->date,
-        ])->values(),
-    ]);
-}
+                $mergedNitiList->push([
+                    'niti_id' => $niti->niti_id,
+                    'niti_name' => $niti->niti_name,
+                    'english_niti_name' => $niti->english_niti_name,
+                    'niti_type' => $niti->niti_type,
+                    'niti_status' => $niti->niti_status,
+                    'date_time' => $niti->date_time,
+                    'language' => $niti->language,
+                    'niti_privacy' => $niti->niti_privacy,
+                    'niti_about' => $niti->niti_about,
+                    'niti_sebayat' => $niti->niti_sebayat,
+                    'description' => $niti->description,
+                    'english_description' => $niti->english_description,
+                    'start_time' => $nitiMgmt->start_time,
+                    'pause_time' => $nitiMgmt->pause_time,
+                    'resume_time' => $nitiMgmt->resume_time,
+                    'end_time' => $nitiMgmt->end_time,
+                    'duration' => $nitiMgmt->duration,
+                    'management_status' => $nitiMgmt->niti_status,
+                    'after_special_niti_name' => null,
+                    'running_sub_niti' => $runningSubs->map(fn($sub) => [
+                        'sub_niti_id' => $sub->sub_niti_id,
+                        'sub_niti_name' => $sub->sub_niti_name,
+                        'start_time' => $sub->start_time,
+                        'status' => $sub->status,
+                        'date' => $sub->date,
+                    ])->values(),
+                ]);
+            }
 
             $nitiInfo = TempleNews::where('type', 'information')
             ->where('niti_notice_status','Started')
