@@ -775,8 +775,6 @@ public function completedNiti()
     }
 }
 
-
-
 public function getOtherNiti()
 {
     try {
