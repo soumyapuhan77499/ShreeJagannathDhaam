@@ -207,7 +207,7 @@ class WebsiteBannerController extends Controller
         }
 
             // ✅ Final sorting
-            $mergedNitiList = collect($mergedNitiList)->sortBy('id')->values();
+            $mergedNitiList = collect($mergedNitiList)->values();
 
             $nitiInfo = TempleNews::where('type', 'information')
             ->where('niti_notice_status','Started')
