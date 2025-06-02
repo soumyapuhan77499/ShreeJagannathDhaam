@@ -757,9 +757,7 @@ public function completedNiti()
             });
 
         // ✅ Merge with Started first, then Completed/NotStarted
-        $merged = $startedEntries
-            ->merge($completedManagement)
-            ->values();
+       $merged = $completedManagement->merge($startedEntries)->values();
 
         return response()->json([
             'status' => true,
@@ -1257,7 +1255,6 @@ public function getHundi()
     }
 }
 
-
 public function updateNoticeName(Request $request)
 {
     $request->validate([
@@ -1293,8 +1290,8 @@ public function updateNoticeName(Request $request)
 
 public function storeByNoticeName(Request $request)
 {
-   
-        try {
+    try {
+
         $news = TempleNews::create([
             'type' => 'notice',
             'notice_name' => $request->notice_name,
@@ -1313,8 +1310,8 @@ public function storeByNoticeName(Request $request)
                 'status' => false,
                 'message' => 'Something went wrong!',
                 'error' => $e->getMessage()
-            ], 500);
-        }
+        ], 500);
+    }
 }
 
 public function getLatestNotice()
@@ -1344,7 +1341,6 @@ public function getLatestNotice()
         ], 500);
     }
 }
-
 
 public function updateHundiCollection(Request $request)
 {
