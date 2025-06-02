@@ -146,7 +146,6 @@ public function getDarshanList()
     }
 
     $darshanList = DarshanDetails::where('status', 'active')
-        ->where('language', 'Odia')
         ->orderBy('start_time') // Optional: to sort by time
         ->get()
         ->map(function ($darshan) {
