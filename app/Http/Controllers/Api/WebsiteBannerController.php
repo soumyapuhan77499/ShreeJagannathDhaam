@@ -206,8 +206,9 @@ class WebsiteBannerController extends Controller
             ];
         }
             // ✅ Final sorting
-            $mergedNitiList = collect($mergedNitiList)->values();
-
+  $mergedNitiList = collect($mergedNitiList)->sortBy(function ($item) {
+        return $item['start_time'] ?? '9999:99:99';
+    })->values();
             $nitiInfo = TempleNews::where('type', 'information')
             ->where('niti_notice_status','Started')
             ->where('status','active')
