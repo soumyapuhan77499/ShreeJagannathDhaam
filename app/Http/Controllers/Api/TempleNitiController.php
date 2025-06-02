@@ -757,7 +757,7 @@ public function completedNiti()
         // ✅ Combine and sort (optional sort by start_time or id)
         $merged = $completedManagement
             ->merge($startedEntries)
-            ->sortByDesc('id')
+            ->sortByAsc('id')
             ->values();
 
         return response()->json([
