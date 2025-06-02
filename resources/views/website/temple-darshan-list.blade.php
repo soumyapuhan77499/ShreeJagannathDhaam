@@ -103,7 +103,6 @@
             height: 100%;
             object-fit: cover;
             border-radius: 26%;
-            margin-top: 25px;
         }
 
         /* Textual content on the right */
