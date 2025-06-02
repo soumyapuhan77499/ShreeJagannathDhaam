@@ -256,6 +256,17 @@ public function startNiti(Request $request)
             ], 409);
         }
 
+        $anyRunningNiti = NitiManagement::where('day_id', $dayId)
+        ->where('niti_status', 'Started')
+        ->exists();
+
+        if ($anyRunningNiti) {
+            return response()->json([
+                'status' => false,
+                'message' => 'A Niti is already running for this day. Please complete it before starting another.'
+            ], 409);
+        }
+
         // ✅ Step 1: Start Niti
         $nitiManagement = NitiManagement::create([
             'niti_id'     => $request->niti_id,
@@ -276,26 +287,26 @@ public function startNiti(Request $request)
         // ✅ Step 2: Start Darshan if linked
        $darshanLog = null;
 
-if ($nitiMaster->connected_darshan_id) {
-    if ($nitiMaster->connected_darshan_id == 5) {
-        // If darshan id is 5, set all darshans to 'Upcoming'
-        DarshanDetails::query()->update(['darshan_status' => 'Upcoming']);
-    } else {
-        // Otherwise, create a new darshan management entry and update status to 'Started'
-        $darshanLog = DarshanManagement::create([
-            'darshan_id'     => $nitiMaster->connected_darshan_id,
-            'sebak_id'       => $user->sebak_id,
-            'day_id'         => $dayId,
-            'date'           => $now->toDateString(),
-            'start_time'     => $now->format('H:i:s'),
-            'darshan_status' => 'Started',
-            'temple_id'      => $nitiMaster->temple_id ?? null,
-        ]);
+        if ($nitiMaster->connected_darshan_id) {
+            if ($nitiMaster->connected_darshan_id == 5) {
+                // If darshan id is 5, set all darshans to 'Upcoming'
+                DarshanDetails::query()->update(['darshan_status' => 'Upcoming']);
+            } else {
+                // Otherwise, create a new darshan management entry and update status to 'Started'
+                $darshanLog = DarshanManagement::create([
+                    'darshan_id'     => $nitiMaster->connected_darshan_id,
+                    'sebak_id'       => $user->sebak_id,
+                    'day_id'         => $dayId,
+                    'date'           => $now->toDateString(),
+                    'start_time'     => $now->format('H:i:s'),
+                    'darshan_status' => 'Started',
+                    'temple_id'      => $nitiMaster->temple_id ?? null,
+                ]);
 
-        DarshanDetails::where('id', $nitiMaster->connected_darshan_id)
-            ->update(['darshan_status' => 'Started']);
-    }
-}
+                DarshanDetails::where('id', $nitiMaster->connected_darshan_id)
+                    ->update(['darshan_status' => 'Started']);
+            }
+        }
 
 
         // ✅ Final response
