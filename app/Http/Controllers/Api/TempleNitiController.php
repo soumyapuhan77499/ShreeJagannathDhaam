@@ -736,7 +736,7 @@ public function completedNiti()
         $completedManagement = NitiManagement::with('master')
             ->whereIn('niti_status', ['Completed', 'NotStarted'])
             ->where('day_id', $dayId)
-    ->orderBy('id') // ascending order (oldest first)
+            ->orderBy('id') // ascending order (oldest first)
             ->get()
             ->map(function ($item) {
                 return [

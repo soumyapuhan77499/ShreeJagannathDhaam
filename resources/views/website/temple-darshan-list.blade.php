@@ -451,7 +451,7 @@
                             {{ $language === 'Odia' ? $darshan->darshan_name : $darshan->english_darshan_name ?? $darshan->darshan_name }}
                         </h3>
 
-                        <div class="darshan-times">
+                        {{-- <div class="darshan-times">
                             @if ($status === 'Started' && $start)
                                 <p>
                                     <strong>{{ $language === 'Odia' ? 'ଆରମ୍ଭ' : 'Started' }}:</strong>
@@ -480,7 +480,7 @@
                                     {{ $language === 'Odia' ? 'ଏପର୍ଯ୍ୟନ୍ତ ଆରମ୍ଭ ହୋଇନାହିଁ' : 'Not yet started' }}
                                 </p>
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
