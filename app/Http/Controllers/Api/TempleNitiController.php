@@ -693,6 +693,7 @@ public function stopNiti(Request $request)
         ], 500);
     }
 }
+
 public function completedNiti()
 {
     try {
@@ -1204,7 +1205,6 @@ public function softDeleteSubNiti($id)
 
 public function saveHundi(Request $request)
 {
-  
     try {
 
         $hundi = TempleHundi::create([
@@ -1212,6 +1212,8 @@ public function saveHundi(Request $request)
             'rupees'    => $request->rupees,
             'gold'      => $request->gold,
             'silver'    => $request->silver,
+            'mix_gold'  => $request->mix_gold,
+            'mix_silver'=> $request->mix_silver,
         ]);
 
         return response()->json([
@@ -1253,6 +1255,40 @@ public function getHundi()
             'error' => $e->getMessage()
         ], 500);
     }
+}
+
+
+public function updateNoticeName(Request $request)
+{
+    $request->validate([
+        'id' => 'required|exists:temple__news,id',
+        'notice_name' => 'required|string|max:255',
+    ]);
+
+    try {
+        $news = TempleNews::findOrFail($request->id);
+        $news->notice_name = $request->notice_name;
+        $news->start_date = $request->start_date;
+        $news->end_date = $request->end_date;
+        $news->mix_gold = $request->mix_gold;
+        $news->mix_silver = $request->mix_silver;
+
+        $news->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Notice name updated successfully.',
+            'data' => $news
+        ],200);
+
+        
+        } catch (\Exception $e) {
+         return response()->json([
+            'status' => false,
+            'message' => 'Failed to update notice name.',
+            'error' => $e->getMessage()
+         ], 500);
+        }
 }
 
 public function storeByNoticeName(Request $request)
@@ -1309,36 +1345,6 @@ public function getLatestNotice()
     }
 }
 
-public function updateNoticeName(Request $request)
-{
-    $request->validate([
-        'id' => 'required|exists:temple__news,id',
-        'notice_name' => 'required|string|max:255',
-    ]);
-
-    try {
-        $news = TempleNews::findOrFail($request->id);
-        $news->notice_name = $request->notice_name;
-        $news->start_date = $request->start_date;
-        $news->end_date = $request->end_date;
-
-        $news->save();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Notice name updated successfully.',
-            'data' => $news
-        ],200);
-
-        
-        } catch (\Exception $e) {
-         return response()->json([
-            'status' => false,
-            'message' => 'Failed to update notice name.',
-            'error' => $e->getMessage()
-         ], 500);
-        }
-}
 
 public function updateHundiCollection(Request $request)
 {

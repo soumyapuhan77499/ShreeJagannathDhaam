@@ -22,7 +22,8 @@ class WebsiteBannerController extends Controller
     public function manageWebsiteBanner()
     {
         try {
-            $templeId = 'TEMPLE25402';
+        
+        $templeId = 'TEMPLE25402';
 
         $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
 
@@ -148,7 +149,7 @@ class WebsiteBannerController extends Controller
                 }
             }
         }
-        
+
         $otherNitiManagements = NitiManagement::where('day_id', $latestDayId)
             ->with('master')
             ->whereHas('master', function ($query) {
@@ -166,7 +167,6 @@ class WebsiteBannerController extends Controller
             })
             ->sortBy('start_time')
             ->values();
-
 
         foreach ($otherNitiManagements as $nitiMgmt) {
             $niti = $nitiMgmt->master;
