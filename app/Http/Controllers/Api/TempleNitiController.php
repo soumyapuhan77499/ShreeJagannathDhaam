@@ -256,17 +256,6 @@ public function startNiti(Request $request)
             ], 409);
         }
 
-        $anyRunningNiti = NitiManagement::where('day_id', $dayId)
-        ->where('niti_status', 'Started')
-        ->exists();
-
-        if ($anyRunningNiti) {
-            return response()->json([
-                'status' => false,
-                'message' => 'A Niti is already running for this day. Please complete it before starting another.'
-            ], 409);
-        }
-
         // ✅ Step 1: Start Niti
         $nitiManagement = NitiManagement::create([
             'niti_id'     => $request->niti_id,
@@ -308,7 +297,6 @@ public function startNiti(Request $request)
             }
         }
 
-
         // ✅ Final response
         return response()->json([
             'status' => true,
@@ -319,13 +307,13 @@ public function startNiti(Request $request)
             ]
         ], 200);
 
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => false,
-            'message' => 'Failed to start Niti.',
-            'error' => $e->getMessage()
-        ], 500);
-    }
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Failed to start Niti.',
+                'error' => $e->getMessage()
+            ], 500);
+        }
 }
 
 public function pauseNiti(Request $request)
@@ -746,37 +734,30 @@ public function completedNiti()
         // Step 2: Get one Started Niti from NitiMaster not in completed list
         $excludedNitiIds = $completedManagement->pluck('niti_id')->unique()->toArray();
 
-        $oneStartedFromMaster = NitiMaster::where('day_id', $dayId)
-            ->where('niti_status', 'Started')
-            ->whereNotIn('niti_id', $excludedNitiIds)
-            ->first();
+        $startedEntries = NitiManagement::where('niti_status', 'Started')
+        ->where('day_id', $dayId)
+        ->with('master')
+        ->orderBy('id', 'desc')
+        ->get();                                                        
 
-        $startedNiti = collect();
-
-        if ($oneStartedFromMaster) {
-            $latestStartedEntry = NitiManagement::where('niti_id', $oneStartedFromMaster->niti_id)
-                ->where('niti_status', 'Started')
-                ->orderBy('start_time', 'desc')
-                ->first();
-
-            $startedNiti->push([
-                'id'                       => optional($latestStartedEntry)->id,
-                'niti_id'                  => $oneStartedFromMaster->niti_id,
-                'niti_name'                => $oneStartedFromMaster->niti_name,
-                'sebak_id'                 => optional($latestStartedEntry)->sebak_id,
-                'date'                     => Carbon::parse($oneStartedFromMaster->date_time)->toDateString(),
-                'start_time'               => optional($latestStartedEntry)->start_time,
+        $startedNiti = $startedEntries->map(function ($entry) {
+            return [
+                'id'                       => $entry->id,
+                'niti_id'                  => $entry->niti_id,
+                'niti_name'                => optional($entry->master)->niti_name,
+                'sebak_id'                 => $entry->sebak_id,
+                'date'                     => $entry->date,
+                'start_time'               => $entry->start_time,
                 'end_time'                 => null,
                 'duration'                 => null,
                 'niti_status'              => 'Started',
-                'start_user_id'            => optional($latestStartedEntry)->start_user_id,
-                'end_user_id'              => optional($latestStartedEntry)->end_user_id,
-                'start_time_edit_user_id'  => optional($latestStartedEntry)->start_time_edit_user_id,
-                'end_time_edit_user_id'    => optional($latestStartedEntry)->end_time_edit_user_id,
-            ]);
-        }
-
-        // Fix: convert to base collection to merge arrays
+                'start_user_id'            => $entry->start_user_id,
+                'end_user_id'              => $entry->end_user_id,
+                'start_time_edit_user_id'  => $entry->start_time_edit_user_id,
+                'end_time_edit_user_id'    => $entry->end_time_edit_user_id,
+            ];
+        });
+                // Fix: convert to base collection to merge arrays
         $merged = $completedManagement->toBase()->merge($startedNiti)->values();
 
         return response()->json([
