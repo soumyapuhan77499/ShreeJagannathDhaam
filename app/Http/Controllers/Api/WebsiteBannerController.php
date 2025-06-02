@@ -205,7 +205,6 @@ class WebsiteBannerController extends Controller
                 })->values(),
             ];
         }
-
             // ✅ Final sorting
             $mergedNitiList = collect($mergedNitiList)->values();
 
