@@ -95,44 +95,80 @@ public function lockerShoeList()
     return view('website.locker-shoe-list', compact('services'));
 }
 
-public function getDarshanList()
-{
-        $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
+// public function getDarshanList()
+// {
+//         $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
 
-        if (!$latestDayId) {
-            return response()->json([
-                'status' => false,
-                'message' => 'No active Niti found to determine day_id.'
-            ], 404);
-        }   
+//         if (!$latestDayId) {
+//             return response()->json([
+//                 'status' => false,
+//                 'message' => 'No active Niti found to determine day_id.'
+//             ], 404);
+//         }   
 
-        $darshans = DarshanDetails::where('status', 'active')->where('language', 'Odia')->get();
+//         $darshans = DarshanDetails::where('status', 'active')->where('language', 'Odia')->get();
 
-        // $darshanList = $darshans->map(function ($darshan) use ($latestDayId) {
+//         $darshanList = $darshans->map(function ($darshan) use ($latestDayId) {
        
 
-        // $todayLog = DarshanManagement::where('darshan_id', $darshan->id)
-        // ->where('day_id', $latestDayId)
-        // ->orderByDesc('id') // or 'start_time'
-        // ->first();
+//         $todayLog = DarshanManagement::where('darshan_id', $darshan->id)
+//         ->where('day_id', $latestDayId)
+//         ->orderByDesc('id') // or 'start_time'
+//         ->first();
 
 
-        return (object) [
-            'darshan_id'     => $darshans->id,
-            'darshan_name'   => $darshans->darshan_name,
-            'darshan_day'    => $darshans->darshan_day ?? 'N/A',
-            'darshan_image'  => $darshans->darshan_image ?? null,
-            'description'    => $darshans->description,
-            'start_time'     => $darshans?->start_time,
-            'end_time'       => $darshans?->end_time,
-            'duration'       => $darshans?->duration,
-            'date'           => $darshans?->date,
-            'today_status'   => $darshans?->darshan_status ?? 'Upcoming',
-        ];
-    // });
+//         return (object) [
+//             'darshan_id'     => $darshan->id,
+//             'darshan_name'   => $darshan->darshan_name,
+//             'darshan_day'    => $darshan->darshan_day ?? 'N/A',
+//             'darshan_image'  => $darshan->darshan_image ?? null,
+//             'description'    => $darshan->description,
+//             'start_time'     => $todayLog?->start_time,
+//             'end_time'       => $todayLog?->end_time,
+//             'duration'       => $todayLog?->duration,
+//             'date'           => $todayLog?->date,
+//             'today_status'   => $todayLog?->darshan_status ?? 'Upcoming',
+//         ];
+//     });
+
+//     return view('website.temple-darshan-list', compact('darshanList'));
+// }
+
+public function getDarshanList()
+{
+    $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
+
+    if (!$latestDayId) {
+        return response()->json([
+            'status' => false,
+            'message' => 'No active Niti found to determine day_id.'
+        ], 404);
+    }
+
+    $darshanList = DarshanDetails::where('status', 'active')
+        ->where('language', 'Odia')
+        ->orderBy('start_time') // Optional: to sort by time
+        ->get()
+        ->map(function ($darshan) {
+            return (object)[
+                'darshan_id'     => $darshan->id,
+                'darshan_name'   => $darshan->darshan_name,
+                'english_darshan_name' => $darshan->english_darshan_name,
+                'darshan_day'    => $darshan->darshan_day ?? 'N/A',
+                'darshan_image'  => $darshan->darshan_image ?? null,
+                'description'    => $darshan->description,
+                'english_description' => $darshan->english_description,
+                'start_time'     => $darshan->start_time,
+                'end_time'       => $darshan->end_time,
+                'duration'       => $darshan->duration,
+                'date'           => $darshan->date,
+                'today_status'   => $darshan->darshan_status ?? 'Upcoming',
+            ];
+        });
 
     return view('website.temple-darshan-list', compact('darshanList'));
 }
+
 
 public function showByServiceType($service_type)
 {
