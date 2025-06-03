@@ -144,16 +144,8 @@
                         <li><a href="{{ url('/lang/English') }}">English</a></li>
                     </ul>
                 </li>
-
             </ul>
         </nav>
-
-        <!-- Hamburger Icon -->
-        <div class="hamburger-icon">
-            <div class="hamburger-menu">
-                <ion-icon name="menu-outline" style="height: 35px;width:45px"></ion-icon>
-            </div>
-        </div>
 
          <div class="hamburger-icon"  onclick="toggleMobileMenu(this)">
             <div class="hamburger-menu">
