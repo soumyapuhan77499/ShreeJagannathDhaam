@@ -158,7 +158,7 @@
     </div>
 
     <!-- Mobile Nav -->
-    <nav class="nav-menu" id="mobileNav">
+    <nav class="nav-menu mobile-menu" id="mobileNav">
             <div class="nav-close"><i class="fa fa-times"></i></div>
             <ul>
                 <!-- Language Switcher -->
@@ -274,3 +274,11 @@
         </nav>
 
 </header>
+
+<script>
+function toggleMobileMenu(el) {
+    el.classList.toggle('active');
+    document.getElementById('mobileNav').classList.toggle('active');
+}
+</script>
+
