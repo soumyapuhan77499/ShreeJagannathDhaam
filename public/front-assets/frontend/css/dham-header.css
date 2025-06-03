@@ -36,12 +36,12 @@ body {
 .logo img {
   height: 60px;
   width: auto;
-}
-
+}/* ===== Desktop Menu ===== */
 .desktop-menu {
   display: flex !important;
   align-items: center;
   gap: 30px;
+  font-family: Arial, sans-serif;
 }
 
 .desktop-menu ul {
@@ -49,6 +49,8 @@ body {
   align-items: center;
   list-style: none;
   gap: 30px;
+  margin: 0;
+  padding: 0;
 }
 
 .desktop-menu li {
@@ -60,7 +62,7 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
 .desktop-menu a:hover {
@@ -69,26 +71,27 @@ body {
 
 .has-submenus {
   position: relative;
+  cursor: pointer;
 }
 
 /* ===== Submenu / Mega Menu ===== */
 .has-submenus .submenu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 100%; /* Below parent li */
   left: 50%;
   transform: translateX(-50%);
   min-width: 60vw;
   background: #fff;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  padding: 30px;
+  padding: 30px 20px;
   z-index: 2000;
   border-radius: 0 0 10px 10px;
   box-sizing: border-box;
-  display: flex;
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
+  display: flex; /* Use flex to layout columns */
 }
 
 .has-submenus:hover .submenu {
@@ -96,8 +99,9 @@ body {
 }
 
 .submenu-column {
-  flex: 1;
+  flex: 1 1 180px; /* Flexible with min width */
   min-width: 180px;
+  max-width: 220px;
 }
 
 .submenu-column h4 {
@@ -115,7 +119,7 @@ body {
   color: #555559;
   font-size: 14px;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
 .submenu-column a:hover,
@@ -125,57 +129,29 @@ body {
 
 /* ===== Hamburger Icon (for mobile toggle visibility only) ===== */
 .hamburger-icon {
-  display: none;
-}
-
-/* ===== Responsive: Hide Desktop Menu on Mobile ===== */
-@media (max-width: 991px) {
-  
-  .desktop-menu {
-    display: none !important;
-  }
-
-  .hamburger-icon {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-  }
-
-  .hamburger-icon .hamburger-menu span {
-    width: 30px;
-    height: 4px;
-    background: #FF5733;
-    margin-bottom: 5px;
-    transition: all 0.3s ease;
-  }
-}
-
-.hamburger-icon {
   position: absolute;
   top: 10px;
   right: 10px;
   width: 40px;
   height: 24px;
-  z-index: 11;
-  display: flex;
+  z-index: 3000;
+  display: none; /* Hidden on desktop by default */
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .hamburger-menu {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  cursor: pointer;
   margin-top: 8px;
 }
 
-
-/* Colorful spans */
-.hamburger-menu span:nth-child(1) {
+/* Colorful hamburger bars */
+.hamburger-menu span:nth-child(1),
+.hamburger-menu span:nth-child(3) {
   background: #FF5733;
-  /* Reddish */
   width: 100%;
   height: 5px;
 }
@@ -186,13 +162,7 @@ body {
   height: 5px;
 }
 
-.hamburger-menu span:nth-child(3) {
-  background: #FF5733;
-  width: 100%;
-  height: 5px;
-}
-
-/* Hover effect to brighten the colors */
+/* Hover effects for hamburger */
 .hamburger-icon:hover .hamburger-menu span:nth-child(1) {
   background: #FF6F50;
 }
@@ -205,7 +175,7 @@ body {
   background: #f9f9fb;
 }
 
-/* Active state transformation example */
+/* Active state transform for hamburger menu */
 .hamburger-icon.active .hamburger-menu span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -216,6 +186,17 @@ body {
 
 .hamburger-icon.active .hamburger-menu span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== Responsive: Hide Desktop Menu on Mobile and Show Hamburger ===== */
+@media (max-width: 991px) {
+  .desktop-menu {
+    display: none !important;
+  }
+
+  .hamburger-icon {
+    display: flex;
+  }
 }
 
 @media (max-width: 768px) {
