@@ -38,12 +38,6 @@ body {
   width: auto;
 }
 
-/* Desktop Navigation */
-.desktop-menu {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
 
 .desktop-menu ul {
   display: flex;
