@@ -172,7 +172,7 @@ body {
 }
 
 .hamburger-icon:hover .hamburger-menu span:nth-child(3) {
-  background: #f9f9fb;
+  background: #FF6F50;
 }
 
 /* Active state transform for hamburger menu */
