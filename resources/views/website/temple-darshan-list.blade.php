@@ -260,7 +260,7 @@
                 .timeline-item.right::after {
                     content: '';
                     position: absolute;
-                    left: 7px;
+                    left: 13px;
                     top: 28px;
                     width: 14px;
                     height: 14px;
