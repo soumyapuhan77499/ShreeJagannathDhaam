@@ -74,7 +74,7 @@
                     {{-- Info Block --}}
                     <div class="service-info" style="display: flex; justify-content: space-between;">
                         <div>
-                            <div class="info-line" style="height: 120px">
+                            <div class="info-line" style="height: 80px">
                                 <div class="property-offer-section">
                                     <strong>Property Offer</strong>
                                 </div>
@@ -104,13 +104,10 @@
                                 </span>
                             </div>
 
-
-                            <div class="info-line"
-                                style="border: 1px solid #ccc; border-radius: 8px; padding: 8px 12px; display: inline-flex; align-items: center; gap: 8px;">
+                            <div class="info-line" style="border: 1px solid #ccc; border-radius: 8px; padding: 8px 12px; display: inline-flex; align-items: center; gap: 8px;">
                                 <i class="fas fa-phone" style="color: #333;"></i>
                                 {{ $item->contact_no ?? 'Not Available' }}
                             </div>
-
 
                         </div>
                     </div>
