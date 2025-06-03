@@ -177,7 +177,7 @@ body {
 
 /* Active state transform for hamburger menu */
 .hamburger-icon.active .hamburger-menu span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  transform: rotate(47deg) translate(10px, 8px)
 }
 
 .hamburger-icon.active .hamburger-menu span:nth-child(2) {
