@@ -79,7 +79,7 @@
                                     <strong>{{ $language === 'Odia' ? 'ଉପଲବ୍ଧ ସୁବିଧା' : 'Property Offer' }}</strong>
                                 </div>
                                 <div class="info-line">
-                                    {{ $language === 'Odia' ? 'ଖାଦ୍ୟ: ବ୍ରେକଫାଷ୍ଟ / ମଧ୍ୟାହ୍ନ ଭୋଜନ / ରାତି ଭୋଜନ' : 'Breakfast / Lunch / Dinner' }}
+                                    {{ $language === 'Odia' ? 'ଜଳଖିଆ / ମଧ୍ୟାହ୍ନ ଭୋଜନ / ରାତି ଭୋଜନ' : 'Breakfast / Lunch / Dinner' }}
                                 </div>
                                 <div class="info-line">
                                     {{ $language === 'Odia' ? 'ଏସି ରୁମ୍ ଉପଲବ୍ଧ' : 'AC Room Available' }}
