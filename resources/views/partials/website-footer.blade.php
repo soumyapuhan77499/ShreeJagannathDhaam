@@ -129,8 +129,8 @@
 <div
     style="height: 80px; width: 100%; background-color: #ffae35; display: flex; align-items: center; justify-content: center;">
     <div class="text-center text-sm text-black-400 mt-10 mb-6">
-        © {{ date('Y') }}
-        {{ $language === 'Odia' ? 'ଶ୍ରୀ ଜଗନ୍ନାଥ ମନ୍ଦିର ପ୍ରଶାସନ (SJTA)' : 'Shree Jagannath Temple Administration (SJTA)' }}
+        {{-- © {{ date('Y') }}
+        {{ $language === 'Odia' ? 'ଶ୍ରୀ ଜଗନ୍ନାଥ ମନ୍ଦିର ପ୍ରଶାସନ (SJTA)' : 'Shree Jagannath Temple Administration (SJTA)' }} --}}
     </div>
 </div>
 
