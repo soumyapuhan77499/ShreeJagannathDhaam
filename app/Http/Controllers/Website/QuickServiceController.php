@@ -93,6 +93,7 @@ public function lockerShoeList()
         ->get();
 
     return view('website.locker-shoe-list', compact('services'));
+
 }
 
 // public function getDarshanList()
@@ -168,7 +169,6 @@ public function getDarshanList()
     return view('website.temple-darshan-list', compact('darshanList'));
 }
 
-
 public function showByServiceType($service_type)
 {
     $language = session('app_language', 'English');
@@ -206,7 +206,7 @@ public function viewPanji()
     $todayPanji = PanjiDetails::where('date', $todayDate)->where('status', 'active')->where('language',$language)->first();
 
     return view('website.view-panji-details', compact('todayPanji'));  
-} 
+}
 
 public function serviceEmergerncy(){
 

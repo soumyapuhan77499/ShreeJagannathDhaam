@@ -239,7 +239,7 @@
                 .timeline::before {
                     content: '';
                     position: absolute;
-                    left: 18px;
+                    left: 25px;
                     top: 0;
                     width: 4px;
                     height: 100%;

@@ -34,7 +34,7 @@
             top: 0;
             bottom: 0;
             width: 6px;
-            background: linear-gradient(to bottom, #db4d30, #f59e0b, #1d4ed8);
+            background: linear-gradient(to bottom, #f59e0b, #db4d30, #1d4ed8);
             transform: translateX(-50%);
             border-radius: 3px;
         }
