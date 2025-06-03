@@ -226,11 +226,10 @@ body {
 
 .address-block {
     max-width: 300px;
-    /* Adjust as needed */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    height: 80px;
+    height: 120px;
 }
 
 .address-text {
@@ -377,4 +376,13 @@ body {
     .hero-left p {
         font-size: 16px;
     }
+
+    
+.address-block {
+    height: 80px;
+}
+
+.property{
+    height: 80px;
+}
 }
