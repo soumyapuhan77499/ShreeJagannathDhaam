@@ -25,7 +25,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>
-                {{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's and don'ts at Jaganntha temple Puri" }}
+                {{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : "Do's and don'ts" }}
             </h1>
             <p>
                 {{ $language === 'Odia'
@@ -72,7 +72,7 @@
                 <div class="bg-white rounded-lg shadow p-6 border-t-4 border-red-500">
                     <h3 class="text-xl font-semibold text-red-600 mb-4 flex items-center">
                         <i class="fas fa-ban mr-2"></i>
-                        {{ $language === 'Odia' ? 'କରନ୍ତୁ ନାହିଁ' : 'DONT’S' }}
+                        {{ $language === 'Odia' ? 'କରନ୍ତୁ ନାହିଁ' : 'DON’TS' }}
                     </h3>
                     <ul class="space-y-3 list-inside list-disc text-gray-800">
                         @if ($language === 'Odia')
