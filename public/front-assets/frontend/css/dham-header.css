@@ -465,22 +465,3 @@ body {
   display: none;
 }
 
-/* Show mobile menu under 992px */
-@media (max-width: 991px) {
-  .desktop-menu {
-    display: none;
-  }
-
-  .hamburger-icon {
-    display: flex;
-  }
-
-  .mobile-menu {
-    display: none;
-  }
-
-  .mobile-menu.active {
-    display: block;
-    right: 0;
-  }
-}
