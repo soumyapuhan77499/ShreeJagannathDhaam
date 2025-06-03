@@ -199,6 +199,10 @@ body {
   }
 }
 
+.mobile-menu{
+  display: none; /* Hidden by default */
+}
+
 @media (max-width: 768px) {
 
   /* === Navigation Menu (Sliding Overlay) === */
