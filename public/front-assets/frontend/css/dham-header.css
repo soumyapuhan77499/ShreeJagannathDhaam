@@ -136,6 +136,15 @@ body {
   justify-content: space-between;
 }
 
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    margin-top: 25px;
+}
+
+
 /* Colorful spans */
 .hamburger-menu span:nth-child(1) {
     background: #FF5733;
@@ -152,7 +161,6 @@ body {
 
 .hamburger-menu span:nth-child(3) {
     background: #f7f7f8;
-    /* Vibrant Green */
     width: 100%;
     height: 5px;
 }
