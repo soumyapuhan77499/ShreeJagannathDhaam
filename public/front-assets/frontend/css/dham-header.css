@@ -164,7 +164,7 @@ body {
 
 /* Hover effects for hamburger */
 .hamburger-icon:hover .hamburger-menu span:nth-child(1) {
-  background: #FF6F50;
+  background: #f9f9fb;
 }
 
 .hamburger-icon:hover .hamburger-menu span:nth-child(2) {
@@ -172,7 +172,7 @@ body {
 }
 
 .hamburger-icon:hover .hamburger-menu span:nth-child(3) {
-  background: #FF6F50;
+  background: #f9f9fb;
 }
 
 /* Active state transform for hamburger menu */
