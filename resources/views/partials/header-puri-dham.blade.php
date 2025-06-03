@@ -22,7 +22,7 @@
         <!-- Desktop Menu -->
         <nav class="nav-menu desktop-menu">
             <ul>
-                <li><a href="{{ url('/puri-dham') }}">{{ $language === 'Odia' ? 'ପ୍ରଧାନ ପୃଷ୍ଠା' : 'Home' }}</a></li>
+                <li><a href="{{ url('/') }}">{{ $language === 'Odia' ? 'ପ୍ରଧାନ ପୃଷ୍ଠା' : 'Home' }}</a></li>
 
                 <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
 
@@ -160,7 +160,9 @@
     <!-- Mobile Nav -->
     <nav class="nav-menu mobile-menu" id="mobileNav">
             <ul>
-                <!-- Language Switcher -->
+                <li><a href="{{ url('/') }}">{{ $language === 'Odia' ? 'ପ୍ରଧାନ ପୃଷ୍ଠା' : 'Home' }}</a></li>
+
+                 <!-- Language Switcher -->
                 <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
                         {{ $language === 'Odia' ? 'ଭାଷା' : 'Language' }}
@@ -171,6 +173,12 @@
                         <li><a href="{{ url('/lang/English') }}">English</a></li>
                     </ul>
                 </li>
+
+                <li><a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a></li>
+
+                <li><a href="{{ url('/darshan-timeline') }}">{{ $language === 'Odia' ? 'ଦର୍ଶନ' : 'Darshan' }}</a></li>
+
+                <li><a href="{{ url('/maha-prasad') }}">{{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}</a></li>
 
                 <li>
                     <a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a>

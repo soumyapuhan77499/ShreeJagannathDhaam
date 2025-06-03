@@ -5,12 +5,17 @@
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-logo-section">
-            <img src="{{ asset('website/logo.png') }}" alt="logo" class="footer-logo" />
+
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('website/logo.png') }}" alt="logo" class="footer-logo" />
+            </a>
+
             <div class="footer-title">
                 <h2>Shree</h2>
                 <h2>Jagannatha</h2>
                 <h2>Dham</h2>
             </div>
+
         </div>
 
         <div class="footer-links">
@@ -68,7 +73,7 @@
                     <li><a
                             href="{{ url('/services-emergency') }}">{{ $language === 'Odia' ? 'ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ' : 'Emergency' }}</a>
                     </li>
-                     <li><a
+                    <li><a
                             href="{{ url('/services-abled') }}">{{ $language === 'Odia' ? 'ବିଶେଷ ସକ୍ଷମ ବ୍ୟକ୍ତି' : 'Special Abled Person' }}</a>
                     </li>
                     <li><a
@@ -81,7 +86,7 @@
             <div>
                 <h3>{{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}</h3>
                 <ul>
-                   
+
                     <li><a href="{{ url('/services/toilet') }}">{{ $language === 'Odia' ? 'ଶୌଚାଳୟ' : 'Toilet' }}</a>
                     </li>
                     <li><a href="{{ url('/services/beach') }}">{{ $language === 'Odia' ? 'ବେଳାଭୂମି' : 'Beaches' }}</a>
@@ -106,8 +111,8 @@
         <!-- App Download -->
         <div class="footer-bottom">
             <div class="footer-bottom-container">
-                <a href="https://play.google.com/store/apps/details?id=com.shreejagannatha.dham&pli=1" target="_blank" class="app-button"
-                    style="background-color: #f4f3f2;border-radius: 8px">
+                <a href="https://play.google.com/store/apps/details?id=com.shreejagannatha.dham&pli=1" target="_blank"
+                    class="app-button" style="background-color: #f4f3f2;border-radius: 8px">
                     <img src="{{ asset('website/footer/google.webp') }}" alt="Google Play">
                 </a>
                 <a href="https://www.apple.com/app-store/" target="_blank" class="app-button"
