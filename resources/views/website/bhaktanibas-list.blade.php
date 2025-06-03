@@ -31,8 +31,8 @@
                 </h1>
                 <p>
                     {{ $language === 'Odia'
-                        ? 'ମନ୍ଦିର ଅଧୀନରେ ଥିବା ଭକ୍ତ ନିବାସରେ ଶାନ୍ତିପୂର୍ଣ୍ଣ ଓ ସସ୍ତା ବାସ ଅନୁଭବ କରନ୍ତୁ।'
-                        : 'Experience a peaceful and affordable stay in temple-owned Bhakta Niwas accommodations.' }}
+                        ? 'ତୀର୍ଥଯାତ୍ରୀମାନଙ୍କ ପାଇଁ ମନ୍ଦିର ପାଖରେ ରହିବା ସ୍ଥାନ ।'
+                        : 'Temple Owned Stay For Piligrims' }}
                 </p>
             </div>
         </div>
