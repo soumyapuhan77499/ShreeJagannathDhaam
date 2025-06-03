@@ -37,6 +37,7 @@ body {
   height: 60px;
   width: auto;
 }
+
 .desktop-menu {
   display: flex !important;
   align-items: center;
@@ -75,10 +76,9 @@ body {
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  min-width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 60vw;
   background: #fff;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   padding: 30px;
@@ -130,6 +130,7 @@ body {
 
 /* ===== Responsive: Hide Desktop Menu on Mobile ===== */
 @media (max-width: 991px) {
+  
   .desktop-menu {
     display: none !important;
   }
