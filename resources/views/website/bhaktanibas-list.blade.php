@@ -38,12 +38,12 @@
         </div>
     </div>
 
-    <div class="hero-right">
+    {{-- <div class="hero-right">
         <div class="view-buttons">
             <button class="list-view-btn">List View</button>
             <button class="map-view-btn">Map View</button>
         </div>
-    </div>
+    </div> --}}
 
     <div class="container">
         <div class="service-grid">

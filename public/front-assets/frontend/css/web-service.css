@@ -232,7 +232,7 @@ body {
     height: 120px;
 }
 
-.property{
+.property {
     height: 120px;
 }
 
@@ -380,12 +380,11 @@ body {
         font-size: 16px;
     }
 
-    
-.address-block {
-    height: 80px;
-}
+    .address-block {
+        height: 80px;
+    }
 
-.property{
-    height: 80px;
-}
+    .property {
+        height: 80px;
+    }
 }
