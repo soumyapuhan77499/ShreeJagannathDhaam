@@ -149,16 +149,26 @@
         </nav>
 
         <!-- Hamburger Icon -->
-        <div class="hamburger-icon" onclick="toggleMobileMenu(this)">
+        <div class="hamburger-icon">
             <div class="hamburger-menu">
                 <ion-icon name="menu-outline" style="height: 35px;width:45px"></ion-icon>
+            </div>
+        </div>
+
+         <div class="hamburger-icon"  onclick="toggleMobileMenu(this)">
+            <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </div>
 
     <!-- Mobile Nav -->
     <nav class="nav-menu mobile-nav" id="mobileNav">
+
         <div class="nav-close" onclick="closeMobileMenu()"><i class="fa fa-times"></i></div>
+
         <ul>
             <li><a href="{{ url('/puri-dham') }}">{{ $language === 'Odia' ? 'ପ୍ରଧାନ ପୃଷ୍ଠା' : 'Home' }}</a></li>
 
