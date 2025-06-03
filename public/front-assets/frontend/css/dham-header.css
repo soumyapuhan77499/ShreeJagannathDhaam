@@ -207,6 +207,8 @@ body {
 
   /* === Navigation Menu (Sliding Overlay) === */
   .nav-menu {
+        display: block; /* Show nav-menu on mobile */
+
     position: fixed;
     top: 0;
     right: -320px;
