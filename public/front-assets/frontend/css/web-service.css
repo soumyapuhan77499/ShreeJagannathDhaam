@@ -232,6 +232,10 @@ body {
     height: 120px;
 }
 
+.property{
+    height: 120px;
+}
+
 .address-text {
     display: block;
     margin-top: 4px;

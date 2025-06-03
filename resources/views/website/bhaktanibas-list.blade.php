@@ -74,7 +74,7 @@
                     {{-- Info Block --}}
                     <div class="service-info" style="display: flex; justify-content: space-between;">
                         <div>
-                            <div class="info-line property" style="height: 120px">
+                            <div class="info-line property">
                                 <div class="property-offer-section">
                                     <strong>Property Offer</strong>
                                 </div>
