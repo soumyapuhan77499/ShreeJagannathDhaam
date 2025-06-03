@@ -96,6 +96,7 @@
                             <li>Do not spit, urinate or defecate in the premises of temple.</li>
                             <li>Do not wear footwear and leather items in and around the premises of the temple.</li>
                             <li>Do not carry umbrella, mobile phones, electronic gadgets, leather items etc.</li>
+                            <li>Do not wear caps inside the temple.</li>
                         @endif
                     </ul>
                 </div>
