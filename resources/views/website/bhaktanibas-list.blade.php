@@ -76,16 +76,15 @@
                         <div>
                             <div class="info-line property">
                                 <div class="property-offer-section">
-                                    <strong>Property Offer</strong>
+                                    <strong>{{ $language === 'Odia' ? 'ଉପଲବ୍ଧ ସୁବିଧା' : 'Property Offer' }}</strong>
                                 </div>
                                 <div class="info-line">
-                                    Breakfast / Lunch / Dinner
+                                    {{ $language === 'Odia' ? 'ଖାଦ୍ୟ: ବ୍ରେକଫାଷ୍ଟ / ମଧ୍ୟାହ୍ନ ଭୋଜନ / ରାତି ଭୋଜନ' : 'Breakfast / Lunch / Dinner' }}
                                 </div>
                                 <div class="info-line">
-                                    AC Room Available
+                                    {{ $language === 'Odia' ? 'ଏସି ରୁମ୍ ଉପଲବ୍ଧ' : 'AC Room Available' }}
                                 </div>
                             </div>
-
                             @if ($item->google_map_link)
                                 <div class="info-line">
                                     <span class="icon"></span>
@@ -104,7 +103,8 @@
                                 </span>
                             </div>
 
-                            <div class="info-line" style="border: 1px solid #ccc; border-radius: 8px; padding: 8px 12px; display: inline-flex; align-items: center; gap: 8px;">
+                            <div class="info-line"
+                                style="border: 1px solid #ccc; border-radius: 8px; padding: 8px 12px; display: inline-flex; align-items: center; gap: 8px;">
                                 <i class="fas fa-phone" style="color: #333;"></i>
                                 {{ $item->contact_no ?? 'Not Available' }}
                             </div>
