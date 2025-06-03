@@ -75,7 +75,7 @@ body {
 }
 
 /* ===== Submenu / Mega Menu ===== */
-.has-submenus .submenu {
+.has-submenus .submenus {
   display: none;
   position: absolute;
   top: 100%; /* Below parent li */
@@ -94,7 +94,7 @@ body {
   display: flex; /* Use flex to layout columns */
 }
 
-.has-submenus:hover .submenu {
+.has-submenus:hover .submenus {
   display: flex;
 }
 
@@ -113,7 +113,7 @@ body {
 }
 
 .submenu-column a,
-.has-submenus .submenu li a {
+.has-submenus .submenus li a {
   display: block;
   padding: 6px 0;
   color: #555559;
@@ -123,7 +123,7 @@ body {
 }
 
 .submenu-column a:hover,
-.has-submenus .submenu li a:hover {
+.has-submenus .submenus li a:hover {
   color: #db4d30;
 }
 

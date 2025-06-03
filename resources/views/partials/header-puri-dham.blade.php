@@ -36,7 +36,7 @@
                         <i class="fa fa-chevron-down ms-2"></i>
                     </a>
 
-                    <ul class="submenu" style="width: 200px !important;">
+                    <ul class="submenus" style="width: 200px !important;">
                         <div class="submenu-column">
                             <li>
                                 <a href="{{ url('/view-festival-details') }}">
@@ -60,7 +60,7 @@
                         {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ଧାର୍ମିକ ସ୍ଥଳ' : 'Nearby Temples' }}
                         <i class="fa fa-chevron-down ms-2"></i>
                     </a>
-                    <div class="submenu">
+                    <div class="submenus">
                         @forelse ($temples->chunk(4) as $chunk)
                             <div class="submenu-column">
                                 @foreach ($chunk as $temple)
@@ -86,7 +86,7 @@
                         {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
                         <i class="fa fa-chevron-down ms-2"></i>
                     </a>
-                    <ul class="submenu">
+                    <ul class="submenus">
 
                         <div class="submenu-column">
                             <li><a href="{{ url('/bhaktanibas-list') }}"><i class="fa fa-bed me-2"></i>
@@ -139,7 +139,7 @@
                         {{ $language === 'Odia' ? 'ଭାଷା' : 'Language' }}
                         <i class="fa fa-chevron-down ms-2"></i>
                     </a>
-                    <ul class="submenu">
+                    <ul class="submenus">
                         <li><a href="{{ url('/lang/Odia') }}">ଓଡ଼ିଆ</a></li>
                         <li><a href="{{ url('/lang/English') }}">English</a></li>
                     </ul>
