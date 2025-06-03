@@ -180,10 +180,6 @@
 
                 <li><a href="{{ url('/maha-prasad') }}">{{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}</a></li>
 
-                <li>
-                    <a href="{{ url('/view-all-niti') }}">{{ $language === 'Odia' ? 'ନୀତି' : 'Nitis' }}</a>
-                </li>
-
                 <!-- Quick Services -->
                 <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
