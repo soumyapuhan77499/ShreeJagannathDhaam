@@ -78,7 +78,6 @@
                                 {{ $item->district ?? '' }}
                             </div>
 
-
                             <div class="info-line">
                                 <i class="fas fa-clock icon"></i> 24/7
                             </div>

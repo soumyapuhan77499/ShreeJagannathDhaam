@@ -89,7 +89,11 @@ public function puriWebsite()
 
         $todayDate = Carbon::today()->toDateString();
         $todayPanji = PanjiDetails::where('date', $todayDate)->where('status', 'active')->where('language','English')->first();
- 
+
+        $yesterday = Carbon::yesterday()->toDateString(); // 1 day ago
+
+        $hundi = TempleHundi::where('date', $yesterday)->first();
+    
     return view('website.index3', [
         'nitis' => $finalNitiList->values(),
         'latestWebVideo' => TempleBanner::where('banner_type', 'web')->whereNotNull('banner_video')->latest()->first(),
@@ -105,6 +109,7 @@ public function puriWebsite()
         'darshan' => TempleDarshan::where('status', 'active')->first(),
         'prasad' => TemplePrasad::where('status', 'active')->first(),
         'todayPanji' => $todayPanji,
+        'hundi' => $hundi,
         'temples' => NearByTemple::where('language', $language)->get()
     ]);
 }
