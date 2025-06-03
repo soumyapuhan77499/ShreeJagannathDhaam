@@ -58,11 +58,11 @@
             </button>
         </div>
     </div>
-    
+
 
 
     <div class="container">
-        
+
         <div class="service-grid">
             @foreach ($parking as $item)
                 <div class="service-card">
@@ -74,9 +74,10 @@
                             <div class="info-line">
                                 <i class="fas fa-map-marker-alt icon"></i>
                                 {{ $item->landmark ? $item->landmark . ', ' : '' }}
-                                {{ $item->city_village ? $item->city_village  }}
-                                {{ $item->district ? $item->district  }}
+                                {{ $item->city_village ?? '' }}
+                                {{ $item->district ? ', ' . $item->district : '' }}
                             </div>
+
 
                             <div class="info-line">
                                 <i class="fas fa-clock icon"></i> 24/7
