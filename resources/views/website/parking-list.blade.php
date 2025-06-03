@@ -74,7 +74,8 @@
                             <div class="info-line">
                                 <i class="fas fa-map-marker-alt icon"></i>
                                 {{ $item->landmark ? $item->landmark . ', ' : '' }}
-                                {{ $item->city_village ? $item->city_village . ', ' : '' }}
+                                {{ $item->city_village ? $item->city_village  }}
+                                {{ $item->district ? ', ' . $item->district : '' }}
                             </div>
 
                             <div class="info-line">
