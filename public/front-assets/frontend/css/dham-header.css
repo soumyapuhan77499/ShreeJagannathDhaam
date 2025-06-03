@@ -464,4 +464,22 @@ body {
 .mobile-menu {
   display: none;
 }
+@media (max-width: 991px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .hamburger-icon {
+    display: flex;
+  }
+
+  .nav-menu.mobile-menu {
+    display: none;
+  }
+
+  .nav-menu.mobile-menu.active {
+    display: block;
+    right: 0;
+  }
+}
 
