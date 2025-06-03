@@ -78,21 +78,23 @@ body {
 .has-submenus .submenus {
   display: none;
   position: absolute;
-  top: 110%; /* slight gap below parent menu item */
-  left: 0; /* align left edge with parent */
-  min-width: 300px; /* fixed width, adjust as needed */
-  max-width: 60vw;
+  top: 100%; /* Below parent li */
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 60vw;
   background: #fff;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  padding: 20px 30px;
-  z-index: 3000;
+  padding: 30px 20px;
+  z-index: 2000;
   border-radius: 0 0 10px 10px;
   box-sizing: border-box;
   flex-wrap: wrap;
   gap: 30px;
-  justify-content: flex-start; /* align columns left */
+  justify-content: center;
+}
+
+.has-submenus:hover .submenus {
   display: flex;
-  white-space: normal; /* allow wrapping */
 }
 
 .has-submenus:hover .submenus {
@@ -100,7 +102,7 @@ body {
 }
 
 .submenu-column {
-  flex: 1 1 180px;
+  flex: 1 1 180px; /* Flexible with min width */
   min-width: 180px;
   max-width: 220px;
 }
@@ -127,7 +129,6 @@ body {
 .has-submenus .submenus li a:hover {
   color: #db4d30;
 }
-
 
 /* ===== Hamburger Icon (for mobile toggle visibility only) ===== */
 .hamburger-icon {
