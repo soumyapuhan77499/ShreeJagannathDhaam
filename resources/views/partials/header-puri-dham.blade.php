@@ -159,7 +159,6 @@
 
     <!-- Mobile Nav -->
     <nav class="nav-menu mobile-menu" id="mobileNav">
-            <div class="nav-close"><i class="fa fa-times"></i></div>
             <ul>
                 <!-- Language Switcher -->
                 <li class="has-submenu">
