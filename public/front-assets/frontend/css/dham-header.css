@@ -234,11 +234,9 @@ body {
     z-index: 20;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
-    /* ✅ Scrollable when content overflows */
     scroll-behavior: smooth;
   }
 
-  /* Optional: nice scrollbar for webkit browsers */
   .nav-menu::-webkit-scrollbar {
     width: 8px;
   }
@@ -359,7 +357,6 @@ body {
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    margin-top: 25px;
   }
 
   /* === Dropdown Submenu === */
