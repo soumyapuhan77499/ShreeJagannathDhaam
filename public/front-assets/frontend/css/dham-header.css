@@ -38,6 +38,91 @@ body {
   width: auto;
 }
 
+/* Desktop Navigation */
+.desktop-menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.desktop-menu ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 30px;
+}
+
+.desktop-menu li {
+  position: relative;
+}
+
+.desktop-menu a {
+  color: #555559;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.desktop-menu a:hover {
+  color: #db4d30;
+}.has-submenus {
+  position: relative;
+}
+
+/* Mega Menu Wrapper Centered */
+.has-submenus .submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -214px;
+  transform: translateX(-50%);
+  min-width: 65vw;
+  background: #fff;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px 40px;
+  z-index: 2000;
+  border-radius: 0 0 10px 10px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Show on Hover */
+.has-submenus:hover .submenu {
+  display: flex;
+}
+
+/* Submenu Columns */
+.submenu-column {
+  flex: 1;
+  min-width: 180px;
+}
+
+/* Column Title */
+.submenu-column h4 {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Links */
+.submenu-column a {
+  display: block;
+  padding: 6px 0;
+  color: #555559;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.submenu-column a:hover {
+  color: #db4d30;
+  background-color: transparent;
+}
 
 .hamburger-icon {
   position: absolute;

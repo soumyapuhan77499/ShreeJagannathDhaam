@@ -30,7 +30,7 @@
 
                 <li><a href="{{ url('/maha-prasad') }}">{{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ' : 'Mahaprasad' }}</a></li>
 
-                <li class="has-submenu">
+                <li class="has-submenus">
                     <a href="javascript:void(0)" class="submenu-toggle">
                         {{ $language === 'Odia' ? 'ତ୍ଵରିତ ସେବା' : 'Quick Services' }}
                         <i class="fa fa-chevron-down ms-2"></i>
@@ -55,7 +55,7 @@
 
                 </li>
 
-                <li class="has-submenu">
+                <li class="has-submenus">
                     <a href="javascript:void(0)" class="submenu-toggle">
                         {{ $language === 'Odia' ? 'ନିକଟସ୍ଥ ଧାର୍ମିକ ସ୍ଥଳ' : 'Nearby Temples' }}
                         <i class="fa fa-chevron-down ms-2"></i>
@@ -81,7 +81,7 @@
                     </div>
                 </li>
 
-                <li class="has-submenu">
+                <li class="has-submenus">
                     <a href="javascript:void(0)" class="submenu-toggle">
                         {{ $language === 'Odia' ? 'ଯାତ୍ରୀମାନଙ୍କ ଆବଶ୍ୟକତା' : 'Conveniences' }}
                         <i class="fa fa-chevron-down ms-2"></i>
@@ -134,7 +134,7 @@
                     </ul>
                 </li>
 
-                <li class="has-submenu">
+                <li class="has-submenus">
                     <a href="javascript:void(0)" class="submenu-toggle">
                         {{ $language === 'Odia' ? 'ଭାଷା' : 'Language' }}
                         <i class="fa fa-chevron-down ms-2"></i>
