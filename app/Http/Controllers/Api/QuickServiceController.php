@@ -218,7 +218,7 @@ class QuickServiceController extends Controller
                     if ($service->service_type === 'beach') {
             // Return full URL for each photo in array
             $service->photo = array_map(function ($path) {
-                    return 'http://temple.mandirparikrama.com/' . ltrim($path, '/');
+                    return 'https://shreejagannathadham.com/' . ltrim($path, '/');
                      }, $photoArray ?? []);
             } elseif ($service->service_type === 'toilet') {
                 // For toilet service type, prefix photo URLs with shreejagannathadham.com
@@ -228,7 +228,7 @@ class QuickServiceController extends Controller
             } else {
                 // Return only the first image as a string with mandirparikrama.com prefix
                 $service->photo = isset($photoArray[0])
-                    ? 'http://temple.mandirparikrama.com/' . ltrim($photoArray[0], '/')
+                    ? 'https://shreejagannathadham.com/' . ltrim($photoArray[0], '/')
                     : null;
             }
 
