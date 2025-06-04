@@ -148,9 +148,9 @@
                     </ul>
                 </li>
 
-                 <li>
+                 {{-- <li>
                     <a href="{{ url('/rath-yatra-special') }}">{{ $language === 'Odia' ? 'ରଥ ଯାତ୍ରା' : 'Ratha Yatra' }}</a>
-                </li>
+                </li> --}}
 
             </ul>
         </nav>
@@ -989,5 +989,5 @@
     {{-- </section> --}}
 
     @include('partials.website-footer')
-    
+
 @endsection
