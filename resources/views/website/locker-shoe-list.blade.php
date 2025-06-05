@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <div class="hero-right">
+    {{-- <div class="hero-right">
         <div class="view-buttons">
             <button class="list-view-btn">
                 {{ $language === 'Odia' ? 'ତାଲିକା ଦୃଶ୍ୟ' : 'List View' }}
@@ -58,7 +58,7 @@
                 {{ $language === 'Odia' ? 'ମାନଚିତ୍ର ଦୃଶ୍ୟ' : 'Map View' }}
             </button>
         </div>
-    </div>
+    </div> --}}
 
     <div class="container">
         <div class="service-grid">

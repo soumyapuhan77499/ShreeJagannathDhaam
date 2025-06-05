@@ -48,6 +48,7 @@
         </div>
     </div>
 
+    {{-- 
     <div class="hero-right">
         <div class="view-buttons">
             <button class="list-view-btn">
@@ -57,9 +58,7 @@
                 {{ $language === 'Odia' ? 'ମାନଚିତ୍ର ଦୃଶ୍ୟ' : 'Map View' }}
             </button>
         </div>
-    </div>
-
-
+    </div> --}}
 
     <div class="container">
 
