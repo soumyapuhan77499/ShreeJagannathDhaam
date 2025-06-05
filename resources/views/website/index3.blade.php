@@ -442,7 +442,7 @@
                     <div class="text-sm sm:text-base text-gray-700 mb-2 leading-relaxed px-1 line-clamp-5">
                         <p>
                             {{ $language === 'Odia'
-                                ? 'ଶ୍ରୀ ଜଗନ୍ନାଥ ମହାପ୍ରଭୁଙ୍କ ଦର୍ଶନ ପ୍ରାୟ ପୂରା ଦିନ ଜଣ୍ୟ ଉପଲବ୍ଧ ଅଟେ । ସକାଳ ସମୟରୁ ରାତି ପର୍ଯ୍ୟନ୍ତ ଦର୍ଶନ ହୋଇଥାଏ, କିଛି ପର୍ବ ଅବସର ଛାଡି । ସାଧାରଣତଃ ମନ୍ଦିର ସକାଳ ୫:୩୦ ରେ ଖୋଲାଯାଏ ଏବଂ ଦର୍ଶନ ଆରମ୍ଭ ହୁଏ । ମଙ୍ଗଳ ଆରତି ପରେ ଭକ୍ତମାନେ ଜଗମୋହନ (ଭିତର କାଠା) ଯାଏଁ ପ୍ରବେଶ କରି ଦର୍ଶନ କରିପାରନ୍ତି ।'
+                                ? 'ଶ୍ରୀ ଜଗନ୍ନାଥ ମହାପ୍ରଭୁଙ୍କ ଦର୍ଶନ ପ୍ରାୟ ପୂରା ଦିନ ଉପଲବ୍ଧ ଅଟେ । ସକାଳ ସମୟରୁ ରାତି ପର୍ଯ୍ୟନ୍ତ ଦର୍ଶନ ହୋଇଥାଏ, କିଛି ପର୍ବ ଅବସର ଛାଡି । ସାଧାରଣତଃ ମନ୍ଦିର ସକାଳ ୫:୩୦ ରେ ଖୋଲାଯାଏ ଏବଂ ଦର୍ଶନ ଆରମ୍ଭ ହୁଏ । ମଙ୍ଗଳ ଆରତି ପରେ ଭକ୍ତମାନେ ଜଗମୋହନ (ଭିତର କାଠା) ଯାଏଁ ପ୍ରବେଶ କରି ଦର୍ଶନ କରିପାରନ୍ତି ।'
                                 : 'Darshan of Shree Jagannatha Mahaprabhu is available almost throughout the day i.e. from early in the morning till late night excepting some festive occasions. Generally, Temple opens and darshan starts at around 5.30 A.M. After offering of the perpetual lamp (Mangal Arati), devotees are allowed entry up to Jagamohan (Bhitara Kaatha) of the temple and darshan from this point is available till completion of “Besha”.' }}
                         </p>
                     </div>

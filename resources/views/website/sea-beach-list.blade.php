@@ -18,10 +18,18 @@
     @include('partials.header-puri-dham')
     @php
         $language = session('app_language', 'English');
+
+        // Get the first photo of the first beach item if exists
+        $firstBeachPhoto = null;
+        if (isset($seabeach[0])) {
+            $photos = json_decode($seabeach[0]->photo, true);
+            $firstBeachPhoto = $photos[0] ?? null;
+        }
     @endphp
 
     <div class="hero">
-        <img class="hero-bg" src="{{ asset('website/bhkt.jpg') }}" alt="Bhakta Niwas Background" />
+        <img class="hero-bg" src="{{ $firstBeachPhoto ? asset($firstBeachPhoto) : asset('website/bhkt.jpg') }}"
+            alt="Beach Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-left">
@@ -34,13 +42,6 @@
                         : 'Some Of The Attractive and Clean Beaches In The City Of Puri' }}
                 </p>
             </div>
-        </div>
-    </div>
-
-    <div class="hero-right">
-        <div class="view-buttons">
-            <button class="list-view-btn">List View</button>
-            <button class="map-view-btn">Map View</button>
         </div>
     </div>
 
