@@ -363,8 +363,14 @@
         $language = session('app_language', 'English');
     @endphp
 
+    @php
+        $photos = json_decode($temple->photo, true);
+        $firstPhoto = $photos[0] ?? null;
+    @endphp
+
     <section class="hero">
-        <img class="hero-bg" src="{{ asset('website/parking.jpeg') }}" alt="Mandir Background" />
+        <img class="hero-bg" src="{{ $firstPhoto ? asset($firstPhoto) : asset('website/parking.jpeg') }}"
+            alt="Mandir Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>{{ $temple->name }}</h1>
@@ -376,10 +382,6 @@
         </div>
     </section>
 
-    @php
-        $photos = json_decode($temple->photo, true);
-        $firstPhoto = $photos[0] ?? 'website/default-temple.jpg';
-    @endphp
 
     <section class="temple-section-tabs">
         <div class="temple-image">
@@ -511,17 +513,17 @@
         }
     </script>
     <script>
-    function openModal(src) {
-        const modal = document.getElementById("photoModal");
-        const img = document.getElementById("modalImage");
-        img.src = src;
-        modal.style.display = "flex";
-    }
+        function openModal(src) {
+            const modal = document.getElementById("photoModal");
+            const img = document.getElementById("modalImage");
+            img.src = src;
+            modal.style.display = "flex";
+        }
 
-    function closeModal() {
-        document.getElementById("photoModal").style.display = "none";
-    }
-</script>
+        function closeModal() {
+            document.getElementById("photoModal").style.display = "none";
+        }
+    </script>
 
 </body>
 
