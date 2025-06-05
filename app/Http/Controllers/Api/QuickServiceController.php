@@ -208,32 +208,40 @@ class QuickServiceController extends Controller
                 ], 400);
             }
 
-            $services = PublicServices::where('temple_id', $templeId)
-                ->where('status', 'active')
-                ->where('language', $request->language)
-                ->get()
-                ->map(function ($service) {
-                    $photoArray = json_decode($service->photo, true);
+          $services = PublicServices::where('temple_id', $templeId)
+            ->where('status', 'active')
+            ->where('language', $request->language)
+            ->get()
+            ->map(function ($service) {
+         $photoArray = json_decode($service->photo, true);
 
-                    if ($service->service_type === 'beach') {
-            // Return full URL for each photo in array
-            $service->photo = array_map(function ($path) {
+        if (is_array($photoArray)) {
+            if ($service->service_type === 'beach') {
+                // Return full URL for each photo in array with new domain
+                $service->photo = array_map(function ($path) {
                     return 'https://shreejagannathadham.com/' . ltrim($path, '/');
-                     }, $photoArray ?? []);
+                }, $photoArray);
             } elseif ($service->service_type === 'toilet') {
-                // For toilet service type, prefix photo URLs with shreejagannathadham.com
                 $service->photo = isset($photoArray[0])
                     ? 'https://shreejagannathadham.com/' . ltrim($photoArray[0], '/')
                     : null;
             } else {
-                // Return only the first image as a string with mandirparikrama.com prefix
                 $service->photo = isset($photoArray[0])
                     ? 'https://shreejagannathadham.com/' . ltrim($photoArray[0], '/')
                     : null;
             }
+        } else {
+            // If photo is a string URL, replace old domain with new domain
+            $service->photo = str_replace(
+                'http://temple.mandirparikrama.com/',
+                'https://shreejagannathadham.com/',
+                $service->photo
+            );
+        }
 
-                    return $service;
-                });
+        return $service;
+    });
+
 
             return response()->json([
                 'status' => true,

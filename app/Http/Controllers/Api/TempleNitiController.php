@@ -224,7 +224,7 @@ public function startNiti(Request $request)
                 'message' => 'No day_id found for the Niti. Please check setup or update day_id first.'
             ], 422);
                 }
-        // Check if the same Niti is already started by any user for this day
+                
         $latestEntry = NitiManagement::where('niti_id', $request->niti_id)
             ->where('day_id', $dayId)
             ->latest('created_at')
