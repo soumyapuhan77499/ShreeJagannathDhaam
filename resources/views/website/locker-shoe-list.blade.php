@@ -93,7 +93,7 @@
                                 <div class="info-line">
                                     <span class="icon"></span>
                                     <a class="btn btn-sm" style="color: white; background: linear-gradient(90deg, #f9ce62, #f1769f);"
-                                        href="{{ $item->google_map_link }}" target="_blank">Direction</a>
+                                        href="{{ $item->google_map_link }}" target="_blank">{{ $language === 'Odia' ? 'ଦିଗ ନିର୍ଦ୍ଦେଶ' : 'Directions' }}</a>
                                 </div>
                             @endif
                         </div>

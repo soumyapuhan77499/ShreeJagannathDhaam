@@ -95,7 +95,8 @@
                                 <div class="info-line">
                                     <span class="icon"></span>
                                     <a class="btns btns-info btn-sm" style="color:white"
-                                        href="{{ $item->google_map_link }}" target="_blank">Direction</a>
+                                        href="{{ $item->google_map_link }}" target="_blank">{{ $language === 'Odia' ? 'ଦିଗ ନିର୍ଦ୍ଦେଶ' : 'Directions' }}
+</a>
                                 </div>
                             @endif
 

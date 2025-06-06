@@ -47,49 +47,81 @@
             </div>
         </div>
     </div>
+    <!-- Tabs Section -->
+    <div class="flex justify-center mt-8">
+    <div class="inline-flex bg-white rounded-lg shadow overflow-hidden">
+        <button id="tab-twowheeler" class="px-6 py-2 focus:outline-none font-semibold text-gray-700 bg-yellow-200"
+            onclick="showTab('two wheeler')">
+            {{ $language === 'Odia' ? 'ଦୁଇ ଚକିଆ' : 'Two Wheeler' }}
+        </button>
+        <button id="tab-threewheeler" class="px-6 py-2 focus:outline-none font-semibold text-gray-700"
+            onclick="showTab('three wheeler')">
+            {{ $language === 'Odia' ? 'ତିନି ଚକିଆ' : 'Three Wheeler' }}
+        </button>
+        <button id="tab-fourwheeler" class="px-6 py-2 focus:outline-none font-semibold text-gray-700"
+            onclick="showTab('four wheeler')">
+            {{ $language === 'Odia' ? 'ଚାରି ଚକିଆ' : 'Four Wheeler' }}
+        </button>
+        <button id="tab-electricvehicle" class="px-6 py-2 focus:outline-none font-semibold text-gray-700"
+            onclick="showTab('electric vehicle')">
+            {{ $language === 'Odia' ? 'ଇଲେକ୍ଟ୍ରିକ ଭେହିକଲ' : 'Electric Vehicle' }}
+        </button>
+    </div>
+</div>
 
-    {{-- 
-    <div class="hero-right">
-        <div class="view-buttons">
-            <button class="list-view-btn">
-                {{ $language === 'Odia' ? 'ତାଲିକା ଦୃଶ୍ୟ' : 'List View' }}
-            </button>
-            <button class="map-view-btn">
-                {{ $language === 'Odia' ? 'ମାନଚିତ୍ର ଦୃଶ୍ୟ' : 'Map View' }}
-            </button>
-        </div>
-    </div> --}}
 
-    <div class="container">
-
-        <div class="service-grid">
-            @foreach ($parking as $item)
-                <div class="service-card">
-                    <h5>{{ $item->parking_name }}</h5>
-                    <img src="{{ $item->parking_photo ? asset($item->parking_photo) : asset('website/parking.jpeg') }}"
-                        alt="{{ $item->parking_name }}">
-                    <div class="service-info" style="display: flex; justify-content: space-between;">
-                        <div>
-                            <div class="info-line">
-                                <i class="fas fa-map-marker-alt icon"></i>
-                                {{ $item->landmark ?? ''  }}
-                                {{ $item->city_village ?? '' }}
-                                {{ $item->district ?? '' }}
-                            </div>
-
-                            <div class="info-line">
-                                <i class="fas fa-clock icon"></i> 24/7
-                            </div>
+  <div class="container mt-6">
+    <div class="service-grid">
+        @foreach ($parking as $item)
+            @php
+                // Decode the JSON array of vehicle types
+                $vehicleTypes = json_decode($item->vehicle_type, true) ?? [];
+            @endphp
+            <div class="service-card" data-vehicle-types="{{ implode(',', $vehicleTypes) }}" style="display:none; flex-direction: column;">
+                <h5>{{ $item->parking_name }}</h5>
+                <img src="{{ $item->parking_photo ? asset($item->parking_photo) : asset('website/parking.jpeg') }}"
+                    alt="{{ $item->parking_name }}">
+                <div class="service-info" style="display: flex; justify-content: space-between;">
+                    <div>
+                        <div class="info-line">
+                            <i class="fas fa-map-marker-alt icon"></i>
+                            {{ $item->landmark ?? '' }}
+                            {{ $item->city_village ?? '' }}
+                            {{ $item->district ?? '' }}
                         </div>
-
+                        <div class="info-line">
+                            <i class="fas fa-clock icon"></i> 24/7
+                        </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
+</div>
 
     @include('partials.website-footer')
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        showTab('two wheeler'); // Default active tab
+    });
 
+    function showTab(type) {
+        // Update tab button active states
+        ['twowheeler', 'threewheeler', 'fourwheeler', 'electricvehicle'].forEach(id => {
+            document.getElementById('tab-' + id).classList.toggle('bg-yellow-200', id === type.replace(' ', ''));
+        });
+
+        // Show/hide parking cards based on vehicle type matching
+        document.querySelectorAll('.service-card').forEach(function(card) {
+            const vehicleTypes = card.dataset.vehicleTypes.split(',');
+            if (vehicleTypes.includes(type)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+</script>
 </body>
 
 </html>

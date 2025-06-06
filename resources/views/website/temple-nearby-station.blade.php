@@ -207,7 +207,6 @@
         @endforeach
     </div>
 
-
     @include('partials.website-footer')
 
     <script>
