@@ -175,6 +175,13 @@ body {
     font-family: 'Segoe UI', sans-serif;
 }
 
+.containers {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', sans-serif;
+}
+
 .service-grid {
     display: flex;
     flex-wrap: wrap;

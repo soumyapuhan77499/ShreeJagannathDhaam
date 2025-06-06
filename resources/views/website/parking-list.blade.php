@@ -81,7 +81,7 @@
 </div>
 
 
- <div class="container mt-6">
+ <div class="containers mt-6">
     <div class="service-grid">
         @foreach ($parking as $item)
             @php
