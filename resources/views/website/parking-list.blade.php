@@ -19,6 +19,16 @@
             object-fit: cover;
             height: 270px;
         }
+        
+        .direction-btn {
+            display: inline-block;
+            padding: 8px 12px;
+            background: linear-gradient(90deg, #f9ce62, #f1769f);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -96,7 +106,7 @@
                     </div>
                     @if($item->map_url)
                         <div>
-                            <a href="{{ $item->map_url }}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800">
+                            <a href="{{ $item->map_url }}" target="_blank" rel="noopener noreferrer" class="direction-btn">
                                 View Map
                             </a>
                         </div>
