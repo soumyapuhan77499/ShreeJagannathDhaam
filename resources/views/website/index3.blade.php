@@ -28,7 +28,7 @@
         </audio>
 
         <a href="{{ url('/') }}" class="logo">
-            <img src="{{ asset('website/logo.png') }}" alt="logo">
+            <img src="{{ asset('website/logoo.png') }}" alt="logo">
         </a>
         <!-- Hamburger Icon -->
         <div class="hamburger-icon">
