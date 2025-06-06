@@ -15,7 +15,7 @@
         <!-- Logo -->
         <div class="logo">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('website/logo.png') }}" alt="logo">
+                <img src="{{ asset('website/logoo.png') }}" alt="logo">
             </a>
         </div>
 
@@ -52,7 +52,6 @@
                             </li>
                         </div>
                     </ul>
-
                 </li>
 
                 <li class="has-submenus">

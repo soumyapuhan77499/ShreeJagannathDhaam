@@ -7,7 +7,7 @@
         <div class="footer-logo-section">
 
             <a href="{{ url('/') }}">
-                <img src="{{ asset('website/logo.png') }}" alt="logo" class="footer-logo" />
+                <img src="{{ asset('website/logoo.png') }}" alt="logo" class="footer-logo" />
             </a>
 
             <div class="footer-title">
