@@ -71,7 +71,7 @@
 </div>
 
 
-  <div class="container mt-6">
+ <div class="container mt-6">
     <div class="service-grid">
         @foreach ($parking as $item)
             @php
@@ -82,7 +82,7 @@
                 <h5>{{ $item->parking_name }}</h5>
                 <img src="{{ $item->parking_photo ? asset($item->parking_photo) : asset('website/parking.jpeg') }}"
                     alt="{{ $item->parking_name }}">
-                <div class="service-info" style="display: flex; justify-content: space-between;">
+                <div class="service-info" style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
                         <div class="info-line">
                             <i class="fas fa-map-marker-alt icon"></i>
@@ -94,6 +94,13 @@
                             <i class="fas fa-clock icon"></i> 24/7
                         </div>
                     </div>
+                    @if($item->map_url)
+                        <div>
+                            <a href="{{ $item->map_url }}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800">
+                                View Map
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </div>
         @endforeach
