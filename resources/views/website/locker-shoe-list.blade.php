@@ -38,12 +38,12 @@
         <div class="hero-content">
             <div class="hero-left">
                 <h1>
-                    {{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା ଷ୍ଟାଣ୍ଡ' : 'Locker & Shoes' }}
+                    {{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା ଷ୍ଟାଣ୍ଡରଖିବା ' : 'Cloakroom & Lockers' }}
                 </h1>
                 <p>
                     {{ $language === 'Odia'
-                        ? 'ଆପଣଙ୍କ ମୋବାଇଲ୍, ଚାବି, ଜୋତା ବା ଅନ୍ୟ ବ୍ୟକ୍ତିଗତ ସାମଗ୍ରୀ ପାଇଁ ସୁରକ୍ଷିତ ଜଗା।'
-                        : 'Secure storage space for your shoes, phones, keys, and personal items.' }}
+                        ? 'ମନ୍ଦିର ନିକଟରେ ଉପଲବ୍ଧ କିଛି ଲକର ଏବଂ ଜୋତାଷ୍ଟାଣ୍ଡ।'
+                        : 'Same Of The Available Lockers & Stands Near To The Temple' }}
                 </p>
             </div>
         </div>

@@ -44,8 +44,8 @@
                 <i
                     class="fas fa-shield-alt text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
-                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ପୁଲିସ୍' : 'Police' }}</p>
-                    <p class="text-gray-600">100</p>
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ପୋଲିସ' : 'Police' }}</p>
+                    <p class="text-gray-600"> 100 </p>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                 <i
                     class="fas fa-ambulance text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
-                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଆମ୍ବୁଲାନ୍ସ୍' : 'Ambulance' }}</p>
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଅମ୍ବୁଲାନ୍ସ ' : 'Ambulance' }}</p>
                     <p class="text-gray-600">108</p>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                 <i
                     class="fas fa-fire-extinguisher text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
-                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଅଗ୍ନିଶମନ ବିଭାଗ' : 'Fire Service' }}</p>
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଅଗ୍ନିଶମ ସେବା' : 'Fire Service' }}</p>
                     <p class="text-gray-600">101</p>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                     class="fas fa-user-shield text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
                     <p class="font-semibold text-lg">
-                        {{ $language === 'Odia' ? 'ବୃଦ୍ଧ ଲୋକ ହେଲ୍ପଲାଇନ୍' : 'Elder Person Helpline' }}</p>
+                        {{ $language === 'Odia' ? 'ବୟସ୍କ ବ୍ୟକ୍ତିଙ୍କ ପାଇଁ ହେଲ୍ପଲାଇନ୍' : 'Elder Person Helpline' }}</p>
                     <p class="text-gray-600">1090</p>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                 <i
                     class="fas fa-child text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
-                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଶିଶୁ ହେଲ୍ପଲାଇନ୍' : 'Child Helpline' }}
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଶିଶୁଙ୍କ ପାଇଁ ହେଲ୍ପଲାଇନ୍ ' : 'Child Helpline' }}
                     </p>
                     <p class="text-gray-600">1098</p>
                 </div>
@@ -96,7 +96,7 @@
                 <i
                     class="fas fa-female text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
-                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ମହିଳା ହେଲ୍ପଲାଇନ୍' : 'Women Helpline' }}
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ମହିଳାଙ୍କ ହେଲ୍ପଲାଇନ୍' : 'Women Helpline' }}
                     </p>
                     <p class="text-gray-600">1091</p>
                 </div>
@@ -107,7 +107,7 @@
                 <i
                     class="fas fa-life-ring text-3xl bg-gradient-to-r from-[#FFA726] to-[#F06292] bg-clip-text text-transparent"></i>
                 <div>
-                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡ୍' : 'Life Guard' }}</p>
+                    <p class="font-semibold text-lg">{{ $language === 'Odia' ? 'ଲାଇଫ ଗାର୍ଡ' : 'Life Guard' }}</p>
                     <p class="text-gray-600">8260777771</p>
                 </div>
             </div>

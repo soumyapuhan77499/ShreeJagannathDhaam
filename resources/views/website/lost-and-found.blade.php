@@ -29,11 +29,11 @@
         <div
             class="hero-content absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4">
             <h1 class="text-3xl sm:text-5xl font-bold drop-shadow-md">
-                {{ $language === 'Odia' ? 'କରନ୍ତୁ ଏବଂ କରନ୍ତୁ ନାହିଁ' : 'Lost and Found' }}
+                {{ $language === 'Odia' ? 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର' : 'Lost and Found' }}
             </h1>
             <p class="mt-3 text-base sm:text-lg font-medium max-w-2xl">
                 {{ $language === 'Odia'
-                    ? 'ମନ୍ଦିର ପରିସରରେ ହାରାଇଥିବା ବା ମିଳିଥିବା ବସ୍ତୁ ସମ୍ବନ୍ଧରେ ସହଯୋଗ ପାଇଁ ଏଠାରେ ଯୋଗାଯୋଗ କରନ୍ତୁ।'
+                    ? 'ଦୟାକରି ପୁରୀର ଶ୍ରୀ ମନ୍ଦିରରେ ଥିବା ସିଂହଦ୍ଵାର ସୂଚନା କେନ୍ଦ୍ର ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ ।'
                     : 'Assistance for items lost or found within the temple premises is available here.' }}
             </p>
         </div>

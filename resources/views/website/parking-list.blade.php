@@ -37,12 +37,12 @@
         <div class="hero-content">
             <div class="hero-left">
                 <h1>
-                    {{ $language === 'Odia' ? 'ଭ୍ରମଣକାରୀ ପାର୍କିଂ' : 'Visitor Parking' }}
+                    {{ $language === 'Odia' ? 'ଯାନବାହାନ ପାର୍କିଂ ସ୍ଥଳ  ' : 'Vehicle Parking' }}
                 </h1>
                 <p>
                     {{ $language === 'Odia'
-                        ? 'ନିମ୍ନଲିଖିତ ସ୍ଥାନଗୁଡିକରେ ଆପଣଙ୍କର ୨, ୩ ଓ ୪ ଚକିଆ ଯାନ ସହଜରେ ପାର୍କ କରନ୍ତୁ।'
-                        : 'Park your two, three & four Wheelers with ease at the following spaces' }}
+                        ? 'ଆପଣ ଆପଣଙ୍କର ଦୁଇ, ତିନି ଏବଂ ଚାରି ଚକିଆ ଯାନ ନିମ୍ନଲିଖିତ ପାର୍କିଂ ସ୍ଥାନଗୁଡିକରେ ପାର୍କ କରିପାରିବେ ।'
+                        : 'You Can Park Your Two Three & Four Wheelers At The Following Parking Places' }}
                 </p>
             </div>
         </div>

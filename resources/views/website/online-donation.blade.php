@@ -24,7 +24,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>
-                {{ $language === 'Odia' ? 'ଅନଲାଇନ୍ ଦାନ' : 'Online Donation' }}
+                {{ $language === 'Odia' ? 'ଦାନ କରନ୍ତୁ' : 'Online Donation' }}
             </h1>
         </div>
     </section>
@@ -55,7 +55,6 @@
             </div>
         </div>
     </section>
-
 
     @include('partials.website-footer')
 

@@ -27,7 +27,7 @@
         <div class="hero-content">
             <div class="hero-left">
                 <h1>
-                    {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Bhakta Nivas' }}
+                    {{ $language === 'Odia' ? 'ଭକ୍ତ ନିବାସ' : 'Temple Owned Stay For Pilgrims' }}
                 </h1>
                 <p>
                     {{ $language === 'Odia'
@@ -79,10 +79,10 @@
                                     <strong>{{ $language === 'Odia' ? 'ଉପଲବ୍ଧ ସୁବିଧା' : 'Property Offer' }}</strong>
                                 </div>
                                 <div class="info-line">
-                                    {{ $language === 'Odia' ? 'ଜଳଖିଆ / ମଧ୍ୟାହ୍ନ ଭୋଜନ / ରାତି ଭୋଜନ' : 'Breakfast / Lunch / Dinner' }}
+                                    {{ $language === 'Odia' ? 'ଜଳଖିଆ / ମଧ୍ୟାହ୍ନ ଭୋଜନ / ରାତ୍ରି ଭୋଜନ' : 'Breakfast / Lunch / Dinner' }}
                                 </div>
                                 <div class="info-line">
-                                    {{ $language === 'Odia' ? 'ଏସି ରୁମ୍ ଉପଲବ୍ଧ' : 'AC Room Available' }}
+                                    {{ $language === 'Odia' ? 'ଏସି ରୁମ' : 'AC Room Available' }}
                                 </div>
                             </div>
                             @if ($item->google_map_link)

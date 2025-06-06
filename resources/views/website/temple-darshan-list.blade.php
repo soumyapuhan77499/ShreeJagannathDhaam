@@ -379,10 +379,10 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>
-                {{ $language === 'Odia' ? 'ଆନୁମାନିକ ଦର୍ଶନ ସମୟ' : 'Tentative Darshan Timing' }}
+                {{ $language === 'Odia' ? 'ଦର୍ଶନ ସ୍ଥିତିକୁ ଜାଣନ୍ତୁ ।' : 'Know The Darshan Status' }}
             </h1>
             <p>
-                {{ $language === 'Odia' ? 'ଦର୍ଶନ ସ୍ଥିତି ଜାଣନ୍ତୁ' : 'Know The Darshan Status' }}
+                {{ $language === 'Odia' ? 'ଏଠାରେ ସମସ୍ତ ଦର୍ଶନର ବିବରଣୀ ପାଇପାରିବେ । ଯଥା ଭିତର କାଠ ଦର୍ଶନ ଓ ବାହାର କାଠ ଦର୍ଶନ ଏବଂ ଦର୍ଶନ କେତେବେଳେ ବନ୍ଦ ରହୁଛି ।' : 'You Can Find When The Darshan Starts & Halts  As Well As When The Bhitar Katha Darshan Starts' }}
             </p>
         </div>
     </div>

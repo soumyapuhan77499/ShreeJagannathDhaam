@@ -332,10 +332,10 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>
-                {{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ ସମୟ' : 'Maha Prasad Timeline' }}
+                {{ $language === 'Odia' ? 'ମହାପ୍ରସାଦ ଭୋଗ ଆନୁମାନିକ ସମୟ ।' : 'MahaPrasad Bhoga Tentative Timing' }}
             </h1>
             <p>
-                {{ $language === 'Odia' ? 'ପବିତ୍ର ଭୋଜନ, ସମୟ ଓ ବିବରଣୀ ଜାଣନ୍ତୁ' : 'Explore sacred offerings, their time and items served' }}
+                {{ $language === 'Odia' ? 'ଆନନ୍ଦ ବଜାରରେ ମହାପ୍ରସାଦ ମିଳିବାର ସମୟ ଜାଣନ୍ତୁ ।' : 'Know The Bhoga Being Offered To Mahaprabhu & Mahaprasad Availability at Ananda Bazar' }}
             </p>
         </div>
     </div>

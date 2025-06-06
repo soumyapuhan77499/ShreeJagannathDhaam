@@ -148,13 +148,13 @@
         $title = ucfirst(str_replace('_', ' ', $service_type));
 
         $odiaTitles = [
-            'drinking water' => 'ପାନୀୟ ଜଳ',
+            'drinking water' => 'ବିଶୁଦ୍ଧ ପାନୀୟ ଜଳ',
             'emergency' => 'ଜରୁରୀ ସେବା',
             'specially abled person' => 'ବିଶେଷ କ୍ଷମତା ବ୍ୟକ୍ତି',
             'route map' => 'ମାର୍ଗ ମାନଚିତ୍ର',
             'lost and found booth' => 'ହଜିବା ଓ ଖୋଜିବା କେନ୍ଦ୍ର',
             'toilet' => 'ଶୌଚାଳୟ',
-            'life guard booth' => 'ଲାଇଫ୍ ଗାର୍ଡ',
+            'life guard booth' => 'ବେଳାଭୂମି ନିକଟରେ ଉପଲବ୍ଧ ଲାଇଫ ଗାର୍ଡ ସେବା',
             'charging station' => 'ଚାର୍ଜିଂ ଷ୍ଟେସନ୍',
             'petrol pump' => 'ପେଟ୍ରୋଲ ପମ୍ପ',
             'atm' => 'ଏଟିଏମ୍',

@@ -28,8 +28,7 @@
     @endphp
 
     <div class="hero">
-        <img class="hero-bg" src="{{ $firstBeachPhoto ? asset($firstBeachPhoto) : asset('website/bhkt.jpg') }}"
-            alt="Beach Background" />
+        <img class="hero-bg" src="{{ $firstBeachPhoto ? asset($firstBeachPhoto) : asset('website/bhkt.jpg') }}" alt="Beach Background" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-left">
@@ -37,9 +36,7 @@
                     {{ $language === 'Odia' ? 'ସମୁଦ୍ର କୂଳ' : 'Beach' }}
                 </h1>
                 <p>
-                    {{ $language === 'Odia'
-                        ? 'ପୁରୀ ସହରର କିଛି ଆକର୍ଷଣୀୟ ସମୁଦ୍ର କୂଳ'
-                        : 'Some Of The Attractive and Clean Beaches In The City Of Puri' }}
+                    {{ $language === 'Odia' ? 'ପୁରୀ ସହରର କିଛି ଆକର୍ଷଣୀୟ ସମୁଦ୍ର କୂଳ' : 'Some Of The Attractive and Clean Beaches In The City Of Puri' }}
                 </p>
             </div>
         </div>

@@ -65,7 +65,7 @@
                             href="{{ url('/parking-list') }}">{{ $language === 'Odia' ? 'ପାର୍କିଂ ସ୍ଥଳ' : 'Parking Areas' }}</a>
                     </li>
                     <li><a
-                            href="{{ url('/locker-shoe-list') }}">{{ $language === 'Odia' ? 'ଲକର ଓ ଜୁତା ସ୍ଥାନ' : 'Locker and Shoes Stands' }}</a>
+                            href="{{ url('/locker-shoe-list') }}">{{ $language === 'Odia' ? 'ଲକର ଓ ଜୋତା ସ୍ଥାନ' : 'Locker and Shoes Stands' }}</a>
                     </li>
                     <li><a
                             href="{{ url('/services/drinking_water') }}">{{ $language === 'Odia' ? 'ପାନୀୟ ଜଳ' : 'Drinking Water' }}</a>

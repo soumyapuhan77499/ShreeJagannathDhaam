@@ -346,8 +346,8 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             @if ($language === 'Odia')
-                <h1>ନୀତି ର ଦୈନିକ ତାଲିକା</h1>
-                <p>ଦୈନିକ ନୀତି ବିଷୟରେ ଲାଇଭ୍ ଅଦ୍ୟତନ</p>
+                <h1>ସମ୍ପୂର୍ଣ୍ଣ ନୀତିକାନ୍ତି ତାଲିକା</h1>
+                <p>ଏଠାରେ ଶ୍ରୀମନ୍ଦିରର ଆଜିର ସମସ୍ତ ନୀତି ତାଲିକା ଦେଖନ୍ତୁ ।</p>
             @else
                 <h1>Daily List Of Nitis</h1>
                 <p>Live Update On The Daily Ritual</p>

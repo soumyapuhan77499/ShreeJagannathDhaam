@@ -23,7 +23,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>
-                {{ $language === 'Odia' ? 'ମନ୍ଦିର ପର୍ବ' : 'Temple Festival' }}
+                {{ $language === 'Odia' ? 'ପୁରୀ ମନ୍ଦିରର ସମସ୍ତ ଗୁରୁତ୍ଵପୂର୍ଣ୍ଣ ପର୍ବପର୍ବାଣି ।' : 'Temple Festival' }}
             </h1>
             <p>
                 {{ $language === 'Odia' ? 'ମନ୍ଦିରରେ ଉଲ୍ଲିଖିତ ସମସ୍ତ ପର୍ବ ତାଲିକା' : 'Complete List Of Festival In The Temple' }}
