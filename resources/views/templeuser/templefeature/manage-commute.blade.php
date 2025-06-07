@@ -171,6 +171,18 @@
                                                     @method('PUT')
                                                     <div class="modal-body">
                                                         <div class="row">
+                                                            <div class="form-group">
+                                                                <label for="language">Language</label>
+                                                                <select class="form-control" id="language"
+                                                                    name="language" required>
+                                                                    <option value="English"
+                                                                        {{ $service->language == 'English' ? 'selected' : '' }}>
+                                                                        English</option>
+                                                                    <option value="Odia"
+                                                                        {{ $service->language == 'Odia' ? 'selected' : '' }}>
+                                                                        Odia</option>
+                                                                </select>
+                                                            </div>
                                                             <div class="col-md-6">
                                                                 <label for="commute_type">Commute Type</label>
                                                                 <select class="form-control" name="commute_type">

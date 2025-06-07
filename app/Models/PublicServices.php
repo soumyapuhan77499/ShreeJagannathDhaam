@@ -13,6 +13,7 @@ class PublicServices extends Model
 
     protected $fillable = [
        'temple_id',
+       'language',
        'service_type',
        'service_name',
        'photo',

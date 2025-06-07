@@ -24,7 +24,7 @@ class WebsiteBannerController extends Controller
         try {
             $templeId = 'TEMPLE25402';
 
-           $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
+            $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
 
         if (!$latestDayId) {
             return response()->json([
@@ -33,11 +33,11 @@ class WebsiteBannerController extends Controller
             ], 404);
         }
 
-        // 1. Get all NitiManagement records for latest day ordered by id ascending
+        // 1. Get all NitiManagement records for latest day ordered by end_time ascending (NULLs last)
         $nitiManagements = NitiManagement::where('day_id', $latestDayId)
             ->with('master')
             ->where('niti_status', '!=', 'NotStarted')
-            ->orderBy('id', 'asc')
+            ->orderByRaw("CASE WHEN end_time IS NULL THEN 1 ELSE 0 END, end_time ASC")
             ->get();
 
         // Extract Niti IDs managed so far (for started/paused/completed)
@@ -70,7 +70,6 @@ class WebsiteBannerController extends Controller
             ->get()
             ->groupBy('after_special_niti');
 
-     
         $mergedNitiList = collect();
 
         // Track inserted "other" niti ids to avoid duplicates
@@ -152,7 +151,6 @@ class WebsiteBannerController extends Controller
                         ])->values(),
                     ]);
                 }
-
             }
         }
 
@@ -189,7 +187,6 @@ class WebsiteBannerController extends Controller
                 ])->values(),
             ]);
         }
-
 
             $nitiInfo = TempleNews::where('type', 'information')
             ->where('niti_notice_status','Started')

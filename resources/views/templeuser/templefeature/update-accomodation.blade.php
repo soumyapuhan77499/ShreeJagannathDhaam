@@ -52,6 +52,14 @@
                         @method('PUT')
                         
                         <div class="row">
+
+                            <div class="form-group">
+                                                                    <label for="language">Language</label>
+                                                                    <select class="form-control" id="language" name="language" required>
+                                                                        <option value="English" {{ $service->language == 'English' ? 'selected' : '' }}>English</option>
+                                                                        <option value="Odia" {{ $service->language == 'Odia' ? 'selected' : '' }}>Odia</option>
+                                                                    </select>
+                                                                </div>
                             <!-- Name -->
                             <div class="col-md-4">
                                 <div class="form-group">

@@ -25,6 +25,18 @@
                     <form action="{{ route('saveService') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="language">Language</label>
+                                    <select class="form-control" id="language" name="language" required>
+                                        <option value="">Select Language</option>
+                                        <option value="Odia">Odia</option>
+                                        <option value="English">English</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="service_type">Service Type</label>
