@@ -49,6 +49,7 @@ class TemplePublicServiceController extends Controller
             // Save data in database
             PublicServices::create([
                 'temple_id' => Auth::guard('temples')->user()->temple_id, // Ensure temple_id is set
+                'language' => $request->language,
                 'service_type' => $request->service_type,
                 'service_name' => $request->service_name,
                 'photo' => json_encode($photoPaths), // Store as JSON
@@ -101,6 +102,7 @@ class TemplePublicServiceController extends Controller
     
         $request->validate([
             'service_type' => 'required|string',
+            'language' => 'required|string',
             'service_name' => 'required|string',
             'google_map_link' => 'nullable|url',
             'whatsapp_no' => 'nullable|string',
