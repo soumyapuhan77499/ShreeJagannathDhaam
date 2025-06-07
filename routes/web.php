@@ -72,9 +72,9 @@ Route::get('/tms', function () {
     return view('index');
 });
 
-Route::get('/puri-dham', function () {
-    return view('website.index');
-});
+// Route::get('/puri-dham', function () {
+//     return view('website.index');
+// });
 
 
 Route::get('/puri-municipality', function () {
@@ -82,9 +82,9 @@ Route::get('/puri-municipality', function () {
 });
 
 
-Route::get('/puri-dhams', function () {
-    return view('website.index2');
-});
+// Route::get('/puri-dhams', function () {
+//     return view('website.index2');
+// });
 
 Route::get('/contact', function () {
     return view('contactus');
@@ -543,7 +543,7 @@ Route::controller(TempleLostAndFoundController::class)->group(function() {
 });
 
 Route::controller(HomeSectionController::class)->group(function() {
-    Route::get('/', 'puriWebsite')->name('puriWebsite');
+    Route::get('/dham-website', 'puriWebsite')->name('puriWebsite');
     Route::get('/view-all-niti','viewAllNiti')->name('all.niti');
     Route::get('/mandir-tv', 'mandirTv')->name('tv.layout');
     Route::get('/mandir-radio', 'mandirRadio')->name('radio.layout');
