@@ -900,10 +900,24 @@ public function storeOtherNiti(Request $request)
     }
 }
 
-
 public function updateActiveNitiToUpcoming()
 {
     try {
+        // First, check if there is a record with niti_id = 'NITI88538'
+        $nitiRecord = NitiMaster::where('niti_id', 'NITI88538')->first();
+
+        if ($nitiRecord) {
+            // Check the niti_status for this record
+            if (!in_array($nitiRecord->niti_status, ['Completed', 'NotStarted'])) {
+                // If status is not Completed or NotStarted, return error
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Last niti status must be Completed or NotStarted to proceed.'
+                ], 400);
+            }
+            // else: continue with the update
+        }
+
         $tomorrow = Carbon::now('Asia/Kolkata')->addDay();
         $datePrefix = $tomorrow->format('Ymd');  // e.g., 20250424
         
@@ -916,7 +930,7 @@ public function updateActiveNitiToUpcoming()
         $dayId = $datePrefix . '-' . $randomSuffix; // e.g., 20250424-ZQPL
 
         // Step 2: Update NitiMaster
-        $nitiUpdatedCount = NitiMaster::where('status', 'active')->orwhere('status', 'other')
+        $nitiUpdatedCount = NitiMaster::where('status', 'active')->orWhere('status', 'other')
             ->update([
                 'niti_status' => 'Upcoming',
                 'day_id' => $dayId
@@ -960,10 +974,12 @@ public function updateActiveNitiToUpcoming()
 public function startSubNiti(Request $request)
 {
     try {
+        // Validate the incoming request
         $request->validate([
             'sub_niti_id' => 'required|integer|exists:temple__sub_niti,id'
         ]);
 
+        // Get the authenticated user (niti_admin guard)
         $user = Auth::guard('niti_admin')->user();
 
         if (!$user) {
@@ -976,9 +992,8 @@ public function startSubNiti(Request $request)
         $now = Carbon::now('Asia/Kolkata');
         $today = $now->toDateString();
 
-        // ✅ Fetch Sub Niti
+        // Fetch the Sub Niti
         $subNiti = TempleSubNiti::find($request->sub_niti_id);
-
         if (!$subNiti) {
             return response()->json([
                 'status' => false,
@@ -986,61 +1001,63 @@ public function startSubNiti(Request $request)
             ], 404);
         }
 
-        // ✅ Get day_id from parent Niti
+        // Get active parent Niti and its day_id
         $nitiMaster = NitiMaster::where('status', 'active')->first();
-
         if (!$nitiMaster || !$nitiMaster->day_id) {
             return response()->json([
                 'status' => false,
                 'message' => 'Parent Niti not found or day_id missing.'
             ], 404);
         }
-
         $dayId = $nitiMaster->day_id;
 
-        // ✅ Check for already running Sub Niti
+        // Check if any Sub Niti is already running for the given Niti and day
         $existingRunning = TempleSubNitiManagement::where('niti_id', $subNiti->niti_id)
             ->where('status', 'Running')
             ->where('day_id', $dayId)
             ->latest()
             ->first();
 
+        // If found, mark existing running Sub Niti as completed
         if ($existingRunning) {
             $existingRunning->update([
                 'status' => 'Completed',
             ]);
         }
 
-        // ✅ Log new Running Sub Niti
+        // Create a new running record for the Sub Niti
         $record = TempleSubNitiManagement::create([
-            'temple_id'      => $nitiMaster->temple_id,
-            'sebak_id'       => $user->sebak_id,
-            'day_id'         => $dayId,
-            'niti_id'        => $subNiti->niti_id,
-            'sub_niti_id'    => $subNiti->id,
-            'sub_niti_name'  => $subNiti->sub_niti_name,
-            'date'           => $today,
-            'start_time'     => $now->format('H:i:s'),
-            'status'         => 'Running',
+            'temple_id'     => $nitiMaster->temple_id,
+            'sebak_id'      => $user->sebak_id,
+            'day_id'        => $dayId,
+            'niti_id'       => $subNiti->niti_id,
+            'sub_niti_id'   => $subNiti->id,
+            'sub_niti_name' => $subNiti->sub_niti_name,
+            'date'          => $today,
+            'start_time'    => $now->format('H:i:s'),
+            'status'        => 'Running',
         ]);
 
-        // ✅ Update Sub Niti status in Master table
+        // Update status of other Sub Nitis under the same Niti to 'Completed'
         TempleSubNiti::where('niti_id', $subNiti->niti_id)
             ->where('id', '!=', $subNiti->id)
             ->where('status', 'Running')
             ->update(['status' => 'Completed']);
 
+        // Update current Sub Niti status to 'Running'
         TempleSubNiti::where('id', $subNiti->id)->update([
             'status' => 'Running'
         ]);
 
+        // Return success response
         return response()->json([
             'status' => true,
             'message' => 'Sub Niti started successfully.',
             'data' => $record
         ], 200);
 
-     } catch (\Exception $e) {
+    } catch (\Exception $e) {
+        // Return error response in case of failure
         return response()->json([
             'status' => false,
             'message' => 'Failed to start Sub Niti.',
@@ -1318,7 +1335,6 @@ public function storeByNoticeName(Request $request)
 public function getLatestNotice()
 {
     try {
-
         $latestNotice = TempleNews::orderBy('created_at', 'desc')->where('type','notice')->where('status','active')->get();
 
         if (!$latestNotice) {
