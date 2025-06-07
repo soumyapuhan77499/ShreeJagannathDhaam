@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class TemplePublicServiceController extends Controller
 {
-    public function addService(){
 
+    public function addService()
+    {
         return view('templeuser.templefeature.add-public-service');
-
     }
 
     public function saveService(Request $request)
@@ -76,15 +76,14 @@ class TemplePublicServiceController extends Controller
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
         }
     }
-
     
-    public function manageService(){
+    public function manageService()
+    {
 
-        $temple_id = Auth::guard('temples')->user()->temple_id;
-
-        $services = PublicServices::where('temple_id', $temple_id)->where('status','active')->get();
+        $services = PublicServices::where('status','active')->get();
 
         return view('templeuser.templefeature.manage-public-service', compact('services'));
+
     }
 
     public function deleteService($id)
@@ -140,6 +139,5 @@ class TemplePublicServiceController extends Controller
     
         return redirect()->back()->with('success', 'Service updated successfully');
     }
-    
 
 }
