@@ -536,7 +536,6 @@ public function resumeNiti(Request $request)
 
 public function stopNiti(Request $request)
 {
-
     try {
         $request->validate([
             'niti_id' => 'required|string|exists:temple__niti_details,niti_id',
@@ -619,26 +618,14 @@ public function stopNiti(Request $request)
         $runningTime = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
         $durationText = $hours > 0 ? "{$hours} hr {$minutes} min" : ($minutes > 0 ? "{$minutes} min" : "{$seconds} sec");
 
-            // Get the latest order_id for the current day_id and niti_id
-        $maxOrderId = NitiManagement::where('day_id', $dayId)
-        ->whereNotNull('order_id')
-        ->max('order_id');  // max order_id for that day
-
-        $newOrderIdInt = $maxOrderId ? ((int)$maxOrderId) + 1 : 1;
-
-        // Format order_id as zero-padded string of length 2
-        $newOrderId = str_pad($newOrderIdInt, 2, '0', STR_PAD_LEFT);
-
-        // Update the activeNiti row with new order_id
+        // ✅ Update the same NitiManagement row
         $activeNiti->update([
             'end_user_id'    => $user->sebak_id,
             'end_time'      => $now->format('H:i:s'),
             'running_time'  => $runningTime,
             'duration'      => $durationText,
             'niti_status'   => 'Completed',
-            'order_id'      => $newOrderId,
         ]);
-
 
         // ✅ Update NitiMaster
         $nitiMaster->update([
@@ -689,13 +676,13 @@ public function stopNiti(Request $request)
             ]
         ], 200);
 
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Failed to stop Niti.',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed to stop Niti.',
+            'error' => $e->getMessage()
+        ], 500);
+    }
 }
 
 public function completedNiti()
