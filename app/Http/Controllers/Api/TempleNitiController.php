@@ -92,12 +92,11 @@ public function manageNiti(Request $request)
         })
         ->get();
 
-      
-         $nitiInfo = TempleNews::where('type', 'information')
+        $nitiInfo = TempleNews::where('type', 'information')
             ->where('niti_notice_status','Started')
             ->where('status','active')
             ->orderBy('created_at', 'desc')
-            ->get(['id', 'niti_notice','created_at'])
+            ->get(['id', 'niti_notice','niti_notice_english','created_at'])
             ->first();
     
         $finalNitiList = [];
@@ -618,14 +617,19 @@ public function stopNiti(Request $request)
         $runningTime = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
         $durationText = $hours > 0 ? "{$hours} hr {$minutes} min" : ($minutes > 0 ? "{$minutes} min" : "{$seconds} sec");
 
-            // Get the latest order_id for the current day_id and niti_id
-        $maxOrderId = NitiManagement::where('day_id', $dayId)
+        // Get the latest order_id for the current day_id and niti_id
+        $orderIds = NitiManagement::where('day_id', $dayId)
         ->whereNotNull('order_id')
-        ->max('order_id');  // max order_id for that day
+        ->pluck('order_id')
+        ->map(fn($id) => floatval($id))
+        ->toArray();
 
-        $newOrderIdInt = $maxOrderId ? ((int)$maxOrderId) + 1 : 1;
+        $maxOrderFloat = !empty($orderIds) ? max($orderIds) : 0;
 
-        // Format order_id as zero-padded string of length 2
+        // Calculate new order id integer part by ceiling maxOrderFloat
+        $newOrderIdInt = (int) ceil($maxOrderFloat) + 1;
+
+        // Format as zero-padded 2-digit string
         $newOrderId = str_pad($newOrderIdInt, 2, '0', STR_PAD_LEFT);
 
         // Update the activeNiti row with new order_id
@@ -1606,12 +1610,59 @@ public function editEndTime(Request $request)
     $runningTime = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
     $durationText = $hours > 0 ? "{$hours} hr {$minutes} min" : ($minutes > 0 ? "{$minutes} min" : "{$seconds} sec");
 
+    $currentOrder = $niti->order_id;
+    $newEndTime = $request->end_time;
+    $dayId = $niti->day_id;
+
+    // Find previous and next Niti by end_time
+    $previousNiti = NitiManagement::where('day_id', $dayId)
+        ->where('id', '!=', $niti->id)
+        ->whereNotNull('end_time')
+        ->where('end_time', '<', $newEndTime)
+        ->orderBy('end_time', 'desc')
+        ->first();
+
+    $nextNiti = NitiManagement::where('day_id', $dayId)
+        ->where('id', '!=', $niti->id)
+        ->whereNotNull('end_time')
+        ->where('end_time', '>', $newEndTime)
+        ->orderBy('end_time', 'asc')
+        ->first();
+
+    if ($previousNiti && $nextNiti) {
+        $prevOrder = $previousNiti->order_id;
+        $nextOrder = $nextNiti->order_id;
+
+        // Check if previous order is fractional and next is integer
+        if (strpos($prevOrder, '.') !== false && floor(floatval($nextOrder)) == floatval($nextOrder)) {
+            // Increment decimal part of previous order by 0.1
+            $prevFloat = floatval($prevOrder);
+
+            // Increase decimal by 0.1 but keep only one decimal digit
+            $newOrderFloat = round($prevFloat + 0.1, 1);
+
+            $newOrderId = number_format($newOrderFloat, 1);
+
+        } else {
+            // Normal average between previous and next
+            $avgFloat = (floatval($prevOrder) + floatval($nextOrder)) / 2;
+            $newOrderId = number_format($avgFloat, 1);
+        }
+
+    } elseif ($nextNiti) {
+        $nextOrderInt = intval($nextNiti->order_id);
+        $newOrderId = str_pad($nextOrderInt, 2, '0', STR_PAD_LEFT) . '.5';
+
+    } else {
+        $newOrderId = $currentOrder ?? '01';
+    }
     // ✅ Update fields
     $niti->update([
         'end_time'     => $request->end_time,
         'running_time' => $runningTime,
         'duration'     => trim($durationText),
         'end_time_edit_user_id' => $user->sebak_id,
+        'order_id'             => $newOrderId,
     ]);
 
     return response()->json([
