@@ -1285,6 +1285,8 @@ public function updateNoticeName(Request $request)
 
         $news->save();
 
+        dd($news);
+
         return response()->json([
             'status' => true,
             'message' => 'Notice name updated successfully.',
