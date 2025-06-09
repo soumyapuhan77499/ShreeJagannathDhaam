@@ -536,7 +536,6 @@ public function resumeNiti(Request $request)
 
 public function stopNiti(Request $request)
 {
-
     try {
         $request->validate([
             'niti_id' => 'required|string|exists:temple__niti_details,niti_id',
@@ -1283,8 +1282,6 @@ public function updateNoticeName(Request $request)
         $news->notice_name = $request->notice_name;
         $news->start_date = $request->start_date;
         $news->end_date = $request->end_date;
-        $news->mix_gold = $request->mix_gold;
-        $news->mix_silver = $request->mix_silver;
 
         $news->save();
 
