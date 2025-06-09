@@ -1272,11 +1272,6 @@ public function getHundi()
 
 public function updateNoticeName(Request $request)
 {
-    $request->validate([
-        'id' => 'required|exists:temple__news,id',
-        'notice_name' => 'required|string|max:255',
-    ]);
-
     try {
         $news = TempleNews::findOrFail($request->id);
         $news->notice_name = $request->notice_name;
@@ -1284,8 +1279,6 @@ public function updateNoticeName(Request $request)
         $news->end_date = $request->end_date;
 
         $news->save();
-
-        dd($news);
 
         return response()->json([
             'status' => true,
