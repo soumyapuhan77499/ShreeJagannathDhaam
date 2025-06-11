@@ -68,7 +68,6 @@ public function manageNiti(Request $request)
         // ✅ Get all Special Nitis grouped by after_special_niti
         $specialNitisGrouped = NitiMaster::where('status', 'active')
             ->where('niti_type', 'special')
-            ->where('language', 'Odia')
             ->where('niti_status', '!=', 'NotStarted')
             ->whereDate('date_time', $today) // ✅ Filter by today's date here
             ->with([
@@ -781,12 +780,34 @@ public function completedNiti()
     }
 }
 
-public function getOtherNiti()
+public function getMahasnanaNiti()
 {
     try {
         $otherNitis = NitiMaster::where('niti_type', 'other')
             ->orderBy('date_time', 'desc')
             ->where('status', 'other')
+            ->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Other Niti list fetched successfully.',
+            'data' => $otherNitis,
+        ], 200);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed to fetch special Niti data.',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
+}
+
+public function getOtherNiti()
+{
+    try {
+        $otherNitis = NitiMaster::where('niti_type', 'other')
+            ->where('status', 'active')
             ->get();
 
         return response()->json([
@@ -1224,6 +1245,15 @@ public function saveHundi(Request $request)
 {
     try {
 
+          $user = Auth::guard('niti_admin')->user();
+
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized access.'
+            ], 401);
+        }
+
         $hundi = TempleHundi::create([
             'date'      => $request->date,
             'rupees'    => $request->rupees,
@@ -1231,6 +1261,8 @@ public function saveHundi(Request $request)
             'silver'    => $request->silver,
             'mix_gold'  => $request->mix_gold,
             'mix_silver'=> $request->mix_silver,
+            'hundi_insert_user_id' => $user->sebak_id,
+
         ]);
 
         return response()->json([
@@ -1274,41 +1306,93 @@ public function getHundi()
     }
 }
 
-public function updateNoticeName(Request $request)
+ public function deleteHundi($id)
 {
     try {
-        $news = TempleNews::findOrFail($request->id);
-        $news->notice_name = $request->notice_name;
-        $news->start_date = $request->start_date;
-        $news->end_date = $request->end_date;
+        $hundi = TempleHundi::find($id);
 
-        $news->save();
+        if (!$hundi) {
+            return response()->json(['message' => 'Hundi not found'], 404);
+        }
+
+        // Update status to deleted
+        $hundi->status = 'deleted';
+        $hundi->save();
+
+            return response()->json([
+        'status' => true,
+        'message' => 'Hundi deleted successfully.',
+    ], 200);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed to fetch hundi records.',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+        
+}
+
+
+public function updateHundiCollection(Request $request)
+{
+
+    $user = Auth::guard('niti_admin')->user();
+
+    if (!$user) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Unauthorized access.'
+        ], 401);
+    }
+
+    try {
+        $hundi = TempleHundi::findOrFail($request->id);
+
+        $hundi->update([
+            'date'   => $request->date,
+            'rupees' => $request->rupees,
+            'gold'   => $request->gold,
+            'silver' => $request->silver,
+            'mix_gold' => $request->mix_gold,
+            'mix_silver' => $request->mix_silver,
+            'hundi_update_user_id' => $user->sebak_id,
+        ]);
 
         return response()->json([
-            'status' => true,
-            'message' => 'Notice name updated successfully.',
-            'data' => $news
-        ],200);
-
-        
-        } catch (\Exception $e) {
-         return response()->json([
-            'status' => false,
-            'message' => 'Failed to update notice name.',
-            'error' => $e->getMessage()
-         ], 500);
-        }
+            'status'  => true,
+            'message' => 'Hundi collection updated successfully.',
+            'data'    => $hundi
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status'  => false,
+            'message' => 'Failed to update hundi collection.',
+            'error'   => $e->getMessage()
+        ], 500);
+    }
 }
 
 public function storeByNoticeName(Request $request)
 {
-    try {
+        $user = Auth::guard('niti_admin')->user();
 
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized access.'
+            ], 401);
+        }
+
+    try {
         $news = TempleNews::create([
             'type' => 'notice',
             'notice_name' => $request->notice_name,
+            'notice_name_english' => $request->notice_name_english,
             'start_date' => $request->start_date,
-            'end_date' => $request->end_date
+            'end_date' => $request->end_date,
+            'notice_insert_user_id' => $user->sebak_id,
         ]);
 
         return response()->json([
@@ -1322,9 +1406,53 @@ public function storeByNoticeName(Request $request)
                 'status' => false,
                 'message' => 'Something went wrong!',
                 'error' => $e->getMessage()
+            ], 500);
+        }
+}
+
+
+public function updateNoticeName(Request $request)
+{
+    $request->validate([
+        'id' => 'required|exists:temple__news,id',
+        'notice_name' => 'required|string|max:255',
+    ]);
+
+     $user = Auth::guard('niti_admin')->user();
+
+    if (!$user) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Unauthorized access.'
+        ], 401);
+    }
+
+    try {
+        $news = TempleNews::findOrFail($request->id);
+        $news->notice_name = $request->notice_name;
+        $news->notice_name_english = $request->notice_name_english;
+        $news->start_date = $request->start_date;
+        $news->end_date = $request->end_date;
+        $news->notice_update_user_id = $user->sebak_id;
+
+        $news->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Notice name updated successfully.',
+            'data' => $news
+        ],200);
+
+        
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed to update notice name.',
+            'error' => $e->getMessage()
         ], 500);
     }
 }
+
 
 public function getLatestNotice()
 {
@@ -1349,42 +1477,6 @@ public function getLatestNotice()
             'status' => false,
             'message' => 'Failed to fetch latest notice.',
             'error' => $e->getMessage()
-        ], 500);
-    }
-}
-
-public function updateHundiCollection(Request $request)
-{
-    $request->validate([
-        'id'     => 'required|exists:temple__hundi_notice,id',
-        'date'   => 'required|date',
-        'rupees' => 'nullable|numeric',
-        'gold'   => 'nullable|numeric',
-        'silver' => 'nullable|numeric',
-    ]);
-
-    try {
-        $hundi = TempleHundi::findOrFail($request->id);
-
-        $hundi->update([
-            'date'   => $request->date,
-            'rupees' => $request->rupees,
-            'gold'   => $request->gold,
-            'silver' => $request->silver,
-            'mix_gold' => $request->mix_gold,
-            'mix_silver' => $request->mix_silver,
-        ]);
-
-        return response()->json([
-            'status'  => true,
-            'message' => 'Hundi collection updated successfully.',
-            'data'    => $hundi
-        ], 200);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status'  => false,
-            'message' => 'Failed to update hundi collection.',
-            'error'   => $e->getMessage()
         ], 500);
     }
 }
@@ -1512,11 +1604,23 @@ public function addNitiInformation(Request $request)
 {
     $validated = $request->validate([
         'niti_notice' => 'required|string|max:1000',
+        'niti_notice_english' => 'nullable|string|max:1000',
     ]);
+
+     $user = Auth::guard('niti_admin')->user();
+
+    if (!$user) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Unauthorized access.'
+        ], 401);
+    }
 
     $news = TempleNews::create([
         'type' => 'information',
         'niti_notice' => $validated['niti_notice'],
+        'niti_notice_english' => $validated['niti_notice_english'] ?? $validated['niti_notice'],
+        'niti_notice_insert_user_id' => $user->sebak_id,
     ]);
 
     return response()->json([
@@ -1609,52 +1713,125 @@ public function editEndTime(Request $request)
 
     $runningTime = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
     $durationText = $hours > 0 ? "{$hours} hr {$minutes} min" : ($minutes > 0 ? "{$minutes} min" : "{$seconds} sec");
-
+    
     $currentOrder = $niti->order_id;
     $newEndTime = $request->end_time;
+    $newSavedDate = $request->date ?? $niti->date;  // Use saved date field only
     $dayId = $niti->day_id;
 
-    // Find previous and next Niti by end_time
-    $previousNiti = NitiManagement::where('day_id', $dayId)
+    // STEP 1: Handle case where new end_time is earlier than an existing end_time on the same day_id and same date
+    // Find the minimum end_time greater than or equal to requested end_time for same day_id and date
+    $laterEndNiti = NitiManagement::where('day_id', $dayId)
+        ->where('date', $newSavedDate)
+        ->where('end_time', '>=', $newEndTime)
         ->where('id', '!=', $niti->id)
-        ->whereNotNull('end_time')
-        ->where('end_time', '<', $newEndTime)
-        ->orderBy('end_time', 'desc')
-        ->first();
-
-    $nextNiti = NitiManagement::where('day_id', $dayId)
-        ->where('id', '!=', $niti->id)
-        ->whereNotNull('end_time')
-        ->where('end_time', '>', $newEndTime)
         ->orderBy('end_time', 'asc')
         ->first();
 
-    if ($previousNiti && $nextNiti) {
-        $prevOrder = $previousNiti->order_id;
-        $nextOrder = $nextNiti->order_id;
+    if ($laterEndNiti) {
+        // Adjust newEndTime to one minute after this found end_time (you can adjust interval)
+        $adjustedEndTime = date('H:i:s', strtotime($laterEndNiti->end_time) + 60); // +60 seconds = 1 min later
+        
+        // Replace time part of $newEndTime with adjusted time but keep date same
+        $newEndTime = $newSavedDate . ' ' . $adjustedEndTime;
+    }
 
-        // Check if previous order is fractional and next is integer
-        if (strpos($prevOrder, '.') !== false && floor(floatval($nextOrder)) == floatval($nextOrder)) {
-            // Increment decimal part of previous order by 0.1
-            $prevFloat = floatval($prevOrder);
+    // STEP 2: Check if there are any Niti with the same day_id and saved date greater than newSavedDate
+    $existsLaterDate = NitiManagement::where('day_id', $dayId)
+        ->where('date', '>', $newSavedDate)
+        ->exists();
 
-            // Increase decimal by 0.1 but keep only one decimal digit
-            $newOrderFloat = round($prevFloat + 0.1, 1);
+    if ($existsLaterDate) {
+        // There are Niti entries with a greater date under the same day_id
+        // Proceed with normal next and previous checks below
 
-            $newOrderId = number_format($newOrderFloat, 1);
+        // Find previous Niti where end_time < newEndTime and same day_id
+        $previousNiti = NitiManagement::where('day_id', $dayId)
+            ->where('id', '!=', $niti->id)
+            ->whereNotNull('end_time')
+            ->where('end_time', '<', $newEndTime)
+            ->orderBy('end_time', 'desc')
+            ->first();
 
-        } else {
-            // Normal average between previous and next
-            $avgFloat = (floatval($prevOrder) + floatval($nextOrder)) / 2;
-            $newOrderId = number_format($avgFloat, 1);
+        // Find next Niti where end_time > newEndTime and same day_id
+        $nextNiti = NitiManagement::where('day_id', $dayId)
+            ->where('id', '!=', $niti->id)
+            ->whereNotNull('end_time')
+            ->where('end_time', '>', $newEndTime)
+            ->orderBy('end_time', 'asc')
+            ->first();
+
+        // Helper function to extract Y-m-d from saved date string
+        function extractSavedDate($dateValue) {
+            return date('Y-m-d', strtotime($dateValue));
         }
 
-    } elseif ($nextNiti) {
-        $nextOrderInt = intval($nextNiti->order_id);
-        $newOrderId = str_pad($nextOrderInt, 2, '0', STR_PAD_LEFT) . '.5';
+        // Check dates match before adjusting order id (using saved date fields)
+        $prevDateMatches = $previousNiti && extractSavedDate($previousNiti->date) === $newSavedDate;
+        $nextDateMatches = $nextNiti && extractSavedDate($nextNiti->date) === $newSavedDate;
 
+        if ($previousNiti && $nextNiti) {
+            if ($prevDateMatches && $nextDateMatches) {
+                $prevOrder = $previousNiti->order_id;
+                $nextOrder = $nextNiti->order_id;
+
+                // If previous order is fractional and next is integer
+                if (strpos($prevOrder, '.') !== false && floor(floatval($nextOrder)) == floatval($nextOrder)) {
+                    $prevFloat = floatval($prevOrder);
+                    $newOrderFloat = round($prevFloat + 0.1, 1);
+                    $prevIntPart = explode('.', $prevOrder)[0];
+                    $decimalPart = substr(strrchr($newOrderFloat, "."), 1);
+                    $newOrderId = $prevIntPart . '.' . $decimalPart;
+                } else {
+                    $avgFloat = (floatval($prevOrder) + floatval($nextOrder)) / 2;
+                    $prevIntPart = explode('.', $prevOrder)[0];
+                    $intVal = intval($avgFloat);
+                    $formattedIntPart = str_pad($intVal, strlen($prevIntPart), '0', STR_PAD_LEFT);
+                    $fraction = $avgFloat - $intVal;
+                    $fractionStr = $fraction > 0 ? '.' . substr(number_format($fraction, 1), 2) : '';
+                    $newOrderId = $formattedIntPart . $fractionStr;
+                }
+            } else {
+                $newOrderId = $currentOrder;
+            }
+
+        } elseif ($nextNiti) {
+            if ($nextDateMatches) {
+                $nextOrderStr = strval($nextNiti->order_id);
+                $nextIntPart = explode('.', $nextOrderStr)[0];
+                $nextIntVal = intval($nextIntPart);
+                $newIntVal = max($nextIntVal - 1, 0);
+                $newIntPart = str_pad($newIntVal, strlen($nextIntPart), '0', STR_PAD_LEFT);
+                $newOrderId = $newIntPart . '.5';
+            } else {
+                $newOrderId = $currentOrder;
+            }
+
+        } elseif ($previousNiti) {
+            if ($prevDateMatches) {
+                $prevOrder = $previousNiti->order_id;
+                if (strpos($prevOrder, '.') === false) {
+                    $prevIntPart = $prevOrder;
+                    $intVal = intval($prevIntPart);
+                    $formattedIntPart = str_pad($intVal, strlen($prevIntPart), '0', STR_PAD_LEFT);
+                    $newOrderId = $formattedIntPart . '.5';
+                } else {
+                    $newOrderId = $prevOrder;
+                }
+            } else {
+                $newOrderId = $currentOrder;
+            }
+
+        } else {
+            if ($currentOrder) {
+                $newOrderId = $currentOrder;
+            } else {
+                $newOrderId = '01';
+            }
+        }
     } else {
-        $newOrderId = $currentOrder ?? '01';
+        // Current date is the greatest date in the day_id
+        $newOrderId = $currentOrder;
     }
     // ✅ Update fields
     $niti->update([
@@ -1671,6 +1848,7 @@ public function editEndTime(Request $request)
         'data' => $niti
     ]);
 }
+
 
 public function resetNiti(Request $request)
 {
@@ -1728,7 +1906,6 @@ public function markNitiAsNotStarted(Request $request)
 {
     $request->validate([
         'niti_id' => 'required|string|exists:temple__niti_details,niti_id',
-        'niti_not_done_reason' => 'required|string|max:255'
     ]);
 
     $user = Auth::guard('niti_admin')->user();

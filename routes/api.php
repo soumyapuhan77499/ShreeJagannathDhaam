@@ -267,12 +267,12 @@ Route::controller(TempleNitiController::class)->group(function () {
   // Public or generic route (no auth)
   Route::get('/manage-niti', 'manageNiti');
   Route::get('/completed-niti', 'completedNiti');
-  Route::get('/other-niti', 'getOtherNiti');
+  Route::get('/get-mahasnana-niti', 'getMahasnanaNiti');
+  Route::get('/get-other-niti', 'getOtherNiti');
   Route::post('/save-other-niti', 'storeOtherNiti');
   Route::post('/update-upcoming', 'updateActiveNitiToUpcoming');
   Route::get('/sub-niti/running','getRunningSubNitis');
   Route::get('/latest-apk', 'latestApk');
-
 
   // Protected routes (niti_admin must be authenticated)
   Route::middleware('auth:niti_admin')->group(function () {
@@ -295,6 +295,7 @@ Route::controller(TempleNitiController::class)->group(function () {
   Route::get('/latest-temple-notice','getLatestNotice');
   Route::post('/save-hundi-collection', 'saveHundi');
   Route::get('/get-hundi-collections', 'getHundi');
+  Route::post('/hundi/delete/{id}',  'deleteHundi');
   Route::post('/notice/update-name', 'updateNoticeName');
   Route::post('/hundi/update',  'updateHundiCollection');
   Route::post('/temple-notice/delete/{id}',  'deleteNotice');
