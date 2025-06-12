@@ -1092,27 +1092,27 @@ public function addAndStartSubNiti(Request $request)
 {
     try {
         $request->validate([
-            'niti_id'        => 'required|string|exists:temple__niti_details,niti_id',
-            'sub_niti_name'  => 'required|string|max:255',
+            'niti_id'       => 'required|string|exists:temple__niti_details,niti_id',
+            'sub_niti_name' => 'required|string|max:255',
         ]);
 
         $user = Auth::guard('niti_admin')->user();
         if (!$user) {
             return response()->json([
-                'status' => false,
+                'status'  => false,
                 'message' => 'Unauthorized.',
             ], 401);
         }
 
-        $now = Carbon::now('Asia/Kolkata');
+        $now   = Carbon::now('Asia/Kolkata');
         $today = $now->toDateString();
 
         // ✅ Get Niti and day_id
-        $nitiMaster = NitiMaster::where('status','active')->first();
+        $nitiMaster = NitiMaster::where('status', 'active')->first();
 
         if (!$nitiMaster || !$nitiMaster->day_id) {
             return response()->json([
-                'status' => false,
+                'status'  => false,
                 'message' => 'Parent Niti not found or day_id missing.'
             ], 404);
         }
@@ -1140,28 +1140,28 @@ public function addAndStartSubNiti(Request $request)
 
         // ✅ Step 3: Start Sub Niti under management table
         $management = TempleSubNitiManagement::create([
-            'sebak_id'       => $user->sebak_id,
-            'day_id'         => $dayId,
-            'niti_id'        => $request->niti_id,
-            'sub_niti_id'    => $subNiti->id,
-            'sub_niti_name'  => $subNiti->sub_niti_name,
-            'date'           => $today,
-            'start_time'     => $now->format('H:i:s'),
-            'status'         => 'Running',
+            'sebak_id'      => $user->sebak_id,
+            'day_id'        => $dayId,
+            'niti_id'       => $request->niti_id,
+            'sub_niti_id'   => $subNiti->id,
+            'sub_niti_name' => $subNiti->sub_niti_name,
+            'date'          => $today,
+            'start_time'    => $now->format('H:i:s'),
+            'status'        => 'Running',
         ]);
 
         return response()->json([
-            'status' => true,
+            'status'  => true,
             'message' => 'Sub Niti added and started successfully.',
-            'data' => [
+            'data'    => [
                 'sub_niti'   => $subNiti,
                 'management' => $management,
-            ]
+            ],
         ], 200);
 
     } catch (\Exception $e) {
         return response()->json([
-            'status' => false,
+            'status'  => false,
             'message' => 'Failed to add and start Sub Niti.',
             'error'   => $e->getMessage(),
         ], 500);
@@ -1183,7 +1183,7 @@ public function updateSubNitiName(Request $request, $id)
 
         if (!$subNiti) {
             return response()->json([
-                'status' => false,
+                'status'  => false,
                 'message' => 'Sub Niti record not found.'
             ], 404);
         }
@@ -1193,16 +1193,16 @@ public function updateSubNitiName(Request $request, $id)
         $subNiti->save();
 
         return response()->json([
-            'status' => true,
+            'status'  => true,
             'message' => 'Sub Niti name updated successfully.',
-            'data' => $subNiti
+            'data'    => $subNiti
         ], 200);
 
     } catch (\Exception $e) {
         return response()->json([
-            'status' => false,
+            'status'  => false,
             'message' => 'Error updating Sub Niti name.',
-            'error' => $e->getMessage()
+            'error'   => $e->getMessage()
         ], 500);
     }
 }
@@ -1210,14 +1210,13 @@ public function updateSubNitiName(Request $request, $id)
 public function softDeleteSubNiti($id)
 {
     try {
-        
         $subNiti = TempleSubNitiManagement::where('sub_niti_id', $id)
-        ->where('status', '!=', 'Deleted')
-        ->first();
+            ->where('status', '!=', 'Deleted')
+            ->first();
 
         if (!$subNiti) {
             return response()->json([
-                'status' => false,
+                'status'  => false,
                 'message' => 'Sub Niti record not found.'
             ], 404);
         }
@@ -1227,16 +1226,16 @@ public function softDeleteSubNiti($id)
         $subNiti->save();
 
         return response()->json([
-            'status' => true,
+            'status'  => true,
             'message' => 'Sub Niti soft-deleted successfully.',
-            'data' => $subNiti
+            'data'    => $subNiti
         ], 200);
 
     } catch (\Exception $e) {
         return response()->json([
-            'status' => false,
+            'status'  => false,
             'message' => 'Error soft deleting Sub Niti.',
-            'error' => $e->getMessage()
+            'error'   => $e->getMessage()
         ], 500);
     }
 }
@@ -1244,37 +1243,36 @@ public function softDeleteSubNiti($id)
 public function saveHundi(Request $request)
 {
     try {
-
-          $user = Auth::guard('niti_admin')->user();
+        $user = Auth::guard('niti_admin')->user();
 
         if (!$user) {
             return response()->json([
-                'status' => false,
+                'status'  => false,
                 'message' => 'Unauthorized access.'
             ], 401);
         }
 
         $hundi = TempleHundi::create([
-            'date'      => $request->date,
-            'rupees'    => $request->rupees,
-            'gold'      => $request->gold,
-            'silver'    => $request->silver,
-            'mix_gold'  => $request->mix_gold,
-            'mix_silver'=> $request->mix_silver,
+            'date'               => $request->date,
+            'rupees'             => $request->rupees,
+            'gold'               => $request->gold,
+            'silver'             => $request->silver,
+            'mix_gold'           => $request->mix_gold,
+            'mix_silver'         => $request->mix_silver,
             'hundi_insert_user_id' => $user->sebak_id,
-
         ]);
 
         return response()->json([
-            'status' => true,
+            'status'  => true,
             'message' => 'Hundi collection saved successfully.',
-            'data' => $hundi
+            'data'    => $hundi
         ], 200);
+
     } catch (\Exception $e) {
         return response()->json([
-            'status' => false,
+            'status'  => false,
             'message' => 'Something went wrong.',
-            'error' => $e->getMessage()
+            'error'   => $e->getMessage()
         ], 500);
     }
 }
@@ -1282,7 +1280,7 @@ public function saveHundi(Request $request)
 public function getHundi()
 {
     try {
-        $hundiRecords = TempleHundi::orderBy('date', 'desc')->get();
+        $hundiRecords = TempleHundi::orderBy('date', 'desc')->where('status','active')->get();
 
         if ($hundiRecords->isEmpty()) {
             return response()->json([
@@ -1334,7 +1332,6 @@ public function getHundi()
         
 }
 
-
 public function updateHundiCollection(Request $request)
 {
 
@@ -1376,40 +1373,39 @@ public function updateHundiCollection(Request $request)
 
 public function storeByNoticeName(Request $request)
 {
-        $user = Auth::guard('niti_admin')->user();
+    $user = Auth::guard('niti_admin')->user();
 
-        if (!$user) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Unauthorized access.'
-            ], 401);
-        }
+    if (!$user) {
+        return response()->json([
+            'status'  => false,
+            'message' => 'Unauthorized access.'
+        ], 401);
+    }
 
-        try {
-            $news = TempleNews::create([
-                'type' => 'notice',
-                'notice_name' => $request->notice_name,
-                'notice_name_english' => $request->notice_name_english,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                'notice_insert_user_id' => $user->sebak_id,
-            ]);
+    try {
+        $news = TempleNews::create([
+            'type'                 => 'notice',
+            'notice_name'          => $request->notice_name,
+            'notice_name_english'  => $request->notice_name_english,
+            'start_date'           => $request->start_date,
+            'end_date'             => $request->end_date,
+            'notice_insert_user_id'=> $user->sebak_id,
+        ]);
 
-            return response()->json([
-                'status' => true,
-                'message' => 'Temple news created successfully.',
-                'data' => $news
-            ], 200);
+        return response()->json([
+            'status'  => true,
+            'message' => 'Temple news created successfully.',
+            'data'    => $news
+        ], 200);
 
-            } catch (\Exception $e) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Something went wrong!',
-                    'error' => $e->getMessage()
-                ], 500);
-            }
+    } catch (\Exception $e) {
+        return response()->json([
+            'status'  => false,
+            'message' => 'Something went wrong!',
+            'error'   => $e->getMessage()
+        ], 500);
+    }
 }
-
 
 public function updateNoticeName(Request $request)
 {
@@ -1453,30 +1449,32 @@ public function updateNoticeName(Request $request)
     }
 }
 
-
 public function getLatestNotice()
 {
     try {
-        $latestNotice = TempleNews::orderBy('created_at', 'desc')->where('type','notice')->where('status','active')->get();
+        $latestNotice = TempleNews::where('type', 'notice')
+            ->where('status', 'active')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-        if (!$latestNotice) {
+        if ($latestNotice->isEmpty()) {
             return response()->json([
-                'status' => false,
+                'status'  => false,
                 'message' => 'No notice found.',
             ], 404);
         }
 
         return response()->json([
-            'status' => true,
+            'status'  => true,
             'message' => 'Latest notice fetched successfully.',
-            'data' => $latestNotice
+            'data'    => $latestNotice
         ], 200);
 
     } catch (\Exception $e) {
         return response()->json([
-            'status' => false,
+            'status'  => false,
             'message' => 'Failed to fetch latest notice.',
-            'error' => $e->getMessage()
+            'error'   => $e->getMessage()
         ], 500);
     }
 }
