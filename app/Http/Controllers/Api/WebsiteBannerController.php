@@ -24,7 +24,7 @@ class WebsiteBannerController extends Controller
         try {
             $templeId = 'TEMPLE25402';
 
-            $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
+        $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
 
         if (!$latestDayId) {
             return response()->json([
