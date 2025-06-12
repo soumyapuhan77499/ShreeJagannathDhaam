@@ -1284,9 +1284,9 @@ public function getHundi()
 
         if ($hundiRecords->isEmpty()) {
             return response()->json([
-                'status' => false,
+                'status' => true,
                 'message' => 'No hundi records found.',
-            ], 404);
+            ], 200);
         }
 
         return response()->json([
@@ -1459,9 +1459,9 @@ public function getLatestNotice()
 
         if ($latestNotice->isEmpty()) {
             return response()->json([
-                'status'  => false,
+                'status'  => true,
                 'message' => 'No notice found.',
-            ], 404);
+            ], 200);
         }
 
         return response()->json([
