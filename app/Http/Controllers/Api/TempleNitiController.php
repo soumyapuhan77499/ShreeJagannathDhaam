@@ -899,7 +899,7 @@ public function storeOtherNiti(Request $request)
         $niti = NitiMaster::create([
             'niti_id'        => 'NITI' . rand(10000, 99999),
             'niti_name'      => $request->niti_name,
-            'english_niti_name' => $request->niti_name,
+            'english_niti_name' => $request->english_niti_name,
             'niti_type'      => 'other',
             'niti_privacy'   => 'public',
             'niti_status'    => 'Started',
@@ -1385,29 +1385,29 @@ public function storeByNoticeName(Request $request)
             ], 401);
         }
 
-    try {
-        $news = TempleNews::create([
-            'type' => 'notice',
-            'notice_name' => $request->notice_name,
-            'notice_name_english' => $request->notice_name_english,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'notice_insert_user_id' => $user->sebak_id,
-        ]);
+        try {
+            $news = TempleNews::create([
+                'type' => 'notice',
+                'notice_name' => $request->notice_name,
+                'notice_name_english' => $request->notice_name_english,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'notice_insert_user_id' => $user->sebak_id,
+            ]);
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Temple news created successfully.',
-            'data' => $news
-        ], 200);
-
-        } catch (\Exception $e) {
             return response()->json([
-                'status' => false,
-                'message' => 'Something went wrong!',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+                'status' => true,
+                'message' => 'Temple news created successfully.',
+                'data' => $news
+            ], 200);
+
+            } catch (\Exception $e) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Something went wrong!',
+                    'error' => $e->getMessage()
+                ], 500);
+            }
 }
 
 
@@ -1848,7 +1848,6 @@ public function editEndTime(Request $request)
         'data' => $niti
     ]);
 }
-
 
 public function resetNiti(Request $request)
 {
