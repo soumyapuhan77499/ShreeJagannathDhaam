@@ -742,7 +742,8 @@ public function completedNiti()
         $completedManagement = NitiManagement::with('master')
             ->whereIn('niti_status', ['Completed', 'NotStarted'])
             ->where('day_id', $dayId)
-            ->orderByRaw("CASE WHEN end_time IS NULL THEN 1 ELSE 0 END, end_time ASC")
+            ->orderByRaw("CASE WHEN niti_status = 'Started' THEN id ELSE NULL END ASC")
+            ->orderByRaw('date asc, end_time asc')
             ->get()
             ->map(function ($item) {
                 return [
