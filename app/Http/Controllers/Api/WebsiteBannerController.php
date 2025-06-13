@@ -37,7 +37,7 @@ class WebsiteBannerController extends Controller
         ->with('master')
         ->where('niti_status', '!=', 'NotStarted')
         ->orderByRaw("CASE WHEN niti_status = 'Started' THEN id ELSE NULL END ASC")
-        ->orderByRaw("CASE WHEN niti_status = 'Completed' THEN order_id ELSE NULL END ASC")
+        ->orderByRaw('date asc, end_time asc')
         ->get();
 
         // Extract Niti IDs managed so far (for started/paused/completed)
