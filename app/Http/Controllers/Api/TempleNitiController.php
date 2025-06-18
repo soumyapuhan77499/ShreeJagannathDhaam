@@ -639,6 +639,7 @@ public function stopNiti(Request $request)
             'duration'      => $durationText,
             'niti_status'   => 'Completed',
             'order_id'      => $newOrderId,
+            'date'        => $now->toDateString(),
         ]);
 
 
@@ -760,6 +761,7 @@ public function completedNiti()
                     'end_user_id'              => $item->end_user_id,
                     'start_time_edit_user_id'  => $item->start_time_edit_user_id,
                     'end_time_edit_user_id'    => $item->end_time_edit_user_id,
+                    'not_done_user_id'    => $item->not_done_user_id,
                 ];
             });
 
@@ -835,6 +837,7 @@ public function storeOtherNiti(Request $request)
         ]);
 
         $now = Carbon::now()->setTimezone('Asia/Kolkata');
+        
         $user = Auth::guard('niti_admin')->user();
 
         if (!$user) {
@@ -876,7 +879,7 @@ public function storeOtherNiti(Request $request)
 
                 NitiManagement::create([
                     'niti_id'     => $niti->niti_id,
-                    'sebak_id'    => $user->sebak_id,
+                    'start_user_id'    => $user->sebak_id,
                     'day_id'      => $dayId,
                     'niti_status' => 'Started',
                     'date'        => $now->toDateString(),

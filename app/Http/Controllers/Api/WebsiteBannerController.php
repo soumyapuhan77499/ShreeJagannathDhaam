@@ -22,7 +22,7 @@ class WebsiteBannerController extends Controller
     public function manageWebsiteBanner()
     {
         try {
-            $templeId = 'TEMPLE25402';
+        $templeId = 'TEMPLE25402';
 
         $latestDayId = NitiMaster::where('status', 'active')->latest('id')->value('day_id');
 
