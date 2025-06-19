@@ -811,6 +811,7 @@ public function getOtherNiti()
     try {
         $otherNitis = NitiMaster::where('niti_type', 'other')
             ->where('status', 'active')
+            ->distinct('niti_name')
             ->get();
 
         return response()->json([
