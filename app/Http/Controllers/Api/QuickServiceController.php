@@ -26,25 +26,15 @@ class QuickServiceController extends Controller
     public function getParkingList(Request $request)
     {
         try {
-    
-            $templeId = 'TEMPLE25402';
-    
-            if (!$templeId) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Temple ID is required.',
-                ], 400);
-            }
-    
-            $parkings = Parking::where('temple_id', $templeId)
-                ->where('status', 'active')
+        
+         
+            $parkings = Parking::where('status', 'active')
                 ->where('language', $request->language)
                 ->get()
                 ->map(function ($parking) {
                     if ($parking->parking_photo) {
                         $parking->parking_photo = 'http://temple.mandirparikrama.com/' . ltrim($parking->parking_photo, '/');
                     }
-    
                     return $parking;
                 });
     
@@ -66,18 +56,9 @@ class QuickServiceController extends Controller
     
     public function getAccomodationList(Request $request)
     {
-        try {
-            $templeId = 'TEMPLE25402';
-    
-            if (!$templeId) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Temple ID is required.'
-                ], 400);
-            }
-    
-            $accomodations = Accomodation::where('temple_id', $templeId)
-                ->where('status', 'active')
+        try {    
+            
+            $accomodations = Accomodation::where('status', 'active')
                 ->where('language', $request->language)
                 ->get()
                 ->map(function ($accomodation) {
@@ -121,14 +102,6 @@ class QuickServiceController extends Controller
     public function getCommuteList(Request $request)
     {
         try {
-            $templeId = 'TEMPLE25402';
-    
-            if (!$templeId) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Temple ID is required.'
-                ], 400);
-            }
     
             $commutes = CommuteMode::where('temple_id', $templeId)
                 ->where('status', 'active')
@@ -166,17 +139,8 @@ class QuickServiceController extends Controller
     public function getEmergencyContacts(Request $request)
     {
         try {
-            $templeId = 'TEMPLE25402';
-
-            if (!$templeId) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Temple ID is required.'
-                ], 400);
-            }
-
-            $contacts = EmergencyContact::where('temple_id', $templeId)
-                ->where('status', 'active')
+            
+            $contacts = EmergencyContact::where('status', 'active')
                 ->get();
 
             return response()->json([
@@ -199,17 +163,8 @@ class QuickServiceController extends Controller
     public function getPublicServiceList(Request $request)
     {
         try {
-            $templeId = 'TEMPLE25402';
-
-            if (!$templeId) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Temple ID is required.'
-                ], 400);
-            }
-
-          $services = PublicServices::where('temple_id', $templeId)
-            ->where('status', 'active')
+          
+          $services = PublicServices::where('status', 'active')
             ->where('language', $request->language)
             ->get()
             ->map(function ($service) {
@@ -241,8 +196,6 @@ class QuickServiceController extends Controller
 
         return $service;
     });
-
-
             return response()->json([
                 'status' => true,
                 'message' => 'Public services fetched successfully.',
@@ -344,10 +297,8 @@ class QuickServiceController extends Controller
     public function getDarshan()
     {
         try {
-            $templeId = 'TEMPLE25402';
 
             $darshans = TempleDarshan::where('status', 'active')
-                ->where('temple_id', $templeId)
                 ->get();
 
             // Map through the darshans to update the image path
