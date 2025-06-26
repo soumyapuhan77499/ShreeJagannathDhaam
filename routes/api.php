@@ -56,9 +56,10 @@ Route::controller(TempleLoginController::class)->group(function() {
 
 Route::middleware('auth:sanctum')->group(function () {
   Route::post('/update-temple-details', [TempleAboutController::class, 'updateTempleDetails']);
-  Route::post('/ratha-yatra-videos','store');
 
 });
+  Route::post('/ratha-yatra-videos', [TempleAboutController::class,'store']);
+
 
 Route::middleware(['auth:sanctum'])->group(function () {
       Route::controller(TempleSocialMediaController::class)->group(function() {
