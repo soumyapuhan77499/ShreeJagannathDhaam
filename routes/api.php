@@ -37,6 +37,8 @@ use App\Http\Controllers\Api\WebsiteBannerController;
 use App\Http\Controllers\Api\TempleInformationController;
 use App\Http\Controllers\Api\QuickServiceController;
 use App\Http\Controllers\Api\RathaYatraController;
+use App\Http\Controllers\Api\RathaYatraApiController;
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -54,6 +56,8 @@ Route::controller(TempleLoginController::class)->group(function() {
 
 Route::middleware('auth:sanctum')->group(function () {
   Route::post('/update-temple-details', [TempleAboutController::class, 'updateTempleDetails']);
+  Route::post('/ratha-yatra-videos','store');
+
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -303,6 +307,30 @@ Route::controller(TempleNitiController::class)->group(function () {
   Route::post('/niti-information/{id}', 'deleteNitiInformation');
   Route::get('/darshan/started-data',  'getStartedDarshanData');
 });
+
+
+// Route::controller(RathaYatraApiController::class)->group(function () {
+
+//       Route::get('/manage-niti', 'getFirstPendingDayNitis');
+//       Route::get('/completed-niti', 'completedNiti');
+//       Route::get('/get-mahasnana-niti', 'getMahasnanaNiti');
+//       Route::post('/save-other-niti', 'storeOtherNiti');
+//       Route::get('/get-mahasnana-niti', 'getMahasnanaNiti');
+//       Route::get('/get-other-niti', 'getOtherNiti');
+//       Route::middleware('auth:niti_admin')->group(function () {
+//       Route::post('/start-niti', 'startNiti');
+//       Route::post('/stop-niti', 'stopNiti');
+//       Route::post('/niti/edit-start-time',  'editStartTime');
+//       Route::post('/niti/edit-end-time',  'editEndTime');
+//       Route::post('/niti/reset','resetNiti');
+//       Route::post('/niti/not-started', 'markNitiAsNotStarted');
+
+//   });
+
+//     Route::get('/darshan/started-data',  'getStartedDarshanData');
+
+// });
+
 
 Route::controller(TempleDarshanController::class)->group(function () {
   Route::get('/get-darshan', 'getDarshanListApi');

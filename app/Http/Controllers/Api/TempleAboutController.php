@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TempleAboutDetail;
 use Illuminate\Support\Facades\Auth;
+use App\Models\RathaYatraVideo;
+use Illuminate\Support\Facades\Storage;
 
 class TempleAboutController extends Controller
 {
@@ -85,5 +87,27 @@ class TempleAboutController extends Controller
         }
     }
     
-    
+      public function store(Request $request)
+    {
+        // Save video file
+        $videoPath = $request->file('localVideo')->store('videos', 'public');
+        $videoUrl = config('app.url') . '/storage/' . $videoPath;
+
+        // Save thumbnail
+        $thumbnailPath = $request->file('thumbnail')->store('images', 'public');
+        $thumbnailUrl = config('app.url') . '/storage/' . $thumbnailPath;
+
+        // Save to DB
+        $video = RathaYatraVideo::create([
+            'title'       => $request->title,
+            'description' => $request->description,
+            'localVideo'  => $videoUrl,
+            'thumbnail'   => $thumbnailUrl,
+        ]);
+
+        return response()->json([
+            'message' => 'Video uploaded successfully',
+            'data'    => $video,
+        ], 201);
+    }
 }
