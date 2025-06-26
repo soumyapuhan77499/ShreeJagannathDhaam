@@ -110,4 +110,24 @@ class TempleAboutController extends Controller
             'data'    => $video,
         ], 201);
     }
+
+    public function index()
+{
+    $videos = RathaYatraVideo::all()->map(function ($video) {
+        return [
+            'id' => (string) $video->id,
+            'title' => $video->title,
+            'description' => $video->description,
+            'localVideo' => $video->localVideo,     // Already a full URL if saved that way
+            'thumbnail' => $video->thumbnail,
+        ];
+    });
+
+    return response()->json([
+        'id' => '1',
+        'title' => 'Facilities On Badadanda.',
+        'videos' => $videos,
+    ], 200);
+}
+
 }

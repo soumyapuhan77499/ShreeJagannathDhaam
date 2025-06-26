@@ -59,6 +59,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
   Route::post('/ratha-yatra-videos', [TempleAboutController::class,'store']);
+Route::get('/get-ratha-yatra-videos', [TempleAboutController::class, 'index']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
