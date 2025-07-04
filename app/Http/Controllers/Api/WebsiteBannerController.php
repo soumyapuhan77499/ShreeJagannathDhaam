@@ -229,5 +229,3 @@ class WebsiteBannerController extends Controller
         }
     }
 }
-
-

@@ -19,6 +19,7 @@ class RathaYatraController extends Controller
                 $status = RathaYatraActive::create([
                     'live_video' => 'inactive',
                     'section' => 'inactive',
+                    'livechat' => 'inactive' // Default to 'inactive' if livechat is not set
                 ]);
             }
 
@@ -28,6 +29,7 @@ class RathaYatraController extends Controller
                 'data' => [
                     'live_video' => $status->live_video,
                     'section' => $status->section,
+                    'livechat' => $status->livechat, // Default to 'inactive' if livechat is not set
                 ]
             ], 200);
 

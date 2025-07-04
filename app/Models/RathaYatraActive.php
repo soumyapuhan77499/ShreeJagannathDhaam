@@ -14,5 +14,6 @@ class RathaYatraActive extends Model
     protected $fillable = [
         'live_video',
         'section',
+        'livechat'
     ];
 }

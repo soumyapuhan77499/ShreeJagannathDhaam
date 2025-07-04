@@ -56,11 +56,10 @@ Route::controller(TempleLoginController::class)->group(function() {
 
 Route::middleware('auth:sanctum')->group(function () {
   Route::post('/update-temple-details', [TempleAboutController::class, 'updateTempleDetails']);
-
 });
-  Route::post('/ratha-yatra-videos', [TempleAboutController::class,'store']);
-Route::get('/get-ratha-yatra-videos', [TempleAboutController::class, 'index']);
 
+Route::post('/ratha-yatra-videos', [TempleAboutController::class,'store']);
+Route::get('/get-ratha-yatra-videos', [TempleAboutController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
       Route::controller(TempleSocialMediaController::class)->group(function() {
@@ -68,8 +67,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/social-media/update', 'updateSocialMediaUrls');
         Route::post('/update-photos-videos',  'updatePhotosvideos');
         Route::get('/temple-photos-videos', 'getTemplePhotos');
-
       });
+
       Route::controller(TempleBankController::class)->group(function() {
         Route::post('/save-bank-details', 'saveBankDetails');
         Route::get('/get-bank-details', 'getBankDetails');
@@ -77,7 +76,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('/delete-bank/{id}', 'deleteBank');
       });
 
-     
       Route::controller(TempleDailyRitualController::class)->group(function() {
         Route::post('/save-daily-rituals',  'saveTempleRitual');
         Route::get('/show-daily-rituals',  'apiManageDailyRitual');
@@ -90,9 +88,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/manage-darshan', 'ManageTempleDarshan')->name('templedarshan.manage');
         Route::put('/update-darshan', 'updateTempleDarshan')->name('templedarshan.update');
         Route::delete('/delete-darshan/{id}', 'deleteTempleDarshan');
-
         Route::get('/darshan-list','getDarshanListApi');
-
       });
 
       Route::controller(TempleFestivalController::class)->group(function() {
@@ -146,10 +142,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('/delete-inventory-category/{id}',  'destdestroyInventoryCategoryroy')->name('templeuser.destroyInventoryCategory');
 
         Route::post('/add-inventory',  'storeInventory')->name('templeuser.storeInventory');
-      Route::get('/manage-inventory', 'mngInventory')->name('templeuser.manageInventory');
-      Route::post('/update-inventory/{id}','updateInventory')->name('templeuser.updateInventory');
-      Route::delete('/delete-inventory/{id}',  'destdestroyInventory')->name('templeuser.destroyInventory');
-
+        Route::get('/manage-inventory', 'mngInventory')->name('templeuser.manageInventory');
+        Route::post('/update-inventory/{id}','updateInventory')->name('templeuser.updateInventory');
+        Route::delete('/delete-inventory/{id}',  'destdestroyInventory')->name('templeuser.destroyInventory');
       });
 
       Route::controller(InsideTempleController::class)->group(function() {
@@ -310,7 +305,6 @@ Route::controller(TempleNitiController::class)->group(function () {
   Route::get('/darshan/started-data',  'getStartedDarshanData');
 });
 
-
 // Route::controller(RathaYatraApiController::class)->group(function () {
 
 //       Route::get('/manage-niti', 'getFirstPendingDayNitis');
@@ -335,9 +329,9 @@ Route::controller(TempleNitiController::class)->group(function () {
 
 
 Route::controller(TempleDarshanController::class)->group(function () {
-  Route::get('/get-darshan', 'getDarshanListApi');
-  
-  Route::middleware('auth:niti_admin')->group(function () {
+
+    Route::get('/get-darshan', 'getDarshanListApi');
+    Route::middleware('auth:niti_admin')->group(function () {
     Route::post('/darshan/edit',  'editDarshan');
     Route::post('/start-darshan',  'startDarshan');
     Route::post('/end-darshan',  'endDarshan');
