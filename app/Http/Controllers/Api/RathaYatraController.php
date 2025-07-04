@@ -17,9 +17,9 @@ class RathaYatraController extends Controller
             if (!$status) {
                 // Create a default record if none exists
                 $status = RathaYatraActive::create([
-                    'live_video' => 'inactive',
-                    'section' => 'inactive',
-                    'livechat' => 'inactive' // Default to 'inactive' if livechat is not set
+                    'live_video' => 'deactive',
+                    'section' => 'deactive',
+                    'livechat' => 'deactive' // Default to 'inactive' if livechat is not set
                 ]);
             }
 
